@@ -1,0 +1,48 @@
+extension_id = "org.freedesktop.Sdk.Extension.rust-stable"
+display_name = "Rust (stable toolchain)"
+description = """
+Provides the Rust stable toolchain (rustc, cargo) for building crates
+that are compiled as part of Python extension modules.
+Required by packages using maturin, setuptools-rust, or any crate that
+ships native code compiled via Cargo.
+"""
+
+mount_path = "/usr/lib/sdk/rust-stable"
+
+# Build backends that require Rust
+build_backends = ["maturin", "setuptools-rust"]
+
+# pkg-config names that imply Rust is needed
+pkgconfig_triggers = []
+
+# Python package names (canonical, lowercase) that always need Rust
+package_triggers = [
+  "cryptography",
+  "orjson",
+  "pydantic-core",
+  "rpds-py",
+  "ruff",
+  "watchfiles",
+  "tiktoken",
+  "tokenizers",
+  "blake3",
+  "ahash",
+  "polars",
+  "ormsgpack",
+  "maturin",
+]
+
+provides_executables = ["rustc", "cargo", "rustup", "rust-analyzer"]
+provides_pkgconfig   = []
+provides_libraries   = []
+
+[env]
+PATH       = "/usr/lib/sdk/rust-stable/bin:$PATH"
+CARGO_HOME = "/run/build/cargo-home"
+RUSTUP_HOME = "/usr/lib/sdk/rust-stable"
+
+compatible_sdks = [
+  "org.freedesktop.Sdk",
+  "org.gnome.Sdk",
+  "org.kde.Sdk",
+]

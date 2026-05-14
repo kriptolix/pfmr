@@ -1,0 +1,23 @@
+id: openblas
+provides:
+  - libopenblas.so
+  - libopenblas.so.0
+pkgconfig:
+  - openblas
+aliases:
+  - blas
+  - lapack
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.27/OpenBLAS-0.3.27.tar.gz
+  sha256: aa2d68b1564fe1b13c16735e2ba26bba23b5b4a9571c924e12c94bdeae2a4063
+config-opts:
+  - -DCMAKE_BUILD_TYPE=Release
+  - -DBUILD_SHARED_LIBS=ON
+  - -DBUILD_STATIC_LIBS=OFF
+  - -DBUILD_TESTING=OFF
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /lib/cmake

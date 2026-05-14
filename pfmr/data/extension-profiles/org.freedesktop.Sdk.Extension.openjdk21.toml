@@ -1,0 +1,29 @@
+extension_id = "org.freedesktop.Sdk.Extension.openjdk21"
+display_name = "OpenJDK 21"
+description = """
+OpenJDK 21 JDK for building or running Java-interop Python packages
+such as pyjnius, JPype1, or anything that requires a JVM or JNI headers.
+"""
+
+mount_path = "/usr/lib/sdk/openjdk21"
+
+build_backends = []
+
+pkgconfig_triggers = []
+library_triggers   = ["libjvm.so", "libjawt.so"]
+
+package_triggers = [
+  "pyjnius",
+  "jpype1",
+  "jep",
+]
+
+provides_executables = ["java", "javac", "jar", "javadoc"]
+provides_pkgconfig   = []
+provides_libraries   = ["libjvm.so", "libjawt.so"]
+
+[env]
+JAVA_HOME = "/usr/lib/sdk/openjdk21"
+PATH      = "/usr/lib/sdk/openjdk21/bin:$PATH"
+
+compatible_sdks = ["org.freedesktop.Sdk", "org.gnome.Sdk", "org.kde.Sdk"]

@@ -1,0 +1,681 @@
+Especificação Técnica — Substituto Moderno para flatpak-pip-generator
+Nome provisório
+
+pfmr
+
+(Python Flatpak Manifest Resolver)
+
+1. Objetivo
+
+Criar uma ferramenta moderna para geração automática de módulos para manifesto Flatpak para dependencias Python, substituindo funcionalmente o flatpak-pip-generator, porém resolvendo corretamente:
+
+dependências transitivas Python;
+dependências nativas do sistema;
+dependências providas pelo SDK Flatpak;
+dependências providas por SDK Extensions;
+dependências externas não empacotadas;
+toolchains adicionais (Rust, Go, LLVM, Fortran, etc.);
+wheels vs source distributions;
+builds reprodutíveis;
+manifests incrementalmente cacheáveis.
+
+A ferramenta deve utilizar o ecossistema moderno Python (uv) como backend primário de resolução.
+
+2. Problemas do flatpak-pip-generator
+2.1 Limitações atuais
+Problema	Impacto
+resolução incompleta de dependências	builds quebram
+ignora dependências nativas	erros de compilação
+não entende SDKs Flatpak	recompilação desnecessária
+não entende SDK Extensions	toolchains ausentes
+não classifica wheels vs sdists	builds lentos
+sem cache inteligente	rebuilds enormes
+sem banco de conhecimento	repetição de hacks
+sem resolução de bibliotecas externas	manutenção manual
+sem lockfile robusto	baixa reprodutibilidade
+3. Objetivos principais
+3.1 Objetivos funcionais
+
+A ferramenta deve:
+
+Resolver dependências Python com uv
+Detectar dependências nativas automaticamente
+Identificar dependências já presentes:
+no runtime;
+no SDK;
+em SDK Extensions.
+Gerar módulos Flatpak otimizados
+Resolver bibliotecas externas automaticamente
+Aprender progressivamente com manifests conhecidos
+Permitir bancos externos de resolução
+Ser deterministicamente reproduzível
+Minimizar recompilações
+Produzir manifests legíveis e editáveis
+
+4. Arquitetura Geral
+pyproject.toml ou nome de pacote
+        ↓
+UV Resolver
+        ↓
+Dependency Graph
+        ↓
+Native Dependency Analyzer
+        ↓
+SDK Capability Resolver
+        ↓
+External Library Resolver
+        ↓
+Manifest Optimizer
+        ↓
+Flatpak Manifest Generator
+
+5. Componentes
+5.1 UV Resolver Engine
+Objetivo
+
+Substituir completamente o uso de pip.
+
+Backend
+
+Usar:
+
+uv
+
+Responsabilidades
+resolver dependências transitivas;
+gerar lockfile determinístico;
+identificar wheels disponíveis;
+detectar backends de build;
+produzir árvore completa de resolução.
+
+Entrada
+pyproject.toml
+requirements.txt
+uv.lock
+poetry.lock
+
+Saída
+
+{
+  "packages": [
+    {
+      "name": "cryptography",
+      "version": "43.0.0",
+      "wheel_available": true,
+      "build_backend": "maturin",
+      "requires_native": true
+    }
+  ]
+}
+
+5.2 Native Dependency Analyzer
+Objetivo
+
+Detectar dependências nativas reais.
+
+Métodos
+1. Inspeção de wheel metadata
+
+Analisar:
+
+auditwheel
+ELF headers
+manylinux tags
+
+2. Inspeção de build backend
+
+Detectar:
+
+Backend	Toolchain
+maturin	Rust
+meson-python	Meson/Ninja
+setuptools-rust	Rust
+scikit-build	CMake
+setuptools + ext_modules	C compiler
+
+3. Inspeção dinâmica
+
+Executar builds sandboxed e detectar:
+
+headers faltando;
+pkg-config;
+bibliotecas ausentes;
+compiladores ausentes.
+
+4. Mapeamento ELF
+
+Executar:
+
+ldd
+readelf
+objdump
+
+para descobrir:
+
+libusb
+libffi
+openssl
+libxml2
+etc.
+5.3 SDK Capability Resolver
+Objetivo
+
+Entender se dependências já existem no ambiente Flatpak.
+
+Entrada
+
+Runtime selecionado:
+
+runtime: org.gnome.Platform
+sdk: org.gnome.Sdk
+runtime-version: "48"
+
+Banco de capacidades
+
+A ferramenta deve indexar:
+
+runtimes Flatpak;
+SDKs;
+SDK Extensions.
+Exemplo de banco
+
+{
+  "org.freedesktop.Sdk": {
+    "libraries": [
+      "openssl",
+      "libffi",
+      "zlib"
+    ],
+    "pkgconfig": [
+      "openssl.pc",
+      "libffi.pc"
+    ]
+  }
+}
+
+Fontes de dados
+Primárias
+flatpak info
+/usr/lib/pkgconfig
+pkg-config --list-all
+metadata OCI
+runtime exports
+Secundárias
+manifests Flathub
+cache comunitário
+5.4 SDK Extension Resolver
+Objetivo
+
+Detectar necessidade de extensões adicionais.
+
+Exemplos
+Dependência	SDK Extension
+Rust	rust-stable
+LLVM	llvmXX
+OpenJDK	openjdk
+NodeJS	nodeXX
+Exemplo de saída
+
+{
+  "required_extensions": [
+    "org.freedesktop.Sdk.Extension.rust-stable"
+  ]
+}
+
+5.5 External Dependency Resolver
+Objetivo
+
+Resolver bibliotecas externas não disponíveis no SDK.
+
+Exemplo:
+
+libusb
+hidapi
+libvips
+openblas
+Estratégia
+1. Banco local de recipes
+
+Formato:
+
+libraries:
+  libusb:
+    source:
+      type: archive
+      url: https://github.com/libusb/libusb/releases/...
+2. Banco remoto compartilhável
+
+A ferramenta deve suportar:
+
+Git repositories;
+registries HTTP;
+manifests compartilhados.
+Exemplo
+sources:
+  - https://github.com/org/flatpak-recipes
+  - https://gitlab.com/org/runtime-libs
+Estratégia de matching
+
+Resolver por:
+
+SONAME;
+pkg-config;
+headers;
+aliases.
+Exemplo
+missing:
+  libusb-1.0.so
+
+match:
+  libusb
+
+5.6 Knowledge Graph / Resolver DB
+Objetivo
+
+Acumular conhecimento incremental.
+
+Exemplo
+
+{
+  "cryptography": {
+    "requires": [
+      "rust"
+    ]
+  },
+  "pygobject": {
+    "requires": [
+      "gobject-introspection",
+      "glib"
+    ]
+  }
+}
+
+Fontes
+builds anteriores;
+manifests Flathub;
+contribuições da comunidade;
+CI telemetry.
+5.7 Build Sandbox Inspector
+Objetivo
+
+Executar builds experimentais para descobrir dependências ausentes.
+
+Fluxo
+build sandbox
+    ↓
+attempt build
+    ↓
+capture stderr
+    ↓
+pattern match
+    ↓
+resolve missing dependency
+    ↓
+retry
+Exemplo
+fatal error: openssl/ssl.h not found
+
+↓
+
+{
+  "missing_sdk_package": "openssl-devel"
+}
+5.8 Manifest Optimizer
+Objetivos
+minimizar rebuilds;
+maximizar cache;
+separar módulos pesados.
+Estratégias
+1. Agrupamento inteligente
+
+Separar:
+
+pure-python;
+native-python;
+rust;
+scientific stack.
+2. Ordem ótima
+base libs
+↓
+toolchains
+↓
+heavy native libs
+↓
+python deps
+↓
+application
+3. Reuso de cache
+
+Hashes por módulo:
+
+{
+  "module_hash": "sha256..."
+}
+5.9 Output Generator
+Formatos suportados
+JSON
+YAML
+Exemplo
+modules:
+  - name: python-deps
+    buildsystem: simple
+    build-commands:
+      - pip install ...
+      
+6. Sistema de Recipes
+6.1 Objetivo
+
+Permitir crescimento contínuo da resolução automática.
+
+Estrutura
+recipes/
+    python/
+    native/
+    sdk/
+    extensions/
+6.2 Formato
+id: libusb
+provides:
+  - libusb-1.0.so
+pkgconfig:
+  - libusb-1.0
+source:
+  type: archive
+  url: ...
+buildsystem: autotools
+6.3 Prioridades
+SDK
+SDK Extension
+Runtime
+Community recipe
+Manual override
+
+7. Sistema de Overrides
+Objetivo
+
+Permitir correções manuais.
+
+Exemplo
+overrides:
+  cryptography:
+    force_extension:
+      - rust-stable
+8. Modo Aprendizado
+Objetivo
+
+Transformar builds bem-sucedidos em conhecimento reutilizável.
+
+Exemplo
+
+Após build bem-sucedido:
+
+{
+  "package": "orjson",
+  "requires": [
+    "rust-stable"
+  ]
+}
+
+↓
+
+adicionado automaticamente ao banco local.
+
+9. Integração com Flathub
+Objetivo
+
+Minerar manifests existentes.
+
+Estratégia
+
+Analisar:
+
+Flathub
+
+para inferir:
+
+padrões;
+módulos recorrentes;
+recipes comuns;
+patches.
+
+10. CLI
+10.1 Comandos
+Resolver
+pfmr resolve pyproject.toml
+pfmr resolve "python package name"
+Gerar manifesto
+pfmr generate flatpak.yaml
+Build experimental
+pfmr probe build
+Aprender recipe
+pfmr learn build-log.txt
+
+11. Cache
+Objetivos
+evitar downloads repetidos;
+evitar rebuilds;
+compartilhar artefatos.
+Cachear
+wheels;
+source tarballs;
+manifests;
+recipes;
+build reports.
+
+12. Banco de Dados
+Backend sugerido
+Sem banco de dados, armazenar o conteudo arquivos de texto plano para facilitar sincronização via git
+
+13. Segurança
+Requisitos
+hashes obrigatórios;
+builds sandboxed;
+verificação de origem;
+SBOM opcional;
+lockfile determinístico.
+
+14. Performance
+Metas
+re-build incremental	mínimo
+
+15. Roadmap
+
+Fase 1
+resolver UV
+geração básica
+recipes locais
+
+Fase 2
+detecção ELF
+SDK resolver
+SDK extension resolver
+
+Fase 3
+build probing
+auto-learning
+knowledge graph
+
+Fase 4
+registry distribuído
+integração Flathub
+CI intelligence
+
+16. Tecnologias sugeridas
+Área	Tecnologia
+linguagem	python
+resolução python	uv
+manifests	pyaiml
+banco	pain text files
+análise ELF	pyelftools
+parser pkg-config	pkgconf
+graph engine	graphlib
+
+17. Diferenciais principais
+
+A nova ferramenta deve:
+
+entender o ecossistema Flatpak;
+entender toolchains;
+entender runtimes;
+entender SDK Extensions;
+entender bibliotecas nativas;
+aprender progressivamente;
+produzir builds reproduzíveis;
+minimizar manutenção manual.
+
+Ela deve funcionar mais como um “gerenciador inteligente de empacotamento Flatpak” do que apenas um conversor de requirements Python.
+
+18.1 Princípio fundamental
+
+A ferramenta NÃO simula o ambiente Flatpak.
+
+Ela sempre executa dentro de:
+
+flatpak-builder
+ou flatpak build
+ou flatpak run
+
+Ou seja:
+
+O Flatpak runtime é o sandbox. O pfmr apenas orquestra.
+
+18.2 Modos de execução de sandbox
+Modo A — Execução direta no SDK (preferencial)
+
+Usando:
+
+flatpak-builder --run build-dir manifest.json bash
+Uso:
+testes de instalação Python (uv pip install)
+testes de build
+inspeção de runtime
+Modo B — Execução controlada via flatpak build
+flatpak build build-dir command...
+Uso:
+execução isolada sem rebuild completo
+validação incremental
+testes rápidos de dependência
+Modo C — Execução de aplicação temporária
+flatpak run --command=bash app.id
+Uso:
+validação pós-build
+teste de runtime final
+verificação de permissões
+18.3 Criação da sandbox de teste
+
+O pfmr deve gerar automaticamente um manifest de teste temporário, derivado do manifest principal.
+
+Estrutura gerada
+app-id: org.pfmr.TestSandbox
+runtime: org.freedesktop.Platform
+sdk: org.freedesktop.Sdk
+
+modules:
+  - name: pfmr-test-env
+    buildsystem: simple
+    build-commands:
+      - python3 -m venv /app/venv
+      - /app/venv/bin/pip install uv
+Características
+isolado do app principal
+sem persistência
+destruído após execução
+pode ser regenerado a qualquer momento
+18.4 Injeção de cenário de teste
+
+O pfmr deve suportar cenários:
+
+1. Teste de instalação Python
+uv pip install package
+2. Teste de importação
+python -c "import numpy"
+3. Teste de binários nativos
+ldd $(python -c "import numpy; print(numpy.__file__)")
+4. Teste de build backend
+setuptools
+maturin
+meson-python
+18.5 Captura de falhas
+
+O sandbox deve capturar:
+
+stderr completo
+exit code
+missing libraries
+missing headers
+missing pkg-config entries
+
+Exemplo:
+
+ERROR: libusb-1.0.so not found
+Normalização de erro
+{
+  "error_type": "missing_native_dependency",
+  "missing": "libusb-1.0",
+  "source": "ldd",
+  "context": "numpy build"
+}
+18.6 Integração com SDK e Extensions
+
+A sandbox deve ser criada SEMPRE com:
+
+SDK alvo
+Runtime alvo
+Extensions declaradas no manifest
+
+Exemplo:
+
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+18.7 Determinismo da sandbox
+
+Cada execução deve ser:
+
+reproduzível
+sem cache host
+sem vazamento de sistema local
+
+Regras:
+
+PATH controlado
+env vars fixas
+sem acesso a /usr do host
+apenas SDK + runtime
+18.8 Cache de sandboxes
+
+O pfmr pode cachear:
+
+imagem do SDK base
+layers de dependência Python
+builds intermediários
+
+Mas NUNCA:
+
+resultados de falha
+estado de sandbox quebrada
+18.9 Filosofia de design
+
+A sandbox não é um container genérico.
+
+Ela é:
+
+uma execução fiel do ambiente Flatpak alvo com instrumentação de erro.
+
+18.10 Resultado final esperado
+
+Após execução, o pfmr deve ser capaz de responder:
+
+quais dependências Python faltam
+quais libs nativas estão ausentes
+se o SDK atual é suficiente
+se SDK extension é necessária
+se o build é possível sem modificações
+18.11 Resumo arquitetural
+pfmr
+ ├── resolve (uv + graph)
+ ├── analyze (ELF + pkg-config)
+ ├── sandbox (flatpak-builder --run)
+ └── learn (error ingestion)
+
+
+

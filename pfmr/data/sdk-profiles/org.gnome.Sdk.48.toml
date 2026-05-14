@@ -1,0 +1,259 @@
+sdk_id = "org.gnome.Sdk"
+sdk_version = "48"
+
+# org.gnome.Sdk herda todo o org.freedesktop.Sdk e adiciona a stack GNOME.
+# Referência: https://gitlab.gnome.org/GNOME/gnome-build-meta
+
+pkgconfig = [
+  # ── herdado do freedesktop ──────────────────────────────────────────
+  "zlib", "zlib-ng", "bz2", "liblzma", "lz4", "libzstd",
+  "openssl", "libcrypto", "libssl", "libgcrypt", "libgpg-error",
+  "libffi",
+  "libxml-2.0", "libxslt", "libexslt",
+  "libcurl",
+  "sqlite3",
+  "fontconfig", "freetype2", "harfbuzz", "harfbuzz-icu",
+  "fribidi", "pango", "pangocairo", "pangoft2",
+  "cairo", "cairo-gobject",
+  "libpng", "libjpeg", "libtiff-4", "libwebp",
+  "glib-2.0", "gobject-2.0", "gio-2.0", "gmodule-2.0", "gthread-2.0",
+  "gio-unix-2.0",
+  "python3", "python-3.12",
+  "uuid",
+  "libpcre2-8", "libpcre2-16", "libpcre2-32",
+  "dbus-1", "libsystemd",
+  "alsa", "libpulse", "libpulse-simple", "libpulse-mainloop-glib",
+  "x11", "xext", "xrender", "xrandr",
+  "xcb", "xcb-render", "xcb-shm",
+  "wayland-client", "wayland-server", "wayland-egl",
+  "xkbcommon", "xkbcommon-x11",
+  "gl", "egl", "glesv2",
+  "libevdev", "libinput", "libudev",
+  "libmount", "libblkid", "libcap",
+  "icu-i18n", "icu-io", "icu-uc",
+
+  # ── stack GNOME ────────────────────────────────────────────────────
+  # GObject Introspection
+  "gobject-introspection-1.0",
+
+  # GTK / GDK
+  "gtk4",
+  "gtk+-3.0",
+  "gdk-3.0",
+  "gdk-pixbuf-2.0",
+  "gdk-x11-3.0",
+  "gdk-wayland-3.0",
+  "gsk-4",
+
+  # Adwaita
+  "libadwaita-1",
+
+  # GLib extras
+  "gio-2.0",
+  "glib-2.0",
+  "girepository-2.0",
+
+  # Multimedia (GStreamer)
+  "gstreamer-1.0",
+  "gstreamer-base-1.0",
+  "gstreamer-audio-1.0",
+  "gstreamer-video-1.0",
+  "gstreamer-pbutils-1.0",
+  "gstreamer-plugins-base-1.0",
+  "gstreamer-tag-1.0",
+  "gstreamer-gl-1.0",
+  "gstreamer-app-1.0",
+  "gstreamer-net-1.0",
+  "gstreamer-rtp-1.0",
+  "gstreamer-rtsp-1.0",
+
+  # WebKit
+  "webkit2gtk-4.1",
+  "webkit2gtk-web-extension-4.1",
+  "javascriptcoregtk-4.1",
+  "webkitgtk-6.0",
+
+  # Spell check
+  "enchant-2",
+
+  # Accessibility
+  "atk",
+  "atspi-2",
+
+  # Notifications / portals
+  "libnotify",
+  "libportal",
+  "libportal-gtk4",
+  "libportal-gtk3",
+
+  # Secret
+  "libsecret-1",
+
+  # Network / REST
+  "libsoup-3.0",
+  "libsoup-2.4",
+
+  # Authentication
+  "polkit-gobject-1",
+  "polkit-agent-1",
+
+  # Search
+  "tracker-sparql-3.0",
+
+  # Location
+  "geocode-glib-2.0",
+  "geocode-glib-1.0",
+
+  # Calendar / data
+  "libical-glib",
+  "libical",
+  "evolution-data-server-1.2",
+  "camel-1.2",
+  "libebook-1.2",
+  "libecal-2.0",
+
+  # Clutter (legacy, kept for compatibility)
+  "clutter-1.0",
+  "clutter-gtk-1.0",
+  "cogl-1.0",
+
+  # Multimedia extras
+  "gupnp-1.6",
+  "gssdp-1.6",
+  "gupnp-av-1.0",
+  "gupnp-dlna-2.0",
+  "libmusicbrainz5",
+
+  # Files / IO
+  "gio-2.0",
+  "gnome-vfs-2.0",
+
+  # Crypto UI
+  "gcr-3",
+  "gcr-base-3",
+
+  # Maps
+  "shumate-1.0",
+
+  # Graphs
+  "graphene-1.0",
+
+  # Miscellaneous
+  "colord",
+  "colord-gtk4",
+  "mm-glib",
+  "libnm",
+  "libgudev-1.0",
+  "ostree-1",
+]
+
+libraries = [
+  # ── freedesktop base ────────────────────────────────────────────────
+  "libz.so.1", "libbz2.so.1", "liblzma.so.5", "liblz4.so.1", "libzstd.so.1",
+  "libssl.so.3", "libcrypto.so.3",
+  "libgcrypt.so.20", "libgpg-error.so.0",
+  "libffi.so.8",
+  "libxml2.so.2", "libxslt.so.1",
+  "libcurl.so.4",
+  "libsqlite3.so.0",
+  "libfontconfig.so.1", "libfreetype.so.6",
+  "libharfbuzz.so.0", "libfribidi.so.0",
+  "libpango-1.0.so.0", "libpangocairo-1.0.so.0",
+  "libcairo.so.2", "libcairo-gobject.so.2",
+  "libpng16.so.16", "libjpeg.so.62", "libtiff.so.6", "libwebp.so.7",
+  "libglib-2.0.so.0", "libgobject-2.0.so.0", "libgio-2.0.so.0",
+  "libuuid.so.1",
+  "libpcre2-8.so.0",
+  "libdbus-1.so.3", "libsystemd.so.0",
+  "libasound.so.2", "libpulse.so.0",
+  "libX11.so.6", "libxcb.so.1", "libxkbcommon.so.0",
+  "libGL.so.1", "libEGL.so.1",
+  "libudev.so.1", "libcap.so.2",
+  "libicui18n.so.74", "libicuuc.so.74",
+  "libpython3.12.so.1.0",
+
+  # ── GNOME stack ──────────────────────────────────────────────────────
+  "libgirepository-1.0.so.1",
+  "libgtk-4.so.1",
+  "libgtk-3.so.0",
+  "libgdk-3.so.0",
+  "libgdk_pixbuf-2.0.so.0",
+  "libadwaita-1.so.0",
+  "libgstreamer-1.0.so.0",
+  "libgstaudio-1.0.so.0",
+  "libgstvideo-1.0.so.0",
+  "libgstbase-1.0.so.0",
+  "libwebkit2gtk-4.1.so.0",
+  "libjavascriptcoregtk-4.1.so.0",
+  "libenchant-2.so.2",
+  "libatk-1.0.so.0",
+  "libnotify.so.4",
+  "libportal.so.1",
+  "libsecret-1.so.0",
+  "libsoup-3.0.so.0",
+  "libpolkit-gobject-1.so.0",
+  "libtracker-sparql-3.0.so.0",
+  "libgeocode-glib-2.so.0",
+  "libical-glib.so.3",
+  "libgraphene-1.0.so.0",
+  "libcolord.so.2",
+  "libnm.so.0",
+  "libgudev-1.0.so.0",
+  "libostree-1.so.1",
+  "libshumate-1.0.so.0",
+]
+
+headers = [
+  "gtk/gtk.h",
+  "gtk4/gtk/gtk.h",
+  "adwaita.h",
+  "gdk-pixbuf/gdk-pixbuf.h",
+  "gst/gst.h",
+  "webkit2/webkit2.h",
+  "girepository.h",
+  "libsecret/secret.h",
+  "libsoup/soup.h",
+  "libnotify/notify.h",
+  "libportal/portal.h",
+  "graphene.h",
+  "shumate/shumate.h",
+  # freedesktop headers
+  "glib.h", "glib-2.0/glib.h",
+  "openssl/ssl.h", "ffi.h",
+  "libxml/tree.h", "curl/curl.h", "sqlite3.h",
+  "python3.12/Python.h",
+]
+
+executables = [
+  "python3", "python3.12", "pip3",
+  "gcc", "g++", "cc", "ar", "ld",
+  "pkg-config", "make", "cmake", "ninja", "meson",
+  "autoconf", "automake", "libtool",
+  "glib-compile-schemas",
+  "glib-compile-resources",
+  "gtk4-update-icon-cache",
+  "gtk-update-icon-cache",
+  "update-desktop-database",
+  "appstream-util",
+  "desktop-file-validate",
+  "git", "curl", "wget", "patch",
+]
+
+python_modules = [
+  # Python stdlib
+  "abc", "ast", "asyncio", "base64", "collections", "contextlib",
+  "copy", "csv", "ctypes", "dataclasses", "datetime", "email",
+  "enum", "functools", "gc", "glob", "gzip", "hashlib", "hmac",
+  "html", "http", "importlib", "inspect", "io", "ipaddress",
+  "itertools", "json", "logging", "lzma", "math", "multiprocessing",
+  "operator", "os", "pathlib", "pickle", "platform", "queue",
+  "random", "re", "select", "shelve", "shutil", "signal",
+  "socket", "sqlite3", "ssl", "struct", "subprocess", "sys",
+  "tarfile", "tempfile", "threading", "time", "typing",
+  "unittest", "urllib", "uuid", "warnings", "weakref",
+  "xml", "zipfile", "zlib",
+  # Pre-installed
+  "cffi", "_cffi_backend",
+  # GObject introspection bindings
+  "gi", "gi.repository",
+]

@@ -1,0 +1,23 @@
+id: libvips
+provides:
+  - libvips.so
+  - libvips.so.42
+pkgconfig:
+  - vips
+  - vips-cpp
+headers:
+  - vips/vips.h
+aliases:
+  - vips
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/libvips/libvips/releases/download/v8.15.2/vips-8.15.2.tar.xz
+  sha256: 8a7f43e7c5bb7c3b4e0a99a02a14cee5c4e48e7e71ad36f5b3b1c8c8e7f8f4c0
+config-opts:
+  - -Ddeprecated=false
+  - -Dintrospection=disabled
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/gtk-doc

@@ -1,0 +1,30 @@
+extension_id = "org.freedesktop.Sdk.Extension.node20"
+display_name = "Node.js 20"
+description = """
+Node.js 20 LTS runtime and npm for packages that run JavaScript at build
+time, such as grpcio-tools, pyright, or any package whose setup.py/
+build system calls node or npm as part of its build.
+"""
+
+mount_path = "/usr/lib/sdk/node20"
+
+build_backends = []
+
+pkgconfig_triggers = []
+library_triggers   = ["libnode.so"]
+
+package_triggers = [
+  "pyright",
+  "nodeenv",
+  "node-semver",
+]
+
+provides_executables = ["node", "npm", "npx", "corepack"]
+provides_pkgconfig   = []
+provides_libraries   = ["libnode.so"]
+
+[env]
+PATH = "/usr/lib/sdk/node20/bin:$PATH"
+NODE_PATH = "/usr/lib/sdk/node20/lib/node_modules"
+
+compatible_sdks = ["org.freedesktop.Sdk", "org.gnome.Sdk", "org.kde.Sdk"]

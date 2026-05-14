@@ -1,0 +1,30 @@
+extension_id = "org.freedesktop.Sdk.Extension.gfortran"
+display_name = "GNU Fortran (gfortran)"
+description = """
+GNU Fortran compiler for packages that include Fortran source files,
+notably scipy (LAPACK/BLAS wrappers) and f2py-generated extensions.
+"""
+
+mount_path = "/usr/lib/sdk/gfortran"
+
+build_backends = []
+
+pkgconfig_triggers = []
+library_triggers   = ["libgfortran.so"]
+
+package_triggers = [
+  "scipy",
+  "numpy",
+  "f2py",
+]
+
+provides_executables = ["gfortran", "f95"]
+provides_pkgconfig   = []
+provides_libraries   = ["libgfortran.so.5"]
+
+[env]
+PATH = "/usr/lib/sdk/gfortran/bin:$PATH"
+FC   = "/usr/lib/sdk/gfortran/bin/gfortran"
+F77  = "/usr/lib/sdk/gfortran/bin/gfortran"
+
+compatible_sdks = ["org.freedesktop.Sdk", "org.gnome.Sdk", "org.kde.Sdk"]
