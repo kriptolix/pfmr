@@ -200,9 +200,11 @@ class TestManifestGenerator:
         assert len(manifest.modules) >= 2  # venv + at least one pip module
 
     def test_rust_extension_added(self, sample_result):
+        # Extensions now come from SDKExtensionResolver via result.required_extensions.
+        # Pre-populate it to simulate the pipeline having run the extension resolver.
+        sample_result.required_extensions = ["org.freedesktop.Sdk.Extension.rust-stable"]
         gen = ManifestGenerator()
         manifest = gen.generate(sample_result)
-        # cryptography uses maturin → rust extension should be added
         assert "org.freedesktop.Sdk.Extension.rust-stable" in manifest.sdk_extensions
 
     def test_yaml_serialisation(self, sample_result):

@@ -491,7 +491,6 @@ SDK resolver
 SDK extension resolver
 
 Fase 3
-build probing
 auto-learning
 knowledge graph
 
@@ -529,73 +528,53 @@ Ela deve funcionar mais como um “gerenciador inteligente de empacotamento Flat
 
 A ferramenta NÃO simula o ambiente Flatpak.
 
-Ela sempre executa dentro de:
-
-flatpak-builder
-ou flatpak build
-ou flatpak run
-
-Ou seja:
+Ela sempre executa uma compilação de teste usando o manifesto de testes criado a partir da lista de pacotes python necessárias ao projeto
 
 O Flatpak runtime é o sandbox. O pfmr apenas orquestra.
 
-18.2 Modos de execução de sandbox
-Modo A — Execução direta no SDK (preferencial)
+18.2 Criação da sandbox de teste
 
-Usando:
+O pfmr deve gerar automaticamente um manifest de teste.
 
-flatpak-builder --run build-dir manifest.json bash
-Uso:
-testes de instalação Python (uv pip install)
-testes de build
-inspeção de runtime
-Modo B — Execução controlada via flatpak build
-flatpak build build-dir command...
-Uso:
-execução isolada sem rebuild completo
-validação incremental
-testes rápidos de dependência
-Modo C — Execução de aplicação temporária
-flatpak run --command=bash app.id
-Uso:
-validação pós-build
-teste de runtime final
-verificação de permissões
-18.3 Criação da sandbox de teste
+Estrutura base
 
-O pfmr deve gerar automaticamente um manifest de teste temporário, derivado do manifest principal.
-
-Estrutura gerada
 app-id: org.pfmr.TestSandbox
 runtime: org.freedesktop.Platform
 sdk: org.freedesktop.Sdk
+command: fortuna
+finish-args:
+  - '--share=ipc'
+  - '--socket=fallback-x11'
+  - '--device=dri'
+  - '--socket=wayland'
+  - '--share=network'
 
 modules:
-  - name: pfmr-test-env
+  - name: infoscript
     buildsystem: simple
     build-commands:
-      - python3 -m venv /app/venv
-      - /app/venv/bin/pip install uv
-Características
-isolado do app principal
-sem persistência
-destruído após execução
-pode ser regenerado a qualquer momento
-18.4 Injeção de cenário de teste
+      - install -D infoscript.sh /app/bin/infoscript.sh
+    sources:
+      - type: file
+        path: infoscript.sh
 
-O pfmr deve suportar cenários:
+o infoscript.sh inicialmente apenas retorna que esse é um arquivo de testes. Se houver conteudo util a ser adicionado aqui ele pode ser adicionado. 
 
-1. Teste de instalação Python
-uv pip install package
-2. Teste de importação
-python -c "import numpy"
-3. Teste de binários nativos
-ldd $(python -c "import numpy; print(numpy.__file__)")
-4. Teste de build backend
-setuptools
-maturin
-meson-python
-18.5 Captura de falhas
+18.3 Captura de falhas
+
+é possível criar um ambiente de testes de duas formas:
+
+1- instalado o org.pfmr.TestSandbox depois criando um terminal usando: 
+
+$ flatpak run --command=sh --devel --filesystem=$(pwd) $FLATPAK_ID
+
+2 - criando um terminal sem a necessidade de instalar org.pfmr.TestSandbox, com:
+
+$ flatpak-builder --run <build-dir> <manifest> sh
+
+Escolha a maneira mais apropriada de acordo com os requisitos do que a sendbox deve realizar.
+
+Uma vez com o terminal, é possível criar um ambiente virtual do python (venv) e testar a instalações dos pacotes isolado do ambiente da maquina.
 
 O sandbox deve capturar:
 
@@ -615,33 +594,8 @@ Normalização de erro
   "source": "ldd",
   "context": "numpy build"
 }
-18.6 Integração com SDK e Extensions
 
-A sandbox deve ser criada SEMPRE com:
-
-SDK alvo
-Runtime alvo
-Extensions declaradas no manifest
-
-Exemplo:
-
-sdk-extensions:
-  - org.freedesktop.Sdk.Extension.rust-stable
-18.7 Determinismo da sandbox
-
-Cada execução deve ser:
-
-reproduzível
-sem cache host
-sem vazamento de sistema local
-
-Regras:
-
-PATH controlado
-env vars fixas
-sem acesso a /usr do host
-apenas SDK + runtime
-18.8 Cache de sandboxes
+18.4 Cache de sandboxes
 
 O pfmr pode cachear:
 
@@ -653,15 +607,8 @@ Mas NUNCA:
 
 resultados de falha
 estado de sandbox quebrada
-18.9 Filosofia de design
 
-A sandbox não é um container genérico.
-
-Ela é:
-
-uma execução fiel do ambiente Flatpak alvo com instrumentação de erro.
-
-18.10 Resultado final esperado
+18.5 Resultado final esperado
 
 Após execução, o pfmr deve ser capaz de responder:
 

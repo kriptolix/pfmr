@@ -110,7 +110,10 @@ class ResolutionResult:
     unresolved_natives: list[str] = field(default_factory=list)
     # recipes found in local DB
     native_recipes: list[NativeRecipe] = field(default_factory=list)
+    # sdk-extension ids for manifest sdk-extensions field
     required_extensions: list[str] = field(default_factory=list)
+    # full ExtensionMatch objects (populated by SDKExtensionResolver)
+    extension_matches: list["ExtensionMatch"] = field(default_factory=list)
     lockfile_hash: Optional[str] = None
 
 
@@ -258,3 +261,4 @@ class ExtensionResolutionReport:
 
     def has_extension(self, ext_id: str) -> bool:
         return ext_id in self.extension_ids
+    

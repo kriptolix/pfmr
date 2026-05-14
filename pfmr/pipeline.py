@@ -27,6 +27,8 @@ from pfmr.models import ResolutionResult, SDKResolutionReport
 from pfmr.recipes.db import RecipeDB
 from pfmr.resolvers.uv_resolver import UVResolver
 from pfmr.resolvers.sdk_capability import SDKCapabilityResolver, SDKQuery
+from pfmr.resolvers.sdk_extension import SDKExtensionResolver
+from pfmr.resolvers.native_dependency import NativeDependencyAnalyzer
 from pfmr.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -65,7 +67,17 @@ class Pipeline:
         sdk_extra_ids: Optional[list[str]] = None,
         force_sdk_probe: bool = False,
         extra_profile_dirs: Optional[list[Path]] = None,
+        # SDKExtensionResolver options
+        forced_extensions: Optional[list[str]] = None,
+        excluded_extensions: Optional[list[str]] = None,
+        extra_extension_profile_dirs: Optional[list[Path]] = None,
+        # NativeDependencyAnalyzer options
+        extra_hints_files: Optional[list[Path]] = None,
+        enable_elf: bool = True,
+        wheel_cache_dir: Optional[Path] = None,
     ):
+        self.sdk_id = sdk
+        self.sdk_version = runtime_version
         self.recipe_db = RecipeDB(recipe_dirs=recipe_dirs)
 
         self.resolver = UVResolver(
@@ -82,6 +94,16 @@ class Pipeline:
             extra_profile_dirs=extra_profile_dirs or [],
             recipe_db=self.recipe_db,
         )
+        self.ext_resolver = SDKExtensionResolver(
+            extra_profile_dirs=extra_extension_profile_dirs or [],
+            forced_extensions=forced_extensions or [],
+            excluded_extensions=excluded_extensions or [],
+        )
+        self.native_analyzer = NativeDependencyAnalyzer(
+            extra_hints_files=extra_hints_files or [],
+            enable_elf=enable_elf,
+            wheel_cache_dir=wheel_cache_dir,
+        )
         self.generator = ManifestGenerator(
             app_id=app_id,
             runtime=runtime,
@@ -89,7 +111,7 @@ class Pipeline:
             sdk=sdk,
             python_version=python_version,
             use_uv=use_uv,
-        )
+        )    
 
     # ------------------------------------------------------------------
     # Resolution entry points
@@ -149,12 +171,35 @@ class Pipeline:
     def _enrich(self, result: ResolutionResult) -> ResolutionResult:
         """
         Full enrichment pipeline:
-          1. Attach NativeRecipes from local RecipeDB
-          2. Run SDKCapabilityResolver to filter recipes already in the SDK
-             and flag truly missing natives
+          1. NativeDependencyAnalyzer  — fill pkg.native_deps
+          2. Attach NativeRecipes       — match deps to local recipe DB
+          3. SDKCapabilityResolver      — filter recipes already in SDK
+          4. SDKExtensionResolver       — determine required sdk-extensions
         """
+        result = self._analyze_native_deps(result)
         result = self._attach_recipes(result)
         result = self._filter_sdk_satisfied(result)
+        result = self._resolve_extensions(result)
+        return result
+
+    def _analyze_native_deps(self, result: ResolutionResult) -> ResolutionResult:
+        """Run NativeDependencyAnalyzer over all packages."""
+        self.native_analyzer.analyze(result.packages)
+        return result
+
+    def _resolve_extensions(self, result: ResolutionResult) -> ResolutionResult:
+        """Run SDKExtensionResolver and populate result.required_extensions."""
+        report = self.ext_resolver.resolve(
+            result.packages,
+            sdk_id=self.sdk_id,
+            sdk_version=self.sdk_version,
+        )
+        result.required_extensions = report.extension_ids
+        result.extension_matches = report.required_extensions
+        if report.extension_ids:
+            logger.info(
+                "Required SDK extensions: %s", report.extension_ids
+            )
         return result
 
     def _attach_recipes(self, result: ResolutionResult) -> ResolutionResult:

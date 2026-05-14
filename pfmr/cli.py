@@ -14,6 +14,8 @@ from pfmr import __version__
 from pfmr.pipeline import Pipeline
 from pfmr.recipes.db import RecipeDB
 from pfmr.resolvers.sdk_capability import SDKCapabilityResolver, SDKQuery
+from pfmr.resolvers.sdk_extension import SDKExtensionResolver
+from pfmr.resolvers.native_dependency import NativeDependencyAnalyzer
 from pfmr.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -30,6 +32,9 @@ app.add_typer(recipes_app, name="recipes")
 
 sdk_app = typer.Typer(help="Inspect and probe Flatpak SDK capabilities.")
 app.add_typer(sdk_app, name="sdk")
+
+ext_app = typer.Typer(help="Inspect SDK Extension profiles and requirements.")
+app.add_typer(ext_app, name="ext")
 
 
 # ---------------------------------------------------------------------------
@@ -346,6 +351,125 @@ def sdk_probe(
     else:
         rprint("[yellow]Fell back to static profile (flatpak may not be available).[/yellow]")
 
+
+# ---------------------------------------------------------------------------
+# pfmr ext
+# ---------------------------------------------------------------------------
+
+@ext_app.command("list")
+def ext_list():
+    """List all available SDK Extension profiles."""
+    from pfmr.resolvers.sdk_extension import _BUILTIN_EXTENSION_PROFILES_DIR
+    resolver = SDKExtensionResolver()
+    profiles = resolver.profiles()
+    if not profiles:
+        rprint("[yellow]No extension profiles found.[/yellow]")
+        raise typer.Exit()
+
+    table = Table(title=f"SDK Extension profiles ({len(profiles)} total)")
+    table.add_column("Extension ID", style="cyan")
+    table.add_column("Display name", style="green")
+    table.add_column("Build backends", style="yellow")
+    table.add_column("Package triggers")
+    for p in sorted(profiles, key=lambda x: x.extension_id):
+        table.add_row(
+            p.extension_id,
+            p.display_name,
+            ", ".join(p.build_backends) or "-",
+            ", ".join(p.package_triggers[:4]) + ("..." if len(p.package_triggers) > 4 else ""),
+        )
+    console.print(table)
+
+
+@ext_app.command("show")
+def ext_show(
+    ext_id: str = typer.Argument(..., help="Extension ID (full or short name like rust-stable)"),
+):
+    """Show full details of a specific extension profile."""
+    resolver = SDKExtensionResolver()
+    profile = resolver.profile_by_id(ext_id)
+    # Try short-name lookup
+    if not profile:
+        for p in resolver.profiles():
+            if p.extension_id.endswith("." + ext_id) or p.extension_id.endswith("-" + ext_id):
+                profile = p
+                break
+    if not profile:
+        rprint(f"[red]Extension profile '{ext_id}' not found.[/red]")
+        raise typer.Exit(1)
+
+    rprint(f"[bold cyan]{profile.extension_id}[/bold cyan]")
+    rprint(f"  display_name      : {profile.display_name}")
+    rprint(f"  mount_path        : {profile.mount_path or '-'}")
+    rprint(f"  build_backends    : {profile.build_backends or '-'}")
+    rprint(f"  pkgconfig_triggers: {profile.pkgconfig_triggers or '-'}")
+    rprint(f"  library_triggers  : {profile.library_triggers or '-'}")
+    rprint(f"  package_triggers  : {profile.package_triggers}")
+    rprint(f"  provides_exes     : {profile.provides_executables}")
+    if profile.env:
+        rprint("  env:")
+        for k, v in profile.env.items():
+            rprint(f"    {k} = {v}")
+    if profile.compatible_sdks:
+        rprint(f"  compatible_sdks   : {profile.compatible_sdks}")
+    if profile.description:
+        rprint(f"\\n  [dim]{profile.description.strip()}[/dim]")
+
+
+@ext_app.command("check")
+def ext_check(
+    packages: list[str] = typer.Argument(
+        ..., help="Python package names to check, e.g. cryptography orjson llvmlite"
+    ),
+    sdk: str = typer.Option("org.freedesktop.Sdk", "--sdk", "-s"),
+    sdk_version: str = typer.Option("24.08", "--sdk-version", "-V"),
+    forced: Optional[list[str]] = typer.Option(None, "--force", "-f",
+                                                help="Force-include extension IDs"),
+):
+    """
+    Determine which SDK Extensions are required for a set of packages.
+    Packages can be bare names; native deps are inferred from the hints DB.
+    """
+    from pfmr.models import ResolvedPackage, BuildBackend
+    from pfmr.models import SourceType
+
+    analyzer = NativeDependencyAnalyzer()
+    # Build minimal ResolvedPackage stubs
+    pkgs: list[ResolvedPackage] = []
+    for pkg_name in packages:
+        pkg = ResolvedPackage(name=pkg_name, version="0.0.0", build_backend=BuildBackend.UNKNOWN)
+        pkgs.append(pkg)
+
+    # Run native analysis to fill native_deps
+    analyzer.analyze(pkgs)
+
+    ext_resolver = SDKExtensionResolver(forced_extensions=forced or [])
+    report = ext_resolver.resolve(pkgs, sdk_id=sdk, sdk_version=sdk_version)
+
+    if not report.required_extensions:
+        rprint("[green]No SDK Extensions required.[/green]")
+        return
+
+    table = Table(title=f"Required extensions for: {', '.join(packages)}")
+    table.add_column("Extension", style="cyan")
+    table.add_column("Triggered by", style="yellow")
+    table.add_column("Reason")
+    table.add_column("env vars")
+    for match in report.required_extensions:
+        reason_strs = [f"{t}:{v}" for t, v in match.reasons[:3]]
+        if len(match.reasons) > 3:
+            reason_strs.append(f"+{len(match.reasons)-3} more")
+        table.add_row(
+            match.extension_id,
+            ", ".join(match.triggered_by_packages[:3]),
+            ", ".join(reason_strs),
+            ", ".join(match.env.keys()) if match.env else "-",
+        )
+    console.print(table)
+
+    rprint(f"\\n[bold]sdk-extensions to declare:[/bold]")
+    for ext_id in report.extension_ids:
+        rprint(f"  - {ext_id}")
 
 # ---------------------------------------------------------------------------
 # pfmr version

@@ -26,6 +26,7 @@ import yaml
 
 from pfmr.models import (
     BuildBackend,
+    ExtensionMatch,
     FlatpakManifest,
     FlatpakModule,
     FlatpakSource,
@@ -79,13 +80,14 @@ class ManifestGenerator:
 
     def generate(self, result: ResolutionResult) -> FlatpakManifest:
         """Generate a complete FlatpakManifest from a ResolutionResult."""
-        sdk_extensions = list(dict.fromkeys(result.required_extensions))  # dedup
+        # sdk-extensions come entirely from SDKExtensionResolver via result.required_extensions
+        sdk_extensions = list(dict.fromkeys(result.required_extensions))
 
-        # Collect extensions needed by build backends
-        for pkg in result.packages:
-            ext = _BACKEND_EXTENSIONS.get(pkg.build_backend)
-            if ext and ext not in sdk_extensions:
-                sdk_extensions.append(ext)
+        # Build an env map from extension matches so _native_python_module can inject
+        # the right environment variables per package (e.g. PATH for Rust).
+        ext_env: dict[str, str] = {}
+        for match in (result.extension_matches if hasattr(result, "extension_matches") else []):
+            ext_env.update(match.env)
 
         modules: list[FlatpakModule] = []
 
@@ -104,7 +106,7 @@ class ManifestGenerator:
             modules.append(self._pure_python_module(pure_pkgs))
 
         for pkg in native_pkgs:
-            modules.append(self._native_python_module(pkg))
+            modules.append(self._native_python_module(pkg, ext_env))
 
         manifest = FlatpakManifest(
             app_id=self.app_id,
@@ -189,8 +191,10 @@ class ManifestGenerator:
             sources=sources,
         )
 
-    def _native_python_module(self, pkg: ResolvedPackage) -> FlatpakModule:
-        """One module per native Python package."""
+    def _native_python_module(
+        self, pkg: ResolvedPackage, ext_env: Optional[dict] = None
+    ) -> FlatpakModule:
+        """One module per native Python package, with extension env injected."""
         sources: list[FlatpakSource] = []
         if pkg.source_url and pkg.source_hash:
             fname = pkg.source_url.split("/")[-1]
@@ -203,14 +207,10 @@ class ManifestGenerator:
                 )
             )
 
+        # Merge env from all required extensions (e.g. Rust PATH, CARGO_HOME)
         build_options: dict = {}
-        build_cmds: list[str] = []
-
-        if pkg.build_backend == BuildBackend.MATURIN:
-            build_options["env"] = {
-                "PATH": "/usr/lib/sdk/rust-stable/bin:$PATH",
-                "CARGO_HOME": "/run/build/cargo-home",
-            }
+        if ext_env:
+            build_options["env"] = dict(ext_env)
 
         if self.use_uv:
             install_cmd = (
@@ -224,12 +224,10 @@ class ManifestGenerator:
                 f"{pkg.name}=={pkg.version}"
             )
 
-        build_cmds.append(install_cmd)
-
         return FlatpakModule(
             name=f"python-{pkg.name.lower().replace('_', '-')}",
             buildsystem="simple",
-            build_commands=build_cmds,
+            build_commands=[install_cmd],
             sources=sources,
             build_options=build_options,
         )

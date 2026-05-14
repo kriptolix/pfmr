@@ -1,0 +1,186 @@
+# pfmr native dependency hints
+# Formato: cada entrada mapeia um nome de pacote Python (canonico) para
+# suas dependencias nativas conhecidas (pkg-config names e sonames).
+#
+# Este banco e consultado pelo NativeDependencyAnalyzer como fonte primaria
+# de conhecimento, antes de qualquer inspecao dinamica de ELF ou wheel.
+#
+# Campos:
+#   pkgconfig  — nomes pkg-config que o pacote precisa no build
+#   libraries  — sonames que o pacote linka em runtime
+#   headers    — headers C necessarios (para builds from source)
+#   extras     — notas / contexto adicional
+
+[cryptography]
+pkgconfig = ["openssl", "libffi"]
+libraries = ["libssl.so.3", "libcrypto.so.3", "libffi.so.8"]
+headers   = ["openssl/ssl.h", "ffi.h"]
+
+[cffi]
+pkgconfig = ["libffi"]
+libraries = ["libffi.so.8"]
+headers   = ["ffi.h"]
+
+[lxml]
+pkgconfig = ["libxml-2.0", "libxslt"]
+libraries = ["libxml2.so.2", "libxslt.so.1"]
+headers   = ["libxml/tree.h", "libxslt/xslt.h"]
+
+[pillow]
+pkgconfig = ["libpng", "libjpeg", "libtiff-4", "libwebp", "libopenjp2", "freetype2", "zlib"]
+libraries = ["libpng16.so.16", "libjpeg.so.62", "libtiff.so.6", "libwebp.so.7", "libz.so.1"]
+headers   = ["png.h", "jpeglib.h"]
+
+[pycurl]
+pkgconfig = ["libcurl", "openssl"]
+libraries = ["libcurl.so.4"]
+headers   = ["curl/curl.h"]
+
+[psycopg2]
+pkgconfig = ["libpq"]
+libraries = ["libpq.so.5"]
+headers   = ["libpq-fe.h"]
+
+[numpy]
+pkgconfig = ["cblas", "openblas"]
+libraries = ["libopenblas.so.0"]
+headers   = []
+extras    = "May also need gfortran when building from sdist"
+
+[scipy]
+pkgconfig = ["cblas", "openblas"]
+libraries = ["libopenblas.so.0", "libgfortran.so.5"]
+headers   = []
+extras    = "Requires gfortran SDK extension when building from sdist"
+
+[pandas]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "Pure Python since 2.0 except optional C extensions; numpy required at runtime"
+
+[grpcio]
+pkgconfig = ["openssl", "zlib"]
+libraries = ["libssl.so.3", "libz.so.1"]
+headers   = ["openssl/ssl.h", "zlib.h"]
+
+[aiohttp]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "C extensions compile with standard headers only (no external libs)"
+
+[pydantic-core]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "Built by maturin; only needs Rust toolchain"
+
+[orjson]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "Built by maturin; only needs Rust toolchain"
+
+[rpds-py]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "Built by maturin; only needs Rust toolchain"
+
+[llvmlite]
+pkgconfig = ["llvm"]
+libraries = ["libLLVM.so"]
+headers   = []
+extras    = "Requires LLVM SDK extension (llvm18)"
+
+[numba]
+pkgconfig = ["llvm"]
+libraries = ["libLLVM.so"]
+headers   = []
+extras    = "Requires LLVM via llvmlite"
+
+[pyjnius]
+pkgconfig = []
+libraries = ["libjvm.so"]
+headers   = []
+extras    = "Requires OpenJDK SDK extension"
+
+[jpype1]
+pkgconfig = []
+libraries = ["libjvm.so"]
+headers   = []
+extras    = "Requires OpenJDK SDK extension"
+
+[greenlet]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "Only uses platform headers (ucontext.h etc.) — no external libs"
+
+[ujson]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "Only uses standard C library"
+
+[msgpack]
+pkgconfig = []
+libraries = []
+headers   = []
+extras    = "Only uses standard C library"
+
+[pyyaml]
+pkgconfig = ["yaml-0.1"]
+libraries = ["libyaml-0.1.so.2"]
+headers   = ["yaml.h"]
+
+[python-ldap]
+pkgconfig = ["openldap"]
+libraries = ["libldap.so.2", "liblber.so.2"]
+headers   = ["ldap.h"]
+
+[pyzmq]
+pkgconfig = ["libzmq"]
+libraries = ["libzmq.so.5"]
+headers   = ["zmq.h"]
+
+[mysqlclient]
+pkgconfig = ["mysqlclient"]
+libraries = ["libmysqlclient.so.21"]
+headers   = ["mysql/mysql.h"]
+
+[pyaudio]
+pkgconfig = ["portaudio-2.0"]
+libraries = ["libportaudio.so.2"]
+headers   = ["portaudio.h"]
+
+[soundfile]
+pkgconfig = ["sndfile"]
+libraries = ["libsndfile.so.1"]
+headers   = ["sndfile.h"]
+
+[pycairo]
+pkgconfig = ["cairo"]
+libraries = ["libcairo.so.2"]
+headers   = ["cairo/cairo.h"]
+
+[pygobject]
+pkgconfig = ["gobject-introspection-1.0", "glib-2.0", "pygobject-3.0"]
+libraries = ["libgirepository-1.0.so.1", "libglib-2.0.so.0", "libgobject-2.0.so.0"]
+headers   = ["girepository.h", "glib.h"]
+
+[pycups]
+pkgconfig = ["cups"]
+libraries = ["libcups.so.2"]
+headers   = ["cups/cups.h"]
+
+[opencv-python]
+pkgconfig = ["opencv4"]
+libraries = ["libopencv_core.so.4", "libopencv_imgproc.so.4"]
+headers   = ["opencv2/core.hpp"]
+
+[imagecodecs]
+pkgconfig = ["libjpeg", "libpng", "libtiff-4", "libwebp", "zlib", "liblzma"]
+libraries = ["libjpeg.so.62", "libpng16.so.16", "libtiff.so.6"]
+headers   = []
