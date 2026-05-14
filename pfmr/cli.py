@@ -16,6 +16,7 @@ from pfmr.recipes.db import RecipeDB
 from pfmr.resolvers.sdk_capability import SDKCapabilityResolver, SDKQuery
 from pfmr.resolvers.sdk_extension import SDKExtensionResolver
 from pfmr.resolvers.native_dependency import NativeDependencyAnalyzer
+from pfmr.sandbox.probe import BuildSandboxProber
 from pfmr.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -470,6 +471,142 @@ def ext_check(
     rprint(f"\\n[bold]sdk-extensions to declare:[/bold]")
     for ext_id in report.extension_ids:
         rprint(f"  - {ext_id}")
+
+# ---------------------------------------------------------------------------
+# pfmr probe
+# ---------------------------------------------------------------------------
+
+@app.command("probe")
+def probe(
+    target: str = typer.Argument(
+        ...,
+        help="Path to pyproject.toml / requirements.txt, or a package spec like 'requests'",
+    ),
+    python_version: str = typer.Option("3.11", "--python", "-p"),
+    runtime: str = typer.Option("org.freedesktop.Platform", "--runtime"),
+    runtime_version: str = typer.Option("24.08", "--runtime-version"),
+    sdk: str = typer.Option("org.freedesktop.Sdk", "--sdk"),
+    ext: Optional[list[str]] = typer.Option(
+        None, "--ext", "-e",
+        help="SDK extensions to mount (e.g. org.freedesktop.Sdk.Extension.rust-stable)",
+    ),
+    work_dir: Optional[Path] = typer.Option(
+        None, "--work-dir", "-w",
+        help="Working directory for the sandbox (default: temp dir)",
+    ),
+    keep: bool = typer.Option(False, "--keep", help="Keep work-dir after probe for debugging"),
+    timeout: int = typer.Option(120, "--timeout", "-t", help="Timeout per command (seconds)"),
+    verbose: bool = typer.Option(False, "--verbose", "-v"),
+):
+    """
+    Probe packages inside a real Flatpak SDK sandbox.
+
+    Builds a temporary org.pfmr.TestSandbox, sets up a Python venv,
+    attempts to install each package, and reports what is missing.
+
+    Requires flatpak-builder to be installed on the host.
+    """
+    import os
+    if verbose:
+        os.environ["PFMR_LOG_LEVEL"] = "DEBUG"
+
+    pipeline = _make_pipeline(
+        "org.pfmr.TestSandbox", runtime, runtime_version, sdk, python_version
+    )
+    p = Path(target)
+
+    with console.status("[bold green]Resolving dependencies..."):
+        if p.exists() and p.name == "pyproject.toml":
+            result = pipeline.resolve_pyproject(p)
+        elif p.exists() and p.suffix == ".txt":
+            result = pipeline.resolve_requirements(p)
+        else:
+            result = pipeline.resolve_package(target)
+
+    extensions = list(ext or []) or result.required_extensions
+
+    prober = BuildSandboxProber(
+        runtime=runtime,
+        runtime_version=runtime_version,
+        sdk=sdk,
+        sdk_extensions=extensions,
+        work_dir=work_dir,
+        keep_work_dir=keep,
+        command_timeout=timeout,
+    )
+
+    if not prober.is_available():
+        rprint("[bold red]flatpak-builder not found.[/bold red]")
+        rprint("Install with: [bold]flatpak install flathub org.flatpak.Builder[/bold]")
+        raise typer.Exit(1)
+
+    rprint(f"\\n[bold]Probing {len(result.packages)} packages[/bold] in {sdk}//{runtime_version}")
+    if extensions:
+        rprint(f"Extensions: {extensions}")
+
+    with console.status("[bold green]Running sandbox probe..."):
+        report = prober.probe(result.packages)
+
+    # --- Summary ---
+    _print_probe_report(report)
+
+    if not report.build_possible:
+        raise typer.Exit(1)
+
+
+def _print_probe_report(report) -> None:
+    """Print a formatted SandboxProbeReport."""
+    if not report.ran:
+        rprint(f"[yellow]Probe did not run: {report.skip_reason}[/yellow]")
+        return
+
+    rprint(f"\\n[bold]Probe results[/bold] (probed {len(report.probed_packages)} packages)")
+
+    if not report.errors:
+        rprint("[bold green]All packages installed and imported successfully.[/bold green]")
+    else:
+        table = Table(title=f"Probe errors ({len(report.errors)} total)")
+        table.add_column("Type", style="red")
+        table.add_column("Missing")
+        table.add_column("Source", style="dim")
+        table.add_column("Context", style="dim")
+        for err in report.errors:
+            table.add_row(
+                err.error_type.value,
+                err.missing,
+                err.source,
+                err.context,
+            )
+        console.print(table)
+
+    # Verdicts
+    rprint("")
+    verdict_rows = [
+        ("SDK sufficient",        report.sdk_sufficient,    True),
+        ("Build possible",        report.build_possible,    True),
+        ("Missing native libs",   not report.missing_native_libs,   False),
+        ("Missing headers",       not report.missing_headers,       False),
+        ("Missing pkg-config",    not report.missing_pkgconfig,     False),
+        ("Missing Python pkgs",   not report.missing_python_packages, False),
+    ]
+    for label, ok, positive in verdict_rows:
+        icon = "[green]v[/green]" if ok == positive or (positive and ok) else "[red]x[/red]"
+        if not ok and label == "Missing native libs":
+            detail = f": {report.missing_native_libs}"
+        elif not ok and label == "Missing headers":
+            detail = f": {report.missing_headers}"
+        elif not ok and label == "Missing pkg-config":
+            detail = f": {report.missing_pkgconfig}"
+        elif not ok and label == "Missing Python pkgs":
+            detail = f": {report.missing_python_packages}"
+        else:
+            detail = ""
+        rprint(f"  {icon}  {label}{detail}")
+
+    if report.suggested_extensions:
+        rprint(f"\\n[bold]Suggested extensions:[/bold]")
+        for ext in report.suggested_extensions:
+            rprint(f"  - {ext}")
 
 # ---------------------------------------------------------------------------
 # pfmr version

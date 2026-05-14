@@ -261,4 +261,66 @@ class ExtensionResolutionReport:
 
     def has_extension(self, ext_id: str) -> bool:
         return ext_id in self.extension_ids
-    
+
+# ---------------------------------------------------------------------------
+# Phase 3 — Build Sandbox Prober types
+# ---------------------------------------------------------------------------
+
+class SandboxErrorType(str, Enum):
+    MISSING_NATIVE_DEP   = "missing_native_dependency"
+    MISSING_HEADER       = "missing_header"
+    MISSING_PKGCONFIG    = "missing_pkgconfig"
+    MISSING_EXECUTABLE   = "missing_executable"
+    MISSING_PYTHON_PKG   = "missing_python_package"
+    BUILD_FAILURE        = "build_failure"
+    IMPORT_ERROR         = "import_error"
+    UNKNOWN              = "unknown"
+
+
+@dataclass
+class SandboxError:
+    """A single normalised error captured from the build sandbox."""
+    error_type: SandboxErrorType
+    missing: str                    # the thing that is missing
+    source: str                     # "stderr" | "ldd" | "pkg-config" | "import"
+    context: str = ""               # which package / build step triggered this
+    raw_line: str = ""              # original unparsed line for debugging
+
+
+@dataclass
+class SandboxProbeReport:
+    """
+    Full report produced by BuildSandboxProber.probe().
+
+    Answers the five questions from spec §18.5:
+      1. quais dependências Python faltam
+      2. quais libs nativas estão ausentes
+      3. se o SDK atual é suficiente
+      4. se SDK extension é necessária
+      5. se o build é possível sem modificações
+    """
+    # The packages that were probed
+    probed_packages: list[str] = field(default_factory=list)
+
+    # Errors found during probe
+    errors: list[SandboxError] = field(default_factory=list)
+
+    # Parsed conclusions
+    missing_python_packages: list[str] = field(default_factory=list)
+    missing_native_libs: list[str] = field(default_factory=list)
+    missing_headers: list[str] = field(default_factory=list)
+    missing_pkgconfig: list[str] = field(default_factory=list)
+
+    # High-level verdicts
+    sdk_sufficient: bool = True
+    suggested_extensions: list[str] = field(default_factory=list)
+    build_possible: bool = True
+
+    # Raw output for audit
+    stdout: str = ""
+    stderr: str = ""
+    exit_code: int = 0
+
+    # Whether the probe actually ran (False if flatpak-builder not available)
+    ran: bool = False
+    skip_reason: str = ""    

@@ -23,12 +23,13 @@ from pathlib import Path
 from typing import Optional
 
 from pfmr.generators.manifest import ManifestGenerator
-from pfmr.models import ResolutionResult, SDKResolutionReport
+from pfmr.models import ResolutionResult, SDKResolutionReport, SandboxProbeReport
 from pfmr.recipes.db import RecipeDB
 from pfmr.resolvers.uv_resolver import UVResolver
 from pfmr.resolvers.sdk_capability import SDKCapabilityResolver, SDKQuery
 from pfmr.resolvers.sdk_extension import SDKExtensionResolver
 from pfmr.resolvers.native_dependency import NativeDependencyAnalyzer
+from pfmr.sandbox.probe import BuildSandboxProber
 from pfmr.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -287,12 +288,38 @@ class Pipeline:
             )
         return result
 
+    def probe(
+        self,
+        packages_or_result,
+        work_dir: Optional[Path] = None,
+        sdk_extensions: Optional[list[str]] = None,
+    ) -> "SandboxProbeReport":
+        """
+        Run the build sandbox probe for a list of packages or a ResolutionResult.
+        Uses the runtime/SDK already configured on this Pipeline instance.
+        """
+        from pfmr.models import ResolvedPackage
+
+        if isinstance(packages_or_result, ResolutionResult):
+            packages = packages_or_result.packages
+            exts = sdk_extensions or packages_or_result.required_extensions
+        else:
+            packages = packages_or_result
+            exts = sdk_extensions or []
+
+        prober = BuildSandboxProber(
+            runtime=self.generator.runtime,
+            runtime_version=self.generator.runtime_version,
+            sdk=self.generator.sdk,
+            sdk_extensions=exts,
+        )
+        return prober.probe(packages, work_dir=work_dir)
+
     def _generate(
         self,
         result: ResolutionResult,
         output_format: str,
-        output_path: Optional[Path],
-    ) -> str:
+        output_path: Optional[Path]) -> str:
         manifest = self.generator.generate(result)
         if output_format == "json":
             return self.generator.to_json(manifest, output_path)

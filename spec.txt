@@ -528,7 +528,7 @@ Ela deve funcionar mais como um “gerenciador inteligente de empacotamento Flat
 
 A ferramenta NÃO simula o ambiente Flatpak.
 
-Ela sempre executa uma compilação de teste usando o manifesto de testes criado a partir da lista de pacotes python necessárias ao projeto
+Ela sempre executa uma compilação de teste usando o manifesto de testes 
 
 O Flatpak runtime é o sandbox. O pfmr apenas orquestra.
 
@@ -623,6 +623,8 @@ pfmr
  ├── analyze (ELF + pkg-config)
  ├── sandbox (flatpak-builder --run)
  └── learn (error ingestion)
+
+ python -m pytest tests/test_sandbox.py
 
 
 
