@@ -151,19 +151,52 @@ class ManifestAnalyzer:
             return yaml.safe_load(text) or {}
         return json.loads(text)
 
-    def _analyze_dict(self, data: dict, source: str = "") -> ManifestAnalysis:
-        analysis = ManifestAnalysis(
-            app_id=data.get("app-id", data.get("id", "")),
-            runtime=data.get("runtime", ""),
-            sdk=data.get("sdk", ""),
-            sdk_version=str(data.get("runtime-version", "")),
-            sdk_extensions=data.get("sdk-extensions", []),
-            source_path=source,
-        )
+    def analyze_directory(
+        self,
+        directory: Path,
+        recursive: bool = True,
+        glob: str = "**/*.{json,yaml,yml}",
+    ) -> list[ManifestAnalysis]:
+        """
+        Analyze all manifest files found in a directory.
 
-        modules = data.get("modules", [])
-        self._process_modules(modules, analysis)
-        return analysis
+        Scans for *.json, *.yaml, *.yml files and attempts to parse each
+        as a Flatpak manifest (identified by presence of "app-id" or "modules"
+        keys). Non-manifest files are silently skipped.
+
+        Useful for:
+          - Local Flathub repo checkouts
+          - shared-modules repository (https://github.com/flathub/shared-modules)
+          - Any directory of collected manifests
+        """
+        results: list[ManifestAnalysis] = []
+        patterns = ["**/*.json", "**/*.yaml", "**/*.yml"] if recursive else ["*.json", "*.yaml", "*.yml"]
+        seen: set[str] = set()
+
+        for pattern in patterns:
+            for p in sorted(directory.glob(pattern)):
+                if str(p) in seen:
+                    continue
+                seen.add(str(p))
+                try:
+                    data = self._load(p)
+                except Exception:
+                    continue
+                # Must look like a Flatpak manifest
+                if not isinstance(data, dict):
+                    continue
+                if not ("app-id" in data or "id" in data or "modules" in data):
+                    continue
+                analysis = self._analyze_dict(data, source=str(p))
+                if analysis:
+                    results.append(analysis)
+
+        logger.info("Analyzed %d manifests in %s", len(results), directory)
+        return results
+
+    def analyze_dict(self, data: dict, source: str = "") -> ManifestAnalysis:
+        """Analyze a manifest already loaded as a dict."""
+        return self._analyze_dict(data, source=source)
 
     def _process_modules(self, modules: list, analysis: ManifestAnalysis) -> None:
         for mod in modules:

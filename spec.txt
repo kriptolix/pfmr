@@ -625,29 +625,15 @@ pfmr
  └── learn (error ingestion)
 
  python -m pytest tests/test_sandbox.py
+ pip install -e ".[dev]"
 
 
 notas:
 
-adicionar uma lista da repositorios analisados para permitir continuar o processo de learn Flathub
-para que o processo seja executavel sem CI
+parece que depender do flatpak-builder não é interessante. Aparentemente ele nao esta disponível
+nas instalações padrão e o build é feito com comando flatpak no Formato:
 
-criar um processo para fazer o download de sdks e extensões a partir de uma lista e analisar o conteudo 
-para povoar data, depois apagar. Deve ser possivel executar sem CI
+flatpak build --with-appdir --allow=devel...
 
-Avaliar se graph knowledge, extension profiles, sdk profiles native hints e recipes são uma boa combinação
-estrutural para aprendizagem. Me parecem muitas camadas, alguams delas podem ser redundantes considerando
-que o objetivo final é apenas gerar entradas de modulos para adicionar ao manifesto
-
-Python-related keywords that indicate a manifest is worth mining provavemente nao é uma boa metrica, mesmo 
-que o manifest não contenha python ele pode conter dependencias externas cujo a recipe sera util
-
-Adicionar função para pesquisar num diretorio local por manifestos, especialmente util para aprender com 
-o repositorio share modules que contem varias receitas. Talvez o share modes seja um modelo melhor de como
-guardar conhecimento. talvez alterar pfmr learn manifest para poder receber um diretorio.
-
-o --export poderia se ro comportamento padrão do comando, uma vez que não parece fazer sentido usa-lo sem isso
-
-
-
+Faça as correções devidas
 
