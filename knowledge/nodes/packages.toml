@@ -1,0 +1,12 @@
+# pfmr knowledge graph — node file
+# type: package
+# entries: 2
+# DO NOT EDIT manually entries marked confirmed = true
+
+[gui]
+node_type = "package"
+pypi_name = "gui"
+
+[vmlinux-to-elf]
+node_type = "package"
+pypi_name = "vmlinux-to-elf"

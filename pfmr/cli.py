@@ -17,6 +17,7 @@ from pfmr.resolvers.sdk_capability import SDKCapabilityResolver, SDKQuery
 from pfmr.resolvers.sdk_extension import SDKExtensionResolver
 from pfmr.resolvers.native_dependency import NativeDependencyAnalyzer
 from pfmr.sandbox.probe import BuildSandboxProber
+from pfmr.learn.cli import learn_app
 from pfmr.utils.logging import get_logger
 
 logger = get_logger(__name__)
@@ -36,6 +37,8 @@ app.add_typer(sdk_app, name="sdk")
 
 ext_app = typer.Typer(help="Inspect SDK Extension profiles and requirements.")
 app.add_typer(ext_app, name="ext")
+
+app.add_typer(learn_app, name="learn")
 
 
 # ---------------------------------------------------------------------------
