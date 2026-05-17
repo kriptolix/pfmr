@@ -1,0 +1,12 @@
+id: libjson
+provides: []
+pkgconfig:
+- libjson
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/json-c/json-c/archive/refs/tags/json-c-0.15-20200726.zip
+  sha256: 16c0c41aa1a357cf642a01d259258291a018b162a4fcb51ac0eff77520d0b766
+cleanup:
+- /include
+- /lib/pkgconfig

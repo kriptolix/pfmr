@@ -1,0 +1,14 @@
+id: libspnav
+provides: []
+pkgconfig:
+- libspnav
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/FreeSpacenav/libspnav/archive/v1.2/libspnav-1.2.tar.gz
+  sha256: e675a2476bd407b8d97a33f93c6651ad3ecdfd422916f260bd620f2aec7ca45f
+config-opts:
+- --disable-debug
+cleanup:
+- /include
+- /lib/pkgconfig

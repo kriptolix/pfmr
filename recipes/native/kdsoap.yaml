@@ -1,0 +1,14 @@
+id: kdsoap
+provides: []
+pkgconfig:
+- kdsoap
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/KDAB/KDSoap/releases/download/kdsoap-2.3.0/kdsoap-2.3.0.tar.gz
+  sha256: d2184951145cb768cc30376a10701be13869a164c1272d09f831ba2d195f02de
+config-opts:
+- -DKDSoap_QT6=ON
+cleanup:
+- /include
+- /lib/pkgconfig

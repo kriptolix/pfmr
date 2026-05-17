@@ -1,0 +1,15 @@
+id: ark
+provides: []
+pkgconfig:
+- ark
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/ark-25.12.3.tar.xz
+  sha256: 81f27ef08e216f3cedce10a2b2e2c74ba27735219d8f149c9d1399f7565e028b
+cleanup:
+- /share/icons
+- /share/doc
+- /share/man
+- /share/config.kcfg
+- /share/kxmlgui5

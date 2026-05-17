@@ -1,0 +1,62 @@
+id: pyqt5-sip
+type: python
+pypi_name: pyqt5-sip
+requires:
+  pkgconfig:
+  - catch2
+  - eigen
+  - exiv2
+  - extra-cmake-modules
+  - fcitx5-qt
+  - fftw
+  - gl2ps
+  - glu
+  - gmic
+  - gsl
+  - hiredis
+  - imath
+  - immer
+  - karchive
+  - kcompletion
+  - kconfig
+  - kcoreaddons
+  - kcrash
+  - kguiaddons
+  - ki18n
+  - kimageformats
+  - kitemviews
+  - krita
+  - kseexpr
+  - kwidgetsaddons
+  - kwindowsystem
+  - lager
+  - libkdcraw
+  - libmypaint
+  - liborigin
+  - libraw
+  - libunibreak
+  - libvpl
+  - minizip-ng
+  - mlt
+  - muparser
+  - opencolorio
+  - openexr
+  - poppler
+  - pystring
+  - qtbase
+  - qtdeclarative
+  - qtgraphicaleffects
+  - qtimageformats
+  - qtquickcontrols2
+  - qtsvg
+  - qttools
+  - qttranslations
+  - qtx11extras
+  - quazip
+  - raqm
+  - xsimd
+  - yaml-cpp
+  - zug
+confidence: 0.6
+source: flathub:com.github.makhber.Makhber
+updated: '2026-05-16'

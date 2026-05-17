@@ -1,0 +1,12 @@
+id: mpvqt
+provides: []
+pkgconfig:
+- mpvqt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/mpvqt/mpvqt-1.1.1.tar.xz
+  sha256: bdd1ea69338cf3017f628a886218b8c185ca24e8257f03207a3cf1bbb51e3d32
+cleanup:
+- /include
+- /lib/pkgconfig

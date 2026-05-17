@@ -1,0 +1,12 @@
+id: libixion
+provides: []
+pkgconfig:
+- libixion
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.com/api/v4/projects/ixion%2Fixion/packages/generic/source/0.20.0/libixion-0.20.0.tar.xz
+  sha256: 8466a05f19f60b7568641a449704666308848f7bcaf8335f92ee9474a451e4cd
+cleanup:
+- /include
+- /lib/pkgconfig

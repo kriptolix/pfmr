@@ -1,0 +1,17 @@
+id: markupsafe
+type: python
+pypi_name: markupsafe
+requires:
+  pkgconfig:
+  - geos
+  - libass
+  - libkeybinder
+  - libmpv
+  - libplacebo
+  - libsecret
+  - qgis
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

@@ -1,0 +1,14 @@
+id: ktexttemplate
+provides: []
+pkgconfig:
+- ktexttemplate
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/6.22/ktexttemplate-6.22.0.tar.xz
+  sha256: 53038e8eedb91e0672bd52bd75b89d196821db3b9d30a0a802f4c964e68f1f7d
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

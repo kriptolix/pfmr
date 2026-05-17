@@ -1,0 +1,12 @@
+id: unshield
+provides: []
+pkgconfig:
+- unshield
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/twogood/unshield/archive/refs/tags/1.6.2.tar.gz
+  sha256: a937ef596ad94d16e7ed2c8553ad7be305798dcdcfd65ae60210b1e54ab51a2f
+cleanup:
+- /include
+- /lib/pkgconfig

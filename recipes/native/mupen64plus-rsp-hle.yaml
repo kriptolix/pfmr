@@ -1,0 +1,12 @@
+id: mupen64plus-rsp-hle
+provides: []
+pkgconfig:
+- mupen64plus-rsp-hle
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mupen64plus/mupen64plus-rsp-hle/releases/download/2.6.0/mupen64plus-rsp-hle-src-2.6.0.tar.gz
+  sha256: 8501b97315db80c7f200ee79c5ce34203c5d1e0c61f93f538263fc83f8464a7f
+cleanup:
+- /include
+- /lib/pkgconfig

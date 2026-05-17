@@ -1,0 +1,15 @@
+id: libkdcraw
+provides: []
+pkgconfig:
+- libkdcraw
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/libkdcraw-25.12.3.tar.xz
+  sha256: 23b220f14bbaa21858b6f8e18169499389835b6693e73a877f8e0d788f4499af
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DQT_MAJOR_VERSION=6
+cleanup:
+- /include
+- /lib/pkgconfig

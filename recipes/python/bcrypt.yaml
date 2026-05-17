@@ -1,0 +1,26 @@
+id: bcrypt
+type: python
+pypi_name: bcrypt
+requires:
+  pkgconfig:
+  - gobject-introspection
+  - iproute2
+  - krb5
+  - libndp
+  - libnma
+  - libpq
+  - libxmu
+  - mtdev
+  - networkmanager
+  - networkmanager-openvpn
+  - openssl
+  - polkit
+  - psmisc
+  - systemd
+  - xclip
+  extensions:
+  - org.freedesktop.Sdk.Extension.golang
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:me.kozec.syncthingtk
+updated: '2026-05-16'

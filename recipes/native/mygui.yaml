@@ -1,0 +1,20 @@
+id: mygui
+provides: []
+pkgconfig:
+- mygui
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/MyGUI/mygui/archive/refs/tags/MyGUI3.4.3.tar.gz
+  sha256: 33c91b531993047e77cace36d6fea73634b8c17bd0ed193d4cd12ac7c6328abd
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DMYGUI_RENDERSYSTEM=1
+- -DMYGUI_BUILD_DEMOS=0
+- -DMYGUI_BUILD_TOOLS=0
+- -DMYGUI_BUILD_PLUGINS=0
+- -DMYGUI_DONT_USE_OBSOLETE=1
+- -DGL_SILENCE_DEPRECATION=1
+cleanup:
+- /include
+- /lib/pkgconfig

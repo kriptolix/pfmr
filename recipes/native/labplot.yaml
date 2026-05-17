@@ -1,0 +1,17 @@
+id: labplot
+provides: []
+pkgconfig:
+- labplot
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/labplot/labplot-2.12.0.tar.xz
+  sha256: 25f1751261ec2d11312f0179049ea1f16db33b3a89800dc572d68ad8d267afe7
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DLOCAL_DBC_PARSER=OFF
+- -DLOCAL_VECTOR_BLF=OFF
+- -DENABLE_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: cfitsio
+provides: []
+pkgconfig:
+- cfitsio
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/HEASARC/cfitsio/archive/refs/tags/cfitsio-4.6.4.tar.gz
+  sha256: fb09b18638b0a71fa3c2612aac4fafd29cae8642266ba690803eb95f037a5268
+config-opts:
+- -DUTILS=OFF
+- -DTESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

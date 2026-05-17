@@ -159,39 +159,6 @@ class _LiveProber:
             logger.debug("flatpak run failed: %s", e)
         return None
 
-    def _flatpak_builder_run(self, command: str) -> Optional[str]:
-        """
-        Alternative: use flatpak-builder --run to enter a build environment.
-        More reliable than flatpak run for SDK inspection.
-        """
-        fb = shutil.which("flatpak-builder")
-        if not fb:
-            return None
-        import tempfile, json
-        with tempfile.TemporaryDirectory(prefix="pfmr-probe-") as tmp:
-            tmp_path = Path(tmp)
-            build_dir = tmp_path / "build"
-            build_dir.mkdir()
-            manifest = {
-                "app-id": "org.pfmr.Probe",
-                "runtime": self.sdk_id.replace("Sdk", "Platform"),
-                "runtime-version": self.sdk_version,
-                "sdk": self.sdk_id,
-                "modules": [],
-            }
-            manifest_path = tmp_path / "probe-manifest.json"
-            import json as _json
-            manifest_path.write_text(_json.dumps(manifest))
-            cmd = [fb, "--run", str(build_dir), str(manifest_path), "sh", "-c", command]
-            try:
-                result = subprocess.run(
-                    cmd, capture_output=True, text=True, timeout=60
-                )
-                if result.returncode == 0:
-                    return result.stdout
-            except (subprocess.TimeoutExpired, FileNotFoundError) as e:
-                logger.debug("flatpak-builder --run failed: %s", e)
-        return None
 
     def _probe_pkgconfig(self) -> list[str]:
         """List all pkg-config modules available in the SDK."""
@@ -221,11 +188,9 @@ class _LiveProber:
         return [line.strip() for line in output.splitlines() if line.strip()]
 
     def _run_in_sdk(self, command: str) -> Optional[str]:
-        """Try flatpak-builder first (more reliable), then flatpak run."""
-        out = self._flatpak_builder_run(command)
-        if out is not None:
-            return out
-        return self._flatpak_run(command)
+        """Run a command inside the SDK using flatpak build."""
+        return self._run_via_flatpak(command)
+
 
     def _check_sdk_installed(self) -> bool:
         if not self._flatpak:

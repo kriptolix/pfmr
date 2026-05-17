@@ -1,0 +1,12 @@
+id: libasio
+provides: []
+pkgconfig:
+- libasio
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/asio/files/asio/1.28.2%20%28Stable%29/asio-1.28.2.tar.bz2
+  sha256: f1b83e0294f21c1a1972a58c2ac482be32ba5d52caebcc426f019da42ef8e990
+cleanup:
+- /include
+- /lib/pkgconfig

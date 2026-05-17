@@ -1,0 +1,15 @@
+id: luminance
+provides: []
+pkgconfig:
+- luminance
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/LuminanceHDR/LuminanceHDR/archive/v.2.6.1.1.tar.gz
+  sha256: fa5a870ee00392a972755dd04a35e928ec9c50c474f4c72d0477dea337e0b81a
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

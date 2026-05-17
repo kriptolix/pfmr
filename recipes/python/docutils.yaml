@@ -1,0 +1,17 @@
+id: docutils
+type: python
+pypi_name: docutils
+requires:
+  pkgconfig:
+  - ensurepip
+  - libtirpc
+  - libvirt
+  - python
+  - rpcsvc-proto
+  - tcl
+  - tcltk-includes
+  - tcltk-libs
+  - tk
+confidence: 0.6
+source: flathub:io.github.lruzicka.Needly
+updated: '2026-05-16'

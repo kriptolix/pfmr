@@ -1,0 +1,14 @@
+id: libdcmtk14
+provides: []
+pkgconfig:
+- libdcmtk14
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/DCMTK/dcmtk/archive/refs/tags/DCMTK-3.6.6.tar.gz
+  sha256: 117097da6d50ddbad0e48bb1e6cdc61468e82ba1d32001dd8e2366b445133a8c
+config-opts:
+- -DBUILD_SHARED_LIBS:BOOL=ON
+cleanup:
+- /include
+- /lib/pkgconfig

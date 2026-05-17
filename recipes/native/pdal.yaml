@@ -1,0 +1,20 @@
+id: pdal
+provides: []
+pkgconfig:
+- pdal
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/PDAL/PDAL/releases/download/2.8.3/PDAL-2.8.3-src.tar.bz2
+  sha256: 13dfdb0d634bdd568b351fd535aaa03f7611df4c2cdb8be938117751355ad09b
+config-opts:
+- -DWITH_TESTS=OFF
+- -DWITH_TESTS:BOOL=OFF
+- -DWITH_LZMA:BOOL=OFF
+- -DWITH_ZLIB:BOOL=ON
+- -DWITH_ZSTD:BOOL=ON
+- -DBUILD_PLUGIN_HDF:BOOL=OFF
+- -DBUILD_PLUGIN_E57:BOOL=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

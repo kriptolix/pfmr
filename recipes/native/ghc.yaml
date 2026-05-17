@@ -1,0 +1,12 @@
+id: ghc
+provides: []
+pkgconfig:
+- ghc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.haskell.org/ghc/9.4.1/ghc-9.4.1-aarch64-deb10-linux.tar.xz
+  sha256: 7e8ed05533b8ed0440bfb4881e3098333a9dadf24cb6857c2446879e43f7362c
+cleanup:
+- /include
+- /lib/pkgconfig

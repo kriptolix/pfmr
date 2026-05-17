@@ -1,0 +1,15 @@
+id: babl
+provides: []
+pkgconfig:
+- babl
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gimp.org/pub/babl/0.1/babl-0.1.108.tar.xz
+  sha256: 26defe9deaab7ac4d0e076cab49c2a0d6ebd0df0c31fd209925a5f07edee1475
+config-opts:
+- -Denable-gir=false
+- -Dwith-docs=false
+cleanup:
+- /include
+- /lib/pkgconfig

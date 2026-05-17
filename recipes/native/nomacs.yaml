@@ -1,0 +1,16 @@
+id: nomacs
+provides: []
+pkgconfig:
+- nomacs
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/nomacs/nomacs/archive/refs/tags/3.22.1.tar.gz
+config-opts:
+- -DENABLE_QUAZIP=ON
+- -DENABLE_TESTING=OFF
+- -DUSE_SYSTEM_QUAZIP=ON
+- -DQT_VERSION_MAJOR=6
+cleanup:
+- /include
+- /lib/pkgconfig

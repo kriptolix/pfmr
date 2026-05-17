@@ -1,0 +1,58 @@
+id: python-dateutil
+type: python
+pypi_name: python-dateutil
+requires:
+  pkgconfig:
+  - bc
+  - ed
+  - evolution-data-server
+  - ffmpeg
+  - geos
+  - gnome-online-accounts
+  - hdri
+  - hwdata
+  - imagemagick
+  - libaacs
+  - libass
+  - libbluray
+  - libbs2b
+  - libcdio
+  - libcdio-paranoia
+  - libdisplay-info
+  - libdvdnav
+  - libdvdread
+  - libical
+  - libmysofa
+  - libplacebo
+  - libportal
+  - libportaudio
+  - librest
+  - libsixel
+  - libspelling
+  - libxmu
+  - libxpresent
+  - lmdb
+  - luajit
+  - mpv
+  - mpv-mpris
+  - mtdev
+  - mujs
+  - nv-codec-headers
+  - pic
+  - python-prefix
+  - rubberband
+  - smbclient
+  - tesseract
+  - uchardet
+  - vapoursynth
+  - vte
+  - x264
+  - x265
+  - xclip
+  - yt-dlp
+  - zimg
+  extensions:
+  - org.freedesktop.Sdk.Extension.node24
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

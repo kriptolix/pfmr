@@ -1,0 +1,14 @@
+id: kuserfeedback
+provides: []
+pkgconfig:
+- kuserfeedback
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/6.22/kuserfeedback-6.22.0.tar.xz
+  sha256: 10e2db5703649bfd377121ea2daf629dae8cc082d0457488a04238d55d9e8b87
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

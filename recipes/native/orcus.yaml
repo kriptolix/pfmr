@@ -1,0 +1,15 @@
+id: orcus
+provides: []
+pkgconfig:
+- orcus
+- boost
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.com/orcus/orcus/-/archive/0.21.0/orcus-0.21.0.tar.bz2
+  sha256: 3555660197d6d38d720643f430804bb0f95a484c1fe6c28c00808ae67f978d15
+config-opts:
+- --with-boost=/app
+cleanup:
+- /include
+- /lib/pkgconfig

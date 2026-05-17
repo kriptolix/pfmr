@@ -1,0 +1,14 @@
+id: gnome-photos
+provides: []
+pkgconfig:
+- gnome-photos
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-photos/44/gnome-photos-44.0.tar.xz
+  sha256: e78e210397d3c62809c6cd5521da6eccb4a11ddea5bf2af8632a47f4da5c829e
+config-opts:
+- -Ddogtail=false
+cleanup:
+- /include
+- /lib/pkgconfig

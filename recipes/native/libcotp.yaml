@@ -1,0 +1,14 @@
+id: libcotp
+provides: []
+pkgconfig:
+- libcotp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/paolostivanin/libcotp/archive/v4.0.0.tar.gz
+  sha256: 6b17323779dac1699462d8914b81155d69914b0d28b5ed837f1570ed05f2bd90
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

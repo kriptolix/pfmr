@@ -1,0 +1,25 @@
+id: petsc-damask-mesh
+provides: []
+pkgconfig:
+- petsc_damask_mesh
+- shared-libraries
+- mpi-f90module-visibility
+- packages-download-dir
+- hdf5-fortran-bindings
+buildsystem: autotools
+source:
+  type: archive
+  url: https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.23.7.tar.gz
+  sha256: f4fb2bad8c80319e723987868e87d8384f2ae2162e07917d4c41d6e467b1d254
+config-opts:
+- --with-shared-libraries=1
+- --with-mpi-f90module-visibility=0
+- --with-packages-download-dir=/run/build/petsc_damask_mesh
+- --download-openmpi=1
+- --download-fblaslapack=1
+- --download-hdf5=1
+- --download-zlib=1
+- --with-hdf5-fortran-bindings=1
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,13 @@
+id: extra-cmake-modules
+provides: []
+pkgconfig:
+- extra-cmake-modules
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.101/extra-cmake-modules-5.101.0.tar.xz
+  sha256: 8c4c561310db587d390a6c84afc97e1addbaddd73b9d7a4c7309c5da9b9bc8f2
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- '*'

@@ -1,0 +1,12 @@
+id: libqmi
+provides: []
+pkgconfig:
+- libqmi
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/mobile-broadband/libqmi/-/archive/1.38.0/libqmi-1.38.0.tar.gz
+  sha256: 8ee3b3a9002f2b45c825deade85710db006e01674f5f9359d351c192cc926015
+cleanup:
+- /bin
+- /libexec/qmi-proxy

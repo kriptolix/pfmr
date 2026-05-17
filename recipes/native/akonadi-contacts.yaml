@@ -1,0 +1,15 @@
+id: akonadi-contacts
+provides: []
+pkgconfig:
+- akonadi-contacts
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/akonadi-contacts-25.12.2.tar.xz
+  sha256: fa4d6b95143478f7d44897c68c33ee0f030426f25d8567045b904c2a02eb3686
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

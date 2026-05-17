@@ -1,0 +1,14 @@
+id: tcl-8.6.10
+provides: []
+pkgconfig:
+- tcl-8.6.10
+buildsystem: autotools
+source:
+  type: archive
+  url: https://prdownloads.sourceforge.net/tcl/tcl8.6.10-src.tar.gz
+  sha256: 5196dbf6638e3df8d5c87b5815c8c2b758496eb6f0e41446596c9a4e638d87ed
+config-opts:
+- --enable-shared=no
+cleanup:
+- /include
+- /lib/pkgconfig

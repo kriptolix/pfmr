@@ -1,0 +1,39 @@
+id: gcc
+provides: []
+pkgconfig:
+- gcc
+- bugurl
+- linker-hash-style
+- system-zlib
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gcc/gcc-8.3.0/gcc-8.3.0.tar.xz
+  sha256: 64baadfe6cc0f4947a84cb12d7f0dfaf45bb58b7e92461639596c21e02d97d2c
+config-opts:
+- --with-bugurl=https://flathub.org
+- --enable-languages=c,c++,fortran,lto
+- --enable-__cxa_atexit
+- --enable-checking=release
+- --enable-clocale=gnu
+- --enable-default-pie
+- --enable-default-ssp
+- --enable-gnu-indirect-function
+- --enable-gnu-unique-object
+- --enable-install-libiberty
+- --enable-linker-build-id
+- --enable-plugin
+- --enable-shared
+- --enable-threads=posix
+- --disable-bootstrap
+- --disable-libssp
+- --disable-libstdcxx-pch
+- --disable-libunwind-exceptions
+- --disable-multilib
+- --disable-stage1-checking
+- --disable-werror
+- --with-linker-hash-style=gnu
+- --with-system-zlib
+cleanup:
+- /include
+- /lib/pkgconfig

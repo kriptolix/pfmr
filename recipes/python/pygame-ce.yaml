@@ -1,0 +1,9 @@
+id: pygame-ce
+type: python
+pypi_name: pygame-ce
+requires:
+  pkgconfig:
+  - portmidi
+confidence: 0.6
+source: flathub:org.pydpainter.PyDPainter
+updated: '2026-05-16'

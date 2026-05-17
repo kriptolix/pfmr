@@ -1,0 +1,16 @@
+id: folks
+provides: []
+pkgconfig:
+- folks
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/folks/0.15/folks-0.15.9.tar.xz
+  sha256: 2311b37355c351f33f163fdc394874a22a0a0682c319493d6d8a6e420711415f
+config-opts:
+- -Dtelepathy_backend=false
+- -Dbluez_backend=false
+- -Dinspect_tool=false
+- -Dimport_tool=false
+cleanup:
+- /bin

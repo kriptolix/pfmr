@@ -1,0 +1,11 @@
+id: libsass
+provides: []
+pkgconfig:
+- libsass
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/sass/libsass/archive/3.5.4.tar.gz
+  sha256: 5f61cbcddaf8e6ef7a725fcfa5d05297becd7843960f245197ebb655ff868770
+cleanup:
+- '*'

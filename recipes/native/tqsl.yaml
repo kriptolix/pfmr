@@ -1,0 +1,14 @@
+id: tqsl
+provides: []
+pkgconfig:
+- tqsl
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://www.rickmurphy.net/lotw/tqsl-2.8.4.tar.gz
+  sha256: 6e71972ab1f6734360ff9d116f3838cf733a0ff12e2749a46084e1a14f7840fc
+config-opts:
+- -DTQSL_FLATPAK=Yes
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include

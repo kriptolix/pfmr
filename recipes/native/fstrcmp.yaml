@@ -1,0 +1,11 @@
+id: fstrcmp
+provides: []
+pkgconfig:
+- fstrcmp
+buildsystem: autotools
+source:
+  type: archive
+  url: http://fstrcmp.sourceforge.net/fstrcmp-0.7.D001.tar.gz
+cleanup:
+- /include
+- '*.a'

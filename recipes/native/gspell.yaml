@@ -1,0 +1,12 @@
+id: gspell
+provides: []
+pkgconfig:
+- gspell
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gspell/1.11/gspell-1.11.1.tar.xz
+  sha256: ef6aa4e3f711775158a7e241a5f809cf2426bc0e02c23a7d2b5c71fc3de00292
+cleanup:
+- /include
+- /lib/pkgconfig

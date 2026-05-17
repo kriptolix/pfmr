@@ -1,0 +1,10 @@
+id: hyperlink
+type: python
+pypi_name: hyperlink
+requires:
+  pkgconfig:
+  - pycairo
+  - pygobject
+confidence: 0.6
+source: flathub:org.deluge_torrent.deluge
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: dconf-editor
+provides: []
+pkgconfig:
+- dconf-editor
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/dconf-editor/49/dconf-editor-49.0.tar.xz
+  sha256: 90a8ccfadf51dff31e0028324fb9a358b2d26c5ae861a71c7dbf9f4dd9bdd399
+cleanup:
+- /include
+- /lib/pkgconfig

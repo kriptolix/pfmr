@@ -1,0 +1,16 @@
+id: x265
+provides: []
+pkgconfig:
+- x265
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.1.tar.gz
+  sha256: a31699c6a89806b74b0151e5e6a7df65de4b49050482fe5ebf8a4379d7af8f29
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_SHARED_LIBS=ON
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+cleanup:
+- /include
+- /lib/pkgconfig

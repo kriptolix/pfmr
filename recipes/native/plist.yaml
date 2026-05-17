@@ -1,0 +1,19 @@
+id: plist
+provides: []
+pkgconfig:
+- plist
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/libimobiledevice/libplist/releases/download/2.2.0/libplist-2.2.0.tar.bz2
+  sha256: 4a5517e5377ec421df84c586ba85bb4e1d26f11ad203d7d450a907c0156fbd9a
+config-opts:
+- --without-cython
+- --disable-static
+cleanup:
+- /bin
+- /include
+- /lib/libplist++*
+- /lib/pkgconfig
+- /share/man
+- '*.la'

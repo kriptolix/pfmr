@@ -1,0 +1,14 @@
+id: libdevhelp
+provides: []
+pkgconfig:
+- libdevhelp
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.gnome.org/GNOME/devhelp/-/archive/41.2/devhelp-41.2.tar.gz
+  sha256: 2798546427a42484b61733f13d8532f31e5aa0bdff4a22aa1dc8e3085358fc87
+config-opts:
+- -Dflatpak_build=true
+cleanup:
+- /include
+- /lib/pkgconfig

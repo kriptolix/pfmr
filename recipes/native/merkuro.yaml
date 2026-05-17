@@ -1,0 +1,16 @@
+id: merkuro
+provides: []
+pkgconfig:
+- merkuro
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/merkuro-25.12.3.tar.xz
+  sha256: f56169db85cb600ba2a49b32bf53d17eadd137e116d19f4b69ef2a5eab2c8bae
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_FLATPAK=ON
+cleanup:
+- /include
+- /lib/pkgconfig

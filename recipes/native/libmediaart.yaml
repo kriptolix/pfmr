@@ -1,0 +1,12 @@
+id: libmediaart
+provides: []
+pkgconfig:
+- libmediaart
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/libmediaart/1.9/libmediaart-1.9.7.tar.xz
+  sha256: 2b43dd9f54f0d8d0b89e2addb83341ab06d7b98cb1b2e704383584af9c560f6b
+cleanup:
+- /include
+- /lib/pkgconfig

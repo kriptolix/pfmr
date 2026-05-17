@@ -1,0 +1,16 @@
+id: liquidwar6
+provides: []
+pkgconfig:
+- liquidwar6
+buildsystem: autotools
+source:
+  type: archive
+  url: http://ftp.gnu.org/gnu/liquidwar6/liquidwar6-0.6.3902.tar.gz
+  sha256: d605549afae403439524e572322e45ebf5b6db8ea59505e5d51cb581a8b5e6a4
+config-opts:
+- --enable-allinone
+- --disable-static
+- --disable-rpath
+cleanup:
+- /include
+- /lib/pkgconfig

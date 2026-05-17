@@ -1,0 +1,15 @@
+id: xplus
+provides: []
+pkgconfig:
+- xplus
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/tx00100xt/SeriousSamClassic-VK/archive/refs/tags/1.10.7.tar.gz
+  sha256: 05b66c7bd929a9e0290111cbde6516b680a76a388d60584153e2b3deb72839ca
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DXPLUS=TRUE
+cleanup:
+- /include
+- /lib/pkgconfig

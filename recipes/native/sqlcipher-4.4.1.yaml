@@ -1,0 +1,16 @@
+id: sqlcipher-4.4.1
+provides: []
+pkgconfig:
+- sqlcipher-4.4.1
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/sqlcipher/sqlcipher/archive/v4.4.1.tar.gz
+  sha256: a36ed7c879a5e9af1054942201c75fc56f1db22e46bf6c2bbae3975dfeb6782d
+config-opts:
+- --enable-tempstore=yes
+- CFLAGS=-DSQLITE_HAS_CODEC
+- LDFLAGS=-lcrypto
+cleanup:
+- /include
+- /lib/pkgconfig

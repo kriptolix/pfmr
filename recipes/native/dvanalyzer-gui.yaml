@@ -1,0 +1,12 @@
+id: dvanalyzer-gui
+provides: []
+pkgconfig:
+- dvanalyzer-gui
+buildsystem: autotools
+source:
+  type: archive
+  url: https://mediaarea.net/download/source/dvanalyzer/1.4.2/dvanalyzer_1.4.2.tar.xz
+  sha256: dc55d91382fc52470a98f861f30d35c4ac6d1c21285b9332aa950221dc6991e3
+cleanup:
+- /include
+- /lib/pkgconfig

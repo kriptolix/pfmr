@@ -1,0 +1,12 @@
+id: zathura-pdf-poppler
+provides: []
+pkgconfig:
+- zathura-pdf-poppler
+buildsystem: meson
+source:
+  type: archive
+  url: https://pwmt.org/projects/zathura-pdf-poppler/download/zathura-pdf-poppler-2026.05.10.tar.xz
+  sha256: 364c38634273c06252087324bf01dbde2885b932795265aee44006aa2701fe23
+cleanup:
+- /include
+- /lib/pkgconfig

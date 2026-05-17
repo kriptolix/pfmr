@@ -1,0 +1,11 @@
+id: cdrdao
+provides: []
+pkgconfig:
+- cdrdao
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/cdrdao/cdrdao/releases/download/rel_1_2_6/cdrdao-1.2.6.tar.bz2
+cleanup:
+- /include
+- /lib/pkgconfig

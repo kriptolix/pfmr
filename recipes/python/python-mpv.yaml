@@ -1,0 +1,11 @@
+id: python-mpv
+type: python
+pypi_name: python-mpv
+requires:
+  pkgconfig:
+  - ffms2
+  - libmpv
+  - yt-dlp
+confidence: 0.6
+source: flathub:io.github.diegopvlk.Cine
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: netcdfcxx
+provides: []
+pkgconfig:
+- netcdfcxx
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/Unidata/netcdf-cxx4/archive/refs/tags/v4.3.1.tar.gz
+  sha256: e3fe3d2ec06c1c2772555bf1208d220aab5fee186d04bd265219b0bc7a978edc
+cleanup:
+- /include
+- /lib/pkgconfig

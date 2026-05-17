@@ -1,0 +1,12 @@
+id: mupen64plus-core
+provides: []
+pkgconfig:
+- mupen64plus-core
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mupen64plus/mupen64plus-core/releases/download/2.6.0/mupen64plus-core-src-2.6.0.tar.gz
+  sha256: 7f79f7f56b94dfa09c8f0dc95720cdffc07c722457e18f46ec8adbbb3505d21f
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: pystring
+provides: []
+pkgconfig:
+- pystring
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/imageworks/pystring/archive/refs/tags/v1.1.4.tar.gz
+  sha256: 49da0fe2a049340d3c45cce530df63a2278af936003642330287b68cefd788fb
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

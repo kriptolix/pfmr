@@ -1,0 +1,12 @@
+id: fldigi
+provides: []
+pkgconfig:
+- fldigi
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.w1hkj.org/files/fldigi/fldigi-4.2.11.tar.gz
+  sha256: 762b370ffe9cae773a2a03b512d0b7242e7e90407c11d5abbd2d31ae6501664f
+cleanup:
+- /include
+- /lib/pkgconfig

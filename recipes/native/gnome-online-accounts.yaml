@@ -1,0 +1,17 @@
+id: gnome-online-accounts
+provides: []
+pkgconfig:
+- gnome-online-accounts
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-online-accounts/3.58/gnome-online-accounts-3.58.1.tar.xz
+  sha256: 9ec1900cc51409c2067c07c828c10be06fe3bf68d2999bb72d7d5ed325ed9bbc
+config-opts:
+- -Dvapi=false
+- -Dgoabackend=false
+- -Dintrospection=false
+- -Dkerberos=false
+cleanup:
+- /bin
+- /share/GConf

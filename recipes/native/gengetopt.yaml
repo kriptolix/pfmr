@@ -1,0 +1,12 @@
+id: gengetopt
+provides: []
+pkgconfig:
+- gengetopt
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gengetopt/gengetopt-2.23.tar.xz
+  sha256: b941aec9011864978dd7fdeb052b1943535824169d2aa2b0e7eae9ab807584ac
+cleanup:
+- /include
+- /lib/pkgconfig

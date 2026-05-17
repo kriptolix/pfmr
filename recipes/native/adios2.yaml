@@ -1,0 +1,19 @@
+id: adios2
+provides: []
+pkgconfig:
+- adios2
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/ornladios/ADIOS2/archive/refs/tags/v2.11.0.tar.gz
+  sha256: 0a2bd745e3f39745f07587e4a5f92d72f12fa0e2be305e7957bdceda03735dbf
+config-opts:
+- -DADIOS2_RUN_INSTALL_TEST:BOOL=OFF
+- -DADIOS2_BUILD_EXAMPLES=OFF
+- -DBUILD_SHARED_LIBS=ON
+- -DADIOS2_USE_HDF5:STRING=OFF
+- -DBUILD_TESTING:BOOL=OFF
+- -DINSTALL_GTEST:BOOL=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

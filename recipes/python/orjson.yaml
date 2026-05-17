@@ -1,0 +1,15 @@
+id: orjson
+type: python
+pypi_name: orjson
+requires:
+  pkgconfig:
+  - dbus-python
+  - dbus-run-session
+  - p7zip
+  - par2cmdline-turbo
+  - unrar
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.sabnzbd.sabnzbd
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: libgsasl
+provides: []
+pkgconfig:
+- libgsasl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gsasl/gsasl-2.2.3.tar.gz
+  sha256: fee36c66ac12d32d3bf29a7b35ad8f444b7996fe369b9da5d36fd6ae649c68eb
+cleanup:
+- /bin
+- /share/info

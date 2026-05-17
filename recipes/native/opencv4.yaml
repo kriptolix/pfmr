@@ -1,0 +1,19 @@
+id: opencv4
+provides: []
+pkgconfig:
+- opencv4
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/opencv/opencv/archive/4.5.5.tar.gz
+  sha256: a1cfdcf6619387ca9e232687504da996aaa9f7b5689986b8331ec02cb61d28ad
+config-opts:
+- -DBUILD_TESTS=OFF
+- -DBUILD_PERF_TESTS=OFF
+- -DBUILD_DOCS=OFF
+- -DBUILD_LIST=imgproc,imgcodecs
+- -DOPENCV_GENERATE_PKGCONFIG=ON
+- -DOPENCV_LIB_INSTALL_PATH=/app/lib
+cleanup:
+- /bin/*
+- /share/*

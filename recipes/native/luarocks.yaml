@@ -1,0 +1,12 @@
+id: luarocks
+provides: []
+pkgconfig:
+- luarocks
+buildsystem: autotools
+source:
+  type: archive
+  url: https://luarocks.org/releases/luarocks-3.3.0.tar.gz
+  sha256: 8de54eb851f5245ed3708d94d8872e825b9704049d3ad4febe8e219f419b427d
+cleanup:
+- /include
+- /lib/pkgconfig

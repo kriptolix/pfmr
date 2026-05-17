@@ -1,0 +1,18 @@
+id: fuse-sdl
+provides: []
+pkgconfig:
+- fuse-sdl
+- sdl
+- audio-driver
+buildsystem: autotools
+source:
+  type: archive
+  url: https://netcologne.dl.sourceforge.net/project/fuse-emulator/fuse/1.6.0/fuse-1.6.0.tar.gz
+  sha256: 3a8fedf2ffe947c571561bac55a59adad4c59338f74e449b7e7a67d9ca047096
+config-opts:
+- --with-sdl
+- --with-audio-driver=sdl
+- --disable-desktop-integration
+cleanup:
+- /include
+- /lib/pkgconfig

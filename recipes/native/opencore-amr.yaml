@@ -1,0 +1,14 @@
+id: opencore-amr
+provides: []
+pkgconfig:
+- opencore-amr
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/opencore-amr/files/opencore-amr/opencore-amr-0.1.6.tar.gz
+  sha256: 483eb4061088e2b34b358e47540b5d495a96cd468e361050fae615b1809dc4a1
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

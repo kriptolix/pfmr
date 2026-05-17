@@ -1,0 +1,13 @@
+id: kcoreaddons
+provides: []
+pkgconfig:
+- kcoreaddons
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.101/kcoreaddons-5.101.0.tar.xz
+  sha256: 77b64fc17f7ebbbd53bbb3614b4c3c73a0a9b21607e96e6abb2823ef1972b72a
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /bin

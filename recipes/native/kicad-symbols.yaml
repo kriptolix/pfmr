@@ -1,0 +1,12 @@
+id: kicad-symbols
+provides: []
+pkgconfig:
+- kicad-symbols
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.com/kicad/libraries/kicad-symbols/-/archive/5.1.9/kicad-symbols-5.1.9.tar.gz
+  sha256: cdb033cc755cc66a087b44fff1d2b77bf2dd44311a02c81a516b8ca1fbd242a7
+cleanup:
+- /include
+- /lib/pkgconfig

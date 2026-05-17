@@ -1,0 +1,12 @@
+id: smooth
+provides: []
+pkgconfig:
+- smooth
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/enzo1982/smooth/releases/download/v0.9.10/smooth-0.9.10.tar.gz
+  sha256: c018ea09eb4e269268cb123bb5d24a813d07c985384c5384d7fa73b7173e9f1c
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,72 @@
+id: toml
+type: python
+pypi_name: toml
+requires:
+  pkgconfig:
+  - catch2
+  - eigen
+  - exiv2
+  - extra-cmake-modules
+  - fcitx5-qt
+  - fftw
+  - gmic
+  - gsl
+  - hiredis
+  - imath
+  - immer
+  - iproute2
+  - karchive
+  - kcompletion
+  - kconfig
+  - kcoreaddons
+  - kcrash
+  - kguiaddons
+  - ki18n
+  - kimageformats
+  - kitemviews
+  - krita
+  - kseexpr
+  - kwidgetsaddons
+  - kwindowsystem
+  - lager
+  - libinsane
+  - libkdcraw
+  - libmypaint
+  - libndp
+  - libnma
+  - libraw
+  - libunibreak
+  - libvpl
+  - minizip-ng
+  - mlt
+  - networkmanager
+  - networkmanager-openvpn
+  - openblas
+  - opencolorio
+  - openexr
+  - polkit
+  - poppler
+  - poppler-data
+  - pystring
+  - python-paperwork
+  - qtbase
+  - qtdeclarative
+  - qtgraphicaleffects
+  - qtimageformats
+  - qtquickcontrols2
+  - qtsvg
+  - qttools
+  - qttranslations
+  - qtx11extras
+  - quazip
+  - raqm
+  - systemd
+  - xsimd
+  - yaml-cpp
+  - zug
+  extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:work.openpaper.Paperwork
+updated: '2026-05-16'

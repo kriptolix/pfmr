@@ -1,0 +1,21 @@
+id: waypipe
+provides: []
+pkgconfig:
+- waypipe
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/mstoeckl/waypipe/-/archive/v0.11.0/waypipe-v0.11.0.tar.gz
+  sha256: dc4741bd4435666b4b45ef9b8354c9f742e9c2c5fb99bb49b2ac4f32a371bcd7
+config-opts:
+- -Dbuild_rs=false
+- -Dbuild_c=true
+- -Dman-pages=disabled
+- -Dtests=false
+- -Dwith_lz4=enabled
+- -Dwith_zstd=enabled
+- -Dwith_dmabuf=disabled
+- -Dwith_video=disabled
+cleanup:
+- /include
+- /lib/pkgconfig

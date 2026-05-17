@@ -1,0 +1,18 @@
+id: mediaconch-gui
+provides: []
+pkgconfig:
+- mediaconch-gui
+buildsystem: qmake
+source:
+  type: archive
+  url: https://mediaarea.net/download/source/mediaconch/24.06/mediaconch_24.06.tar.xz
+  sha256: cafc541e74aa1eff4aa973db547b7688ca62e7a6a954fee3ca244fdc6f22e21d
+config-opts:
+- QMAKE_INCDIR+=/app/include/QtWebEngine
+- QMAKE_INCDIR+=/app/include/QtWebEngineCore
+- QMAKE_INCDIR+=/app/include/QtWebEngineWidgets
+- -after
+- target.path=/app/bin
+cleanup:
+- /include
+- /lib/pkgconfig

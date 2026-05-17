@@ -1,0 +1,20 @@
+id: asn1crypto
+type: python
+pypi_name: asn1crypto
+requires:
+  pkgconfig:
+  - iproute2
+  - libndp
+  - libnma
+  - mpv
+  - networkmanager
+  - networkmanager-openvpn
+  - polkit
+  - rsync
+  - systemd
+  extensions:
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:net.ankiweb.Anki
+updated: '2026-05-16'

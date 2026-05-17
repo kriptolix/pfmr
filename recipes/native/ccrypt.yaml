@@ -1,0 +1,12 @@
+id: ccrypt
+provides: []
+pkgconfig:
+- ccrypt
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ccrypt.sourceforge.net/download/1.11/ccrypt-1.11.tar.gz
+  sha256: b19c47500a96ee5fbd820f704c912f6efcc42b638c0a6aa7a4e3dc0a6b51a44f
+cleanup:
+- /include
+- /lib/pkgconfig

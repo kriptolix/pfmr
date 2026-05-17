@@ -1,0 +1,20 @@
+id: lime
+provides: []
+pkgconfig:
+- lime
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Lime3DS/lime3ds-archive/releases/download/2119.1/lime3ds-unified-source-2119.1.tar.xz
+  sha256: 1bd7be965f0b58e368556283c861082c25b971bc5c653d36ff3179e6df34541a
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_C_COMPILER=clang
+- -DCMAKE_CXX_COMPILER=clang++
+- -DCMAKE_LINKER=lld
+- -DENABLE_QT_TRANSLATION=ON
+- -DUSE_DISCORD_PRESENCE=ON
+- -DUSE_SYSTEM_SDL2=ON
+cleanup:
+- /share/man
+- /share/pixmaps

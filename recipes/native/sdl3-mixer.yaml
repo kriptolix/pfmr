@@ -1,0 +1,24 @@
+id: sdl3-mixer
+provides: []
+pkgconfig:
+- sdl3-mixer
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.2/SDL3_mixer-3.2.2.tar.gz
+  sha256: cdb6d2a9f01bb3c1b98c957ee12109dd6ec1a1157682c9bc8523b0fe8ab2da1e
+config-opts:
+- -DBUILD_SHARED_LIBS=ON
+- -DSDLMIXER_INSTALL=ON
+- -DSDLMIXER_INSTALL_MAN=ON
+- -DSDLMIXER_DEPS_SHARED=ON
+- -DSDLMIXER_VENDORED=OFF
+- -DSDLMIXER_STRICT=ON
+- -DSDLMIXER_TESTS=OFF
+- -DSDLMIXER_EXAMPLES=OFF
+- -DSDLMIXER_EXAMPLES_INSTALL=OFF
+- -DSDLMIXER_GME=OFF
+- -DSDLMIXER_MOD_XMP=OFF
+- -DSDLMIXER_MIDI_FLUIDSYNTH=OFF
+cleanup:
+- /lib/cmake

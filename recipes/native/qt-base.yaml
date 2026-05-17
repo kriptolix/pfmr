@@ -1,0 +1,15 @@
+id: qt-base
+provides: []
+pkgconfig:
+- qt-base
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.11/6.11.1/submodules/qtbase-everywhere-src-6.11.1.tar.xz
+  sha256: d9594a31228aa23ad6b531719a29b45f0f3989fe6c136d45767ea179f233c1ac
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DQT_BUILD_EXAMPLES=OFF
+- -DQT_BUILD_TESTS=OFF
+cleanup:
+- /bin

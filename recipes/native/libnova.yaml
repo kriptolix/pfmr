@@ -1,0 +1,12 @@
+id: libnova
+provides: []
+pkgconfig:
+- libnova
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.com/libnova/libnova/-/archive/v0.16/libnova-v0.16.tar.gz
+  sha256: 8b7a8dd0f06c17643d721eef3cee5239ecaeaba233c4994ff3bdd07bfa489b69
+cleanup:
+- /include
+- /lib/pkgconfig

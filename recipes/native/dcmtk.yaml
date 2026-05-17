@@ -1,0 +1,14 @@
+id: dcmtk
+provides: []
+pkgconfig:
+- dcmtk
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://dicom.offis.de/download/dcmtk/dcmtk369/dcmtk-3.6.9.tar.gz
+  sha256: b93ff5561244916a6e1e7e3ecccf2e26e6932c4edb5961268401cea7d4ab9c16
+config-opts:
+- -DBUILD_APPS=OFF
+- -DBUILD_SHARED_LIBS=ON
+cleanup:
+- /bin

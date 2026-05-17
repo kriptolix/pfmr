@@ -1,0 +1,15 @@
+id: xdg-dbus-proxy
+provides: []
+pkgconfig:
+- xdg-dbus-proxy
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/flatpak/xdg-dbus-proxy/archive/refs/tags/0.1.7.tar.gz
+  sha256: 232d2eb9b456fa1e307322da1bfeb4849eb410750a2a16a5de51ed2c2eb919e6
+config-opts:
+- -Dman=disabled
+- -Dtests=false
+cleanup:
+- /include
+- /lib/pkgconfig

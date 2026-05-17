@@ -1,0 +1,15 @@
+id: libpeas
+provides: []
+pkgconfig:
+- libpeas
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/libpeas/2.2/libpeas-2.2.1.tar.xz
+  sha256: 589eca89b437006edf3755478df037c740a2a84cfa5d202dbad6095e828e2488
+config-opts:
+- -Dgtk_doc=false
+- -Dlua51=false
+cleanup:
+- /bin/*
+- /lib/peas-demo

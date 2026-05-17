@@ -1,0 +1,21 @@
+id: restinio
+provides: []
+pkgconfig:
+- restinio
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Stiffstream/restinio/releases/download/v.0.7.2/restinio-0.7.2.tar.bz2
+  sha256: 7ba3660ccf937eae55b35aba97d500e60a53baf3f2a24ee87a01b2ed6f2c08f4
+config-opts:
+- -DRESTINIO_TEST=Off
+- -DRESTINIO_SAMPLE=Off
+- -DRESTINIO_BENCHMARK=Off
+- -DRESTINIO_WITH_SOBJECTIZER=Off
+- -DRESTINIO_DEP_STANDALONE_ASIO=system
+- -DRESTINIO_DEP_LLHTTP=system
+- -DRESTINIO_DEP_FMT=system
+- -DRESTINIO_DEP_EXPECTED_LITE=system
+cleanup:
+- /include
+- /lib/pkgconfig

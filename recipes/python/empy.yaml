@@ -1,0 +1,14 @@
+id: empy
+type: python
+pypi_name: empy
+requires:
+  pkgconfig:
+  - icon-naming-utils
+  - python3
+  - sugar-artwork
+  - sugar-toolkit-gtk3
+  - telepathy-glib
+  - xcursorgen
+confidence: 0.6
+source: flathub:org.sugarlabs.BaseApp
+updated: '2026-05-16'

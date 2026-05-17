@@ -1,0 +1,15 @@
+id: libkleo
+provides: []
+pkgconfig:
+- libkleo
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/libkleo-25.12.2.tar.xz
+  sha256: 6b055214ba7c5c6da75454b9f2f0cf90213511b73cc18a47964ff553407697f7
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

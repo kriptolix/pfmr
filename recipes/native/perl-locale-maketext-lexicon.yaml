@@ -1,0 +1,12 @@
+id: perl-locale-maketext-lexicon
+provides: []
+pkgconfig:
+- perl-locale-maketext-lexicon
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/D/DR/DRTECH/Locale-Maketext-Lexicon-1.00.tar.gz
+  sha256: b73f6b04a58d3f0e38ebf2115a4c1532f1a4eef6fac5c6a2a449e4e14c1ddc7c
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,19 @@
+id: onednn
+provides: []
+pkgconfig:
+- onednn
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/oneapi-src/oneDNN/archive/refs/tags/v3.3.1.tar.gz
+  sha256: e0b7a9452162e854cf08b4e90bcd1b382b9903ace6a61503a872573880d24c3f
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DONEDNN_LIBRARY_TYPE=STATIC
+- -DONEDNN_BUILD_EXAMPLES=OFF
+- -DONEDNN_BUILD_TESTS=OFF
+- -DONEDNN_ENABLE_WORKLOAD=INFERENCE
+- -DONEDNN_ENABLE_PRIMITIVE=CONVOLUTION;REORDER
+- -DONEDNN_BUILD_GRAPH=OFF
+cleanup:
+- /bin

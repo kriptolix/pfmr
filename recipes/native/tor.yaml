@@ -1,0 +1,18 @@
+id: tor
+provides: []
+pkgconfig:
+- tor
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dist.torproject.org/tor-0.4.9.6.tar.gz
+  sha256: a89aba97052e9963a654b40df2d46be07e8a6b6e24e5437917fd81acd90a7017
+config-opts:
+- --disable-module-relay
+- --disable-asciidoc
+- --disable-manpage
+- --disable-html-manual
+- --disable-unittests
+cleanup:
+- /include
+- /lib/pkgconfig

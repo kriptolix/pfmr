@@ -1,0 +1,16 @@
+id: nixio
+provides: []
+pkgconfig:
+- nixio
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/G-Node/nix/archive/1.4.3.tar.gz
+  sha256: 83c8e1dca01c59f99a23e02cc4682521ebb7335c4de171a2d78e787dc21268f9
+config-opts:
+- -DCMAKE_INSTALL_LIBDIR=lib
+- -DBUILD_TESTING=No
+cleanup:
+- /bin
+- /include
+- /lib/pkgconfig

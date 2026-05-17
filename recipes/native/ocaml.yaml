@@ -1,0 +1,12 @@
+id: ocaml
+provides: []
+pkgconfig:
+- ocaml
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/ocaml/ocaml/archive/refs/tags/5.2.0.tar.gz
+  sha256: 48554abfd530fcdaa08f23f801b699e4f74c320ddf7d0bd56b0e8c24e55fc911
+cleanup:
+- /include
+- /lib/pkgconfig

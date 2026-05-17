@@ -1,0 +1,14 @@
+id: hmtimer
+provides: []
+pkgconfig:
+- hmtimer
+buildsystem: qmake
+source:
+  type: archive
+  url: https://github.com/cges30901/hmtimer/releases/download/v3.2.1/hmtimer-3.2.1-src.tar.bz2
+  sha256: 45ae8aafc4f4bccbfb8bebe5726bc708add0108e8105e5e9111495e7f9d241c3
+config-opts:
+- CONFIG+=flatpak
+cleanup:
+- /include
+- /lib/pkgconfig

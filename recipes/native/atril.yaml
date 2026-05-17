@@ -1,0 +1,23 @@
+id: atril
+provides: []
+pkgconfig:
+- atril
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mate-desktop/atril/releases/download/v1.28.1/atril-1.28.1.tar.xz
+  sha256: 74c4f42979f3ead52def23767448d06ad7f715421e03c9b509404b096de8193e
+config-opts:
+- --disable-caja
+- --disable-gtk-doc-html
+- --disable-schemas-compile
+- --disable-synctex
+- --enable-comics
+- --prefix=/app
+- --without-keyring
+cleanup:
+- /include
+- /lib/pkgconfig
+- /share/gtk-doc
+- /share/help
+- /share/man

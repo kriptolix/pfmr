@@ -1,0 +1,15 @@
+id: kdegraphics-mobipocket
+provides: []
+pkgconfig:
+- kdegraphics-mobipocket
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/26.04.0/src/kdegraphics-mobipocket-26.04.0.tar.xz
+  sha256: 78b48775544dd4bc2bbec8c13c479eaa1668e50e420e8249b5eafd6f8f7311f9
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DQT_MAJOR_VERSION=6
+cleanup:
+- /include
+- /lib/pkgconfig

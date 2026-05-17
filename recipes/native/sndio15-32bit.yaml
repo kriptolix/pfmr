@@ -1,0 +1,14 @@
+id: sndio15-32bit
+provides: []
+pkgconfig:
+- sndio15-32bit
+- libbsd
+buildsystem: autotools
+source:
+  type: archive
+  url: http://archive.ubuntu.com/ubuntu/pool/universe/s/sndio/sndio_1.5.0.orig.tar.gz
+  sha256: 12c70044749ad9cb7eaeb26c936816aa6b314fe4be71ef479d12272e4c5ad253
+config-opts:
+- --with-libbsd
+cleanup:
+- /bin

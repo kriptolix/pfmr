@@ -1,0 +1,11 @@
+id: pyparsing-3-3-2-py3-none-any-whl
+type: python
+pypi_name: pyparsing-3-3-2-py3-none-any-whl
+requires:
+  pkgconfig:
+  - gtk-vnc
+  - libvirt-glib
+  - spice-gtk
+confidence: 0.6
+source: flathub:org.virt_manager.virt-viewer
+updated: '2026-05-16'

@@ -1,0 +1,15 @@
+id: freecell-solver
+provides: []
+pkgconfig:
+- freecell-solver
+buildsystem: cmake
+source:
+  type: archive
+  url: https://fc-solve.shlomifish.org/downloads/fc-solve/freecell-solver-6.16.0.tar.xz
+  sha256: 71b8882e68f1be62529069018d0c732b75078669077c96348279575849f34313
+config-opts:
+- -DFCS_WITH_TEST_SUITE=OFF
+- -DFCS_BUILD_DOCS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

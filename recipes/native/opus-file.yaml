@@ -1,0 +1,12 @@
+id: opus-file
+provides: []
+pkgconfig:
+- opus-file
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.xiph.org/releases/opus/opusfile-0.12.tar.gz
+  sha256: 118d8601c12dd6a44f52423e68ca9083cc9f2bfe72da7a8c1acb22a80ae3550b
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,18 @@
+id: gssdp
+provides: []
+pkgconfig:
+- gssdp
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gssdp/1.6/gssdp-1.6.4.tar.xz
+  sha256: ff97fdfb7f561d3e6813b4f6a2145259e7c2eff43cc0e63f3fd031d0b6266032
+config-opts:
+- -Dgtk_doc=false
+- -Dsniffer=false
+- -Dintrospection=false
+- -Dvapi=false
+- -Dexamples=false
+- -Dmanpages=false
+cleanup:
+- /bin

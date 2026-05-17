@@ -1,0 +1,12 @@
+id: perl-tie-simple
+provides: []
+pkgconfig:
+- perl-tie-simple
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/H/HA/HANENKAMP/Tie-Simple-1.03.tar.gz
+  sha256: e73dae00e00c42511154fe0e3b26a8965836f2456e1c0952c9ce22ce3d55fc23
+cleanup:
+- /include
+- /lib/pkgconfig

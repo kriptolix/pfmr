@@ -1,0 +1,15 @@
+id: ogdf
+provides: []
+pkgconfig:
+- ogdf
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://ogdf.uos.de/wp-content/uploads/2025/10/ogdf.v2025.10.zip
+  sha256: 54f8fc9c2b44b3e4f34ca85be3ae77ce2a309337397662c1432a960367522ccb
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DOGDF_ARCH=x86-64
+cleanup:
+- /include
+- /lib/pkgconfig

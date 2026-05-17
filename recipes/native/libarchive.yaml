@@ -1,0 +1,15 @@
+id: libarchive
+provides: []
+pkgconfig:
+- libarchive
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libarchive/libarchive/releases/download/v3.8.6/libarchive-3.8.6.tar.xz
+  sha256: 8ac57c1f5e99550948d1fe755c806d26026e71827da228f36bef24527e372e6f
+config-opts:
+- -DENABLE_TEST=OFF
+- -DENABLE_COVERAGE=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

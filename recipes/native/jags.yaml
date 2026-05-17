@@ -1,0 +1,12 @@
+id: jags
+provides: []
+pkgconfig:
+- jags
+buildsystem: autotools
+source:
+  type: archive
+  url: https://static.jasp-stats.org/RPkgs/JAGS-4.3.1.tar.gz
+  sha256: f9258355b5e9eb13bd33c5fa720f0cbebacea7d0a4a42b71b0fb14501ee14229
+cleanup:
+- /include
+- /lib/pkgconfig

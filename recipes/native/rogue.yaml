@@ -1,0 +1,15 @@
+id: rogue
+provides: []
+pkgconfig:
+- rogue
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/yquake2/rogue/archive/refs/tags/ROGUE_2_14.tar.gz
+  sha256: 5026a0ba9f9c91cd038f7ca3f45848ea4a579b86701f13126af01ba81b52a59d
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

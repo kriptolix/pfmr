@@ -1,0 +1,15 @@
+id: webrtcvad
+provides: []
+pkgconfig:
+- webrtcvad
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/webrtc-mirror/webrtc/archive/ac87c8df2780cb12c74942ec8a473718c76cb5b7.zip
+  sha256: 9ceb1dbd7da99ec2efd6bc18ac1004d446f51e79969203b086b4dcf0ca534c68
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+cleanup:
+- /include
+- /lib/pkgconfig

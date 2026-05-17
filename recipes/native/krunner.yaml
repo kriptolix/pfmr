@@ -1,0 +1,14 @@
+id: krunner
+provides: []
+pkgconfig:
+- krunner
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/6.24/krunner-6.24.0.tar.xz
+  sha256: 5775d7292a31c0ca339b385c18f3716fda5486317423c53809a10d8008ff8e4d
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

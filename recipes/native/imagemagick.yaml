@@ -1,0 +1,41 @@
+id: imagemagick
+provides: []
+pkgconfig:
+- imagemagick
+- modules
+buildsystem: autotools
+source:
+  type: archive
+  url: https://imagemagick.org/archive/releases/ImageMagick-7.0.10-7.tar.xz
+  sha256: 7a0365e20eeef2129cb8ffee1acf1d21cdbc2ea8b57ce2941c6ca0e935d4f843
+config-opts:
+- --enable-static=no
+- --with-modules
+- --disable-docs
+- --disable-deprecated
+- --without-autotrace
+- --without-bzlib
+- --without-djvu
+- --without-dps
+- --without-fftw
+- --without-fontconfig
+- --without-fpx
+- --without-freetype
+- --without-gvc
+- --without-jbig
+- --without-jpeg
+- --without-lcms
+- --without-lzma
+- --without-magick-plus-plus
+- --without-openexr
+- --without-openjp2
+- --without-pango
+- --without-raqm
+- --without-tiff
+- --without-webp
+- --without-wmf
+- --without-x
+- --without-xml
+- --without-zlib
+cleanup:
+- '*'

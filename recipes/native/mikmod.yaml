@@ -1,0 +1,12 @@
+id: mikmod
+provides: []
+pkgconfig:
+- mikmod
+buildsystem: autotools
+source:
+  type: archive
+  url: http://deb.debian.org/debian/pool/main/libm/libmikmod/libmikmod_3.3.11.1.orig.tar.gz
+  sha256: ad9d64dfc8f83684876419ea7cd4ff4a41d8bcd8c23ef37ecb3a200a16b46d19
+cleanup:
+- /include
+- /lib/pkgconfig

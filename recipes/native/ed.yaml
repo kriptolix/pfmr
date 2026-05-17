@@ -1,0 +1,12 @@
+id: ed
+provides: []
+pkgconfig:
+- ed
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/ed/ed-1.22.5.tar.lz
+  sha256: 56e107ddc2f29dad6690376c15bf9751509e1ee3b8241710e44edbe5c3a158cc
+cleanup:
+- /include
+- /lib/pkgconfig

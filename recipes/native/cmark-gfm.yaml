@@ -1,0 +1,14 @@
+id: cmark-gfm
+provides: []
+pkgconfig:
+- cmark-gfm
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/github/cmark-gfm/archive/refs/tags/0.29.0.gfm.13.tar.gz
+  sha256: 5abc61798ebd9de5660bc076443c07abad2b8d15dbc11094a3a79644b8ad243a
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

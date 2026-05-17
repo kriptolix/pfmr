@@ -1,0 +1,16 @@
+id: simgear
+provides: []
+pkgconfig:
+- simgear
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.com/flightgear/simgear/-/archive/2024.1.5/simgear-2024.1.5.tar.bz2
+  sha256: 74469e4cd767d29172dcaa0ec264532651e08ffbb2720f0effa6bc666aa13bad
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DOpenGL_GL_PREFERENCE=GLVND
+- -DENABLE_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

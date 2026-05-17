@@ -1,0 +1,12 @@
+id: libcapi20
+provides: []
+pkgconfig:
+- libcapi20
+buildsystem: autotools
+source:
+  type: archive
+  url: http://deb.debian.org/debian/pool/main/libc/libcapi20-3/libcapi20-3_3.27.orig.tar.bz2
+  sha256: d8e423d5adba1750f511a2c088296db2a8a2e1e9209401871b01ce411d8ac583
+cleanup:
+- /include
+- /lib/pkgconfig

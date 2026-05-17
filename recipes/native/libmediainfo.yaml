@@ -1,0 +1,16 @@
+id: libmediainfo
+provides: []
+pkgconfig:
+- libmediainfo
+- libcurl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://mediaarea.net/download/source/libmediainfo/17.10/libmediainfo_17.10.tar.xz
+  sha256: 60b018fcd8acd249c5316670bdf1c85abc166fb9c340e84da834b1332a59a102
+config-opts:
+- --enable-shared
+- --disable-static
+- --with-libcurl
+cleanup:
+- /bin

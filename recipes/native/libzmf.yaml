@@ -1,0 +1,17 @@
+id: libzmf
+provides: []
+pkgconfig:
+- libzmf
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dev-www.libreoffice.org/src/libzmf-0.0.2.tar.xz
+  sha256: 27051a30cb057fdb5d5de65a1f165c7153dc76e27fe62251cbb86639eb2caf22
+config-opts:
+- --without-docs
+- --disable-tools
+- --disable-werror
+cleanup:
+- /include
+- /lib/pkgconfig
+- '*.la'

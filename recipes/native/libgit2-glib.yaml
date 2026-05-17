@@ -1,0 +1,15 @@
+id: libgit2-glib
+provides: []
+pkgconfig:
+- libgit2-glib
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/libgit2-glib/1.2/libgit2-glib-1.2.1.tar.xz
+  sha256: 97423a779002b3be8751c75f9d79049dfccca3616a26159fc162486772ba785f
+config-opts:
+- --libdir=/app/lib
+- --buildtype=release
+cleanup:
+- /include
+- /lib/pkgconfig

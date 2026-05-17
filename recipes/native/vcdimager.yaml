@@ -1,0 +1,13 @@
+id: vcdimager
+provides: []
+pkgconfig:
+- vcdimager
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/vcdimager/vcdimager-2.0.1.tar.gz
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

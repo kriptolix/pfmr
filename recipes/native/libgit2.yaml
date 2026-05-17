@@ -1,0 +1,12 @@
+id: libgit2
+provides: []
+pkgconfig:
+- libgit2
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libgit2/libgit2/archive/v0.27.7.tar.gz
+  sha256: 1a5435a483759b1cd96feb12b11abb5231b0688016db506ce5947178f6ba2531
+cleanup:
+- /include
+- /lib/pkgconfig

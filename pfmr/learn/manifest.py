@@ -3,18 +3,31 @@ pfmr.learn.manifest
 ~~~~~~~~~~~~~~~~~~~~
 ManifestAnalyzer — extracts knowledge from Flatpak manifests.
 
-Understands JSON and YAML manifests (Flathub format).  Identifies:
+Understands JSON and YAML manifests (Flathub format). Identifies:
 
-  - Python packages being installed (pip install / uv pip install commands)
+  - Python packages installed via pip/uv
   - Native library modules (autotools / cmake / meson buildsystems)
-  - SDK extensions declared (sdk-extensions field)
+  - SDK extensions declared
   - Build environment (runtime, sdk, sdk-version)
-  - pkg-config names used in build-options or configure flags
   - Source URLs and checksums for native modules
 
-The output is a list of LearnedFact objects that the caller can feed into
-the KnowledgeGraph.  This module has zero dependency on the resolver
-pipeline.
+App module detection
+--------------------
+Flatpak manifests conventionally place the application itself as the LAST
+module. This module has a "dir" source (the local source tree) and is NOT
+a reusable dependency. The analyzer detects and skips it to avoid polluting
+the recipe database with app-specific modules.
+
+Detection logic (in order):
+  1. Module name is in mappings.toml [skip_module_names]         → skip
+  2. Module is the last in the list AND has a "dir" source type  → skip (app)
+  3. Module name is in mappings.toml [app_module_indicators.always_app_names] → skip
+  4. Module name is in [app_module_indicators.never_app_names]   → keep
+
+Name mappings
+-------------
+All name correspondence tables are loaded from pfmr/data/mappings.toml
+via pfmr.data.mappings.MAPPINGS — no inline dicts in this file.
 """
 from __future__ import annotations
 
@@ -22,34 +35,25 @@ import json
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Optional, Union
-from urllib.parse import urlparse
+from typing import Optional
 
 import yaml
 
+from pfmr.data.mappings import MAPPINGS
 from pfmr.utils.logging import get_logger
 
 logger = get_logger(__name__)
+
 
 # ---------------------------------------------------------------------------
 # Result types
 # ---------------------------------------------------------------------------
 
 @dataclass
-class LearnedPackageDep:
-    """A Python package that needs a native dep, as learned from a manifest."""
-    python_package: str         # canonical name
-    native_dep: str             # pkgconfig name or soname
-    dep_type: str               # "pkgconfig" | "library" | "extension"
-    confidence: float = 0.8
-    source: str = ""
-
-
-@dataclass
 class LearnedNativeModule:
     """A native library module extracted from a manifest."""
     module_name: str
-    buildsystem: str            # autotools | cmake | meson | simple
+    buildsystem: str
     source_url: Optional[str] = None
     source_sha256: Optional[str] = None
     pkgconfig_names: list[str] = field(default_factory=list)
@@ -68,41 +72,79 @@ class ManifestAnalysis:
     sdk_extensions: list[str] = field(default_factory=list)
     python_packages: list[str] = field(default_factory=list)
     native_modules: list[LearnedNativeModule] = field(default_factory=list)
-    package_deps: list[LearnedPackageDep] = field(default_factory=list)
     source_path: str = ""
 
 
 # ---------------------------------------------------------------------------
-# Patterns for pip/uv install commands
+# pip/uv install command parser
 # ---------------------------------------------------------------------------
 
 _PIP_INSTALL_RE = re.compile(
     r"(?:pip(?:3)?|uv\s+pip)\s+install\s+(?:--[^\s]+\s+)*(?P<specs>[^&;|]+)",
     re.IGNORECASE,
 )
+_PKG_SPEC_RE = re.compile(r"(?P<name>[A-Za-z0-9_\-\.]+)(?:[>=<!][^\s,]+)?")
 
-_PKG_SPEC_RE = re.compile(
-    r"(?P<name>[A-Za-z0-9_\-\.]+)(?:[>=<!][^\s,]+)?"
+_PIP_NOISE = frozenset(
+    "install pip uv python python3 wheel setuptools no index find links".split()
 )
 
-# Detect --find-links / --no-index / file:// installs (offline bundles)
-_OFFLINE_RE = re.compile(r"--(?:find-links|no-index|extra-index-url)\s", re.IGNORECASE)
+
+def _module_is_pip_only(mod: dict) -> bool:
+    """
+    Return True if a module's only purpose is to install Python packages
+    (pip/uv install commands, buildsystem=simple, no archive sources).
+
+    Such modules are dependencies, not the application itself — even when
+    they are the sole module in a manifest.
+    """
+    if mod.get("buildsystem") != "simple":
+        return False
+    # Must have no archive source (those would be native deps)
+    source_types = [
+        s.get("type", "")
+        for s in mod.get("sources", [])
+        if isinstance(s, dict)
+    ]
+    if "archive" in source_types or "dir" in source_types:
+        return False
+    # Must have at least one pip/uv install command
+    cmds = mod.get("build-commands", [])
+    for cmd in cmds:
+        cmd_str = _command_to_str(cmd)
+        if _PIP_INSTALL_RE.search(cmd_str):
+            return True
+    return False
 
 
-def _parse_pip_packages(command: str) -> list[str]:
-    """Extract package names from a pip/uv install command string."""
+def _command_to_str(command) -> str:
+    """
+    Normalise a build-commands entry to a plain string.
+
+    Flatpak manifests allow two forms:
+      - "pip install foo"               (string)
+      - {"pip install foo": null}       (dict — conditional command)
+      - {"pip install foo": "cond"}     (dict — conditional command)
+
+    In the dict form the command string is the single key.
+    Any other type returns an empty string so callers can safely skip it.
+    """
+    if isinstance(command, str):
+        return command
+    if isinstance(command, dict) and command:
+        return next(iter(command))
+    return ""
+
+
+def _parse_pip_packages(command) -> list[str]:
+    cmd_str = _command_to_str(command)
+    if not cmd_str:
+        return []
     packages: list[str] = []
-    for m in _PIP_INSTALL_RE.finditer(command):
-        specs_str = m.group("specs").strip()
-        for spec_m in _PKG_SPEC_RE.finditer(specs_str):
+    for m in _PIP_INSTALL_RE.finditer(cmd_str):
+        for spec_m in _PKG_SPEC_RE.finditer(m.group("specs").strip()):
             name = spec_m.group("name").strip()
-            # Filter flags and common noise
-            if name.startswith("-") or name.lower() in (
-                "install", "pip", "uv", "python", "python3", "wheel",
-                "setuptools", "no", "index", "find", "links",
-            ):
-                continue
-            if len(name) > 1:
+            if not name.startswith("-") and name.lower() not in _PIP_NOISE and len(name) > 1:
                 packages.append(name)
     return packages
 
@@ -113,10 +155,9 @@ def _parse_pip_packages(command: str) -> list[str]:
 
 class ManifestAnalyzer:
     """
-    Analyzes a Flatpak manifest and extracts knowledge about Python packages
-    and their native dependencies.
+    Analyzes Flatpak manifests and extracts reusable knowledge.
 
-    Completely standalone — does not import from pfmr.pipeline.
+    Standalone — no pfmr.pipeline dependency.
 
     Usage::
 
@@ -127,17 +168,57 @@ class ManifestAnalyzer:
     """
 
     def analyze(self, manifest_path: Path) -> Optional[ManifestAnalysis]:
-        """Analyze a manifest file. Returns None if the file cannot be parsed."""
+        """Analyze a manifest file. Returns None on parse failure."""
         try:
             data = self._load(manifest_path)
         except Exception as exc:
             logger.warning("Failed to load manifest %s: %s", manifest_path, exc)
             return None
-
         return self._analyze_dict(data, source=str(manifest_path))
 
+    def analyze_directory(
+        self,
+        directory: Path,
+        recursive: bool = True,
+    ) -> list[ManifestAnalysis]:
+        """
+        Analyze all manifest files in a directory.
+
+        Scans for *.json, *.yaml, *.yml and attempts to parse each as a
+        Flatpak manifest. Files that don't look like manifests are silently
+        skipped. Shared-modules files (individual modules without app-id)
+        are also silently skipped — use SharedModulesImporter for those.
+        """
+        results: list[ManifestAnalysis] = []
+        patterns = ["**/*.json", "**/*.yaml", "**/*.yml"] if recursive \
+                   else ["*.json", "*.yaml", "*.yml"]
+        seen: set[str] = set()
+
+        for pattern in patterns:
+            for p in sorted(directory.glob(pattern)):
+                key = str(p.resolve())
+                if key in seen:
+                    continue
+                seen.add(key)
+                try:
+                    data = self._load(p)
+                except Exception:
+                    continue
+                if not isinstance(data, dict):
+                    continue
+                # Must look like a full manifest (not a bare module file)
+                if not ("app-id" in data or "id" in data):
+                    continue
+                if "modules" not in data:
+                    continue
+                analysis = self._analyze_dict(data, source=str(p))
+                if analysis:
+                    results.append(analysis)
+
+        logger.info("Analyzed %d manifests in %s", len(results), directory)
+        return results
+
     def analyze_dict(self, data: dict, source: str = "") -> ManifestAnalysis:
-        """Analyze a manifest already loaded as a dict."""
         return self._analyze_dict(data, source=source)
 
     # ------------------------------------------------------------------
@@ -151,103 +232,170 @@ class ManifestAnalyzer:
             return yaml.safe_load(text) or {}
         return json.loads(text)
 
-    def analyze_directory(
+    def _analyze_dict(self, data: dict, source: str = "") -> ManifestAnalysis:
+        analysis = ManifestAnalysis(
+            app_id=data.get("app-id", data.get("id", "")),
+            runtime=data.get("runtime", ""),
+            sdk=data.get("sdk", ""),
+            sdk_version=str(data.get("runtime-version", "")),
+            sdk_extensions=data.get("sdk-extensions", []),
+            source_path=source,
+        )
+        modules = data.get("modules", [])
+        self._process_modules(modules, analysis)
+        return analysis
+
+    def _process_modules(
         self,
-        directory: Path,
-        recursive: bool = True,
-        glob: str = "**/*.{json,yaml,yml}",
-    ) -> list[ManifestAnalysis]:
-        """
-        Analyze all manifest files found in a directory.
+        modules: list,
+        analysis: ManifestAnalysis,
+    ) -> None:
+        # Work on a flat list to have correct index / total context
+        flat = [m for m in modules if isinstance(m, dict)]
+        total = len(flat)
 
-        Scans for *.json, *.yaml, *.yml files and attempts to parse each
-        as a Flatpak manifest (identified by presence of "app-id" or "modules"
-        keys). Non-manifest files are silently skipped.
+        for idx, mod in enumerate(flat):
+            name = mod.get("name", "")
+            source_types = [
+                s.get("type", "")
+                for s in mod.get("sources", [])
+                if isinstance(s, dict)
+            ]
 
-        Useful for:
-          - Local Flathub repo checkouts
-          - shared-modules repository (https://github.com/flathub/shared-modules)
-          - Any directory of collected manifests
-        """
-        results: list[ManifestAnalysis] = []
-        patterns = ["**/*.json", "**/*.yaml", "**/*.yml"] if recursive else ["*.json", "*.yaml", "*.yml"]
-        seen: set[str] = set()
-
-        for pattern in patterns:
-            for p in sorted(directory.glob(pattern)):
-                if str(p) in seen:
-                    continue
-                seen.add(str(p))
-                try:
-                    data = self._load(p)
-                except Exception:
-                    continue
-                # Must look like a Flatpak manifest
-                if not isinstance(data, dict):
-                    continue
-                if not ("app-id" in data or "id" in data or "modules" in data):
-                    continue
-                analysis = self._analyze_dict(data, source=str(p))
-                if analysis:
-                    results.append(analysis)
-
-        logger.info("Analyzed %d manifests in %s", len(results), directory)
-        return results
-
-    def analyze_dict(self, data: dict, source: str = "") -> ManifestAnalysis:
-        """Analyze a manifest already loaded as a dict."""
-        return self._analyze_dict(data, source=source)
-
-    def _process_modules(self, modules: list, analysis: ManifestAnalysis) -> None:
-        for mod in modules:
-            if not isinstance(mod, dict):
+            # Skip bootstrap/meta modules regardless of position
+            if MAPPINGS.should_skip_module(name):
+                logger.debug("Skipping meta module: %s", name)
                 continue
-            # Recurse into sub-modules first
+
+            # Recurse into sub-modules BEFORE deciding about the parent.
+            # Sub-modules are always dependency modules — even if the parent
+            # module turns out to be the app itself, its children are deps.
             for sub in mod.get("modules", []):
-                self._process_modules([sub], analysis)
+                if isinstance(sub, dict):
+                    self._process_modules([sub], analysis)
+
+            # Decide whether this module is the application itself
+            if self._is_app_module(
+                mod=mod,
+                name=name,
+                idx=idx,
+                total=total,
+                source_types=source_types,
+                app_id=analysis.app_id,
+            ):
+                logger.debug(
+                    "Skipping app module: %s (idx=%d/%d sources=%s)",
+                    name, idx + 1, total, source_types,
+                )
+                continue
 
             buildsystem = mod.get("buildsystem", "autotools")
-            name = mod.get("name", "")
-
             if buildsystem == "simple":
                 self._process_simple_module(mod, analysis)
             else:
                 self._process_native_module(mod, analysis)
 
-    def _process_simple_module(self, mod: dict, analysis: ManifestAnalysis) -> None:
-        """Extract Python packages from simple buildsystem modules."""
-        cmds = mod.get("build-commands", [])
-        for cmd in cmds:
-            pkgs = _parse_pip_packages(cmd)
-            for pkg in pkgs:
-                from packaging.utils import canonicalize_name
+    @staticmethod
+    def _is_app_module(
+        mod: dict,
+        name: str,
+        idx: int,
+        total: int,
+        source_types: list[str],
+        app_id: str,
+    ) -> bool:
+        """
+        Decide whether a module is the application being packaged (not a dep).
+
+        Rules (checked in order, first match wins):
+
+        NEVER-app overrides (always treat as dependency):
+          1. Name is in MAPPINGS never_app_names (known dep libs)
+          2. Name is in MAPPINGS always_app_names (explicit app markers)  ← skip
+          (handled by MAPPINGS.is_app_module below for explicit lists)
+
+        ALWAYS-app heuristics:
+          3. Single module in manifest → must be the app itself.
+          4. Last module AND has a "dir" source (local source tree).
+          5. Last module AND module name matches the app-id suffix
+             (e.g. app_id="org.gnome.Fractal", name="fractal").
+          6. Last module AND no "archive" source anywhere (i.e. nothing to
+             download — it is the code already on disk).
+          7. MAPPINGS explicit override (always_app_names / never_app_names).
+
+        Note: sub-modules (modules inside a module) are processed separately
+        and are always treated as deps — this function is never called for them.
+        """
+        name_low = name.lower()
+
+        # Rule 1 — explicit never-app names (known dep libraries)
+        if MAPPINGS._never_app_names and name_low in MAPPINGS._never_app_names:
+            return False
+
+        # Rule 2 — explicit always-app names
+        if MAPPINGS._always_app_names and name_low in MAPPINGS._always_app_names:
+            return True
+
+        is_last = (idx == total - 1)
+        has_dir_source = "dir" in source_types
+        has_archive_source = "archive" in source_types
+
+        # Rule 3 — only module in the manifest
+        # Exception: a single "simple" module whose commands only do pip/uv
+        # installs is a Python-deps module, not the app.
+        if total == 1:
+            if _module_is_pip_only(mod):
+                return False  # treat as a deps module
+            return True
+
+        # Rule 4 — last module with a "dir" source (canonical app pattern)
+        if is_last and has_dir_source:
+            return True
+
+        # Rule 5 — last module whose name matches the app-id tail
+        if is_last and app_id:
+            app_tail = app_id.split(".")[-1].lower()
+            if name_low == app_tail or name_low.replace("-", "") == app_tail.replace("-", ""):
+                return True
+
+        # Rule 6 — last module with no downloadable source at all
+        # (pure local source, so definitely the app not a dep)
+        if is_last and not has_archive_source and not source_types:
+            return True
+
+        # Rule 7 — delegate remaining cases to MAPPINGS generic check
+        return MAPPINGS.is_app_module(name, is_last=is_last, source_types=source_types)
+
+    def _process_simple_module(
+        self, mod: dict, analysis: ManifestAnalysis
+    ) -> None:
+        from packaging.utils import canonicalize_name
+        for cmd in mod.get("build-commands", []):
+            for pkg in _parse_pip_packages(cmd):
                 canonical = canonicalize_name(pkg)
                 if canonical not in analysis.python_packages:
                     analysis.python_packages.append(canonical)
 
-    def _process_native_module(self, mod: dict, analysis: ManifestAnalysis) -> None:
-        """Extract native library module information."""
+    def _process_native_module(
+        self, mod: dict, analysis: ManifestAnalysis
+    ) -> None:
         name = mod.get("name", "")
         buildsystem = mod.get("buildsystem", "autotools")
-        sources = mod.get("sources", [])
         config_opts = mod.get("config-opts", [])
         cleanup = mod.get("cleanup", [])
-        build_opts = mod.get("build-options", {})
 
-        # Extract source URL + hash
         source_url: Optional[str] = None
         source_sha256: Optional[str] = None
-        for src in sources:
+        for src in mod.get("sources", []):
             if isinstance(src, dict) and src.get("type") == "archive":
                 source_url = src.get("url")
                 source_sha256 = src.get("sha256")
                 break
 
-        # Infer pkgconfig names from module name
-        pkgconfig_names = self._infer_pkgconfig(name, config_opts, build_opts)
-        provides_sonames = self._infer_sonames(name)
+        pkgconfig_names = self._infer_pkgconfig(name, config_opts)
+        provides_sonames = MAPPINGS.module_to_soname(name)
 
-        native_mod = LearnedNativeModule(
+        analysis.native_modules.append(LearnedNativeModule(
             module_name=name,
             buildsystem=buildsystem,
             source_url=source_url,
@@ -256,79 +404,16 @@ class ManifestAnalyzer:
             provides_sonames=provides_sonames,
             config_opts=config_opts,
             cleanup=cleanup,
-        )
-        analysis.native_modules.append(native_mod)
+        ))
 
     @staticmethod
-    def _infer_pkgconfig(
-        name: str,
-        config_opts: list[str],
-        build_opts: dict,
-    ) -> list[str]:
-        """Guess pkg-config names from module name and build flags."""
-        names: list[str] = []
+    def _infer_pkgconfig(name: str, config_opts: list[str]) -> list[str]:
+        names = list(MAPPINGS.module_to_pkgconfig(name))
 
-        # Common module-name → pkgconfig name mappings
-        _MODULE_PC_MAP = {
-            "openssl":    ["openssl"],
-            "libssl":     ["openssl"],
-            "zlib":       ["zlib"],
-            "libffi":     ["libffi"],
-            "libxml2":    ["libxml-2.0"],
-            "libxslt":    ["libxslt"],
-            "libjpeg":    ["libjpeg"],
-            "libjpeg-turbo": ["libjpeg"],
-            "libpng":     ["libpng"],
-            "libtiff":    ["libtiff-4"],
-            "libwebp":    ["libwebp"],
-            "sqlite":     ["sqlite3"],
-            "sqlite3":    ["sqlite3"],
-            "curl":       ["libcurl"],
-            "libcurl":    ["libcurl"],
-            "libusb":     ["libusb-1.0"],
-            "hidapi":     ["hidapi-libusb"],
-            "openblas":   ["openblas"],
-            "libvips":    ["vips"],
-            "portaudio":  ["portaudio-2.0"],
-            "libsndfile": ["sndfile"],
-            "libzmq":     ["libzmq"],
-            "zeromq":     ["libzmq"],
-            "postgresql": ["libpq"],
-            "libpq":      ["libpq"],
-        }
-        canonical = name.lower().strip()
-        if canonical in _MODULE_PC_MAP:
-            names.extend(_MODULE_PC_MAP[canonical])
-        elif not names:
-            # Fallback: use the module name itself as a pkgconfig candidate
-            names.append(canonical)
-
-        # Also scan --pkg-config-path and similar flags
+        # Also extract from --with-<name> configure flags
         for opt in config_opts:
             m = re.search(r"--with-([a-z0-9_\-]+)", opt)
             if m and m.group(1) not in names:
                 names.append(m.group(1))
 
         return list(dict.fromkeys(names))  # dedup, preserve order
-
-    @staticmethod
-    def _infer_sonames(name: str) -> list[str]:
-        """Guess sonames from module name."""
-        _SONAME_MAP = {
-            "openssl":    ["libssl.so.3", "libcrypto.so.3"],
-            "zlib":       ["libz.so.1"],
-            "libffi":     ["libffi.so.8"],
-            "libxml2":    ["libxml2.so.2"],
-            "libxslt":    ["libxslt.so.1"],
-            "libjpeg":    ["libjpeg.so.62"],
-            "libjpeg-turbo": ["libjpeg.so.62"],
-            "libpng":     ["libpng16.so.16"],
-            "libwebp":    ["libwebp.so.7"],
-            "sqlite":     ["libsqlite3.so.0"],
-            "libusb":     ["libusb-1.0.so.0"],
-            "openblas":   ["libopenblas.so.0"],
-            "libvips":    ["libvips.so.42"],
-            "portaudio":  ["libportaudio.so.2"],
-            "libsndfile": ["libsndfile.so.1"],
-        }
-        return _SONAME_MAP.get(name.lower(), [])

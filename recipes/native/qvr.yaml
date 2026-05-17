@@ -1,0 +1,14 @@
+id: qvr
+provides: []
+pkgconfig:
+- qvr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://marlam.de/qvr/releases/qvr-4.1.0.tar.gz
+  sha256: e6f83f89da8dccdc7dfedf726d2ee742336668549599a74574df928b162b1d53
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

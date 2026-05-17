@@ -1,0 +1,11 @@
+id: python2
+provides: []
+pkgconfig:
+- python2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.python.org/ftp/python/2.7.17/Python-2.7.17.tar.xz
+  sha256: 4d43f033cdbd0aa7b7023c81b0e986fd11e653b5248dac9144d508f11812ba41
+cleanup:
+- '*'

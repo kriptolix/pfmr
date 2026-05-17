@@ -1,0 +1,13 @@
+id: pocketsphinx
+provides: []
+pkgconfig:
+- pocketsphinx
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/cmusphinx/pocketsphinx/archive/ab6d6471800966990e12fdb6ed27ae36323cf2c4.zip
+  sha256: 29ce0c81eda60bef919d42287bcf85d29b8dcb8dcb8dc69998f58a79a6e4a5c0
+config-opts:
+- --without-python
+cleanup:
+- /share/pocketsphinx

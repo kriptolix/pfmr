@@ -1,0 +1,12 @@
+id: gst-plugins-bad
+provides: []
+pkgconfig:
+- gst-plugins-bad
+buildsystem: meson
+source:
+  type: archive
+  url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.20.7.tar.xz
+  sha256: 87251beebfd1325e5118cc67774061f6e8971761ca65a9e5957919610080d195
+cleanup:
+- '*.la'
+- /share/gtk-doc

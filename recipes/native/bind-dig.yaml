@@ -1,0 +1,42 @@
+id: bind-dig
+provides: []
+pkgconfig:
+- bind-dig
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.isc.org/isc/bind9/9.16.48/bind-9.16.48.tar.xz
+  sha256: 8d3814582348f90dead1ad410b1019094cd399d3d83930abebb2b3b1eb0b2bbb
+config-opts:
+- --disable-static
+- --enable-shared
+- --without-openssl
+- --disable-dnssec-tools
+- --disable-dnssec-validation
+- --without-gssapi
+- --without-readline
+- --without-libedit
+- --without-libxml2
+- --without-libjson
+- --without-zlib
+- --without-lmdb
+- --without-libnghttp2
+- --disable-dnsrps
+- --disable-dnstap
+- --disable-doh
+- --disable-backtrace
+- --disable-symtable
+- --disable-linux-caps
+- --without-python
+- --prefix=/app
+cleanup:
+- '*.la'
+- /share/man
+- /lib/pkgconfig
+- /bin/delv
+- /bin/host
+- /bin/nslookup
+- /bin/named*
+- /bin/rndc*
+- /bin/dnssec*
+- /sbin

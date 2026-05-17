@@ -1,0 +1,14 @@
+id: zint
+provides: []
+pkgconfig:
+- zint
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/zint/zint/2.8.0/zint-2.8.0.tar.gz
+  sha256: 0abb92df28e61dd3efb2bcaf324588ff77e5037cac7bb7098b8da814e622639c
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

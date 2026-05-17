@@ -1,0 +1,30 @@
+id: iputils
+provides: []
+pkgconfig:
+- iputils
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/iputils/iputils/archive/refs/tags/20211215.tar.gz
+  sha256: b6f67fc705490673ff4471d006221b4a2f1b1180b929d9fefd771352621ccedf
+config-opts:
+- -DUSE_CAP=false
+- -DUSE_IDN=false
+- -DBUILD_ARPING=false
+- -DBUILD_CLOCKDIFF=false
+- -DBUILD_RARPD=false
+- -DBUILD_RDISC=false
+- -DENABLE_RDISC_SERVER=false
+- -DBUILD_TRACEPATH=false
+- -DBUILD_NINFOD=false
+- -DNINFOD_MESSAGES=false
+- -DBUILD_MANS=false
+- -DBUILD_HTML_MANS=false
+- -DNO_SETCAP_OR_SUID=false
+- -DSETCAP_OR_SUID_ARPING=false
+- -DSETCAP_OR_SUID_CLOCKDIFF=false
+- -DSETCAP_OR_SUID_PING=false
+- -DUSE_GETTEXT=false
+cleanup:
+- /include
+- /lib/pkgconfig

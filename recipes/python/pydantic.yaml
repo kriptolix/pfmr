@@ -1,0 +1,10 @@
+id: pydantic
+type: python
+pypi_name: pydantic
+requires:
+  pkgconfig:
+  - espeak-ng
+  - pcaudiolib
+confidence: 0.6
+source: flathub:dev.mufeed.Wordbook
+updated: '2026-05-16'

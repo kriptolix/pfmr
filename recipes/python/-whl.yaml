@@ -1,0 +1,91 @@
+id: -whl
+type: python
+pypi_name: -whl
+requires:
+  pkgconfig:
+  - bc
+  - celluloid
+  - charset
+  - djpdfgui
+  - ed
+  - exempi
+  - ffmpeg
+  - futuresql
+  - hdf5
+  - hdri
+  - hwdata
+  - icoutils
+  - imagemagick
+  - jbig2enc
+  - json-c
+  - leptonica
+  - libaacs
+  - libass
+  - libbluray
+  - libbs2b
+  - libcdio
+  - libcdio-paranoia
+  - libdisplay-info
+  - libdvdnav
+  - libdvdread
+  - libgcrypt
+  - libmediainfo
+  - libmpv
+  - libmysofa
+  - libplacebo
+  - libsixel
+  - libsodium
+  - libxmu
+  - libxpresent
+  - libzen
+  - libzip
+  - libzmq
+  - lmdb
+  - luajit
+  - mecab
+  - mecab-ipadic
+  - miniupnpc
+  - mpv
+  - mpv-mpris
+  - mpvqt
+  - mujs
+  - nv-codec-headers
+  - ocl-icd
+  - openblas
+  - patchelf
+  - perl
+  - pic
+  - pybind11
+  - pycairo
+  - pygobject
+  - pyside6
+  - python-prefix
+  - qhull
+  - qpdf
+  - qt6-qtdatavisualization
+  - qtkeychain
+  - rubberband
+  - smbclient
+  - suitesparse
+  - talloc
+  - tesseract
+  - uchardet
+  - vapoursynth
+  - vte
+  - vulkan-headers
+  - x264
+  - x265
+  - xclip
+  - youtubedl-gui
+  - yt-dlp
+  - zenity
+  - zimg
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm19
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.github.diegopvlk.Cine
+updated: '2026-05-16'

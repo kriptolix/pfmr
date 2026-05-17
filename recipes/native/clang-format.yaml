@@ -1,0 +1,16 @@
+id: clang-format
+provides: []
+pkgconfig:
+- clang-format
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-22.1.5/llvm-project-22.1.5.src.tar.xz
+  sha256: 7972b87b705a003ce70ab55f9f0fb495d156887cba0eb296d284731139118e2c
+config-opts:
+- -DCMAKE_BUILD_TYPE=MinSizeRel
+- -DBUILD_SHARED_LIBS=OFF
+- -DLLVM_ENABLE_PROJECTS=clang
+cleanup:
+- /include
+- /lib/pkgconfig

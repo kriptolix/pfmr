@@ -1,0 +1,12 @@
+id: mauiman
+provides: []
+pkgconfig:
+- mauiman
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/mauiman/4.0.2/mauiman-4.0.2.tar.xz
+  sha256: 81f9f25fbc959040b7efcca1d9d127c5894c6a6baf2ffe53ccba42d682258f00
+cleanup:
+- /include
+- /lib/pkgconfig

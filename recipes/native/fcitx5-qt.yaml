@@ -1,0 +1,19 @@
+id: fcitx5-qt
+provides: []
+pkgconfig:
+- fcitx5-qt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/fcitx/fcitx5-qt/archive/refs/tags/5.1.9.tar.gz
+  sha256: 4e691182f20984d11f8ea391a57b2711e362c43fda21236327e386c07f9c8998
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_TESTING=OFF
+- -DENABLE_QT4=OFF
+- -DENABLE_QT5=ON
+- -DENABLE_QT6=OFF
+- -DBUILD_ONLY_PLUGIN=ON
+cleanup:
+- /include
+- /lib/pkgconfig

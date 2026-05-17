@@ -1,0 +1,11 @@
+id: libquvi-scripts
+provides: []
+pkgconfig:
+- libquvi-scripts
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/quvi/libquvi-scripts-0.9.20131130.tar.xz
+cleanup:
+- /include
+- /lib/pkgconfig

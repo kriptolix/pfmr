@@ -1,0 +1,12 @@
+id: marian-lite
+provides: []
+pkgconfig:
+- marian-lite
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/terslang/marian-lite/archive/refs/tags/v0.2.9-1.tar.gz
+  sha256: 13a681c936f15c0d95d42fa78fc7c468aa3d08e40ee608e080b825098488c809
+cleanup:
+- /include
+- /lib/pkgconfig

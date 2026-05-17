@@ -1,0 +1,11 @@
+id: winetricks
+provides: []
+pkgconfig:
+- winetricks
+buildsystem: autotools
+source:
+  type: archive
+  url: https://api.github.com/repos/Winetricks/winetricks/tarball/20230212
+  sha256: 01d81eaa9ba2d900df8eb7a2928688aa280a950d3f55e45528ccf319bd26f3ec
+cleanup:
+- /share

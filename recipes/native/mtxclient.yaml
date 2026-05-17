@@ -1,0 +1,16 @@
+id: mtxclient
+provides: []
+pkgconfig:
+- mtxclient
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/mujx/mtxclient/archive/v0.2.0.tar.gz
+  sha256: e7638d4a8233c0c763d48111fd13e8ad1dcd5f34e3e641b46eaf1bb920b73482
+config-opts:
+- -DBUILD_LIB_TESTS=OFF
+- -DBUILD_LIB_EXAMPLES=OFF
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,16 @@
+id: alkimia
+provides: []
+pkgconfig:
+- alkimia
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/alkimia/8.2.1/alkimia-8.2.1.tar.xz
+  sha256: f921410e180e0a5811e1ee2926954920c6576a72b3b65f53791faa6c85fcb689
+config-opts:
+- -DQT_MAJOR_VERSION=6
+- -DBUILD_APPLETS=OFF
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

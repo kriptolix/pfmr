@@ -1,0 +1,12 @@
+id: netcdf-cxx
+provides: []
+pkgconfig:
+- netcdf-cxx
+buildsystem: autotools
+source:
+  type: archive
+  url: https://mirror.sobukus.de/files/src/netcdf/netcdf-cxx4-4.3.1.tar.gz
+  sha256: 6a1189a181eed043b5859e15d5c080c30d0e107406fbb212c8fb9814e90f3445
+cleanup:
+- /include
+- /lib/pkgconfig

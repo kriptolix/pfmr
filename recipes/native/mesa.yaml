@@ -1,0 +1,19 @@
+id: mesa
+provides: []
+pkgconfig:
+- mesa
+buildsystem: meson
+source:
+  type: archive
+  url: https://archive.mesa3d.org/older-versions/20.x/mesa-20.2.6.tar.xz
+  sha256: f12ca3c6c622f11cd79ad66b4220f04514fa96f795062fe92a37339ab19885db
+config-opts:
+- -Dosmesa=classic
+- -Ddri-drivers=[]
+- -Dgallium-drivers=[]
+- -Dvulkan-drivers=[]
+- -Dplatforms=[]
+cleanup:
+- /share/drirc.d
+- /include
+- '*.a'

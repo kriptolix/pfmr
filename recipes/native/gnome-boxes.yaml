@@ -1,0 +1,16 @@
+id: gnome-boxes
+provides: []
+pkgconfig:
+- gnome-boxes
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-boxes/50/gnome-boxes-50.0.tar.xz
+  sha256: fd6a5de18d1090946ca99f1f5a34aa3e15dc8183f6a72226e8d1504a13672d67
+config-opts:
+- -Dflatpak=true
+- -Ddistributor_name=gnome-boxes-flathub
+- -Ddistributor_version=50
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,9 @@
+id: unidecode
+type: python
+pypi_name: unidecode
+requires:
+  pkgconfig:
+  - chromaprint
+confidence: 0.6
+source: flathub:net.puddletag.puddletag
+updated: '2026-05-16'

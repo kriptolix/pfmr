@@ -1,0 +1,16 @@
+id: akonadi-search
+provides: []
+pkgconfig:
+- akonadi-search
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/akonadi-search-25.12.2.tar.xz
+  sha256: 8328094f725ed4603e2309bf381d1a407baa38032e157f2e7421f3c53e2e21ce
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DAKONADISEARCH_ENABLE_KRUNNER_RUNNER=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

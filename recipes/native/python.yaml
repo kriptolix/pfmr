@@ -1,0 +1,15 @@
+id: python
+provides: []
+pkgconfig:
+- python
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.python.org/ftp/python/3.10.12/Python-3.10.12.tar.xz
+  sha256: afb74bf19130e7a47d10312c8f5e784f24e0527981eab68e20546cfb865830b8
+config-opts:
+- --exec-prefix=/app
+- --enable-shared
+cleanup:
+- /include
+- /lib/pkgconfig

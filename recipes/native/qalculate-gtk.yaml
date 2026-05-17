@@ -1,0 +1,15 @@
+id: qalculate-gtk
+provides: []
+pkgconfig:
+- qalculate-gtk
+- webkitgtk
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/Qalculate/qalculate-gtk/releases/download/v5.10.0/qalculate-gtk-5.10.0.tar.gz
+  sha256: 310875ae42d4af3bef46bb5f0405496c26e8e8abe218caeb1270cde176c02691
+config-opts:
+- --with-webkitgtk=4.1
+cleanup:
+- /include
+- /lib/pkgconfig

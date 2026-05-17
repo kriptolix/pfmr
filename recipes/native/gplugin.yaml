@@ -1,0 +1,17 @@
+id: gplugin
+provides: []
+pkgconfig:
+- gplugin
+buildsystem: meson
+source:
+  type: archive
+  url: https://sourceforge.net/projects/pidgin/files/gplugin/0.44.2/gplugin-0.44.2.tar.xz/download
+  sha256: aea244e1add9628b50ec042c54cf93803f4577f8f142678f09b91fd4c0b20f72
+config-opts:
+- -Ddoc=false
+- -Dlua=false
+- -Dpython3=false
+- --wrap-mode=nofallback
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,11 @@
+id: perl-archive-zip
+provides: []
+pkgconfig:
+- perl-archive-zip
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/P/PH/PHRED/Archive-Zip-1.59.tar.gz
+  sha256: 7a4b1b0aa43ae7231bb3212e86ab6b538725625df06e82772c3da24c8b26e75d
+cleanup:
+- /bin

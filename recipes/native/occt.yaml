@@ -1,0 +1,29 @@
+id: occt
+provides: []
+pkgconfig:
+- occt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/tpaviot/oce/releases/download/official-upstream-packages/opencascade-7.5.0.tgz
+  sha256: d82d253aa6f43ce49111e84e04286dab4445eecba8efb5190973244b0c7fd211
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_LIBRARY_TYPE=Shared
+- -DBUILD_Inspector=OFF
+- -DBUILD_DOC_Overview=OFF
+- -DBUILD_MODULE_ApplicationFramework=ON
+- -DBUILD_MODULE_DataExchange=ON
+- -DBUILD_MODULE_Draw=OFF
+- -DBUILD_MODULE_FoundationClasses=ON
+- -DBUILD_MODULE_ModelingAlgorithms=ON
+- -DBUILD_MODULE_ModelingData=ON
+- -DBUILD_MODULE_Visualization=ON
+- -DUSE_VTK=OFF
+- -DUSE_TBB=OFF
+- -DINSTALL_FREETYPE=OFF
+- -DINSTALL_SAMPLES=OFF
+- -DINSTALL_TEST_CASES=OFF
+cleanup:
+- /bin
+- /share/doc

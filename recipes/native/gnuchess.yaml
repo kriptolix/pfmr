@@ -1,0 +1,12 @@
+id: gnuchess
+provides: []
+pkgconfig:
+- gnuchess
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/chess/gnuchess-6.2.9.tar.gz
+  sha256: ddfcc20bdd756900a9ab6c42c7daf90a2893bf7f19ce347420ce36baebc41890
+cleanup:
+- /include
+- /lib/pkgconfig

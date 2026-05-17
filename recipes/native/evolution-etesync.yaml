@@ -1,0 +1,14 @@
+id: evolution-etesync
+provides: []
+pkgconfig:
+- evolution-etesync
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.gnome.org/GNOME/evolution-etesync/-/archive/1.1.2/evolution-etesync-1.1.2.tar.gz
+  sha256: 56f161e9e1c7faf0bf0a35c3b1e3edb2ff9d32e7a76866f021a4cf90b2923c98
+config-opts:
+- -DFORCE_INSTALL_PREFIX=/app/evolution/extensions/evolution-etesync
+cleanup:
+- /include
+- /lib/pkgconfig

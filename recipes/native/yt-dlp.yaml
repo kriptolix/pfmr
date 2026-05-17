@@ -1,0 +1,11 @@
+id: yt-dlp
+provides: []
+pkgconfig:
+- yt-dlp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.17/yt-dlp.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

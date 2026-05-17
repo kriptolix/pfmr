@@ -1,0 +1,15 @@
+id: libksieve
+provides: []
+pkgconfig:
+- libksieve
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/libksieve-25.12.3.tar.xz
+  sha256: 4dfde60dfa60f2c6c4c1235acc32f8bd6e2bbe65e419cdae71dd26fea5993e0d
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

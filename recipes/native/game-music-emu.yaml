@@ -1,0 +1,13 @@
+id: game-music-emu
+provides: []
+pkgconfig:
+- game-music-emu
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libgme/game-music-emu/archive/refs/tags/0.6.5.tar.gz
+  sha256: 8531678502451c2cf04248cda45c8b4645e19fcfb63e6a7ec2549641c47bb392
+cleanup:
+- /include
+- /lib/*.so
+- /lib/pkgconfig

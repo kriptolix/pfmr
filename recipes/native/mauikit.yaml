@@ -1,0 +1,12 @@
+id: mauikit
+provides: []
+pkgconfig:
+- mauikit
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/mauikit/4.0.2/mauikit-4.0.2.tar.xz
+  sha256: 054dc0e15242ffa6bb9b8b25515cebfc9a02347b679f3907dcb80673ca93dd40
+cleanup:
+- /include
+- /lib/pkgconfig

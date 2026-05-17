@@ -1,0 +1,14 @@
+id: kosmindoormap
+provides: []
+pkgconfig:
+- kosmindoormap
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/26.04.1/src/kosmindoormap-26.04.1.tar.xz
+  sha256: 77114e34956a5a4284146a25e0bfba3bf42c10d09de4ef073ea0468f263f9765
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,16 @@
+id: immer
+provides: []
+pkgconfig:
+- immer
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/arximboldi/immer/archive/refs/tags/v0.8.1.tar.gz
+  sha256: de8411c84830864604bb685dc8f2e3c0dbdc40b95b2f6726092f7dcc85e75209
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -Dzug_BUILD_TESTS=OFF
+- -Dzug_BUILD_EXAMPLES=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

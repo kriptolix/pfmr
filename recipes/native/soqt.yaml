@@ -1,0 +1,15 @@
+id: soqt
+provides: []
+pkgconfig:
+- soqt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/coin3d/soqt/releases/download/SoQt-1.6.0/soqt-1.6.0-src.tar.gz
+  sha256: 9f535af59f07c907022815679681bd345c9dec2f408c74833f6b1b24bca40e1f
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DSOQT_BUILD_DOCUMENTATION=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: system-settings
+provides: []
+pkgconfig:
+- system-settings
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/elementary/settings/archive/8.0.3.tar.gz
+  sha256: cc41024b918cfcd0bd89b3c72e079ff12804cebefbaf34d5adb84191531ee7d1
+cleanup:
+- /share/applications
+- /share/metainfo
+- /bin
+- /share/glib-2.0/schemas/io.elementary.settings.gschema.xml
+- /share/icons

@@ -1,0 +1,10 @@
+id: libid3tag
+provides: []
+pkgconfig:
+- libid3tag
+buildsystem: autotools
+source:
+  type: archive
+  url: http://downloads.sourceforge.net/mad/libid3tag-0.15.1b.tar.gz
+cleanup:
+- /bin

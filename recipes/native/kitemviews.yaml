@@ -1,0 +1,14 @@
+id: kitemviews
+provides: []
+pkgconfig:
+- kitemviews
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.101/kitemviews-5.101.0.tar.xz
+  sha256: aca259eeff2dde1434cdf3ff3d979e9b17dd55bad15dd7341f92700cf8418fb1
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

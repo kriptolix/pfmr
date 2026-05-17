@@ -1,0 +1,23 @@
+id: protobuf
+type: python
+pypi_name: protobuf
+requires:
+  pkgconfig:
+  - alsa
+  - chiaki-ng
+  - ffmpeg
+  - hidapi
+  - jack
+  - json-c
+  - libplacebo
+  - miniupnpc
+  - ola
+  - protobuf
+  - protobuf-compilers
+  - python-rtmidi
+  - rtmidi
+  - sdl2-compat
+  - sdl3
+confidence: 0.6
+source: flathub:org.linuxshowplayer.LinuxShowPlayer
+updated: '2026-05-16'

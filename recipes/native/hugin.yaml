@@ -1,0 +1,11 @@
+id: hugin
+provides: []
+pkgconfig:
+- hugin
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.sourceforge.net/project/hugin/hugin/hugin-2025.0/hugin-2025.0.1.tar.bz2
+  sha256: 7cf8eb33a6a8848cc7f816faf4bc88389228883d5513136dccb5cb243912ab79
+cleanup:
+- '*.la'

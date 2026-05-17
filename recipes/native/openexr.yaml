@@ -1,0 +1,16 @@
+id: openexr
+provides: []
+pkgconfig:
+- openexr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/AcademySoftwareFoundation/openexr/releases/download/v3.4.11/openexr-3.4.11.tar.gz
+  sha256: 25f6a008e4060441a9e9d805bceda58fb811e0adef64b39807dfd73b94e12c91
+config-opts:
+- -DOPENEXR_BUILD_TOOLS=OFF
+- -DOPENEXR_INSTALL_TOOLS=OFF
+- -DBUILD_TESTING=OFF
+cleanup:
+- /bin
+- /share/aclocal

@@ -1,0 +1,12 @@
+id: index-fm
+provides: []
+pkgconfig:
+- index-fm
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/index/4.0.2/index-fm-4.0.2.tar.xz
+  sha256: bb761ead52693efd7408302027b733116dcd7d0997d25c7c8af9e0a72c71c3d5
+cleanup:
+- /include
+- /lib/pkgconfig

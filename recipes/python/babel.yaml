@@ -1,0 +1,11 @@
+id: babel
+type: python
+pypi_name: babel
+requires:
+  pkgconfig:
+  - bazaar
+  - blueprint-compiler
+  - bubblewrap
+confidence: 0.6
+source: flathub:io.github.kolunmi.Bazaar
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: yaru-lavender-dark
+provides: []
+pkgconfig:
+- yaru-lavender-dark
+buildsystem: meson
+source:
+  type: archive
+  url: https://api.github.com/repos/Jannomag/Yaru-Colors/tarball/21.10.3ubuntu5
+  sha256: 78168a11d52932bfd7dce967120155290d4f1dbdc55cdd35644b8d40d0e9c534
+cleanup:
+- /include
+- /lib/pkgconfig

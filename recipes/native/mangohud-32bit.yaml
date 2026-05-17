@@ -1,0 +1,16 @@
+id: mangohud-32bit
+provides: []
+pkgconfig:
+- mangohud-32bit
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/flightlessmango/MangoHud/releases/download/v0.6.5/MangoHud-v0.6.5-Source.tar.xz
+  sha256: aa3f65ece217842c3be1b755c0f3a09b2096f0af475715d3619182a13c6f4fbf
+config-opts:
+- -Duse_system_vulkan=enabled
+- -Dwith_xnvctrl=enabled
+- -Dappend_libdir_mangohud=false
+cleanup:
+- /include
+- /lib/pkgconfig

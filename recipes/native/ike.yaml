@@ -1,0 +1,15 @@
+id: ike
+provides: []
+pkgconfig:
+- ike
+buildsystem: cmake
+source:
+  type: archive
+  url: https://www.shrew.net/download/ike/ike-2.2.1-release.tgz
+  sha256: 1e5193dd2c5b26a999bcb2e0577d2d065a6c071667397fdc076ba4a6afc81e3a
+config-opts:
+- -DQTGUI=YES
+- -DNATT=YES
+- -DLDAP=YES
+cleanup:
+- /man

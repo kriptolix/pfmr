@@ -1,0 +1,12 @@
+id: black-hole-solver
+provides: []
+pkgconfig:
+- black-hole-solver
+buildsystem: cmake
+source:
+  type: archive
+  url: https://fc-solve.shlomifish.org/downloads/fc-solve/black-hole-solver-1.14.0.tar.xz
+  sha256: 5c47bd093dbb160f4b090fd670ab7c12b4371d39b17b3bbd8c6c4a12975557c0
+cleanup:
+- /include
+- /lib/pkgconfig

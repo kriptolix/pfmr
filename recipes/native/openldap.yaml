@@ -1,0 +1,18 @@
+id: openldap
+provides: []
+pkgconfig:
+- openldap
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.4.55.tgz
+  sha256: 97357bd6ba8ff73d204c1f8208c5e6ab97d60c9e779f989057aa1229bbe98434
+cleanup:
+- '*.a'
+- '*.la'
+- /bin
+- /etc
+- /include
+- /sbin
+- /share/man
+- /var

@@ -1,0 +1,12 @@
+id: libxeddsa
+provides: []
+pkgconfig:
+- libxeddsa
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Syndace/libxeddsa/archive/refs/tags/v2.0.1.tar.gz
+  sha256: 0bcca892dda9caaf725c82ae34f3ee7638395319b3bae380c22d9851c046bb8f
+cleanup:
+- /include
+- /lib/pkgconfig

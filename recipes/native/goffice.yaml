@@ -1,0 +1,13 @@
+id: goffice
+provides: []
+pkgconfig:
+- goffice
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/goffice/0.10/goffice-0.10.61.tar.xz
+  sha256: 558597fd9ca59b93ff562750218d1e7ea8ec3c8d0ed6a5cc096aa715ef909a15
+cleanup:
+- /include
+- /share/gtk-doc
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: apcu
+provides: []
+pkgconfig:
+- apcu
+- php-config
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/krakjoe/apcu/archive/v5.1.21.tar.gz
+  sha256: 6406376c069fd8e51cd470bbb38d809dee7affbea07949b2a973c62ec70bd502
+config-opts:
+- --with-php-config=/usr/lib/sdk/php73/bin/php-config
+cleanup:
+- /include
+- /lib/pkgconfig

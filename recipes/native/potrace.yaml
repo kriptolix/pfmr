@@ -1,0 +1,15 @@
+id: potrace
+provides: []
+pkgconfig:
+- potrace
+- libpotrace
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/potrace/1.16/potrace-1.16.tar.gz
+  sha256: be8248a17dedd6ccbaab2fcc45835bb0502d062e40fbded3bc56028ce5eb7acc
+config-opts:
+- --with-libpotrace
+cleanup:
+- /include
+- /lib/pkgconfig

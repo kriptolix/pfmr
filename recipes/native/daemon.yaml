@@ -1,0 +1,24 @@
+id: daemon
+provides: []
+pkgconfig:
+- daemon
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://dl.unvanquished.net/deps/linux-amd64-default_11.tar.xz
+config-opts:
+- -DBUILD_GAME_NACL=FALSE
+- -DBUILD_GAME_NACL_NEXE=FALSE
+- -DBUILD_GAME_NATIVE_DLL=FALSE
+- -DBUILD_GAME_NATIVE_EXE=FALSE
+- -DBUILD_TTY_CLIENT=FALSE
+- -DBUILD_SERVER=FALSE
+- -DUSE_EXTERNAL_DEPS_LIBS=FALSE
+- -DUSE_CURSES=TRUE
+- -DUSE_CURSES_NCURSES=FALSE
+- -DUSE_HARDENING=TRUE
+- -DUSE_LTO=TRUE
+- -DUSE_OPENMP=TRUE
+cleanup:
+- /include
+- /lib/pkgconfig

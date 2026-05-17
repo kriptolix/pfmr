@@ -1,0 +1,14 @@
+id: pexpect
+type: python
+pypi_name: pexpect
+requires:
+  pkgconfig:
+  - libportal
+  - perl
+  - poppler
+  - popplerdata
+  extensions:
+  - org.freedesktop.Sdk.Extension.texlive
+confidence: 0.6
+source: flathub:org.cvfosammmm.Setzer
+updated: '2026-05-16'

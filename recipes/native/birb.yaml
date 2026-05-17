@@ -1,0 +1,15 @@
+id: birb
+provides: []
+pkgconfig:
+- birb
+buildsystem: meson
+source:
+  type: archive
+  url: https://sourceforge.net/projects/pidgin/files/birb/0.7.1/birb-0.7.1.tar.xz/download
+  sha256: ac1f588be2874e1b757f98681d3dba4067db5a820c5dd682a0fd64c4e720d19b
+config-opts:
+- -Ddoc=false
+- --wrap-mode=nofallback
+cleanup:
+- /include
+- /lib/pkgconfig

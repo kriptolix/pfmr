@@ -1,0 +1,12 @@
+id: vixl
+provides: []
+pkgconfig:
+- vixl
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/Linaro/vixl/archive/refs/tags/8.0.0.tar.gz
+  sha256: 6aebbebcd9b66686ea246b450af529e1fc50fe25209522cc9ab42beae2377d38
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: qscintilla
+provides: []
+pkgconfig:
+- qscintilla
+buildsystem: qmake
+source:
+  type: archive
+  url: https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.14.0/QScintilla_src-2.14.0.tar.gz
+  sha256: 449353928340300804c47b3785c3e62096f918a723d5eed8a5439764e6507f4c
+cleanup:
+- /include
+- /lib/pkgconfig

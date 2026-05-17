@@ -1,0 +1,12 @@
+id: libsmi
+provides: []
+pkgconfig:
+- libsmi
+buildsystem: autotools
+source:
+  type: archive
+  url: https://deb.debian.org/debian/pool/main/libs/libsmi/libsmi_0.4.8+dfsg2.orig.tar.gz
+  sha256: 1d6894aa4aa73f8949ccb420a57e4e1275f8099c187771a41838e30a703269e8
+cleanup:
+- /include
+- /lib/pkgconfig

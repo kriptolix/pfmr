@@ -1,0 +1,14 @@
+id: freeglut
+provides: []
+pkgconfig:
+- freeglut
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/freeglut/freeglut-3.8.0.tar.gz
+  sha256: 674dcaff25010e09e450aec458b8870d9e98c46f99538db457ab659b321d9989
+config-opts:
+- -DFREEGLUT_BUILD_STATIC_LIBS=OFF
+- -DCMAKE_BUILD_TYPE=None
+cleanup:
+- /lib/cmake

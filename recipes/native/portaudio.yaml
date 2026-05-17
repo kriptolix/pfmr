@@ -1,0 +1,18 @@
+id: portaudio
+provides: []
+pkgconfig:
+- portaudio
+buildsystem: autotools
+source:
+  type: archive
+  url: http://www.portaudio.com/archives/pa_stable_v190600_20161030.tgz
+  sha256: f5a21d7dcd6ee84397446fa1fa1a0675bb2e8a4a6dceb4305a8404698d8d1513
+config-opts:
+- --disable-static
+- --without-oss
+cleanup:
+- /include
+- /lib/pkgconfig
+- /share
+- '*.a'
+- '*.la'

@@ -1,0 +1,12 @@
+id: qownnotes
+provides: []
+pkgconfig:
+- qownnotes
+buildsystem: qmake
+source:
+  type: archive
+  url: https://github.com/pbek/QOwnNotes/releases/download/v26.5.11/qownnotes-26.5.11.tar.xz
+  sha256: 0695e0f13d0cd90c45e6cbf908a8ff1f1e886a7aa968631618011cc4d5a66a79
+cleanup:
+- /include
+- /lib/pkgconfig

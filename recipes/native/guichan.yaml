@@ -1,0 +1,12 @@
+id: guichan
+provides: []
+pkgconfig:
+- guichan
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/darkbitsorg/guichan/releases/download/v0.8.3/guichan-0.8.3.tar.gz
+  sha256: 2f3b265d1b243e30af9d87e918c71da6c67947978dcaa82a93cb838dbf93529b
+cleanup:
+- /include
+- /lib/pkgconfig

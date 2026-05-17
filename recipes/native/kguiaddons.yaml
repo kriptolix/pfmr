@@ -1,0 +1,17 @@
+id: kguiaddons
+provides: []
+pkgconfig:
+- kguiaddons
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.101/kguiaddons-5.101.0.tar.xz
+  sha256: 9894e4193b3cb7b4ed5e3a591cf12043fb87683b09db77e465aa4453c7c757b7
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DWITH_WAYLAND=OFF
+cleanup:
+- /share/applications/google-maps-geo-handler.desktop
+- /share/applications/openstreetmap-geo-handler.desktop
+- /share/applications/qwant-maps-geo-handler.desktop
+- /share/applications/wheelmap-geo-handler.desktop

@@ -1,0 +1,60 @@
+id: meson-python
+type: python
+pypi_name: meson-python
+requires:
+  pkgconfig:
+  - airspy
+  - airspyhf
+  - arrow-cpp
+  - bladerf
+  - boost
+  - cli11
+  - csound
+  - gnuradio
+  - gr-funcube
+  - gr-iqbal
+  - gr-osmosdr
+  - hackrf
+  - hidapi
+  - hydrasdr
+  - libad9361-iio
+  - libaio
+  - libportal
+  - libportaudio
+  - libspelling
+  - limesdr
+  - mirisdr
+  - openblas
+  - openrazer-pylib
+  - plutosdr
+  - pmt
+  - polychromatic
+  - portaudio
+  - portmidi
+  - pybind11
+  - qgis
+  - rapidjson
+  - refl-cpp
+  - rtlsdr
+  - scrcpy
+  - snappy
+  - soapy
+  - soapy_airspyhf
+  - soapy_hydrasdr
+  - soapy_plutosdr
+  - soapy_remote
+  - soapy_uhd
+  - spdlog
+  - thrift
+  - uhd
+  - volk
+  - vte
+  - xsimd
+  - xterm
+  extensions:
+  - org.freedesktop.Sdk.Extension.node22
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:app.polychromatic.controller
+updated: '2026-05-16'

@@ -1,0 +1,15 @@
+id: libremidi
+provides: []
+pkgconfig:
+- libremidi
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/celtera/libremidi/archive/refs/tags/v4.5.0.zip
+  sha256: bd812e1d194125121f74388c2294e5f2d4c1b7e40ff13de9aaf2f34c18cc8d1a
+config-opts:
+- -DLIBREMIDI_NO_PIPEWIRE=TRUE
+- -DLIBREMIDI_NO_BOOST=TRUE
+cleanup:
+- /include
+- /lib/pkgconfig

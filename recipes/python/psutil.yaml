@@ -1,0 +1,25 @@
+id: psutil
+type: python
+pypi_name: psutil
+requires:
+  pkgconfig:
+  - glib
+  - gnome-menu
+  - icoutils
+  - intltools
+  - libinsane
+  - links
+  - openblas
+  - perl
+  - poppler
+  - poppler-data
+  - python-paperwork
+  - vte
+  - xdg-utils
+  - xmlto
+  - zenity
+  extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
+confidence: 0.6
+source: flathub:work.openpaper.Paperwork
+updated: '2026-05-16'

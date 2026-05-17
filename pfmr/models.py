@@ -100,6 +100,21 @@ class NativeRecipe:
     cleanup: list[str] = field(default_factory=list)
     aliases: list[str] = field(default_factory=list)
 
+@dataclass
+class PythonRecipe:
+    """
+    Describes the native dependencies of a Python package.
+    Lives in recipes/python/<pkg>.yaml.
+    """
+    id: str                                    # canonical PyPI name
+    pypi_name: str = ""
+    requires_pkgconfig: list[str] = field(default_factory=list)
+    requires_libraries: list[str] = field(default_factory=list)
+    requires_extensions: list[str] = field(default_factory=list)
+    sdk_sufficient: bool = False               # True = installs cleanly with no extras
+    confidence: float = 0.0
+    source: str = ""
+
 
 @dataclass
 class ResolutionResult:

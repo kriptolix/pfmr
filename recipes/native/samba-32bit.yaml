@@ -1,0 +1,29 @@
+id: samba-32bit
+provides: []
+pkgconfig:
+- samba-32bit
+buildsystem: autotools
+source:
+  type: archive
+  url: https://samba.org/samba/ftp/stable/samba-4.24.2.tar.gz
+  sha256: ac24583f271a82ac324f7c6fad7327f65b591ad3492e1dccfee988e2c1c81dd1
+config-opts:
+- --localstatedir=/var
+- --sharedstatedir=/var/lib
+- --enable-fhs
+- --disable-rpath
+- --disable-rpath-install
+- --disable-python
+- --disable-cups
+- --disable-iprint
+- --without-json
+- --without-ad-dc
+- --without-ads
+- --without-pam
+- --without-ldap
+- --without-acl-support
+- --without-systemd
+- --without-ldb-lmdb
+cleanup:
+- /include
+- /lib/pkgconfig

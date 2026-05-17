@@ -1,0 +1,16 @@
+id: catch2
+provides: []
+pkgconfig:
+- catch2
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/catchorg/Catch2/archive/v3.5.3.tar.gz
+  sha256: 8d723b0535c94860ef8cf6231580fa47d67a3416757ecb10639e40d748ab6c71
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCATCH_INSTALL_EXTRAS=ON
+- -DCATCH_BUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

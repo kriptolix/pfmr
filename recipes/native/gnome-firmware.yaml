@@ -1,0 +1,14 @@
+id: gnome-firmware
+provides: []
+pkgconfig:
+- gnome-firmware
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.gnome.org/World/gnome-firmware/-/archive/49.0/gnome-firmware-49.0.tar.gz
+  sha256: 3d52626d2a4fb19a11e8d07cb0cc07352751a9d6d4aacc2697be44cf4334ff35
+config-opts:
+- -Dman=false
+cleanup:
+- /include
+- /lib/pkgconfig

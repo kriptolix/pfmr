@@ -1,0 +1,12 @@
+id: valac
+provides: []
+pkgconfig:
+- valac
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/vala/0.56/vala-0.56.18.tar.xz
+  sha256: f2affe7d40ab63db8e7b9ecc3f6bdc9c2fc7e3134c84ff2d795f482fe926a382
+cleanup:
+- /include
+- /lib/pkgconfig

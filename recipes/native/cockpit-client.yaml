@@ -1,0 +1,20 @@
+id: cockpit-client
+provides: []
+pkgconfig:
+- cockpit-client
+- systemdunitdir
+- admin-group
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/cockpit-project/cockpit/releases/download/361/cockpit-361.tar.xz
+  sha256: b7405e4a131723af1309456e75268afe96cbfa259432965d821a1d1a2d67fddb
+config-opts:
+- --enable-cockpit-client
+- --with-systemdunitdir=/invalid
+- CPPFLAGS=-Itools/mock-build-env
+- --with-admin-group=root
+- --disable-doc
+cleanup:
+- /include
+- /lib/pkgconfig

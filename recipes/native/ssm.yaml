@@ -1,0 +1,21 @@
+id: ssm
+provides: []
+pkgconfig:
+- ssm
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www2.mrc-lmb.cam.ac.uk/personal/pemsley/coot/dependencies/ssm-1.4.tar.gz
+  sha256: 56e7e64ed86d7d9ec59500fd34f26f881bdb9d541916d9a817c3bfb8cf0e9508
+config-opts:
+- --enable-ccp4
+- --disable-debug
+- --disable-docs
+- --disable-dependency-tracking
+- --disable-silent-rules
+- --enable-shared
+- --disable-static
+- --disable-Werror
+cleanup:
+- /include
+- /lib/pkgconfig

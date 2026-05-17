@@ -1,0 +1,12 @@
+id: xplanet
+provides: []
+pkgconfig:
+- xplanet
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/knro/xplanet/archive/refs/tags/1.3.2.tar.gz
+  sha256: 6902db5dcc74d234565ff9738816a499c67861cb946cccb63e3e0ff6fdc44580
+cleanup:
+- /include
+- /lib/pkgconfig

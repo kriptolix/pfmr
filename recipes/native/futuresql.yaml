@@ -1,0 +1,16 @@
+id: futuresql
+provides: []
+pkgconfig:
+- futuresql
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/futuresql/futuresql-0.1.1.tar.xz
+  sha256: e44ed8d5a9618b3ca7ba2983ed9c5f7572e6e0a5b199f94868834b71ccbebd43
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=Release
+- -DQT_MAJOR_VERSION=6
+cleanup:
+- /include
+- /lib/pkgconfig

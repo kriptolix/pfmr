@@ -1,0 +1,14 @@
+id: v4l
+provides: []
+pkgconfig:
+- v4l
+buildsystem: autotools
+source:
+  type: archive
+  url: https://linuxtv.org/downloads/v4l-utils/v4l-utils-1.22.1.tar.bz2
+  sha256: 65c6fbe830a44ca105c443b027182c1b2c9053a91d1e72ad849dfab388b94e31
+config-opts:
+- --disable-static
+- --disable-libdvbv5
+cleanup:
+- /include

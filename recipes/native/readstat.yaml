@@ -1,0 +1,12 @@
+id: readstat
+provides: []
+pkgconfig:
+- readstat
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/WizardMac/ReadStat/archive/v1.1.9.tar.gz
+  sha256: 89af7c785a7ae3d9a7af6e64a69028829a429f66a14b1b913be22816dc07ddca
+cleanup:
+- /include
+- /lib/pkgconfig

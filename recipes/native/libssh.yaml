@@ -1,0 +1,12 @@
+id: libssh
+provides: []
+pkgconfig:
+- libssh
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://www.libssh.org/files/0.12/libssh-0.12.0.tar.xz
+  sha256: 1a6af424d8327e5eedef4e5fe7f5b924226dd617ac9f3de80f217d82a36a7121
+cleanup:
+- /include
+- /lib/pkgconfig

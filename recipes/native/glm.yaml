@@ -1,0 +1,14 @@
+id: glm
+provides: []
+pkgconfig:
+- glm
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/g-truc/glm/archive/refs/tags/1.0.2.zip
+  sha256: be64032585415ca7dbea0d614915bb8eec012adf7b4d4fea7ff6b5bd3e0b906a
+config-opts:
+- -DGLM_TEST_ENABLE=OFF
+- -DCMAKE_INSTALL_LIBDIR=lib
+cleanup:
+- /share

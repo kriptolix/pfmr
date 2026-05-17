@@ -1,0 +1,16 @@
+id: redkite
+provides: []
+pkgconfig:
+- redkite
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/iurie-sw/redkite/archive/v1.0.0.tar.gz
+  sha256: 1cbd5490890779869d900bf910a1734b09000f3062764ce482d798f91f816d21
+config-opts:
+- -DCMAKE_INSTALL_PREFIX=/app/extensions/Lv2Plugins/Geonkick
+- -DCMAKE_INSTALL_LIBDIR=/app/extensions/Lv2Plugins/Geonkick/lib
+cleanup:
+- /bin
+- /lib
+- /include

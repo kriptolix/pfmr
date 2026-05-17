@@ -1,0 +1,11 @@
+id: icon-naming-utils
+provides: []
+pkgconfig:
+- icon-naming-utils
+buildsystem: autotools
+source:
+  type: archive
+  url: http://tango.freedesktop.org/releases/icon-naming-utils-0.8.90.tar.gz
+  sha256: 044ab2199ed8c6a55ce36fd4fcd8b8021a5e21f5bab028c0a7cdcf52a5902e1c
+cleanup:
+- '*'

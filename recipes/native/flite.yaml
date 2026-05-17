@@ -1,0 +1,14 @@
+id: flite
+provides: []
+pkgconfig:
+- flite
+buildsystem: autotools
+source:
+  type: archive
+  url: https://api.github.com/repos/festvox/flite/tarball/v2.2
+  sha256: 6ec1dbc3feb3554ad280de3d91d74c65b79147ce6efba1a273ef92ce9fe005f1
+config-opts:
+- --enable-shared
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: onevpl-intel-gpu
+provides: []
+pkgconfig:
+- onevpl-intel-gpu
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/intel/vpl-gpu-rt/archive/refs/tags/intel-onevpl-24.3.4.tar.gz
+  sha256: 978672104e6767223fbfb34fa9a0c0d954dcff9109891dc4911413dbc553ed71
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_INSTALL_LIBDIR=lib
+cleanup:
+- /include
+- /lib/pkgconfig

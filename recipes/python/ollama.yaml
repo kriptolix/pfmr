@@ -1,0 +1,12 @@
+id: ollama
+type: python
+pypi_name: ollama
+requires:
+  pkgconfig:
+  - libportal
+  - libportaudio
+  - libspelling
+  - vte
+confidence: 0.6
+source: flathub:com.jeffser.Alpaca
+updated: '2026-05-16'

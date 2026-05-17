@@ -1,0 +1,17 @@
+id: file
+type: python
+pypi_name: file
+requires:
+  pkgconfig:
+  - gtksourceview
+  - icon-naming-utils
+  - python3
+  - sugar-artwork
+  - sugar-toolkit-gtk3
+  - swig
+  - telepathy-glib
+  - vte
+  - xcursorgen
+confidence: 0.6
+source: flathub:org.sugarlabs.BaseApp
+updated: '2026-05-16'

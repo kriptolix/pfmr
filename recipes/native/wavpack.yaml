@@ -1,0 +1,15 @@
+id: wavpack
+provides: []
+pkgconfig:
+- wavpack
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.wavpack.com/wavpack-5.8.1.tar.bz2
+  sha256: 7bd540ed92d2d1bf412213858a9e4f1dfaf6d9a614f189b0622060a432e77bbf
+cleanup:
+- '*.la'
+- '*.a'
+- /include
+- /bin
+- /share/man

@@ -1,0 +1,15 @@
+id: libkgapi
+provides: []
+pkgconfig:
+- libkgapi
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/libkgapi-25.12.2.tar.xz
+  sha256: 42086c3f5cec31be3c379b43ae80e32beb29055159d1670e00ad7f0892632c1c
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

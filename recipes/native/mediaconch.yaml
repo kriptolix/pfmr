@@ -1,0 +1,12 @@
+id: mediaconch
+provides: []
+pkgconfig:
+- mediaconch
+buildsystem: autotools
+source:
+  type: archive
+  url: https://mediaarea.net/download/source/mediaconch/24.06/mediaconch_24.06.tar.xz
+  sha256: cafc541e74aa1eff4aa973db547b7688ca62e7a6a954fee3ca244fdc6f22e21d
+cleanup:
+- /include
+- /lib/pkgconfig

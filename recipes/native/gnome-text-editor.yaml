@@ -1,0 +1,12 @@
+id: gnome-text-editor
+provides: []
+pkgconfig:
+- gnome-text-editor
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-text-editor/50/gnome-text-editor-50.0.tar.xz
+  sha256: 9dc299da4daa085423b5d48db59f0021ad55e74143a5cb8ab2e5ffe17967f45b
+cleanup:
+- /include
+- /lib/pkgconfig

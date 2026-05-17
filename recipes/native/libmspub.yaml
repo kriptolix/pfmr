@@ -1,0 +1,16 @@
+id: libmspub
+provides: []
+pkgconfig:
+- libmspub
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dev-www.libreoffice.org/src/libmspub-0.1.4.tar.xz
+  sha256: ef36c1a1aabb2ba3b0bedaaafe717bf4480be2ba8de6f3894be5fd3702b013ba
+config-opts:
+- --without-docs
+- --disable-tools
+cleanup:
+- /include
+- /lib/pkgconfig
+- '*.la'

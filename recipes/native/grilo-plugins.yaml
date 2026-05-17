@@ -1,0 +1,27 @@
+id: grilo-plugins
+provides: []
+pkgconfig:
+- grilo-plugins
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/grilo-plugins/0.3/grilo-plugins-0.3.18.tar.xz
+  sha256: 8e3ce74ee717c3c322d0cb0f8df26bb0914028a5d016e28055ffb49cc9a46c5e
+config-opts:
+- -Denable-dleyna=no
+- -Denable-tracker=no
+- -Denable-tracker3=yes
+- -Denable-bookmarks=no
+- -Denable-filesystem=no
+- -Denable-freebox=no
+- -Denable-local-metadata=no
+- -Denable-lua-factory=yes
+- -Denable-metadata-store=no
+- -Denable-optical-media=no
+- -Denable-podcasts=no
+- -Denable-thetvdb=no
+- -Denable-tmdb=no
+- -Denable-youtube=no
+- -Dhelp=no
+cleanup:
+- /include

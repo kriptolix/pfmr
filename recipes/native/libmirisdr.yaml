@@ -1,0 +1,14 @@
+id: libmirisdr
+provides: []
+pkgconfig:
+- libmirisdr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/f4exb/libmirisdr-4/archive/refs/tags/v2.0.0.tar.gz
+  sha256: c9fa00737f37de788873248c71dd653b0e9c043aed70620ea17cfde8894be2df
+config-opts:
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

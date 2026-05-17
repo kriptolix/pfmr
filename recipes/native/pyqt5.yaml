@@ -1,0 +1,28 @@
+id: pyqt5
+provides: []
+pkgconfig:
+- pyqt5
+buildsystem: autotools
+source:
+  type: archive
+  url: https://files.pythonhosted.org/packages/28/6c/640e3f5c734c296a7193079a86842a789edb7988dca39eab44579088a1d1/PyQt5-5.15.2.tar.gz
+  sha256: 372b08dc9321d1201e4690182697c5e7ffb2e0770e6b4a45519025134b12e4fc
+config-opts:
+- --confirm-license
+- --bindir=/app/bin
+- --destdir=/app/lib/python3.9/site-packages
+- --sipdir=/app/share/sip
+- --sip-incdir=/app/include
+- --stubsdir=/app/lib/python3.9/site-packages/PyQt5
+- --no-designer-plugin
+- --no-qml-plugin
+- --enable QtCore
+- --enable QtGui
+- --enable QtNetwork
+- --enable QtSvg
+- --enable QtWidgets
+- QMAKE_CFLAGS_RELEASE='-I/usr/include/python3.9/'
+- QMAKE_CXXFLAGS_RELEASE='-I/usr/include/python3.9/'
+cleanup:
+- /bin
+- /include

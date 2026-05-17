@@ -1,0 +1,10 @@
+id: more-itertools-11-0-2-py3-none-any-whl
+type: python
+pypi_name: more-itertools-11-0-2-py3-none-any-whl
+requires:
+  pkgconfig:
+  - farstream
+  - libspelling
+confidence: 0.6
+source: flathub:org.gajim.Gajim
+updated: '2026-05-16'

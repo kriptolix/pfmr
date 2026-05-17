@@ -1,0 +1,15 @@
+id: ktextaddons
+provides: []
+pkgconfig:
+- ktextaddons
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/ktextaddons/ktextaddons-1.9.1.tar.xz
+  sha256: 366d5a94c7405482c3a6d261347c1b995de73a087059996b117d612bfc1291c2
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DQT_MAJOR_VERSION=6
+cleanup:
+- /include
+- /lib/pkgconfig

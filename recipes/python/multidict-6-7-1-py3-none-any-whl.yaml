@@ -1,0 +1,12 @@
+id: multidict-6-7-1-py3-none-any-whl
+type: python
+pypi_name: multidict-6-7-1-py3-none-any-whl
+requires:
+  pkgconfig:
+  - libsodium
+  - libxeddsa
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.poez.Poezio
+updated: '2026-05-16'

@@ -1,0 +1,34 @@
+id: rpds-py
+type: python
+pypi_name: rpds-py
+requires:
+  pkgconfig:
+  - bubblewrap
+  - curl
+  - dbus
+  - jq
+  - libfuse
+  - libfyaml
+  - libxml-prefix
+  - libxslt-prefix
+  - mozillavpn
+  - mpv
+  - optipng
+  - ostree
+  - p7zip
+  - popt
+  - qt5compat
+  - rpm
+  - rsync
+  - svn
+  - system-libs
+  - systemdsystemgeneratordir
+  - xdg-dbus-proxy
+  - xmlstarlet
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.flatpak.Builder.BaseApp
+updated: '2026-05-16'

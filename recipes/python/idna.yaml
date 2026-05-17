@@ -1,0 +1,22 @@
+id: idna
+type: python
+pypi_name: idna
+requires:
+  pkgconfig:
+  - iproute2
+  - libndp
+  - libnma
+  - mpv
+  - networkmanager
+  - networkmanager-openvpn
+  - polkit
+  - pycairo
+  - pygobject
+  - rsync
+  - systemd
+  extensions:
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:net.ankiweb.Anki
+updated: '2026-05-16'

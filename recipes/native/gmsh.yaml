@@ -1,0 +1,17 @@
+id: gmsh
+provides: []
+pkgconfig:
+- gmsh
+buildsystem: cmake
+source:
+  type: archive
+  url: https://gmsh.info/src/gmsh-4.11.1-source.tgz
+  sha256: c5fe1b7cbd403888a814929f2fd0f5d69e27600222a18c786db5b76e8005b365
+config-opts:
+- -DDEFAULT=0
+- -DENABLE_BUILD_LIB=1
+- -DENABLE_POST=1
+- -DENABLE_PARSER=1
+cleanup:
+- /include
+- /lib/pkgconfig

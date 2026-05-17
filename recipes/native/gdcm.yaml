@@ -1,0 +1,20 @@
+id: gdcm
+provides: []
+pkgconfig:
+- gdcm
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/malaterre/GDCM/archive/v3.0.12.tar.gz
+  sha256: 4709ee5acce9ee69727bc8664ef7a13f4a3bbb8d48d1c3a0468241d0ac1ac977
+config-opts:
+- -DGDCM_BUILD_APPLICATIONS=OFF
+- -DGDCM_BUILD_SHARED_LIBS=ON
+- -DCMAKE_BUILD_TYPE=Release
+- -DGDCM_WRAP_PYTHON=ON
+- -DPYTHON_EXECUTABLE=/usr/bin/python3
+- -DGDCM_INSTALL_PYTHONMODULE_DIR=/app/lib/python3.8/site-packages/
+- -DGDCM_USE_VTK=OFF
+- -DGDCM_BUILD_DOCBOOK_MANPAGES:BOOL=OFF
+cleanup:
+- /bin

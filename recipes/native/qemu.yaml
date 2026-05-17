@@ -1,0 +1,23 @@
+id: qemu
+provides: []
+pkgconfig:
+- qemu
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.qemu.org/qemu-8.1.1.tar.xz
+  sha256: 37ce2ef5e500fb752f681117c68b45118303ea49a7e26bd54080ced54fab7def
+config-opts:
+- --disable-user
+- --enable-kvm
+- --enable-opengl
+- --enable-virglrenderer
+- --enable-slirp
+- --disable-gtk
+- --disable-sdl
+- --disable-vnc
+- --python=/bin/python3
+- --target-list=x86_64-softmmu,i386-softmmu,aarch64-softmmu
+cleanup:
+- /include
+- /lib/pkgconfig

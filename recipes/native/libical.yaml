@@ -1,0 +1,20 @@
+id: libical
+provides: []
+pkgconfig:
+- libical
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libical/libical/releases/download/v3.0.13/libical-3.0.13.tar.gz
+  sha256: 02543b08897f3b75c76c360a335900ccfb027d2f5120176c777340e67e763ad4
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_INSTALL_LIBDIR=/app/lib
+- -DBUILD_SHARED_LIBS=ON
+- -DGOBJECT_INTROSPECTION=true
+- -DICAL_GLIB_VAPI=true
+- -DICAL_GLIB=true
+- -DICAL_BUILD_DOCS=false
+- -DWITH_CXX_BINDINGS=false
+cleanup:
+- /lib/cmake

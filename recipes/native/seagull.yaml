@@ -1,0 +1,14 @@
+id: seagull
+provides: []
+pkgconfig:
+- seagull
+buildsystem: meson
+source:
+  type: archive
+  url: https://sourceforge.net/projects/pidgin/files/seagull/0.8.1/seagull-0.8.1.tar.xz
+  sha256: b9b3c0d3ec5e0897ca672f4a7b995a58529ca103dcfa6a591bed82ca0557c7d4
+config-opts:
+- --wrap-mode=nofallback
+cleanup:
+- /include
+- /lib/pkgconfig

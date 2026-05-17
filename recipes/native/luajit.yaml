@@ -1,0 +1,15 @@
+id: luajit
+provides: []
+pkgconfig:
+- luajit
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/luajit/luajit/archive/fdf2379ccba1eb68ff07f8bc48541568f5bbdfbf.tar.gz
+  sha256: 4f3fcc8a9a685ec2c449824b26d7c5f4b9c7faff851915cf13e68fb740c25048
+cleanup:
+- /bin
+- /include
+- /lib/pkgconfig
+- /share/man
+- '*.a'

@@ -1,0 +1,12 @@
+id: miniupnpc
+provides: []
+pkgconfig:
+- miniupnpc
+buildsystem: cmake
+source:
+  type: archive
+  url: http://miniupnp.free.fr/files/miniupnpc-1.9.20140610.tar.gz
+  sha256: 31beffe44a5d7b7bbad3729cdd6f9f85844b9e5771aebb56550f87cbedcf5d3b
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,18 @@
+id: surge-xt-lv2
+provides: []
+pkgconfig:
+- surge-xt-lv2
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/surge-synthesizer/releases-xt/releases/download/1.0.1/surge-src-1.0.1.tar.gz
+  sha256: 100b536f741c62529800fc26e3773567591385d4152db305382b4315f6e39c55
+config-opts:
+- -DCMAKE_INSTALL_PREFIX=/app/extensions/Plugins/Surge-XT
+- -DCMAKE_BUILD_TYPE=Release
+- -DSURGE_SKIP_STANDALONE=YES
+- -DJUCE_SUPPORTS_LV2=True
+- -DSURGE_JUCE_PATH=/run/build/surge-xt-lv2/JUCE-lv2
+cleanup:
+- /include
+- /lib/pkgconfig

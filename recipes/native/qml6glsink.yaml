@@ -1,0 +1,17 @@
+id: qml6glsink
+provides: []
+pkgconfig:
+- qml6glsink
+buildsystem: meson
+source:
+  type: archive
+  url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.26.10.tar.xz
+  sha256: 7beacb5daba3c6751ebc1c85017d9b1d6de64e24798125932c73c8b1dbeb3bc9
+config-opts:
+- -Dqt6=enabled
+- -Dqt-egl=enabled
+- -Dqt-wayland=enabled
+- -Dqt-x11=enabled
+cleanup:
+- /include
+- /lib/pkgconfig

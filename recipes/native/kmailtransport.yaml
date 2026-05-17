@@ -1,0 +1,15 @@
+id: kmailtransport
+provides: []
+pkgconfig:
+- kmailtransport
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/kmailtransport-25.12.2.tar.xz
+  sha256: f854379012009af74bbb95d76a2f903cddbba654a2c63535953bba9e1a6ceabc
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

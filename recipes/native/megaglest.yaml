@@ -1,0 +1,15 @@
+id: megaglest
+provides: []
+pkgconfig:
+- megaglest
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/MegaGlest/megaglest-source/releases/download/3.13.0/megaglest-source-3.13.0.tar.xz
+  sha256: 09fef67bc6878b1afbb0b403fec9fcf7dc270d500fdc62ed98e5f210e398ccb9
+config-opts:
+- -DBUILD_MEGAGLEST_MAP_EDITOR=OFF
+- -DBUILD_MEGAGLEST_MODEL_VIEWER=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

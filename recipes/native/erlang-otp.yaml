@@ -1,0 +1,37 @@
+id: erlang-otp
+provides: []
+pkgconfig:
+- erlang-otp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/erlang/otp/releases/download/OTP-27.2/otp_src_27.2.tar.gz
+  sha256: b66c2cc4fa2c87211b668e4486d4f3e5b1b6705698873ea3e6d9850801ac992d
+config-opts:
+- --disable-pgo
+- --without-hipe
+- --without-javac
+- --without-dialyzer
+- --without-eldap
+- --without-snmp
+- --without-megaco
+- --without-diameter
+- --without-os_mon
+- --without-mnesia
+- --without-otp_mibs
+- --without-common-test
+- --without-debugger
+- --without-edoc
+- --without-erl_docgen
+- --without-et
+- --without-eunit
+- --without-ftp
+- --without-parsetools
+- --without-reltool
+- --without-ssh
+- --without-syntax_tools
+- --without-tftp
+- --without-tools
+cleanup:
+- /include
+- /lib/pkgconfig

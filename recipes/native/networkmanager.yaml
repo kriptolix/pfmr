@@ -1,0 +1,30 @@
+id: networkmanager
+provides: []
+pkgconfig:
+- networkmanager
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/NetworkManager/1.44/NetworkManager-1.44.0.tar.xz
+  sha256: edca09637d182f806b3b12d8c5623d7badbd73ccca1ae63be20d2f298779fb9f
+config-opts:
+- -Dlibaudit=no
+- -Ddbus_conf_dir=/app/etc/dbus-1/system.d
+- -Ddnsmasq=/usr/bin/true
+- -Ddocs=false
+- -Dintrospection=true
+- -Diptables=/usr/bin/true
+- -Dlibpsl=false
+- -Dmodem_manager=false
+- -Dnmtui=false
+- -Dovs=false
+- -Dppp=false
+- -Dqt=false
+- -Dselinux=false
+- -Dsession_tracking=no
+- -Dsystemd_journal=false
+- -Dtests=no
+- -Dvapi=true
+cleanup:
+- /include
+- /lib/pkgconfig

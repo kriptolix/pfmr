@@ -1,0 +1,37 @@
+id: maturin
+type: python
+pypi_name: maturin
+requires:
+  pkgconfig:
+  - bubblewrap
+  - curl
+  - dbus
+  - io.github.mhogomchungu.media-downloader
+  - jq
+  - libfuse
+  - libfyaml
+  - libportal
+  - libportaudio
+  - libspelling
+  - libxml-prefix
+  - libxslt-prefix
+  - mpv
+  - optipng
+  - ostree
+  - p7zip
+  - popt
+  - rpm
+  - rsync
+  - svn
+  - system-libs
+  - systemdsystemgeneratordir
+  - vte
+  - xdg-dbus-proxy
+  - xmlstarlet
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.github.mhogomchungu.media-downloader
+updated: '2026-05-16'

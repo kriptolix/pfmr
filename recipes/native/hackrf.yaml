@@ -1,0 +1,15 @@
+id: hackrf
+provides: []
+pkgconfig:
+- hackrf
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/greatscottgadgets/hackrf/archive/refs/tags/v2026.01.3.tar.gz
+  sha256: 48238f3a21189fa8cbe67838584cc045b9e5433767db8c9c30c1da02a1489f2c
+config-opts:
+- -DINSTALL_UDEV_RULE=OFF
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: radare2
+provides: []
+pkgconfig:
+- radare2
+- checks-level
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/radareorg/radare2/releases/download/6.1.4/radare2-6.1.4.tar.xz
+  sha256: d2884ba3632b4264d241cc2eee64c54ba674590869aa25ea6163f4b60ffed072
+config-opts:
+- --with-checks-level=0
+cleanup:
+- /include
+- /lib/pkgconfig

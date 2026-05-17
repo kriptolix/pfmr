@@ -1,0 +1,15 @@
+id: alembic
+provides: []
+pkgconfig:
+- alembic
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/alembic/alembic/archive/refs/tags/1.8.11.tar.gz
+  sha256: ab299bb4b1894a6675c73fa29940522b54c81a91b1d691ca3470d86b7345ffce
+config-opts:
+- -DUSE_TESTS:BOOL=OFF
+- -DUSE_HDF5:BOOL=ON
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: tremulous-engine
+provides: []
+pkgconfig:
+- tremulous-engine
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/GrangerHub/tremulous/archive/v1.3.0-alpha.0.14.tar.gz
+  sha256: 0f9e705f58eea8cbba2c84a6eef42b92677201eb1fa41c1603f7b728c634e30a
+cleanup:
+- /include
+- /lib/pkgconfig

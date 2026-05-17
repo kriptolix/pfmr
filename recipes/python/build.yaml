@@ -1,0 +1,13 @@
+id: build
+type: python
+pypi_name: build
+requires:
+  pkgconfig:
+  - miniupnpc
+  - mpv
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.github.hydrusnetwork.hydrus
+updated: '2026-05-16'

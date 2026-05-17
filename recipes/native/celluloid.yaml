@@ -1,0 +1,13 @@
+id: celluloid
+provides: []
+pkgconfig:
+- celluloid
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/celluloid-player/celluloid/releases/download/v0.30/celluloid-0.30.tar.xz
+  sha256: 7fef96431842c24e5ae78a9c42bc6523818a6c45213f23ceb146d037d6ec8559
+config-opts:
+- --buildtype=release
+cleanup:
+- /share/man

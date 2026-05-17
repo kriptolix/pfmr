@@ -1,0 +1,17 @@
+id: libnumbertext
+provides: []
+pkgconfig:
+- libnumbertext
+- pic
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/Numbertext/libnumbertext/archive/a4b0225813b015a0f796754bc6718be20dd9943c.zip
+  sha256: eb4f91e4c97bb47f8cb7a31d80fdd500024bd9160c9045cdd8dff28beeac4b7a
+config-opts:
+- --enable-static=true
+- --enable-shared=false
+- --with-pic=yes
+cleanup:
+- /include
+- /lib/pkgconfig

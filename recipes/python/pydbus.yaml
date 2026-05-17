@@ -1,0 +1,20 @@
+id: pydbus
+type: python
+pypi_name: pydbus
+requires:
+  pkgconfig:
+  - cava
+  - libinsane
+  - libportal
+  - libportaudio
+  - libspelling
+  - openblas
+  - poppler
+  - poppler-data
+  - python-paperwork
+  - vte
+  extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
+confidence: 0.6
+source: flathub:com.jeffser.Pigment
+updated: '2026-05-16'

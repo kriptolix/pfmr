@@ -1,0 +1,18 @@
+id: qtwebkit
+provides: []
+pkgconfig:
+- qtwebkit
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/movableink/webkit/archive/3cfcdcf38a520a22a9e86bd4b8ffa17f2ee2e1aa.tar.gz
+  sha256: 92cc07517a78bc11c33a8b81d25a871ccf9030a76ee2f3539d7d1a3c51337f7a
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_INSTALL_LIBDIR=lib
+- -DPORT=Qt
+- -DENABLE_NETSCAPE_PLUGIN_API=ON
+- -DENABLE_PRINT_SUPPORT=ON
+cleanup:
+- /include
+- /lib/pkgconfig

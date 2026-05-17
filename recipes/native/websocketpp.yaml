@@ -1,0 +1,17 @@
+id: websocketpp
+provides: []
+pkgconfig:
+- websocketpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/zaphoyd/websocketpp/archive/refs/tags/0.8.2.tar.gz
+  sha256: 6ce889d85ecdc2d8fa07408d6787e7352510750daa66b5ad44aacb47bea76755
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_TESTS=OFF
+- -DBUILD_EXAMPLES=OFF
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

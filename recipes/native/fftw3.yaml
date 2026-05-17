@@ -1,0 +1,23 @@
+id: fftw3
+provides: []
+pkgconfig:
+- fftw3
+buildsystem: autotools
+source:
+  type: archive
+  url: http://fftw.org/fftw-3.3.10.tar.gz
+  sha256: 56c932549852cddcfafdab3820b0200c7742675be92179e59e6215b340e26467
+config-opts:
+- --enable-float
+- --enable-threads
+- --enable-openmp
+- --disable-fortran
+cleanup:
+- /bin
+- /include
+- '*.a'
+- '*.la'
+- /lib/cmake
+- /lib/pkgconfig
+- /share/info
+- /share/man

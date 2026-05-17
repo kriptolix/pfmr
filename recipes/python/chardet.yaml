@@ -1,0 +1,12 @@
+id: chardet
+type: python
+pypi_name: chardet
+requires:
+  pkgconfig:
+  - ffms2
+  - unrar
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm21
+confidence: 0.6
+source: flathub:net.sourceforge.mcomix
+updated: '2026-05-16'

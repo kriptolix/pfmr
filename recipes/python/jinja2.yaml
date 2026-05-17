@@ -1,0 +1,63 @@
+id: jinja2
+type: python
+pypi_name: jinja2
+requires:
+  pkgconfig:
+  - 64gram-desktop
+  - ada
+  - avahi
+  - distro
+  - flashrom
+  - fwupd
+  - fwupd-efi
+  - geos
+  - gnome-firmware
+  - gnome-logs
+  - gtest
+  - highway
+  - jpegli
+  - kotatogram-desktop
+  - libass
+  - libavif
+  - libde265
+  - libei
+  - libheif
+  - libjcat
+  - libjxl
+  - libkeybinder
+  - libmbim
+  - libmpv
+  - libplacebo
+  - libportal
+  - libqmi
+  - libqrtr
+  - libsecret
+  - libxmlb
+  - modemmanager
+  - mozjpeg
+  - openh264
+  - protobuf
+  - qt
+  - qtbase
+  - qtdeclarative
+  - qtimageformats
+  - qtshadertools
+  - qtsvg
+  - qtwayland
+  - rnnoise
+  - rsync
+  - systemd
+  - tde2e
+  - tdesktop
+  - tg_owt
+  - tpm2-tss
+  - udevrulesdir
+  - yasm
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm16
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.llvm22
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

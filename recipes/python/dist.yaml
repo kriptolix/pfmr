@@ -1,0 +1,24 @@
+id: dist
+type: python
+pypi_name: dist
+requires:
+  pkgconfig:
+  - blueprint-compiler
+  - hdf5
+  - libportal
+  - libsodium
+  - libzmq
+  - miniupnpc
+  - mpv
+  - ocl-icd
+  - openblas
+  - patchelf
+  - qhull
+  - qt6-qtdatavisualization
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm19
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.github.Bavarder.Bavarder
+updated: '2026-05-16'

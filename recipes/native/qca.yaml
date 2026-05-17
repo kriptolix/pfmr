@@ -1,0 +1,16 @@
+id: qca
+provides: []
+pkgconfig:
+- qca
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/qca/2.3.10/qca-2.3.10.tar.xz
+  sha256: 1c5b722da93d559365719226bb121c726ec3c0dc4c67dea34f1e50e4e0d14a02
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_WITH_QT6=ON
+cleanup:
+- /include
+- /lib/pkgconfig

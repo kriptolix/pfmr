@@ -1,0 +1,16 @@
+id: libwebp
+provides: []
+pkgconfig:
+- libwebp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/webmproject/libwebp/archive/refs/heads/0.5.1.zip
+  sha256: fdef2c0404b5868888008996438525d44fdb049327f92576579a32df4b30ea27
+config-opts:
+- --disable-static
+- --enable-libwebpmux
+- --disable-libwebpdemux
+cleanup:
+- /share
+- /bin

@@ -1,0 +1,14 @@
+id: olm
+provides: []
+pkgconfig:
+- olm
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.matrix.org/matrix-org/olm/-/archive/3.2.16/olm-3.2.16.tar.gz
+  sha256: 1e90f9891009965fd064be747616da46b232086fe270b77605ec9bda34272a68
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

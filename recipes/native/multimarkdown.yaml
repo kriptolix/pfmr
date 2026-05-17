@@ -1,0 +1,14 @@
+id: multimarkdown
+provides: []
+pkgconfig:
+- multimarkdown
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/fletcher/MultiMarkdown-6/archive/refs/tags/6.7.0.tar.gz
+  sha256: aa386f54631dbc4e0beeb6b9cf9eb769db95a3f505a69b663140a80008cf0595
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

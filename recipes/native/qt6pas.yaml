@@ -1,0 +1,12 @@
+id: qt6pas
+provides: []
+pkgconfig:
+- qt6pas
+buildsystem: qmake
+source:
+  type: archive
+  url: https://github.com/davidbannon/libqt6pas/archive/refs/tags/v6.2.10.tar.gz
+  sha256: dbcc13559f991958fb69de31d67c85575bbe278fdff0813b51787da50720d591
+cleanup:
+- /include
+- /lib/pkgconfig

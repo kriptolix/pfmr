@@ -1,0 +1,31 @@
+id: libspeechd
+provides: []
+pkgconfig:
+- libspeechd
+- systemdsystemunitdir
+- kali
+- baratinoo
+- ibmtts
+- voxin
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/brailcom/speechd/releases/download/0.12.0/speech-dispatcher-0.12.0.tar.gz
+  sha256: e1dd0bfa24b8338545e165451330adf51c4c0dca862b1b67e76fba5142dbbb74
+config-opts:
+- --disable-python
+- --with-systemdsystemunitdir=''
+- --disable-rpath
+- --disable-static
+- --with-kali=no
+- --with-baratinoo=no
+- --with-ibmtts=no
+- --with-voxin=no
+- --without-oss
+cleanup:
+- /bin
+- /etc
+- /libexec
+- /lib/speech-dispatcher
+- /share/sounds/speech-dispatcher
+- /share/speech-dispatcher

@@ -1,0 +1,12 @@
+id: sdl2-gfx
+provides: []
+pkgconfig:
+- sdl2_gfx
+buildsystem: autotools
+source:
+  type: archive
+  url: http://www.ferzkopp.net/Software/SDL2_gfx/SDL2_gfx-1.0.4.tar.gz
+  sha256: 63e0e01addedc9df2f85b93a248f06e8a04affa014a835c2ea34bfe34e576262
+cleanup:
+- /include
+- /lib/pkgconfig

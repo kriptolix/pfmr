@@ -1,0 +1,13 @@
+id: skytemple-rust
+type: python
+pypi_name: skytemple-rust
+requires:
+  pkgconfig:
+  - armips
+  - gtksourceview4
+  - pcap
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.skytemple.Randomizer
+updated: '2026-05-16'

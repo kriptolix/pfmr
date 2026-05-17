@@ -1,0 +1,15 @@
+id: vte2.91
+provides: []
+pkgconfig:
+- vte2.91
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/vte/0.64/vte-0.64.2.tar.xz
+  sha256: 2b3c820b65a667c1d8859ba20478be626d1519cc3159dac25f703330c6d07e18
+config-opts:
+- -Ddocs=false
+- -Dvapi=false
+cleanup:
+- /include
+- /lib/pkgconfig

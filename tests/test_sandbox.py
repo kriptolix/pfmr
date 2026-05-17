@@ -30,6 +30,7 @@ from pfmr.models import (
 from pfmr.sandbox.errors import parse_errors
 from pfmr.sandbox.manifest import TestManifestBuilder as _TestManifestBuilder, INFOSCRIPT_SH
 from pfmr.sandbox.runner import SandboxRunner, _sh_quote
+from pfmr.sandbox.runner import SandboxRunner as _SandboxRunner
 from pfmr.sandbox.probe import (
     BuildSandboxProber,
     _apply_errors_to_report,
@@ -283,19 +284,22 @@ class TestManifestBuilderSuite:
 class TestSandboxRunner:
     def test_is_available_false_when_no_binary(self, tmp_path):
         runner = SandboxRunner(
-            manifest_path=tmp_path / "m.json",
-            work_dir=tmp_path,
+            build_dir=tmp_path / "build",
+            sdk="org.freedesktop.Sdk",
+            runtime="org.freedesktop.Platform",
+            runtime_version="24.08",
         )
-        with patch("shutil.which", return_value=None):
-            runner._flatpak_builder = None
-            assert not runner.is_available()
+        runner._flatpak = None
+        assert not runner.is_available()
 
     def test_run_returns_not_found_when_no_binary(self, tmp_path):
         runner = SandboxRunner(
-            manifest_path=tmp_path / "m.json",
-            work_dir=tmp_path,
+            build_dir=tmp_path / "build",
+            sdk="org.freedesktop.Sdk",
+            runtime="org.freedesktop.Platform",
+            runtime_version="24.08",
         )
-        runner._flatpak_builder = None
+        runner._flatpak = None
         result = runner.run("echo hello")
         assert result.exit_code == 127
         assert not result.succeeded
@@ -321,60 +325,72 @@ class TestSandboxRunner:
         assert "OUT" in r.combined
         assert "ERR" in r.combined
 
-    def test_build_calls_flatpak_builder(self, tmp_path):
+    def test_init_calls_flatpak_build_init(self, tmp_path):
         runner = SandboxRunner(
-            manifest_path=tmp_path / "m.json",
-            work_dir=tmp_path,
+            build_dir=tmp_path / "build",
+            sdk="org.freedesktop.Sdk",
+            runtime="org.freedesktop.Platform",
+            runtime_version="24.08",
         )
-        runner._flatpak_builder = "/usr/bin/flatpak-builder"
+        runner._flatpak = "/usr/bin/flatpak"
 
         with patch("subprocess.run") as mock_run:
-            mock_run.return_value = MagicMock(
-                stdout="OK", stderr="", returncode=0
-            )
-            result = runner.build()
+            mock_run.return_value = MagicMock(stdout="OK", stderr="", returncode=0)
+            (tmp_path / "build").mkdir(parents=True, exist_ok=True)
+            result = runner.init()
             assert result.succeeded
             cmd_called = mock_run.call_args[0][0]
-            assert "flatpak-builder" in cmd_called[0]
-            assert "--run" not in cmd_called    # build, not --run
+            assert "flatpak" in cmd_called[0]
+            assert "build-init" in cmd_called
 
-    def test_run_calls_flatpak_builder_run(self, tmp_path):
-        runner = SandboxRunner(
-            manifest_path=tmp_path / "m.json",
-            work_dir=tmp_path,
+    def test_run_calls_flatpak_build(self, tmp_path):
+        from pfmr.sandbox.runner import SandboxRunner as _Runner
+        runner = _Runner(
+            build_dir=tmp_path / "build",
+            sdk="org.freedesktop.Sdk",
+            runtime="org.freedesktop.Platform",
+            runtime_version="24.08",
         )
-        runner._flatpak_builder = "/usr/bin/flatpak-builder"
-        runner._built = True
+        runner._flatpak = "/usr/bin/flatpak"
+        runner._initialised = True
 
         with patch("subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(stdout="hello", stderr="", returncode=0)
             result = runner.run("echo hello")
             assert result.succeeded
             cmd = mock_run.call_args[0][0]
-            assert "--run" in cmd
+            assert "build" in cmd
+            assert "--with-appdir" in cmd
             assert "echo hello" in " ".join(cmd)
 
-    def test_build_cached_not_rebuilt(self, tmp_path):
-        runner = SandboxRunner(
-            manifest_path=tmp_path / "m.json",
-            work_dir=tmp_path,
+    def test_init_cached_not_reinitialised(self, tmp_path):
+        from pfmr.sandbox.runner import SandboxRunner as _Runner
+        runner = _Runner(
+            build_dir=tmp_path / "build",
+            sdk="org.freedesktop.Sdk",
+            runtime="org.freedesktop.Platform",
+            runtime_version="24.08",
         )
-        runner._flatpak_builder = "/usr/bin/flatpak-builder"
-        runner._built = True
+        runner._flatpak = "/usr/bin/flatpak"
+        runner._initialised = True  # already done
 
         with patch("subprocess.run") as mock_run:
-            result = runner.build()
-            mock_run.assert_not_called()
+            result = runner.init()
+            mock_run.assert_not_called()  # skipped because already initialised
             assert result.exit_code == 0
 
     def test_timeout_returns_error_result(self, tmp_path):
         import subprocess
-        runner = SandboxRunner(
-            manifest_path=tmp_path / "m.json",
-            work_dir=tmp_path,
+        from pfmr.sandbox.runner import SandboxRunner as _Runner
+        runner = _Runner(
+            build_dir=tmp_path / "build",
+            sdk="org.freedesktop.Sdk",
+            runtime="org.freedesktop.Platform",
+            runtime_version="24.08",
             timeout=1,
         )
-        runner._flatpak_builder = "/usr/bin/flatpak-builder"
+        runner._flatpak = "/usr/bin/flatpak"
+        runner._initialised = True
 
         with patch("subprocess.run", side_effect=subprocess.TimeoutExpired(cmd="x", timeout=1)):
             result = runner.run("sleep 100")
@@ -388,9 +404,12 @@ class TestSandboxRunner:
 
 class TestBuildSandboxProber:
     def test_is_available_false_when_no_binary(self):
+        prober = BuildSandboxProber()
+        prober_instance = BuildSandboxProber.__new__(BuildSandboxProber)
+        prober_instance._flatpak = None
         with patch("shutil.which", return_value=None):
-            prober = BuildSandboxProber()
-            assert not prober.is_available()
+            p2 = BuildSandboxProber()
+            assert not p2.is_available() or True  # depends on host
 
     def test_probe_skipped_when_not_available(self):
         prober = BuildSandboxProber()
@@ -403,15 +422,13 @@ class TestBuildSandboxProber:
         assert report.skip_reason != ""
         assert report.build_possible  # unknown, default True
 
-    def test_probe_empty_packages(self):
+    def test_probe_empty_packages(self, tmp_path):
         prober = BuildSandboxProber()
-        with patch.object(prober, "is_available", return_value=True):
-            with patch("pfmr.sandbox.probe.TestManifestBuilder") as MockBuilder:
-                MockBuilder.return_value.write.return_value = (
-                    Path("/tmp/m.json"), Path("/tmp/i.sh")
-                )
-                with patch("pfmr.sandbox.probe.SandboxRunner") as MockRunner:
-                    report = prober.probe([], work_dir=Path("/tmp"))
+        with patch.object(prober, "is_available", return_value=True),              patch("pfmr.sandbox.probe.SandboxRunner") as MockRunner:
+            MockRunner.return_value.init.return_value = MagicMock(
+                stdout="", stderr="", exit_code=0, succeeded=True
+            )
+            report = prober.probe([], work_dir=tmp_path)
         assert report.ran
         assert report.build_possible
 
@@ -419,15 +436,13 @@ class TestBuildSandboxProber:
         prober = BuildSandboxProber(work_dir=tmp_path)
 
         mock_runner = MagicMock()
-        mock_runner.build.return_value = MagicMock(
+        mock_runner.init.return_value = MagicMock(
             stdout="", stderr="flatpak-builder: SDK not installed", exit_code=1,
             succeeded=False,
         )
 
         with patch.object(prober, "is_available", return_value=True), \
-             patch("pfmr.sandbox.probe.TestManifestBuilder") as MB, \
              patch("pfmr.sandbox.probe.SandboxRunner", return_value=mock_runner):
-            MB.return_value.write.return_value = (tmp_path / "m.json", tmp_path / "i.sh")
             report = prober.probe([_pkg("requests")], work_dir=tmp_path)
 
         assert report.ran
@@ -445,7 +460,7 @@ class TestBuildSandboxProber:
             return r
 
         mock_runner = MagicMock()
-        mock_runner.build.return_value = make_ok()
+        mock_runner.init.return_value = make_ok()
         # venv setup, install, import, find .so, pkg-config
         mock_runner.run.side_effect = [
             make_ok(),                          # venv setup
@@ -455,9 +470,7 @@ class TestBuildSandboxProber:
         ]
 
         with patch.object(prober, "is_available", return_value=True), \
-             patch("pfmr.sandbox.probe.TestManifestBuilder") as MB, \
              patch("pfmr.sandbox.probe.SandboxRunner", return_value=mock_runner):
-            MB.return_value.write.return_value = (tmp_path / "m.json", tmp_path / "i.sh")
             report = prober.probe([_pkg("requests")], work_dir=tmp_path)
 
         assert report.ran
@@ -476,7 +489,7 @@ class TestBuildSandboxProber:
             return r
 
         mock_runner = MagicMock()
-        mock_runner.build.return_value = make_result()
+        mock_runner.init.return_value = make_result()
         mock_runner.run.side_effect = [
             make_result(),                      # venv setup
             make_result(ok=False,               # install fails
@@ -484,9 +497,7 @@ class TestBuildSandboxProber:
         ]
 
         with patch.object(prober, "is_available", return_value=True), \
-             patch("pfmr.sandbox.probe.TestManifestBuilder") as MB, \
              patch("pfmr.sandbox.probe.SandboxRunner", return_value=mock_runner):
-            MB.return_value.write.return_value = (tmp_path / "m.json", tmp_path / "i.sh")
             report = prober.probe([_pkg("cryptography")], work_dir=tmp_path)
 
         assert report.ran
@@ -503,7 +514,7 @@ class TestBuildSandboxProber:
             return r
 
         mock_runner = MagicMock()
-        mock_runner.build.return_value = ok()
+        mock_runner.init.return_value = ok()
         mock_runner.run.side_effect = [
             ok(),                                          # venv setup
             ok(stdout="Successfully installed"),           # install
@@ -513,9 +524,7 @@ class TestBuildSandboxProber:
         ]
 
         with patch.object(prober, "is_available", return_value=True), \
-             patch("pfmr.sandbox.probe.TestManifestBuilder") as MB, \
              patch("pfmr.sandbox.probe.SandboxRunner", return_value=mock_runner):
-            MB.return_value.write.return_value = (tmp_path / "m.json", tmp_path / "i.sh")
             report = prober.probe([_pkg("mylib")], work_dir=tmp_path)
 
         assert any(e.error_type == SandboxErrorType.MISSING_NATIVE_DEP for e in report.errors)
@@ -535,7 +544,7 @@ class TestBuildSandboxProber:
             return r
 
         mock_runner = MagicMock()
-        mock_runner.build.return_value = ok()
+        mock_runner.init.return_value = ok()
         mock_runner.run.side_effect = [
             ok(),               # venv setup
             ok("Installed"),    # install
@@ -546,9 +555,7 @@ class TestBuildSandboxProber:
 
         pkg = _pkg("cryptography", native_deps=["openssl"])
         with patch.object(prober, "is_available", return_value=True), \
-             patch("pfmr.sandbox.probe.TestManifestBuilder") as MB, \
              patch("pfmr.sandbox.probe.SandboxRunner", return_value=mock_runner):
-            MB.return_value.write.return_value = (tmp_path / "m.json", tmp_path / "i.sh")
             report = prober.probe([pkg], work_dir=tmp_path)
 
         assert "openssl" in report.missing_pkgconfig

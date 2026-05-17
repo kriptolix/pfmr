@@ -1,0 +1,12 @@
+id: sane-airscan
+provides: []
+pkgconfig:
+- sane-airscan
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/alexpevzner/sane-airscan/archive/refs/tags/0.99.37.tar.gz
+  sha256: b012d4ca8b526e28b0baf1e0dcc1504a1f67118914ee9362201d04a37dbf7e5f
+cleanup:
+- /include
+- /lib/pkgconfig

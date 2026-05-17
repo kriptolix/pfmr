@@ -1,0 +1,16 @@
+id: gpg
+provides: []
+pkgconfig:
+- gpg
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.4.7.tar.bz2
+  sha256: 7b24706e4da7e0e3b06ca068231027401f238102c41c909631349dcc3b85eb46
+config-opts:
+- --disable-doc
+- --enable-gpg-is-gpg2
+- --disable-tests
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: pivy
+provides: []
+pkgconfig:
+- pivy
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/coin3d/pivy/archive/refs/tags/0.6.11.tar.gz
+  sha256: 78f79bd7d1ce7e8140ceba4b1220136ea1f14b4403b1e463c59fa892feed961e
+config-opts:
+- -DPIVY_USE_QT6=ON
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: libplist
+provides: []
+pkgconfig:
+- libplist
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/libimobiledevice/libplist/releases/download/2.7.0/libplist-2.7.0.tar.bz2
+cleanup:
+- /include
+- /bin
+- '*.a'
+- '*.la'
+- /lib/*.so
+- /share/runtime/locale

@@ -1,0 +1,15 @@
+id: libgravatar
+provides: []
+pkgconfig:
+- libgravatar
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/libgravatar-25.12.2.tar.xz
+  sha256: 086f3a32695442b49a2716daa354752630e2ac055f9810988a423be51ba5d037
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

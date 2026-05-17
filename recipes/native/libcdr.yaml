@@ -1,0 +1,16 @@
+id: libcdr
+provides: []
+pkgconfig:
+- libcdr
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dev-www.libreoffice.org/src/libcdr/libcdr-0.1.8.tar.xz
+  sha256: ced677c8300b29c91d3004bb1dddf0b99761bf5544991c26c2ee8f427e87193c
+config-opts:
+- --disable-tests
+cleanup:
+- /include
+- /lib/pkgconfig
+- /bin/cmx*
+- /bin/cdr*

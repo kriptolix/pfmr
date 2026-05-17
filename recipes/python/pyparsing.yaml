@@ -1,0 +1,51 @@
+id: pyparsing
+type: python
+pypi_name: pyparsing
+requires:
+  pkgconfig:
+  - avahi
+  - bazaar
+  - blueprint-compiler
+  - bubblewrap
+  - cjson
+  - curl
+  - dbus
+  - distro
+  - freerdp
+  - geos
+  - gnome-connections
+  - gtk-vnc
+  - jq
+  - libcups
+  - libfuse
+  - libfyaml
+  - libsodium
+  - libssh
+  - libvncserver
+  - libxml-prefix
+  - libxmu
+  - libxslt-prefix
+  - optipng
+  - ostree
+  - p7zip
+  - pcsc
+  - popt
+  - rpm
+  - sdl3_ttf
+  - spice-gtk
+  - svn
+  - system-libs
+  - systemdsystemgeneratordir
+  - systemdsystemunitdir
+  - vte
+  - xauth
+  - xdg-dbus-proxy
+  - xmlstarlet
+  - xprop
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

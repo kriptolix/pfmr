@@ -1,0 +1,21 @@
+id: libccp4
+provides: []
+pkgconfig:
+- libccp4
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www2.mrc-lmb.cam.ac.uk/personal/pemsley/coot/dependencies/libccp4-8.0.0.tar.gz
+  sha256: cb813ae86612a0866329deab7cee96eac573d81be5b240341d40f9ad5322ff2d
+config-opts:
+- --disable-fortran
+- --disable-debug
+- --disable-docs
+- --disable-dependency-tracking
+- --disable-silent-rules
+- --enable-shared
+- --disable-static
+- --disable-Werror
+cleanup:
+- /include
+- /lib/pkgconfig

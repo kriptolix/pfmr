@@ -1,0 +1,12 @@
+id: mypaint-brushes
+provides: []
+pkgconfig:
+- mypaint-brushes
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mypaint/mypaint-brushes/releases/download/v2.0.2/mypaint-brushes-2.0.2.tar.xz
+  sha256: 7984a74edef94571d872d0629b224abaa956a36f632f5c5516b33d22e49eb566
+cleanup:
+- /include
+- /lib/pkgconfig

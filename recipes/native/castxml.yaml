@@ -1,0 +1,14 @@
+id: castxml
+provides: []
+pkgconfig:
+- castxml
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/CastXML/CastXML/archive/v0.4.5.tar.gz
+  sha256: 8349e344f4cebd2bff9032eeca794a8c35cbff65c18ba37184503e3997145c92
+config-opts:
+- -DCLANG_LINK_CLANG_DYLIB:BOOL=ON
+- -DLLVM_DIR=/usr/lib/sdk/llvm11/lib/cmake/llvm
+cleanup:
+- /lib/cmake

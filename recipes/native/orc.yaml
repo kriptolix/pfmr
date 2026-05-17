@@ -1,0 +1,17 @@
+id: orc
+provides: []
+pkgconfig:
+- orc
+buildsystem: meson
+source:
+  type: archive
+  url: https://gstreamer.freedesktop.org/src/orc/orc-0.4.34.tar.xz
+  sha256: 8f47abb3f097171e44eb807adcdabd860fba2effd37d8d3c4fbd5f341cadd41f
+config-opts:
+- -Dbenchmarks=disabled
+- -Dexamples=disabled
+- -Dgtk_doc=disabled
+- -Dtests=disabled
+cleanup:
+- /include
+- /lib/pkgconfig

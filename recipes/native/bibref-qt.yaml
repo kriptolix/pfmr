@@ -1,0 +1,18 @@
+id: bibref-qt
+provides: []
+pkgconfig:
+- bibref-qt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/kovzol/bibref/archive/b46b1aa0e1f1877b4b9185baf031a82bd67c500d.zip
+  sha256: 1f47dc9dc16e1b05629de78b7a652fec167757dc089c0599a96034826eaa306a
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_SHARED_LIBS=ON
+- -UPROJECT_SOURCE_DIR
+- -DPROJECT_SOURCE_DIR=/app/share/bibref-qt
+- -DWEBENGINE=ON
+cleanup:
+- /include
+- /lib/pkgconfig

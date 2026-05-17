@@ -1,0 +1,16 @@
+id: prismlauncher
+provides: []
+pkgconfig:
+- prismlauncher
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/PrismLauncher/PrismLauncher/releases/download/11.0.2/PrismLauncher-11.0.2.tar.gz
+  sha256: 8956e9351bcb0472fc9c2c61ae68aa2960f27f7cabb1cacd86dd2af1c233a064
+config-opts:
+- -DLauncher_BUILD_PLATFORM=flatpak
+- -DLauncher_ENABLE_JAVA_DOWNLOADER=ON
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

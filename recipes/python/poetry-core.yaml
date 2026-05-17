@@ -1,0 +1,33 @@
+id: poetry-core
+type: python
+pypi_name: poetry-core
+requires:
+  pkgconfig:
+  - alsa
+  - appstream
+  - evolution-data-server
+  - flatpak
+  - flatpak-builder
+  - gnome-online-accounts
+  - iproute2
+  - jack
+  - libical
+  - libndp
+  - libnma
+  - librest
+  - networkmanager
+  - networkmanager-openvpn
+  - ola
+  - polkit
+  - protobuf
+  - pycairo
+  - pygobject
+  - python-rtmidi
+  - rtmidi
+  - scrcpy
+  - systemd
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.flatpak.Builder
+updated: '2026-05-16'

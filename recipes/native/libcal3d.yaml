@@ -1,0 +1,14 @@
+id: libcal3d
+provides: []
+pkgconfig:
+- libcal3d
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/raduprv/Eternal-Lands/releases/download/1.9.5.9-1/cal3d-0.11.0.tar.gz
+  sha256: b3a3fc80053cc00fbe7585f972c0e11669dbd2a13a371a10cc2dac7c9ed5f473
+config-opts:
+- --disable-static
+cleanup:
+- /bin
+- /share

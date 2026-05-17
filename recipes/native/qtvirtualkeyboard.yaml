@@ -1,0 +1,12 @@
+id: qtvirtualkeyboard
+provides: []
+pkgconfig:
+- qtvirtualkeyboard
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/official_releases/qt/6.9/6.9.2/submodules/qtvirtualkeyboard-everywhere-src-6.9.2.tar.xz
+  sha256: 7b4100da01bafa72e20ab4e1459dcda1e6048e70b4d650b3c578613f0ffc11e3
+cleanup:
+- /include
+- /lib/pkgconfig

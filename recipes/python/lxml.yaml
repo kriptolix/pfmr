@@ -1,0 +1,69 @@
+id: lxml
+type: python
+pypi_name: lxml
+requires:
+  pkgconfig:
+  - app-name
+  - branding
+  - casilda
+  - collabora-office
+  - cppcheck
+  - cppunit
+  - docrepair-fonts
+  - fast-float
+  - ffms2
+  - fonts
+  - galleries
+  - gdbhandler
+  - geany
+  - geographiclib
+  - ide-flatpak-wrapper
+  - info-url
+  - kadas-albireo
+  - lang
+  - libreoffice
+  - libseat
+  - libxaw
+  - libxmu
+  - linker-hash-style
+  - lo-path
+  - lokit-path
+  - osg
+  - osg-qt
+  - osgearth
+  - poco
+  - poco-includes
+  - poco-libs
+  - qgis
+  - quazip
+  - rsync
+  - sv2svgt
+  - system-altlinuxhyph
+  - system-curl
+  - system-dicts
+  - system-expat
+  - system-fontconfig
+  - system-freetype
+  - system-graphite
+  - system-harfbuzz
+  - system-hunspell
+  - system-icu
+  - system-lcms2
+  - system-libpng
+  - system-libtiff
+  - system-libwebp
+  - system-libxml
+  - system-mythes
+  - system-nss
+  - system-openssl
+  - system-zlib
+  - theme
+  - vendor
+  - vte
+  - wlroots
+  - xterm
+  extensions:
+  - org.freedesktop.Sdk.Extension.node20
+confidence: 0.6
+source: flathub:ar.xjuan.Cambalache
+updated: '2026-05-16'

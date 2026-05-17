@@ -1,0 +1,14 @@
+id: arrow
+provides: []
+pkgconfig:
+- arrow
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/apache/arrow/archive/refs/tags/apache-arrow-23.0.0.tar.gz
+  sha256: 7510f4b578febb3af5b3e93ad4616ae3cb680b0f651217ebb29f4c7e5ea952f3
+config-opts:
+- -DARROW_PARQUET=ON
+cleanup:
+- /include
+- /lib/pkgconfig

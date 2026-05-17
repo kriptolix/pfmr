@@ -1,0 +1,17 @@
+id: zathura
+provides: []
+pkgconfig:
+- zathura
+buildsystem: meson
+source:
+  type: archive
+  url: https://pwmt.org/projects/zathura/download/zathura-2026.05.10.tar.xz
+  sha256: aa52965112da02db0b46805e09f0ac7b914fbf7b35d1a6ec81d5b721b5fd2498
+config-opts:
+- -Dseccomp=disabled
+- -Dlandlock=disabled
+- -Dmanpages=disabled
+cleanup:
+- /share/bash-completion
+- /share/fish
+- /share/zsh

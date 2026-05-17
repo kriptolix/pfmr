@@ -1,0 +1,12 @@
+id: fish
+provides: []
+pkgconfig:
+- fish
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/fish-shell/fish-shell/releases/download/4.0.8/fish-4.0.8.tar.xz
+  sha256: 7f779d13aa55d2fa3afc17364c61ab9edc16faa1eac5851badeffb4e73692240
+cleanup:
+- /include
+- /lib/pkgconfig

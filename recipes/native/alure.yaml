@@ -1,0 +1,18 @@
+id: alure
+provides: []
+pkgconfig:
+- alure
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://ftp.fau.de/gentoo/distfiles/alure-1.2.tar.bz2
+  sha256: 465e6adae68927be3a023903764662d64404e40c4c152d160e3a8838b1d70f71
+config-opts:
+- -DBUILD_SHARED=ON
+- -DBUILD_STATIC=OFF
+- -DBUILD_EXAMPLES=OFF
+cleanup:
+- /bin/alure*
+- /include/AL
+- /share/doc/alure
+- /lib/pkgconfig/alure*

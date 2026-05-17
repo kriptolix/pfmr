@@ -1,0 +1,11 @@
+id: recutils
+provides: []
+pkgconfig:
+- recutils
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/recutils/recutils-1.9.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

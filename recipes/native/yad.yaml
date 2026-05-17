@@ -1,0 +1,16 @@
+id: yad
+provides: []
+pkgconfig:
+- yad
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/v1cont/yad/releases/download/v14.2/yad-14.2.tar.xz
+  sha256: 5cab399af8d9a10b76d477f848180d00addba38f4f1272a05b153a393bba3038
+config-opts:
+- --enable-standalone
+- --disable-icon-browser
+- --disable-tools
+cleanup:
+- /include
+- /lib/pkgconfig

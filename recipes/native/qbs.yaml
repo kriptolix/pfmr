@@ -1,0 +1,13 @@
+id: qbs
+provides: []
+pkgconfig:
+- qbs
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/qbs/qbs/archive/refs/tags/v3.1.2.tar.gz
+  sha256: 33a981d51615a0115ecf8ec17b237c821cc403c613f4bc8623207d63a9183dc0
+config-opts:
+- -DWITH_TESTS=OFF
+cleanup:
+- '*'

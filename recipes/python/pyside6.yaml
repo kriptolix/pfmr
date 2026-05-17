@@ -1,0 +1,23 @@
+id: pyside6
+type: python
+pypi_name: pyside6
+requires:
+  pkgconfig:
+  - cxxitimer
+  - cxxopts
+  - cxxsemaphore
+  - cxxshm
+  - dump_shm
+  - krb5
+  - libmodbus
+  - modbus_rtu_client_shm
+  - modbus_tcp_client_shm
+  - nlohmann_json
+  - shm_format
+  - shm_random
+  - stdin-to-modbus-shm
+  - wago-modbus-coupler-shm
+  - write_shm
+confidence: 0.6
+source: flathub:network.koesling.shm-modbus
+updated: '2026-05-16'

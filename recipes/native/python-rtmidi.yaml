@@ -1,0 +1,12 @@
+id: python-rtmidi
+provides: []
+pkgconfig:
+- python-rtmidi
+buildsystem: meson
+source:
+  type: archive
+  url: https://files.pythonhosted.org/packages/dd/ee/0f91965dcc471714c69df21e5ca3d94dc81411b7dee2d31ff1184bea07c9/python_rtmidi-1.5.8.tar.gz
+  sha256: 7f9ade68b068ae09000ecb562ae9521da3a234361ad5449e83fc734544d004fa
+cleanup:
+- /include
+- /lib/pkgconfig

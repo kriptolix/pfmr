@@ -1,0 +1,15 @@
+id: ksmtp
+provides: []
+pkgconfig:
+- ksmtp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/ksmtp-25.12.2.tar.xz
+  sha256: 331c237109d63c30a16293841cdfad263a0bdccb60f767831078a6ffe6489e41
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

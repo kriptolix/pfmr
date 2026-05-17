@@ -1,0 +1,14 @@
+id: libnfs
+provides: []
+pkgconfig:
+- libnfs
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/sahlberg/libnfs/archive/libnfs-6.0.2.tar.gz
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /bin
+- /lib/*.so

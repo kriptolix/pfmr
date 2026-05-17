@@ -1,0 +1,25 @@
+id: pyparsing-2-4-6-py2-py3-none-any-whl
+type: python
+pypi_name: pyparsing-2-4-6-py2-py3-none-any-whl
+requires:
+  pkgconfig:
+  - gnome-boxes
+  - govf
+  - gtk-vnc
+  - json-c
+  - libosinfo
+  - libportal
+  - libtirpc
+  - libvirt
+  - libvirt-glib
+  - qemu
+  - simdutf
+  - spice-gtk
+  - usbredir
+  - vte
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.vala
+confidence: 0.6
+source: flathub:de.capypara.FieldMonitor
+updated: '2026-05-16'

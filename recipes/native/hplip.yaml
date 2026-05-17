@@ -1,0 +1,40 @@
+id: hplip
+provides: []
+pkgconfig:
+- hplip
+- pic
+- cupsfilterdir
+- cupsbackenddir
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/sourceforge/hplip/hplip-3.25.8.tar.gz
+  sha256: 1cf6d6c28735435c8eb6646e83bcfb721e51c4b1f0e8cf9105a6faf96dc9ad25
+config-opts:
+- --disable-static
+- --disable-doc-build
+- --disable-hpijs-install
+- --disable-hpcups-install
+- --disable-new-hpcups
+- --disable-hpps-install
+- --disable-gui-build
+- --disable-fax-build
+- --disable-cups11-build
+- --disable-foomatic-ppd-install
+- --disable-foomatic-drv-install
+- --disable-cups-drv-install
+- --disable-cups-ppd-install
+- --disable-foomatic-rip-hplip-install
+- --disable-qt3
+- --disable-qt4
+- --disable-qt5
+- --enable-dbus-build
+- --enable-network-build
+- --enable-pp-build
+- --enable-scan-build
+- --with-pic
+- --with-cupsfilterdir=/app/lib/cups/filter
+- --with-cupsbackenddir=/app/lib/cups/backend
+cleanup:
+- /lib/cups
+- /share/ppd

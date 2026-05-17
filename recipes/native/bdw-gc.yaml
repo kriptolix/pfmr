@@ -1,0 +1,19 @@
+id: bdw-gc
+provides: []
+pkgconfig:
+- bdw-gc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/ivmai/bdwgc/archive/refs/tags/v8.2.12.tar.gz
+  sha256: d09001f45dabf1c29a5df3e63020a4bab5ad4aad69137bb07100c717e2ecba0b
+config-opts:
+- --disable-debug
+- --disable-docs
+- --disable-dependency-tracking
+- --disable-silent-rules
+- --enable-shared
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

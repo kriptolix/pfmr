@@ -1,0 +1,12 @@
+id: grilo
+provides: []
+pkgconfig:
+- grilo
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/grilo/0.3/grilo-0.3.19.tar.xz
+  sha256: 0869c81d19ab139c667d79567c14ddcb6cb5cbfc0108d04cade287eb29536706
+cleanup:
+- /include
+- /bin

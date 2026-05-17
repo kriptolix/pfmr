@@ -1,0 +1,12 @@
+id: synfigstudio
+provides: []
+pkgconfig:
+- synfigstudio
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/synfig/synfig/releases/download/v1.5.3/synfigstudio-1.5.3.tar.gz
+  sha256: 7f43003a36ea0bc917e60b75448012afc1b8ea07fcee07cc7e813a448bf7bbe5
+cleanup:
+- /include
+- /lib/pkgconfig

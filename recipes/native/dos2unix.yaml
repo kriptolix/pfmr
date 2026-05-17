@@ -1,0 +1,11 @@
+id: dos2unix
+provides: []
+pkgconfig:
+- dos2unix
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/dos2unix/dos2unix/7.5.5/dos2unix-7.5.5.tar.gz
+  sha256: 75f692b8484c8c24579a2ffd87df16b9c9428ed95497e3393a21d1ba0697ac33
+cleanup:
+- '*'

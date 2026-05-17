@@ -1,0 +1,12 @@
+id: boehmgc
+provides: []
+pkgconfig:
+- boehmgc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/ivmai/bdwgc/archive/v8.0.6.tar.gz
+  sha256: 3de0e3d456103a8409927ac16aa45d7b7647dd613e1f212019deab27713445cb
+cleanup:
+- /include
+- /lib/pkgconfig

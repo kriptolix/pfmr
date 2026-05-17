@@ -1,0 +1,14 @@
+id: pyproject-metadata
+type: python
+pypi_name: pyproject-metadata
+requires:
+  pkgconfig:
+  - qgis
+  - scrcpy
+  - xterm
+  extensions:
+  - org.freedesktop.Sdk.Extension.node22
+  - org.freedesktop.Sdk.Extension.openjdk17
+confidence: 0.6
+source: flathub:org.qgis.qgis
+updated: '2026-05-16'

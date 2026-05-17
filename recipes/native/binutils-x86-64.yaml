@@ -1,0 +1,21 @@
+id: binutils-x86-64
+provides: []
+pkgconfig:
+- binutils-x86_64
+- system-zlib
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/binutils/binutils-2.45.1.tar.gz
+  sha256: 2b63ae0ad015eb2755294f127bfd179c1849979dd87b6e8e1a7376964a4323dc
+config-opts:
+- --with-system-zlib
+- --enable-lto
+- --enable-plugins
+- --enable-deterministic-archives
+- --disable-multilib
+- --disable-nls
+- --disable-werror
+cleanup:
+- /include
+- /lib/pkgconfig

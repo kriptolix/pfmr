@@ -1,0 +1,14 @@
+id: fdk-aac
+provides: []
+pkgconfig:
+- fdk-aac
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mstorsjo/fdk-aac/archive/v2.0.3.tar.gz
+  sha256: e25671cd96b10bad896aa42ab91a695a9e573395262baed4e4a2ff178d6a3a78
+config-opts:
+- --prefix=/app
+cleanup:
+- /include
+- /lib/pkgconfig

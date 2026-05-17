@@ -1,0 +1,14 @@
+id: glade
+provides: []
+pkgconfig:
+- glade
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/glade/3.40/glade-3.40.0.tar.xz
+  sha256: 31c9adaea849972ab9517b564e19ac19977ca97758b109edc3167008f53e3d9c
+config-opts:
+- -Dman=false
+cleanup:
+- /include
+- /lib/pkgconfig

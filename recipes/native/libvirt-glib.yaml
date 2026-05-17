@@ -1,0 +1,12 @@
+id: libvirt-glib
+provides: []
+pkgconfig:
+- libvirt-glib
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.com/libvirt/libvirt-glib/-/archive/v5.0.0/libvirt-glib-v5.0.0.tar.gz
+  sha256: b7ffc65e1e0ed014b5e5bcfbb9574cd56d103eeed974b6229dbf8c62975d16b5
+cleanup:
+- /include
+- /lib/pkgconfig

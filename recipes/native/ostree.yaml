@@ -1,0 +1,19 @@
+id: ostree
+provides: []
+pkgconfig:
+- ostree
+- systemdsystemgeneratordir
+- curl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/ostreedev/ostree/releases/download/v2026.1/libostree-2026.1.tar.xz
+  sha256: 8e77c285dd6fa5ec5fb063130390977be727fe11107335ed8778a40385069e95
+config-opts:
+- --disable-man
+- --with-systemdsystemgeneratordir=/app/lib/systemd/system-generators
+- --without-systemdsystemunitdir
+- --with-curl
+cleanup:
+- /include
+- /lib/pkgconfig

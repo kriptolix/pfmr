@@ -1,0 +1,16 @@
+id: plutosdr
+provides: []
+pkgconfig:
+- plutosdr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/analogdevicesinc/libiio/archive/refs/tags/v0.26.tar.gz
+  sha256: fb445fb860ef1248759f45d4273a4eff360534480ec87af64c6b8db3b99be7e5
+config-opts:
+- -DINSTALL_UDEV_RULE=OFF
+- -DHAVE_DNS_SD=OFF
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: ixion
+provides: []
+pkgconfig:
+- ixion
+- boost
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.com/ixion/ixion/-/archive/0.20.0/ixion-0.20.0.tar.bz2
+  sha256: 39e54cd486fed458c2a6e83a5e658d4c2e818862355b33645bb1342449428463
+config-opts:
+- --with-boost=/app
+cleanup:
+- /include
+- /lib/pkgconfig

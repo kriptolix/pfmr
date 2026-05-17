@@ -624,16 +624,103 @@ pfmr
  ├── sandbox (flatpak-builder --run)
  └── learn (error ingestion)
 
+pfmr/
+├── pfmr/                          — pacote principal
+│   ├── cli.py                     — CLI raiz (pfmr resolve/generate/probe/sdk/ext/learn)
+│   ├── models.py                  — tipos compartilhados (todas as fases)
+│   ├── pipeline.py                — orquestrador Phase 1+2
+│   │
+│   ├── data/                      — dados estáticos
+│   │   ├── mappings.toml          — ★ NOVO: fonte única de todos os dicionários
+│   │   ├── mappings.py            — ★ NOVO: loader singleton (MAPPINGS)
+│   │   ├── native-hints/packages.toml
+│   │   ├── sdk-profiles/          — org.freedesktop.Sdk, org.gnome.Sdk, org.kde.Sdk
+│   │   └── extension-profiles/    — rust-stable, llvm18, openjdk21, node20, golang, gfortran
+│   │
+│   ├── resolvers/                 — Phase 1+2
+│   │   ├── uv_resolver.py
+│   │   ├── sdk_capability.py      — usa MAPPINGS para baseline libs
+│   │   ├── sdk_extension.py
+│   │   └── native_dependency.py   — usa MAPPINGS para baseline libs
+│   │
+│   ├── generators/manifest.py     — gerador de manifesto Flatpak
+│   ├── recipes/db.py              — RecipeDB
+│   │
+│   ├── sandbox/                   — Phase 3: build sandbox (flatpak build)
+│   │   ├── runner.py              — ★ ALTERADO: flatpak build-init + flatpak build
+│   │   ├── probe.py               — ★ ALTERADO: usa MAPPINGS, sem TestManifestBuilder
+│   │   ├── manifest.py            — gerador do manifesto de teste
+│   │   └── errors.py              — parser de erros normalizado
+│   │
+│   └── learn/                     — sistema de aprendizado (standalone)
+│       ├── cli.py                 — ★ REESCRITO: export por padrão, sem KG
+│       ├── manifest.py            — ★ REESCRITO: usa MAPPINGS, detecta app module
+│       ├── flathub.py             — minera Flathub com MineProgress
+│       ├── shared_modules.py      — ★ NOVO: importa módulos individuais JSON
+│       ├── exporter.py            — ★ REESCRITO: ManifestAnalysis → recipes/
+│       ├── sdk_probe.py           — usa flatpak build-init
+│       ├── graph.py               — KnowledgeGraph (ainda disponível, não obrigatório)
+│       └── sandbox.py             — SandboxLearner
+│
+├── recipes/                       — receitas versionáveis no git
+│   ├── native/                    — libusb, libffi, hidapi, libvips, openblas
+│   ├── python/                    — (populado pelo learn)
+│   └── extensions/                — rust-stable
+│
+├── knowledge/README.md            — documentação do KG para contribuidores
+└── tests/                         — 265 testes
+
+
  python -m pytest tests/test_sandbox.py
  pip install -e ".[dev]"
 
 
-notas:
-
-parece que depender do flatpak-builder não é interessante. Aparentemente ele nao esta disponível
-nas instalações padrão e o build é feito com comando flatpak no Formato:
-
 flatpak build --with-appdir --allow=devel...
 
-Faça as correções devidas
+command {'fc-cache -fsv ||': None}
+
+WARNING  pfmr.recipes.db — Failed to parse recipe /var/home/k/Projetos/pfmr/recipes/python/zope-interface.yaml: 
+'str' object has no attribute 'get'
+
+como o pfmr learn manifest esta lidando uma nova aparição do mesmo modulo em outro 
+manifesto?
+
+def _run_via_builder ainda é necessário? Considerando que o binário nunca estará presente?
+
+Fa sentido recipes para extensões, extensões são apenas fonte de data?
+
+sandbox ainda depende de graph, mas a logica de graph deve ser removida
+
+Ao usar uma recipe python que depende de uma dependência nativa que também possui recipe
+o aplicativo é capaz de cria o modulo de forma correta?
+
+resolve   Resolve Python dependencies and display a summary.                                                                               │
+│ generate  Resolve dependencies and generate a Flatpak manifest module file.                                                                │
+│ probe     Probe packages inside a real Flatpak SDK sandbox.                                                                                │
+│ version   Print pfmr version.                                                                                                              │
+│ recipes   Manage local recipe database.                                                                                                    │
+│ sdk       Inspect and probe Flatpak SDK capabilities.                                                                                      │
+│ ext       Inspect SDK Extension profiles and requirements.                                                                                 │
+│ learn     Mine manifests and import recipes without a CI environment.
+
+
+Alguns ajustes:
+
+A ideia do pacote sempre foi fazer melhor o trabalho que flatpak-pip-generator faz, ou seja, o que eu quero
+é uma saida que, ou seja um modulo pronto para importar no manifesto, ou um report explicando o que falta no 
+ambiente para que o pacote python que se esta tentando instalar compile corretamente. No maximo, quando apenas
+parte das pacotes pode ser revolvida, uma combinação das duas coisas. Nesse caso, eu só preciso dum comando 
+que faça isso exposto ao usuario. Não preciso gerar manifestos, apenas modulos para ser adicionados a um manifesto 
+existente. 
+
+O fluxo deve ser algo como:
+
+se tem recipe, retornar um trecho com modulos com base nos recipes para adicionar o manifesto.
+se nao tem recipes, faz probe para verificar as dependencies ausentes e ver se tem como
+criar um recipe novo a partir dos recipes native
+se nao tiver como, avisa quais dependencias vão ficar pendentes.
+
+Alem disso, ao usar o comando resolve estou recebendo isso para todos so recipes:
+WARNING  pfmr.recipes.db — Failed to parse recipe /var/home/k/Projetos/pfmr/recipes/python/zope-interface.yaml: 
+'str' object has no attribute 'get'
 

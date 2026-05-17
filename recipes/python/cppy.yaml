@@ -1,0 +1,14 @@
+id: cppy
+type: python
+pypi_name: cppy
+requires:
+  pkgconfig:
+  - eigen3
+  - lapack
+  - python
+  - qhull
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm12
+confidence: 0.6
+source: flathub:com.github.chipmuenk.pyfda
+updated: '2026-05-16'

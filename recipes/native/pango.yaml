@@ -1,0 +1,14 @@
+id: pango
+provides: []
+pkgconfig:
+- pango
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/pango/1.43/pango-1.43.0.tar.xz
+  sha256: d2c0c253a5328a0eccb00cdd66ce2c8713fabd2c9836000b6e22a8b06ba3ddd2
+config-opts:
+- --buildtype=release
+cleanup:
+- /include
+- /lib/pkgconfig

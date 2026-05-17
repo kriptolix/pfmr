@@ -1,0 +1,20 @@
+id: g-wrap
+provides: []
+pkgconfig:
+- g-wrap
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.savannah.gnu.org/releases/g-wrap/g-wrap-1.9.15.tar.gz
+  sha256: 0ff6e2700e74b457323726f7c2551a466d8ba44339705f6792d7b533145c602a
+config-opts:
+- --disable-debug
+- --disable-docs
+- --disable-dependency-tracking
+- --disable-silent-rules
+- --enable-shared
+- --disable-static
+- --disable-Werror
+cleanup:
+- /include
+- /lib/pkgconfig

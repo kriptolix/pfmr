@@ -1,0 +1,14 @@
+id: asunder
+provides: []
+pkgconfig:
+- asunder
+buildsystem: autotools
+source:
+  type: archive
+  url: http://littlesvr.ca/asunder/releases/asunder-3.0.2.tar.bz2
+  sha256: b71341d746ccf56aa77b1785c6af81aa641d084ac3d34b78beb537618848b64b
+config-opts:
+- --prefix=/app
+cleanup:
+- /include
+- /lib/pkgconfig

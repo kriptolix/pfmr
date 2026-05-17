@@ -1,0 +1,17 @@
+id: surge-xt-plugins
+provides: []
+pkgconfig:
+- surge-xt-plugins
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/surge-synthesizer/releases-xt/releases/download/1.3.4/surge-src-1.3.4.tar.gz
+  sha256: d4b8f595a0595205ddd63eacadd23a0be33df46affc83afe9eafff7018990d55
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DSURGE_SKIP_STANDALONE=YES
+- -DSURGE_BUILD_LV2=YES
+cleanup:
+- /include
+- /lib/pkgconfig

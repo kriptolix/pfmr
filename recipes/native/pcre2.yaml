@@ -1,0 +1,17 @@
+id: pcre2
+provides: []
+pkgconfig:
+- pcre2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.43/pcre2-10.43.tar.bz2
+  sha256: e2a53984ff0b07dfdb5ae4486bbb9b21cca8e7df2434096cc9bf1b728c350bcb
+config-opts:
+- --enable-shared
+- --enable-pcre2-32
+- --enable-pcre2-16
+- --enable-jit
+cleanup:
+- /include
+- /lib/pkgconfig

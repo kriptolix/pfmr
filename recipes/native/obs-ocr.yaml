@@ -1,0 +1,20 @@
+id: obs-ocr
+provides: []
+pkgconfig:
+- obs-ocr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/occ-ai/obs-ocr/releases/download/0.0.5/obs-ocr-0.0.5-source.tar.xz
+  sha256: 00cc82b6828227b1a7d34b65c64de7e3b37cccd4504e15745cabcabbe0f3ab11
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DENABLE_FRONTEND_API=ON
+- -DENABLE_QT=ON
+- -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+- -DUSE_SYSTEM_OPENCV=ON
+- -DUSE_SYSTEM_TESSERACT=ON
+cleanup:
+- /include
+- /lib/pkgconfig

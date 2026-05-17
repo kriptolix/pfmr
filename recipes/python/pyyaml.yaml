@@ -1,0 +1,35 @@
+id: pyyaml
+type: python
+pypi_name: pyyaml
+requires:
+  pkgconfig:
+  - blueprint-compiler
+  - chronograph
+  - cmark
+  - enet
+  - evolution-data-server
+  - glpk
+  - gnome-online-accounts
+  - gnutls
+  - icoutils
+  - imagemagick
+  - libical
+  - librest
+  - libunibreak
+  - nativefiledialog-extended
+  - openblas
+  - perl
+  - python
+  - qemu
+  - suitesparse
+  - swtpm
+  - tss-group
+  - tss-user
+  - vte
+  - zenity
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:com.github.themix_project.Oomox
+updated: '2026-05-16'

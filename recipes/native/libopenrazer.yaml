@@ -1,0 +1,12 @@
+id: libopenrazer
+provides: []
+pkgconfig:
+- libopenrazer
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/z3ntu/libopenrazer/releases/download/v0.4.0/libopenrazer-0.4.0.tar.xz
+  sha256: be0a13062f624927617e4deab2685b947e2c3d616e8f4994d68bb22815359138
+cleanup:
+- /include
+- /lib/pkgconfig

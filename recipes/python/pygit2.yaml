@@ -1,0 +1,10 @@
+id: pygit2
+type: python
+pypi_name: pygit2
+requires:
+  pkgconfig:
+  - gtksourceview
+  - meld
+confidence: 0.6
+source: flathub:de.philippun1.turtle
+updated: '2026-05-16'

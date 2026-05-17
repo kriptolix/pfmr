@@ -1,0 +1,16 @@
+id: certifi
+type: python
+pypi_name: certifi
+requires:
+  pkgconfig:
+  - ffms2
+  - libinsane
+  - openblas
+  - poppler
+  - poppler-data
+  - python-paperwork
+  extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
+confidence: 0.6
+source: flathub:work.openpaper.Paperwork
+updated: '2026-05-16'

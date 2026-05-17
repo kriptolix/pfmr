@@ -1,0 +1,12 @@
+id: xmlsec
+provides: []
+pkgconfig:
+- xmlsec
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/lsh123/xmlsec/archive/refs/tags/1.3.9.tar.gz
+  sha256: 534f50743b2fa3ebf3c05917a293c73f255c823dd0285f02622260084317c605
+cleanup:
+- /include
+- /lib/pkgconfig

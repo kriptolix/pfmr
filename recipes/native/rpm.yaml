@@ -1,0 +1,19 @@
+id: rpm
+provides: []
+pkgconfig:
+- rpm
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/rpm-software-management/rpm/archive/refs/tags/rpm-6.0.1-release.tar.gz
+  sha256: 9796904971f186dd908d001f8d36bbed5436e5b9bc9c9eb98f7e1357ccb2a98d
+config-opts:
+- -DENABLE_TESTSUITE=OFF
+- -DWITH_AUDIT=OFF
+- -DENABLE_PYTHON=OFF
+- -DWITH_DBUS=OFF
+- -DWITH_ARCHIVE=ON
+- -DWITH_SEQUOIA=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: youtube-dl
+provides: []
+pkgconfig:
+- youtube-dl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/ytdl-org/youtube-dl/releases/download/2021.12.17/youtube-dl-2021.12.17.tar.gz
+  sha256: 9f3b99c8b778455165b4525f21505e86c7ff565f3ac319e19733d810194135df
+cleanup:
+- /include
+- /lib/pkgconfig

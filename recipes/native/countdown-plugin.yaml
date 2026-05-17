@@ -1,0 +1,15 @@
+id: countdown-plugin
+provides: []
+pkgconfig:
+- countdown-plugin
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ashmanix/obs-plugin-countdown/releases/download/2.1.0/obs-plugin-countdown-2.1.0-source.tar.xz
+  sha256: 745645d394354e6ceeeca0871edf8788c0233891713f9974bc7e04284d5ccf85
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_PREFIX_PATH=/app/plugins/Countdown
+cleanup:
+- /include
+- /lib/pkgconfig

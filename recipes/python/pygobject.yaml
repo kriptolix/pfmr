@@ -1,0 +1,12 @@
+id: pygobject
+type: python
+pypi_name: pygobject
+requires:
+  pkgconfig:
+  - gtksourceview
+  - unrar
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm21
+confidence: 0.6
+source: flathub:org.cvfosammmm.Porto
+updated: '2026-05-16'

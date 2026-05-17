@@ -1,0 +1,12 @@
+id: kgraphviewer
+provides: []
+pkgconfig:
+- kgraphviewer
+buildsystem: cmake
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kgraphviewer-25.12.3.tar.xz
+  sha256: 634d92f9bedb09e5e491e7c8ceb1c4a6607ccb8ef87f8c8b1c8a9f52e3f8c0c6
+cleanup:
+- /include
+- /lib/pkgconfig

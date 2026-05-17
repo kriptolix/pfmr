@@ -1,0 +1,12 @@
+id: gnome-maps
+provides: []
+pkgconfig:
+- gnome-maps
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-maps/50/gnome-maps-50.1.tar.xz
+  sha256: 42cdf0367f945ce3db1203a6bcfd1d5f5f36d9cac361c81c18567b93130de9eb
+cleanup:
+- /include
+- /lib/pkgconfig

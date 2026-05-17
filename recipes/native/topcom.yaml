@@ -1,0 +1,15 @@
+id: topcom
+provides: []
+pkgconfig:
+- topcom
+buildsystem: autotools
+source:
+  type: archive
+  url: http://deb.debian.org/debian/pool/main/t/topcom/topcom_1.1.2+ds.orig.tar.xz
+  sha256: b81e1fa3cca9bf41852faabdd34d8774c8ed2fd103dfd11018c9ab271b73da0f
+config-opts:
+- --enable-qsoptex
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

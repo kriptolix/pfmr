@@ -1,0 +1,11 @@
+id: mistletoe-1-4-0-py3-none-any-whl
+type: python
+pypi_name: mistletoe-1-4-0-py3-none-any-whl
+requires:
+  pkgconfig:
+  - corrosion
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:app.katvan.Katvan
+updated: '2026-05-16'

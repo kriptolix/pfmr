@@ -1,0 +1,14 @@
+id: libircclient
+provides: []
+pkgconfig:
+- libircclient
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/libircclient/libircclient/1.9/libircclient-1.9.tar.gz
+  sha256: 81c397eee618667bccfe8960352ba5f829c8c2e9badc270594b91128cd89c064
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: grantleetheme
+provides: []
+pkgconfig:
+- grantleetheme
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/grantleetheme-25.12.2.tar.xz
+  sha256: a9469621dd62c7bbceedb390e19f474c0f266a7545d53a1cb7637f63c08c6427
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,9 @@
+id: openpyxl
+type: python
+pypi_name: openpyxl
+requires:
+  pkgconfig:
+  - geos
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

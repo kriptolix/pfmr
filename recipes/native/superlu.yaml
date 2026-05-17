@@ -1,0 +1,16 @@
+id: superlu
+provides: []
+pkgconfig:
+- superlu
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/xiaoyeli/superlu/archive/v5.2.1.tar.gz
+  sha256: 77582501dedef295eb74e4dc9433e2816d2d8be211eae307379c13d93c65bc71
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_POSITION_INDEPENDENT_CODE=True
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

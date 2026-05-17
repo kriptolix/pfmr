@@ -1,0 +1,15 @@
+id: eb
+provides: []
+pkgconfig:
+- eb
+buildsystem: autotools
+source:
+  type: archive
+  url: https://salsa.debian.org/debian/eb/-/archive/debian/4.4.3-14.4/eb-debian-4.4.3-14.4.tar.gz
+  sha256: 7c907e159d735aaaa5b270abb9f8baaf3d0bb32591f23bd1fe39f76d79c60e77
+config-opts:
+- --enable-shared
+- --disable-static
+cleanup:
+- /bin
+- /share/doc

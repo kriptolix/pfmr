@@ -1,0 +1,12 @@
+id: mupen64plus-video-rice
+provides: []
+pkgconfig:
+- mupen64plus-video-rice
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mupen64plus/mupen64plus-video-rice/releases/download/2.6.0/mupen64plus-video-rice-src-2.6.0.tar.gz
+  sha256: 19f947d858f66aec41a99c0430bd41d6a2dff569be324d13156bd78fb89eadc4
+cleanup:
+- /include
+- /lib/pkgconfig

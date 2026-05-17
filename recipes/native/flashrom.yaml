@@ -1,0 +1,19 @@
+id: flashrom
+provides: []
+pkgconfig:
+- flashrom
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/flashrom/flashrom/archive/refs/tags/v1.7.0.tar.gz
+  sha256: c5a8892158bd749aadfee6e114eec268130cdd8c2027fd1ddf44273755b07b59
+config-opts:
+- -Dclassic_cli=disabled
+- -Dich_descriptors_tool=disabled
+- -Dbash_completion=disabled
+- -Dtests=disabled
+- -Dman-pages=disabled
+- -Ddocumentation=disabled
+cleanup:
+- /include
+- /lib/pkgconfig

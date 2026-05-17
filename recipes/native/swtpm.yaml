@@ -1,0 +1,18 @@
+id: swtpm
+provides: []
+pkgconfig:
+- swtpm
+- gnutls
+- tss-user
+- tss-group
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/stefanberger/swtpm/archive/refs/tags/v0.10.1.tar.gz
+  sha256: f8da11cadfed27e26d26c5f58a7b8f2d14d684e691927348906b5891f525c684
+config-opts:
+- --with-gnutls
+- --with-tss-user=tss
+- --with-tss-group=tss
+cleanup:
+- /libexec/installed_tests

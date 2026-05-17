@@ -1,0 +1,18 @@
+id: vlc
+provides: []
+pkgconfig:
+- vlc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.videolan.org/pub/videolan/vlc/3.0.19/vlc-3.0.19.tar.xz
+  sha256: 643e3294bafe922324663ca499515b7564f2794575fd7d2b7992d20896381745
+config-opts:
+- BUILDCC=/usr/bin/gcc -std=gnu99
+- --disable-a52
+- --disable-lua
+- --enable-fdkaac
+- --prefix=/var/tmp/install
+cleanup:
+- /include
+- /lib/pkgconfig

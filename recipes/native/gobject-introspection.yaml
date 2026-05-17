@@ -1,0 +1,12 @@
+id: gobject-introspection
+provides: []
+pkgconfig:
+- gobject-introspection
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gobject-introspection/1.71/gobject-introspection-1.71.0.tar.xz
+  sha256: 555dc3997c2892228543029f58610b83fc1da733e4e3d18e9363d7b5a81164dd
+cleanup:
+- /include
+- /lib/pkgconfig

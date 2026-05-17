@@ -1,0 +1,12 @@
+id: libgee
+provides: []
+pkgconfig:
+- libgee
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/GNOME/libgee/archive/0.20.0.tar.gz
+  sha256: 42fe6d651910cb8b720167f71c5255a1b7b1afc82fecd3f31e61f9602b3b1335
+cleanup:
+- /include
+- /lib/pkgconfig

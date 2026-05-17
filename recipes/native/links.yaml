@@ -1,0 +1,11 @@
+id: links
+provides: []
+pkgconfig:
+- links
+buildsystem: autotools
+source:
+  type: archive
+  url: http://links.twibright.com/download/links-2.29.tar.gz
+  sha256: c4f39438d066ffc161571f29c32b79073250fc61a389966430bbe8bc662cbae6
+cleanup:
+- '*'

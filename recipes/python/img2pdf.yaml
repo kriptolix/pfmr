@@ -1,0 +1,9 @@
+id: img2pdf
+type: python
+pypi_name: img2pdf
+requires:
+  pkgconfig:
+  - poppler
+confidence: 0.6
+source: flathub:com.github.jeromerobert.pdfarranger
+updated: '2026-05-16'

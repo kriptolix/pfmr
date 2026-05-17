@@ -1,0 +1,15 @@
+id: openttd
+provides: []
+pkgconfig:
+- openttd
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://cdn.openttd.org/openttd-releases/15.3/openttd-15.3-source.tar.xz
+  sha256: 5ea21eea7d59c78a42071924ac18c6bc0116088f2e96b14cfee9369175973be7
+config-opts:
+- -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+- -DCMAKE_INSTALL_BINDIR:STRING=bin
+cleanup:
+- /include
+- /lib/pkgconfig

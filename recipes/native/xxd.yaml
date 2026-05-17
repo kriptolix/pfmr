@@ -1,0 +1,30 @@
+id: xxd
+provides: []
+pkgconfig:
+- xxd
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/vim/vim/archive/refs/tags/v9.1.2045.tar.gz
+  sha256: af5bb47954653eec32239ba41505c4fe1067b71fd7e52d8012c5daa52f4caa2c
+config-opts:
+- --disable-gui
+- --disable-gtk3
+- --disable-luainterp
+- --disable-python3interp
+- --disable-xim
+- --disable-xsmp
+- --disable-xsmp-interact
+- --disable-desktop-database-update
+- --disable-icon-cache-update
+- --disable-gnome-check
+- --disable-motif-check
+- --disable-athena-check
+- --disable-fontset
+cleanup:
+- /bin/vim*
+- /bin/rvim
+- /bin/view
+- /bin/rview
+- /bin/ex
+- /share

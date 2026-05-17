@@ -1,0 +1,16 @@
+id: termite
+provides: []
+pkgconfig:
+- termite
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/aperezdc/termite/releases/download/v16.9/termite-16.9.tar.xz
+  sha256: 95486a0330dfcaa68dca3a26afc95b2711c1bef8187503be54d04e1ee8458bd6
+cleanup:
+- /include
+- /lib/pkgconfig
+- /lib/systemd
+- /share/applications
+- /share/man
+- '*.a'

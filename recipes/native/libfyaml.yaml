@@ -1,0 +1,14 @@
+id: libfyaml
+provides: []
+pkgconfig:
+- libfyaml
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/pantoniou/libfyaml/releases/download/v0.9.3/libfyaml-0.9.3.tar.gz
+  sha256: d4541c36ae726f51e9df22dd8ac1a19d122666060daf3806e37b848d4c73a8ed
+config-opts:
+- -DENABLE_NETWORK=OFF
+- -DENABLE_LIBCLANG=OFF
+cleanup:
+- /bin

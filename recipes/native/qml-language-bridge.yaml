@@ -1,0 +1,12 @@
+id: qml-language-bridge
+provides: []
+pkgconfig:
+- qml-language-bridge
+buildsystem: cmake
+source:
+  type: archive
+  url: https://gitlab.com/rszibele/qml-language-bridge/-/archive/1.0.3/qml-language-bridge-1.0.3.tar.gz
+  sha256: 3b0288d5c534acb0c5b5f42ff0f878b26ad4cc233b36b43ec665d24a5af51937
+cleanup:
+- /include
+- /lib/pkgconfig

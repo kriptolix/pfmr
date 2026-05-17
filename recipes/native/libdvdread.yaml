@@ -1,0 +1,12 @@
+id: libdvdread
+provides: []
+pkgconfig:
+- libdvdread
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.videolan.org/videolan/libdvdread/6.1.2/libdvdread-6.1.2.tar.bz2
+  sha256: cc190f553758ced7571859e301f802cb4821f164d02bfacfd320c14a4e0da763
+cleanup:
+- /include
+- /lib/pkgconfig

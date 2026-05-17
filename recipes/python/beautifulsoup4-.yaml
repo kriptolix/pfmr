@@ -1,0 +1,48 @@
+id: beautifulsoup4-
+type: python
+pypi_name: beautifulsoup4-
+requires:
+  pkgconfig:
+  - bc
+  - ed
+  - ffmpeg
+  - hdri
+  - hwdata
+  - imagemagick
+  - libaacs
+  - libass
+  - libbluray
+  - libbs2b
+  - libcdio
+  - libcdio-paranoia
+  - libdisplay-info
+  - libdvdnav
+  - libdvdread
+  - libmysofa
+  - libplacebo
+  - libsixel
+  - libxmu
+  - libxpresent
+  - lmdb
+  - luajit
+  - mpv
+  - mpv-mpris
+  - mujs
+  - nv-codec-headers
+  - pic
+  - python-prefix
+  - rubberband
+  - smbclient
+  - tesseract
+  - uchardet
+  - vapoursynth
+  - x264
+  - x265
+  - xclip
+  - yt-dlp
+  - zimg
+  extensions:
+  - org.freedesktop.Sdk.Extension.node24
+confidence: 0.6
+source: flathub:io.mpv.Mpv
+updated: '2026-05-16'

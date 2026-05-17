@@ -1,0 +1,12 @@
+id: xset
+provides: []
+pkgconfig:
+- xset
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.x.org/releases/individual/app/xset-1.2.4.tar.bz2
+  sha256: e4fd95280df52a88e9b0abc1fee11dcf0f34fc24041b9f45a247e52df941c957
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: pimcommon
+provides: []
+pkgconfig:
+- pimcommon
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/pimcommon-25.12.2.tar.xz
+  sha256: 7da324710ea6077fa247ec04db666c172352ba0e61f1df9aa07ab7109ac5290b
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

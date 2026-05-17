@@ -1,0 +1,16 @@
+id: ocl-icd
+provides: []
+pkgconfig:
+- ocl-icd
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/OCL-dev/ocl-icd/archive/refs/tags/v2.3.2.tar.gz
+  sha256: ec47d7dcd961ea06695b067e8b7edb82e420ddce03e0081a908c62fd0b8535c5
+config-opts:
+- --disable-update-database
+- --enable-custom-vendordir=/app/extensions/IntelComputeRuntime/OpenCL/vendors
+- --enable-official-khronos-headers
+cleanup:
+- /include
+- /lib/pkgconfig

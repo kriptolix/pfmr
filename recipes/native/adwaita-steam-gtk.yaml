@@ -1,0 +1,12 @@
+id: adwaita-steam-gtk
+provides: []
+pkgconfig:
+- adwaita-steam-gtk
+buildsystem: meson
+source:
+  type: archive
+  url: https://api.github.com/repos/Foldex/AdwSteamGtk/tarball/v0.8.0
+  sha256: 3bae27dfc2667a56a9edec7c29241a82ac677d0258963824f22cb70e61ec143d
+cleanup:
+- /include
+- /lib/pkgconfig

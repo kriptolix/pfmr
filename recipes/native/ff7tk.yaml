@@ -1,0 +1,16 @@
+id: ff7tk
+provides: []
+pkgconfig:
+- ff7tk
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/sithlord48/ff7tk/archive/refs/tags/v1.3.1.tar.gz
+  sha256: d1451ac6f52490facf07b8de40abcf2e6d59a893056fffb4a0c8d6c5b4a9018b
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DDEMOS=OFF
+- -DDOCS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

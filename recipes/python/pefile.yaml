@@ -1,0 +1,18 @@
+id: pefile
+type: python
+pypi_name: pefile
+requires:
+  pkgconfig:
+  - flashrom
+  - fwupd-efi
+  - libjcat
+  - libmbim
+  - libqmi
+  - libqrtr
+  - libxmlb
+  - modemmanager
+  - tpm2-tss
+  - udevrulesdir
+confidence: 0.6
+source: flathub:org.freedesktop.fwupd
+updated: '2026-05-16'

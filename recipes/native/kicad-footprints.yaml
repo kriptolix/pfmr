@@ -1,0 +1,12 @@
+id: kicad-footprints
+provides: []
+pkgconfig:
+- kicad-footprints
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.com/kicad/libraries/kicad-footprints/-/archive/5.1.9/kicad-footprints-5.1.9.tar.gz
+  sha256: 415e014364d1c12584f115a4adfeec1b71e41e2cd7f4ae543237ee71b8ef41bd
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: laszip
+provides: []
+pkgconfig:
+- laszip
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/LASzip/LASzip/releases/download/3.4.4/laszip-src-3.4.4.tar.gz
+  sha256: 41f826848ff106f471b134224f58075ac8e36a62b6ba0ad75be8a8c191bdba4b
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

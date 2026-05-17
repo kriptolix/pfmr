@@ -1,0 +1,11 @@
+id: libpci
+provides: []
+pkgconfig:
+- libpci
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.kernel.org/pub/software/utils/pciutils/pciutils-3.6.2.tar.xz
+cleanup:
+- /sbin
+- /man

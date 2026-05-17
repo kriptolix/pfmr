@@ -1,0 +1,19 @@
+id: mathgl
+provides: []
+pkgconfig:
+- mathgl
+buildsystem: cmake
+source:
+  type: archive
+  url: http://downloads.sourceforge.net/mathgl/mathgl-8.0.3.tar.gz
+  sha256: 9bba9ee6a0f86d1b8f3f3ba0374d3cb776f772dbb6f1a01684ca6c0bd56204d6
+config-opts:
+- -DCMAKE_INSTALL_PREFIX=/app
+- -DCMAKE_INSTALL_LIBDIR=/app
+- -DCMAKE_BUILD_TYPE=Release
+- -Denable-openmp=False
+- -Denable-png=False
+- -Denable-opengl=False
+cleanup:
+- /include
+- /lib/pkgconfig

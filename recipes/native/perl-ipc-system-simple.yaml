@@ -1,0 +1,12 @@
+id: perl-ipc-system-simple
+provides: []
+pkgconfig:
+- perl-ipc-system-simple
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/P/PJ/PJF/IPC-System-Simple-1.25.tar.gz
+  sha256: f1b6aa1dfab886e8e4ea825f46a1cbb26038ef3e727fef5d84444aa8035a4d3b
+cleanup:
+- /include
+- /lib/pkgconfig

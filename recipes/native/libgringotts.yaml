@@ -1,0 +1,14 @@
+id: libgringotts
+provides: []
+pkgconfig:
+- libgringotts
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/gringotts.berlios/libgringotts-1.2.1.tar.bz2
+  sha256: a75e6f757b975d3da662fe7ea2d985f358f31ad2dede1a222bb4aa403d0dbfd1
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

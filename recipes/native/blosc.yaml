@@ -1,0 +1,19 @@
+id: blosc
+provides: []
+pkgconfig:
+- blosc
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/tamasmeszaros/c-blosc/archive/refs/heads/v1.17.0_tm.zip
+  sha256: dcb48bf43a672fa3de6a4b1de2c4c238709dad5893d1e097b8374ad84b1fc3b3
+config-opts:
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DBUILD_SHARED=BOOL:OFF
+- -DBUILD_STATIC=BOOL:ON
+- -DBUILD_TESTS=OFF
+- -DBUILD_BENCHMARKS=OFF
+- -DPREFER_EXTERNAL_ZLIB=ON
+cleanup:
+- /include
+- /lib/cmake

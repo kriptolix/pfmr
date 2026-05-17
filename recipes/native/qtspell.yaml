@@ -1,0 +1,16 @@
+id: qtspell
+provides: []
+pkgconfig:
+- qtspell
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/manisandro/qtspell/archive/refs/tags/1.0.2.tar.gz
+  sha256: faa7add9d771350a63e66bb6c9b91b130097c2399f6f85c2a9a0ea8e0ceb79d8
+config-opts:
+- -DQT_VER:STRING=6
+cleanup:
+- '*.a'
+- '*.la'
+- /bin
+- /include

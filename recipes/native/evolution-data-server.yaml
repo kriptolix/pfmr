@@ -1,0 +1,35 @@
+id: evolution-data-server
+provides: []
+pkgconfig:
+- evolution-data-server
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.gnome.org/sources/evolution-data-server/3.60/evolution-data-server-3.60.1.tar.xz
+  sha256: 33f92d3b8822eba04c313796c0778cbb65a1a38472e857edc5f98854cca9b34c
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DENABLE_FILE_LOCKING=fcntl
+- -DENABLE_DOT_LOCKING=OFF
+- -DENABLE_OAUTH2=ON
+- -DENABLE_CANBERRA=OFF
+- -DENABLE_GTK=ON
+- -DENABLE_UOA=OFF
+- -DENABLE_GOA=OFF
+- -DENABLE_GOOGLE=OFF
+- -DENABLE_EXAMPLES=OFF
+- -DENABLE_INTROSPECTION=ON
+- -DENABLE_VALA_BINDINGS=ON
+- -DENABLE_INSTALLED_TESTS=OFF
+- -DENABLE_GTK_DOC=OFF
+- -DWITH_PRIVATE_DOCS=OFF
+- -DWITH_PHONENUMBER=OFF
+- -DWITH_SYSTEMDUSERUNITDIR=OFF
+- -DWITH_LIBDB=OFF
+- -DWITH_OPENLDAP=OFF
+- -DENABLE_WEATHER=OFF
+- -DENABLE_OAUTH2_WEBKITGTK4=OFF
+cleanup:
+- /lib/evolution-data-server/*-backends
+- /libexec
+- /share/dbus-1/services

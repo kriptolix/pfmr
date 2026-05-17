@@ -1,0 +1,11 @@
+id: duplicity
+type: python
+pypi_name: duplicity
+requires:
+  pkgconfig:
+  - librsync
+  extensions:
+  - org.freedesktop.Sdk.Extension.golang
+confidence: 0.6
+source: flathub:org.gnome.DejaDup
+updated: '2026-05-16'

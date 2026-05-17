@@ -1,0 +1,18 @@
+id: ncnn
+provides: []
+pkgconfig:
+- ncnn
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Tencent/ncnn/archive/refs/tags/20250503.tar.gz
+  sha256: 3afea4cf092ce97d06305b72c6affbcfb3530f536ae8e81a4f22007d82b729e9
+config-opts:
+- -DNCNN_BUILD_TESTS=OFF
+- -DNCNN_BUILD_EXAMPLES=OFF
+- -DNCNN_BUILD_TOOLS=OFF
+- -DNCNN_BUILD_BENCHMARK=OFF
+- -DNCNN_SHARED_LIB=ON
+cleanup:
+- /include
+- /lib/pkgconfig

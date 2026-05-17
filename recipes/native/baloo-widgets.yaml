@@ -1,0 +1,14 @@
+id: baloo-widgets
+provides: []
+pkgconfig:
+- baloo-widgets
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/baloo-widgets-25.12.3.tar.xz
+  sha256: 0b03fc0adfeda46deeb53fb5e22bb9108715ebc1d8f5b19ca4e5c2216332c711
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

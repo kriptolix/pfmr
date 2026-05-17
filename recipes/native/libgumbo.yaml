@@ -1,0 +1,12 @@
+id: libgumbo
+provides: []
+pkgconfig:
+- libgumbo
+buildsystem: autotools
+source:
+  type: archive
+  url: https://codeberg.org/gumbo-parser/gumbo-parser/archive/0.12.1.tar.gz
+  sha256: c0bb5354e46539680724d638dbea07296b797229a7e965b13305c930ddc10d82
+cleanup:
+- /include
+- /lib/pkgconfig

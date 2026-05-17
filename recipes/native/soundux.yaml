@@ -1,0 +1,16 @@
+id: soundux
+provides: []
+pkgconfig:
+- soundux
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Soundux/Soundux/releases/download/0.2.7/soundux-0.2.7.tar.gz
+config-opts:
+- -DUSE_FLATPAK=ON
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+- -DCMAKE_CXX_FLAGS=-Wno-error=deprecated-declarations
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: httpx
+type: python
+pypi_name: httpx
+requires:
+  pkgconfig:
+  - chronograph
+  - libportal
+  - libportaudio
+  - libspelling
+  - lipi
+  - vte
+confidence: 0.6
+source: flathub:io.github.shonebinu.Glyph
+updated: '2026-05-16'

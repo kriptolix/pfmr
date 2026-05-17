@@ -1,0 +1,11 @@
+id: nanomsg
+provides: []
+pkgconfig:
+- nanomsg
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/nanomsg/nanomsg/archive/1.2.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

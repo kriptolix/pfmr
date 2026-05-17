@@ -1,0 +1,15 @@
+id: tshark
+provides: []
+pkgconfig:
+- tshark
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://1.eu.dl.wireshark.org/src/all-versions/wireshark-3.4.9.tar.xz
+  sha256: c6525e829bd24525ee699aa207ecd27c50646d64263a669671badfb71cd99620
+config-opts:
+- -DBUILD_wireshark=OFF
+cleanup:
+- /include
+- /share/man
+- /lib/pkgconfig

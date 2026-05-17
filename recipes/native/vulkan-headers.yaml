@@ -1,0 +1,12 @@
+id: vulkan-headers
+provides: []
+pkgconfig:
+- vulkan-headers
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.4.306.tar.gz
+  sha256: 18f4b4de873d071ddd7b73ea48e2ec4e7c6133e2ebb6b4236ca2345acd056994
+cleanup:
+- /include
+- /lib/pkgconfig

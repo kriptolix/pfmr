@@ -1,0 +1,13 @@
+id: kconfig
+provides: []
+pkgconfig:
+- kconfig
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.101/kconfig-5.101.0.tar.xz
+  sha256: ca747e485756e6d65e4eed85d1187c80b7facc958f379a68fbe862f068cb5383
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /bin

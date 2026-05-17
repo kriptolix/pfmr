@@ -1,0 +1,36 @@
+id: numpy
+type: python
+pypi_name: numpy
+requires:
+  pkgconfig:
+  - alsa
+  - arrow-cpp
+  - boost
+  - csound
+  - ffms2
+  - geos
+  - liblo
+  - libportal
+  - libportaudio
+  - libspelling
+  - openrazer-pylib
+  - perl
+  - polychromatic
+  - poppler
+  - popplerdata
+  - portmidi
+  - qgis
+  - rapidjson
+  - rtmidi
+  - snappy
+  - thrift
+  - vte
+  - xsimd
+  - xterm
+  extensions:
+  - org.freedesktop.Sdk.Extension.node22
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.texlive
+confidence: 0.6
+source: flathub:app.polychromatic.controller
+updated: '2026-05-16'

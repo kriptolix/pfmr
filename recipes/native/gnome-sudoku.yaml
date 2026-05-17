@@ -1,0 +1,12 @@
+id: gnome-sudoku
+provides: []
+pkgconfig:
+- gnome-sudoku
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-sudoku/50/gnome-sudoku-50.1.tar.xz
+  sha256: 0b06c9777ecdb35a0fcd92d1649642549de816629f489f5d933315a34dcc7be2
+cleanup:
+- /include
+- /lib/pkgconfig

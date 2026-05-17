@@ -1,0 +1,16 @@
+id: uhd
+provides: []
+pkgconfig:
+- uhd
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/EttusResearch/uhd/archive/refs/tags/v4.8.0.0.tar.gz
+  sha256: a2159491949477dca67f5a9b05f5a80d8c2b32e91b95dd7fac8ddd3893e36d09
+config-opts:
+- -DENABLE_PYTHON_API=OFF
+- -DINSTALL_UDEV_RULES=OFF
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

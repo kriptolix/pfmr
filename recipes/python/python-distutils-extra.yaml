@@ -1,0 +1,14 @@
+id: python-distutils-extra
+type: python
+pypi_name: python-distutils-extra
+requires:
+  pkgconfig:
+  - glib
+  - gnome-menu
+  - intltools
+  - links
+  - xdg-utils
+  - xmlto
+confidence: 0.6
+source: flathub:org.bluesabre.MenuLibre
+updated: '2026-05-16'

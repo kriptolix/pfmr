@@ -1,0 +1,19 @@
+id: openrct2
+provides: []
+pkgconfig:
+- openrct2
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/OpenRCT2/title-sequences/releases/download/v0.4.26/title-sequences.zip
+  sha256: dabb9787b1576342fca4dd9f64b3f8cfa04a7e6ce9c2bb9610f47b762905c858
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DDOWNLOAD_OBJECTS=OFF
+- -DDOWNLOAD_OPENSFX=OFF
+- -DDOWNLOAD_OPENMSX=OFF
+- -DDOWNLOAD_TITLE_SEQUENCES=OFF
+- -DDISABLE_VERSION_CHECKER=ON
+cleanup:
+- /include
+- /lib/pkgconfig

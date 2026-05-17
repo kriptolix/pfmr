@@ -1,0 +1,10 @@
+id: node
+provides: []
+pkgconfig:
+- node
+buildsystem: autotools
+source:
+  type: archive
+  url: https://nodejs.org/dist/v12.13.0/node-v12.13.0.tar.xz
+cleanup:
+- '*'

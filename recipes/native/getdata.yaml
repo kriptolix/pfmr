@@ -1,0 +1,15 @@
+id: getdata
+provides: []
+pkgconfig:
+- getdata
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/ketiltrout/getdata/releases/download/v0.11.0/getdata-0.11.0.tar.gz
+  sha256: 082c241e04483c7cfbae5ad3ab9710d570051a888fb3f240f994b1cd61c9c26b
+config-opts:
+- --disable-bindings
+- --enable-cplusplus
+cleanup:
+- /include
+- /lib/pkgconfig

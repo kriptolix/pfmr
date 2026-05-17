@@ -1,0 +1,12 @@
+id: fuse-utils
+provides: []
+pkgconfig:
+- fuse-utils
+buildsystem: autotools
+source:
+  type: archive
+  url: https://netcologne.dl.sourceforge.net/project/fuse-emulator/fuse-utils/1.4.3/fuse-utils-1.4.3.tar.gz
+  sha256: 0d2588bc37fcc6b039010c9ed68aa1e0bf513a80978737b5545f1d4f1684c325
+cleanup:
+- /include
+- /lib/pkgconfig

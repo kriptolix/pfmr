@@ -1,0 +1,15 @@
+id: kimageannotator
+provides: []
+pkgconfig:
+- kimageannotator
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ksnip/kImageAnnotator/archive/refs/tags/v0.7.2.tar.gz
+  sha256: 7eb593d975b1590a184354ef68dbc3c26479d58eaea00de461d73695176f623c
+config-opts:
+- -DBUILD_WITH_QT6=ON
+- -DBUILD_SHARED_LIBS=ON
+cleanup:
+- /include
+- /lib/pkgconfig

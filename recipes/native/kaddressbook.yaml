@@ -1,0 +1,15 @@
+id: kaddressbook
+provides: []
+pkgconfig:
+- kaddressbook
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kaddressbook-25.12.3.tar.xz
+  sha256: 5c3e77aa683eff9a96a5117768e8b1828f171dade1a035443bda37a1c5abcbd4
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

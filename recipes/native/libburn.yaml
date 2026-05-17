@@ -1,0 +1,11 @@
+id: libburn
+provides: []
+pkgconfig:
+- libburn
+buildsystem: autotools
+source:
+  type: archive
+  url: https://files.libburnia-project.org/releases/libburn-1.5.8.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

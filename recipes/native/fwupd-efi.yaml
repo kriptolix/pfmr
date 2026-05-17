@@ -1,0 +1,16 @@
+id: fwupd-efi
+provides: []
+pkgconfig:
+- fwupd-efi
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/fwupd/fwupd-efi/archive/refs/tags/1.8.tar.gz
+  sha256: c9f1f9b9b967ea50eb0b478f0d7693d6673d4cd76c8e7eb80c55fc44ec928925
+config-opts:
+- -Defi-includedir=/app/include/efi
+- -Defi-ldsdir=/app/lib
+- -Defi-libdir=/app/lib
+cleanup:
+- /include
+- /lib/pkgconfig

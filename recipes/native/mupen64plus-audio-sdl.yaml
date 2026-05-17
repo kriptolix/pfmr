@@ -1,0 +1,12 @@
+id: mupen64plus-audio-sdl
+provides: []
+pkgconfig:
+- mupen64plus-audio-sdl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mupen64plus/mupen64plus-audio-sdl/releases/download/2.6.0/mupen64plus-audio-sdl-src-2.6.0.tar.gz
+  sha256: 8840434b641fd600f9f79911bba279f284a53eb8e746d83372a7692ba8dac95c
+cleanup:
+- /include
+- /lib/pkgconfig

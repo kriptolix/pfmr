@@ -1,0 +1,14 @@
+id: dsdcc
+provides: []
+pkgconfig:
+- dsdcc
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/f4exb/dsdcc/archive/refs/tags/v1.9.6.tar.gz
+  sha256: 43505fe537b12492860a44d0373b6b2a7edacbaec058160b5007c341af1b40d9
+config-opts:
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

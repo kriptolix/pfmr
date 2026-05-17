@@ -1,7 +1,7 @@
 id: rtmidi
+provides: []
 pkgconfig:
 - rtmidi
-provides: []
 buildsystem: autotools
 source:
   type: archive
@@ -10,3 +10,6 @@ source:
 cleanup:
 - /include
 - /lib/pkgconfig
+- '*.la'
+- '*.a'
+- '*.so'

@@ -1,0 +1,11 @@
+id: pysol-cards
+type: python
+pypi_name: pysol-cards
+requires:
+  pkgconfig:
+  - black-hole-solver
+  - freecell-solver
+  - libkdegames
+confidence: 0.6
+source: flathub:org.kde.kpat
+updated: '2026-05-16'

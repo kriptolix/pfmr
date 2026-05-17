@@ -1,0 +1,15 @@
+id: libodfgen
+provides: []
+pkgconfig:
+- libodfgen
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/libwpd/files/libodfgen/libodfgen-0.1.8/libodfgen-0.1.8.tar.xz
+  sha256: 55200027fd46623b9bdddd38d275e7452d1b0ff8aeddcad6f9ae6dc25f610625
+config-opts:
+- --disable-tests
+- --without-docs
+cleanup:
+- /include
+- /lib/pkgconfig

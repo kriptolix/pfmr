@@ -1,0 +1,14 @@
+id: pcap
+provides: []
+pkgconfig:
+- pcap
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.tcpdump.org/release/libpcap-1.10.5.tar.gz
+config-opts:
+- --disable-shared
+- --disable-dbus
+cleanup:
+- /include
+- /lib/pkgconfig

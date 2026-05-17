@@ -1,0 +1,14 @@
+id: hiredis
+provides: []
+pkgconfig:
+- hiredis
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/redis/hiredis/archive/refs/tags/v1.3.0.tar.gz
+  sha256: 25cee4500f359cf5cad3b51ed62059aadfc0939b05150c1f19c7e2829123631c
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: dvdauthor
+provides: []
+pkgconfig:
+- dvdauthor
+buildsystem: meson
+source:
+  type: archive
+  url: https://codeberg.org/daniel_foster/dvdauthor/archive/a99e785cb9b73f4d9a477eb39662fa1e1e2c7c52.tar.gz
+config-opts:
+- -Dbuildtype=release
+- -Db_lto=true
+cleanup:
+- /include
+- /lib/pkgconfig

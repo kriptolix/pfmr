@@ -1,0 +1,15 @@
+id: gcr
+provides: []
+pkgconfig:
+- gcr
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gcr/3.41/gcr-3.41.1.tar.xz
+  sha256: bb7128a3c2febbfee9c03b90d77d498d0ceb237b0789802d60185c71c4bea24f
+config-opts:
+- -Dintrospection=false
+- -Dgtk_doc=false
+cleanup:
+- /include
+- /lib/pkgconfig

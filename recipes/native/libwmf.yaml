@@ -1,0 +1,13 @@
+id: libwmf
+provides: []
+pkgconfig:
+- libwmf
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/caolanm/libwmf/archive/refs/tags/v0.2.15.tar.gz
+config-opts:
+- --disable-static
+- --disable-dependency-tracking
+cleanup:
+- /bin

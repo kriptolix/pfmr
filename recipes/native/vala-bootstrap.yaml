@@ -1,0 +1,12 @@
+id: vala-bootstrap
+provides: []
+pkgconfig:
+- vala-bootstrap
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/vala/0.16/vala-0.16.1.tar.xz
+  sha256: 8be28ff6347feecb391220ceb4e2209d32b697278e87ed7fc6c9fb1e9345e0d8
+cleanup:
+- /include
+- /lib/pkgconfig

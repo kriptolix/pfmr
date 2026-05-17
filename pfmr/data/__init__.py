@@ -1,0 +1,1 @@
+# pfmr.data — static data files (profiles, mappings, hints)

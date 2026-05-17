@@ -1,0 +1,12 @@
+id: gnome-calendar
+provides: []
+pkgconfig:
+- gnome-calendar
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-calendar/50/gnome-calendar-50.0.tar.xz
+  sha256: 4b75df071a52d98fb35e647d018030129d24d9007790d02457746c98617aeab0
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: g-golf
+provides: []
+pkgconfig:
+- g-golf
+- guile-site
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/g-golf/g-golf-0.8.2.tar.gz
+  sha256: 7973be45c1c57248cfa2e5f5ac886b96fef5d97d212d3c77b3eb919ec2cd1d03
+config-opts:
+- --with-guile-site
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: akonadiconsole
+provides: []
+pkgconfig:
+- akonadiconsole
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/akonadiconsole-25.12.3.tar.xz
+  sha256: 1effdb62375b66435de8b75cfe1429eeda5facc546d9b192e8a8affeea216bba
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

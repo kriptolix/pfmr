@@ -1,0 +1,16 @@
+id: lirc
+provides: []
+pkgconfig:
+- lirc
+- systemdsystemunitdir
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/lirc/LIRC/0.10.2/lirc-0.10.2.tar.bz2
+  sha256: 3d44ec8274881cf262f160805641f0827ffcc20ade0d85e7e6f3b90e0d3d222a
+config-opts:
+- --with-systemdsystemunitdir=/app/lib/systemd
+cleanup:
+- /bin
+- /sbin
+- /share

@@ -1,0 +1,14 @@
+id: april-asr
+provides: []
+pkgconfig:
+- april-asr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/abb128/april-asr/archive/3308e68442664552de593957cad0fa443ea183dd.zip
+  sha256: 0640fc16a43018afb1db9f17e93f545d7ac1f07e4bc47ba318d2c7311bef2df5
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

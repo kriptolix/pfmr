@@ -1,0 +1,12 @@
+id: xdg-screensaver-shim
+provides: []
+pkgconfig:
+- xdg-screensaver-shim
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/Unrud/xdg-screensaver-shim/archive/0.0.2.tar.gz
+  sha256: 0ed2a69fe6ee6cbffd2fe16f85116db737f17fb1e79bfb812d893cf15c728399
+cleanup:
+- /include
+- /lib/pkgconfig

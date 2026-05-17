@@ -1,0 +1,16 @@
+id: kpp
+provides: []
+pkgconfig:
+- kpp
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/olegkapitonov/Kapitonov-Plugins-Pack/archive/1.2.1.tar.gz
+  sha256: 056c152ee72c5a0cfd45ca0cd848ff13b098c8f58b14c26ad06d7ef49c792b40
+config-opts:
+- -Dlv2=enabled
+- -Dlv2dir=/app/extensions/Lv2Plugins/KapitonovPluginsPack/lv2
+- -Dladspa=disabled
+cleanup:
+- /include
+- /lib/pkgconfig

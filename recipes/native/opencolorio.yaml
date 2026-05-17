@@ -1,0 +1,20 @@
+id: opencolorio
+provides: []
+pkgconfig:
+- opencolorio
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/AcademySoftwareFoundation/OpenColorIO/releases/download/v2.5.1/OpenColorIO-2.5.1.tar.gz
+  sha256: 49ab04d023d7a7a7237e24f2cfead3171b0ff7f466ce20e6e32859ec8c7cc94b
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DOCIO_BUILD_NUKE=OFF
+- -DOCIO_BUILD_DOCS=OFF
+- -DOCIO_BUILD_TESTS=OFF
+- -DOCIO_BUILD_GPU_TESTS=OFF
+- -DOCIO_BUILD_PYTHON=OFF
+- -DOCIO_INSTALL_EXT_PACKAGES=NONE
+- -DOCIO_BUILD_APPS=OFF
+cleanup:
+- /bin

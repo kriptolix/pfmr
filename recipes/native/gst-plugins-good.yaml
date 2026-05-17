@@ -1,0 +1,15 @@
+id: gst-plugins-good
+provides: []
+pkgconfig:
+- gst-plugins-good
+buildsystem: meson
+source:
+  type: archive
+  url: https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-1.26.9.tar.xz
+  sha256: f38566fb53ae56b7019a039475311756a28eb978a781154d67813dcb551ff5fe
+config-opts:
+- -Ddoc=disabled
+- -Dtests=disabled
+cleanup:
+- /include
+- /lib/pkgconfig

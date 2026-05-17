@@ -1,0 +1,11 @@
+id: cdrtools
+provides: []
+pkgconfig:
+- cdrtools
+buildsystem: autotools
+source:
+  type: archive
+  url: https://codeberg.org/schilytools/schilytools/releases/download/2024-03-21/schily-2024-03-21.tar.bz2
+cleanup:
+- /include
+- /lib/pkgconfig

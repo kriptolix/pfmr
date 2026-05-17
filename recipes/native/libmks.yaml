@@ -1,0 +1,12 @@
+id: libmks
+provides: []
+pkgconfig:
+- libmks
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/libmks/0.1/libmks-0.1.5.tar.xz
+  sha256: 1093b9053dd8d98c3d8e03d03ae56bb6f11df67bb2cab5432eae594e41fba0ff
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: vte-2.91
+provides: []
+pkgconfig:
+- vte-2.91
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.gnome.org/GNOME/vte/-/archive/0.78.5/vte-0.78.5.tar.bz2
+  sha256: 50d7290460e0d1116bb288676d34cf528d4b5d667499af2874f0f7589b8e9720
+cleanup:
+- /include
+- /lib/pkgconfig

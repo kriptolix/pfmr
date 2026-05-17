@@ -1,0 +1,26 @@
+id: clutter
+provides: []
+pkgconfig:
+- clutter
+buildsystem: autotools
+source:
+  type: archive
+  url: http://ftp.acc.umu.se/pub/GNOME/sources/clutter/1.26/clutter-1.26.4.tar.xz
+  sha256: 8b48fac159843f556d0a6be3dbfc6b083fc6d9c58a20a49a6b4919ab4263c4e6
+config-opts:
+- --enable-installed-tests
+- --disable-maintainer-flags
+- --enable-egl-backend
+- --enable-evdev-input
+- --enable-wayland-backend
+- --enable-wayland-compositor
+- --enable-gdk-backend
+cleanup:
+- /include
+- /lib/*.la
+- /lib/pkgconfig
+- /share/gir-1.0
+- /share/gtk-doc
+- /share/clutter-1.0
+- /share/installed-tests
+- /libexec

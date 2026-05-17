@@ -1,0 +1,15 @@
+id: gtk-vnc
+provides: []
+pkgconfig:
+- gtk-vnc
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gtk-vnc/1.5/gtk-vnc-1.5.0.tar.xz
+  sha256: c0beb4747528ad931da43acc567c6a0190f7fc624465571ed9ccece02c34dd23
+config-opts:
+- --buildtype=release
+- -Dpulseaudio=enabled
+cleanup:
+- /include
+- /lib/pkgconfig

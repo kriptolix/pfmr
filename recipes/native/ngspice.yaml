@@ -1,0 +1,15 @@
+id: ngspice
+provides: []
+pkgconfig:
+- ngspice
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/46/ngspice-46.tar.gz
+  sha256: a0d1699af1940b06649276dcd6ff5a566c8c0cad01b2f7b5e99dedbb4d64c19b
+config-opts:
+- --enable-cider
+- --without-x
+cleanup:
+- /include
+- /share/man

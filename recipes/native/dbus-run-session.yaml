@@ -1,0 +1,11 @@
+id: dbus-run-session
+provides: []
+pkgconfig:
+- dbus-run-session
+buildsystem: cmake
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/dbus/dbus/-/archive/dbus-1.16.2/dbus-dbus-1.16.2.tar.gz
+  sha256: d77cc71acd93e85f2bd2a6fe3a40e5bd023519e3e9fa9b5361e7109f42b74060
+cleanup:
+- '*'

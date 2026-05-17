@@ -1,0 +1,14 @@
+id: gumbo
+provides: []
+pkgconfig:
+- gumbo
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/google/gumbo-parser/archive/refs/tags/v0.10.1.tar.gz
+  sha256: 28463053d44a5dfbc4b77bcf49c8cee119338ffa636cc17fc3378421d714efad
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

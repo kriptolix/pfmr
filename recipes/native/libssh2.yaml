@@ -1,0 +1,12 @@
+id: libssh2
+provides: []
+pkgconfig:
+- libssh2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.libssh2.org/download/libssh2-1.9.0.tar.gz
+  sha256: d5fb8bd563305fd1074dda90bd053fb2d29fc4bce048d182f96eaa466dfadafd
+cleanup:
+- /include
+- /lib/pkgconfig

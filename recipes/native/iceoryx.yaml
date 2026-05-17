@@ -1,0 +1,17 @@
+id: iceoryx
+provides: []
+pkgconfig:
+- iceoryx
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/eclipse-iceoryx/iceoryx/archive/refs/tags/v2.0.6.tar.gz
+  sha256: a2add8ffee0c3357ef985cc46c7de79ccb754ea2bed02c61f2ff805ab2c869f1
+config-opts:
+- -DBUILD_DOC=OFF
+- -DBUILD_SHARED_LIBS=ON
+- -DINTROSPECTION=ON
+- -DTOML_CONFIG=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

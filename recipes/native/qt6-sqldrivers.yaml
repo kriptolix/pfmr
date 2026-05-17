@@ -1,0 +1,21 @@
+id: qt6-sqldrivers
+provides: []
+pkgconfig:
+- qt6-sqldrivers
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/official_releases/qt/6.10/6.10.2/submodules/qtbase-everywhere-src-6.10.2.tar.xz
+  sha256: aeb78d29291a2b5fd53cb55950f8f5065b4978c25fb1d77f627d695ab9adf21e
+config-opts:
+- -DFEATURE_sql_mysql=ON
+- -DFEATURE_sql_db2=OFF
+- -DFEATURE_sql_ibase=OFF
+- -DFEATURE_sql_mimer=OFF
+- -DFEATURE_sql_oci=OFF
+- -DFEATURE_sql_odbc=OFF
+- -DFEATURE_sql_psql=OFF
+- -DFEATURE_sql_sqlite=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

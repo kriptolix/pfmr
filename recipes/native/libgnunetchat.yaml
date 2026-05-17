@@ -1,0 +1,11 @@
+id: libgnunetchat
+provides: []
+pkgconfig:
+- libgnunetchat
+buildsystem: meson
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gnunet/libgnunetchat-0.7.0.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

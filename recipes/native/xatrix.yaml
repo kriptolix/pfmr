@@ -1,0 +1,15 @@
+id: xatrix
+provides: []
+pkgconfig:
+- xatrix
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/yquake2/xatrix/archive/refs/tags/XATRIX_2_15.tar.gz
+  sha256: 23d173d6fb7c7fbf1a509d41fdffcad2af21c0ef346910af764c0877e618373c
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

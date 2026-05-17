@@ -1,0 +1,27 @@
+id: cffi
+type: python
+pypi_name: cffi
+requires:
+  pkgconfig:
+  - ffms2
+  - geos
+  - intltool
+  - io.github.mhogomchungu.media-downloader
+  - krb5
+  - libndp
+  - libportal
+  - libpq
+  - libzbar
+  - networkmanager
+  - openblas
+  - openssl
+  - polkit
+  - pwquality
+  - pycairo
+  - pygobject
+  - udev
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

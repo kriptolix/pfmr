@@ -1,0 +1,14 @@
+id: double-conversion
+provides: []
+pkgconfig:
+- double-conversion
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/google/double-conversion/archive/refs/tags/v3.4.0.tar.gz
+  sha256: 42fd4d980ea86426e457b24bdfa835a6f5ad9517ddb01cdb42b99ab9c8dd5dc9
+config-opts:
+- -DBUILD_SHARED_LIBS=ON
+cleanup:
+- /include
+- /lib/pkgconfig

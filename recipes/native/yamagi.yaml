@@ -1,0 +1,14 @@
+id: yamagi
+provides: []
+pkgconfig:
+- yamagi
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/yquake2/yquake2/archive/refs/tags/QUAKE2_8_51.tar.gz
+  sha256: 54c530305dd96cf4536dee3633864f3e326a5efd33528314ac64e009201318e7
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

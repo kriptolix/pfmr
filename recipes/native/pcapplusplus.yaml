@@ -1,0 +1,17 @@
+id: pcapplusplus
+provides: []
+pkgconfig:
+- pcapplusplus
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/seladb/PcapPlusPlus/archive/refs/tags/v25.05.tar.gz
+  sha256: 66c11d61f3c8019eaf74171ad10229dfaeab27eb86859c897fb0ba1298f80c94
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DPCAPPP_BUILD_EXAMPLES=OFF
+- -DPCAPPP_BUILD_TESTS=OFF
+- -DPCAPPP_INSTALL=ON
+cleanup:
+- /usr/share
+- /usr/local

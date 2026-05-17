@@ -1,0 +1,13 @@
+id: libisofs
+provides: []
+pkgconfig:
+- libisofs
+buildsystem: autotools
+source:
+  type: archive
+  url: https://files.libburnia-project.org/releases/libisofs-1.5.8.pl01.tar.gz
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

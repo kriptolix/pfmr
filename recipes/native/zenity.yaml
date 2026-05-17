@@ -1,0 +1,12 @@
+id: zenity
+provides: []
+pkgconfig:
+- zenity
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/zenity/3.41/zenity-3.41.0.tar.xz
+  sha256: 19b676c3510e22badfcc3204062d432ba537402f5e0ae26128c0d90c954037e1
+cleanup:
+- /include
+- /lib/pkgconfig

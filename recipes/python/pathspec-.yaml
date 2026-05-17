@@ -1,0 +1,9 @@
+id: pathspec-
+type: python
+pypi_name: pathspec-
+requires:
+  pkgconfig:
+  - qgis
+confidence: 0.6
+source: flathub:org.qgis.qgis
+updated: '2026-05-16'

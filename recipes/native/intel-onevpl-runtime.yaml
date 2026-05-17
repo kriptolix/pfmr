@@ -1,0 +1,17 @@
+id: intel-onevpl-runtime
+provides: []
+pkgconfig:
+- intel-onevpl-runtime
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/oneapi-src/oneVPL-intel-gpu/archive/intel-onevpl-26.1.6.tar.gz
+  sha256: 41456ec8bff819b29a69601aeaffec72fd408ea6c79ab0e4184cc11b6b04f1ba
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_SAMPLES=OFF
+- -DBUILD_TESTS=OFF
+- -DBUILD_TOOLS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

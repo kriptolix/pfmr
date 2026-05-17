@@ -1,0 +1,11 @@
+id: sacn
+type: python
+pypi_name: sacn
+requires:
+  pkgconfig:
+  - alsa
+  - liblo
+  - rtmidi
+confidence: 0.6
+source: flathub:com.github.mikacousin.olc
+updated: '2026-05-16'

@@ -1,0 +1,17 @@
+id: gpiozero
+type: python
+pypi_name: gpiozero
+requires:
+  pkgconfig:
+  - gtksourceview
+  - lto
+  - python3
+  - system-expat
+  - system-ffi
+  - system-libmpdec
+  - tcl
+  - tk
+  - x
+confidence: 0.6
+source: flathub:tk.turtlico.Turtlico
+updated: '2026-05-16'

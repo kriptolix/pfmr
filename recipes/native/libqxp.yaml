@@ -1,0 +1,16 @@
+id: libqxp
+provides: []
+pkgconfig:
+- libqxp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dev-www.libreoffice.org/src/libqxp-0.0.2.tar.xz
+  sha256: e137b6b110120a52c98edd02ebdc4095ee08d0d5295a94316a981750095a945c
+config-opts:
+- --without-docs
+- --disable-tools
+cleanup:
+- /include
+- /lib/pkgconfig
+- '*.la'

@@ -1,0 +1,26 @@
+id: qt6-qtbase
+provides: []
+pkgconfig:
+- qt6-qtbase
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtbase-everywhere-src-6.9.2.tar.xz
+  sha256: 44be9c9ecfe04129c4dea0a7e1b36ad476c9cc07c292016ac98e7b41514f2440
+config-opts:
+- -DINSTALL_ARCHDATADIR=lib
+- -DQT_DISABLE_RPATH=ON
+- -DBUILD_WITH_PCH=FALSE
+- -DQT_FEATURE_openssl_linked=ON
+- -DQT_FEATURE_system_sqlite=ON
+- -DQT_FEATURE_glibc_fortify_source=OFF
+cleanup:
+- /bin
+- /doc
+- /include
+- /lib/*.a
+- /lib/*.la
+- /lib/*.prl
+- /lib/cmake
+- /lib/mkspecs
+- /lib/pkgconfig

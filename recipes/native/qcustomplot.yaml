@@ -1,0 +1,13 @@
+id: qcustomplot
+provides: []
+pkgconfig:
+- qcustomplot
+buildsystem: qmake
+source:
+  type: archive
+  url: https://www.qcustomplot.com/release/2.0.1/QCustomPlot-source.tar.gz
+  sha256: 574cee47def3251d080168a23428859214277cb9b6876bcdb9ce9d00b2403fe4
+config-opts:
+- LIBDIR=/app/lib
+cleanup:
+- /include

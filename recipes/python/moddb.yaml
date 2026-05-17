@@ -1,0 +1,60 @@
+id: moddb
+type: python
+pypi_name: moddb
+requires:
+  pkgconfig:
+  - abi-version
+  - dosbox-staging
+  - fluidsynth
+  - gamemode
+  - gamemode-32bit
+  - gconf
+  - glu
+  - glu-32bit
+  - hwdata
+  - libbsd
+  - libbsd-32bit
+  - libcaca
+  - libcaca-32bit
+  - libcapi20
+  - libcapi20-32bit
+  - libgphoto2
+  - libgphoto2-32bit
+  - libjpeg
+  - libjpeg-32bit
+  - libpcap
+  - libpcap-32bit
+  - librsync
+  - libspeechd
+  - libvlc
+  - libxmu
+  - libxmu-32bit
+  - mesa-demos
+  - ncurses
+  - ncurses-32bits
+  - pciutils
+  - perl
+  - psmisc
+  - sdl12-compat
+  - sdl12-compat-32bit
+  - setxkbmap
+  - shared
+  - sndio11
+  - sndio11-32bit
+  - sndio15
+  - sndio15-32bit
+  - systemdsystemunitdir
+  - usbutils
+  - v4l2-utils
+  - v4l2-utils-32bit
+  - vulkan-tools
+  - xrandr
+  - zenity
+  extensions:
+  - org.freedesktop.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.mono6
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+confidence: 0.6
+source: flathub:net.lutris.Lutris
+updated: '2026-05-16'

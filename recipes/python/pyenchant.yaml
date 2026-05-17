@@ -1,0 +1,10 @@
+id: pyenchant
+type: python
+pypi_name: pyenchant
+requires:
+  pkgconfig:
+  - graphviz
+  - gtksourceview
+confidence: 0.6
+source: flathub:org.zim_wiki.Zim
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: qtmqtt
+provides: []
+pkgconfig:
+- qtmqtt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/qt/qtmqtt/archive/refs/tags/v6.9.2.tar.gz
+  sha256: 1d5edb5b78f3b3248211afb3bd98947ebefc0e3acdd2db2f000dcda1a0fb362b
+cleanup:
+- /include
+- /lib/pkgconfig

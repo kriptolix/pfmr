@@ -1,0 +1,14 @@
+id: uncrustify
+provides: []
+pkgconfig:
+- uncrustify
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/uncrustify/uncrustify/releases/download/uncrustify-0.81.0/uncrustify-0.81.0.tar.gz
+  sha256: fa269567d1371169659112f2a13e1e8aa4c4867a0e6a79947099c5bf9cd2282c
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: warsow
+provides: []
+pkgconfig:
+- warsow
+buildsystem: cmake
+source:
+  type: archive
+  url: https://warsow.net/warsow_21_sdk.tar.gz
+  sha256: 99c88bc08f5e6055d28534de6e84fc204026dda51dc31e22caca1977f199453a
+config-opts:
+- -DQFUSION_GAME=Warsow
+- -DUSE_SDL2=ON
+cleanup:
+- /include
+- /lib/pkgconfig

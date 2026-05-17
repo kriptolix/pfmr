@@ -1,0 +1,12 @@
+id: libnitrokey
+provides: []
+pkgconfig:
+- libnitrokey
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Nitrokey/libnitrokey/archive/v3.6.tar.gz
+  sha256: 89bc89ef14597186b57d82ebf696e9318528dad2a748704145d9e3320084dde7
+cleanup:
+- /include
+- /lib/pkgconfig

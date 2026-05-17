@@ -1,0 +1,15 @@
+id: npupnp
+provides: []
+pkgconfig:
+- npupnp
+buildsystem: meson
+source:
+  type: archive
+  url: https://www.lesbonscomptes.com/upmpdcli/downloads/libnpupnp-6.2.1.tar.gz
+  sha256: 1cc1222512d480826d2923cc7b98b7361183a2add8c6b646a7fa32c2f34b32b3
+config-opts:
+- --buildtype=release
+- -Ddefault_library=static
+cleanup:
+- /include
+- /lib/pkgconfig

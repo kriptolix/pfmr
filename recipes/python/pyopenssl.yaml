@@ -1,0 +1,17 @@
+id: pyopenssl
+type: python
+pypi_name: pyopenssl
+requires:
+  pkgconfig:
+  - iproute2
+  - libndp
+  - libnma
+  - networkmanager
+  - networkmanager-openvpn
+  - polkit
+  - systemd
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:com.protonvpn.www
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: openrazer-pylib
+provides: []
+pkgconfig:
+- openrazer-pylib
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/openrazer/openrazer/releases/download/v3.12.2/openrazer-3.12.2.tar.xz
+  sha256: 86d65b340837c92fa38f7344cd90f004a23e9b0805581126eed3b70285e6ac61
+cleanup:
+- /include
+- /lib/pkgconfig

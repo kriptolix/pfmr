@@ -1,0 +1,12 @@
+id: kio-extras
+provides: []
+pkgconfig:
+- kio-extras
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kio-extras-25.12.3.tar.xz
+  sha256: b161e363320f96cffba0195e4045a88049fc3c5b93272532dce5ab6ce886916a
+cleanup:
+- /include
+- /lib/pkgconfig

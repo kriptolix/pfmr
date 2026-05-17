@@ -1,0 +1,15 @@
+id: libvterm
+provides: []
+pkgconfig:
+- libvterm
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/neovim/libvterm/archive/0a15c6e983b0db7ef8276e0792414a805d01bdaf.tar.gz
+  sha256: c4683e7a2d71c04781fd0ab7719a94202800e97a9e091514c16983bb732b0fa7
+cleanup:
+- /bin
+- /include
+- /lib/pkgconfig
+- '*.a'
+- '*.la'

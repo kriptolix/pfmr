@@ -1,0 +1,16 @@
+id: colord-gtk
+provides: []
+pkgconfig:
+- colord-gtk
+buildsystem: meson
+source:
+  type: archive
+  url: https://www.freedesktop.org/software/colord/releases/colord-gtk-0.3.1.tar.xz
+  sha256: c176b889b75630a17f4e3d7ef24c09a3e12368e633496087459c8b53ac3a122d
+config-opts:
+- -Dman=false
+- -Dgtk4=false
+- -Ddocs=false
+cleanup:
+- /include
+- /lib/pkgconfig

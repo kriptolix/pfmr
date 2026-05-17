@@ -1,0 +1,14 @@
+id: arc-theme
+provides: []
+pkgconfig:
+- arc-theme
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/jnsh/arc-theme/releases/download/20220102/arc-theme-20220102.tar.xz
+  sha256: 1c03934c78b32c019c3ee45c46193f864402e49f72d9c8c9af780634a0495ed1
+config-opts:
+- -Dthemes=gtk3
+- -Dvariants=light
+cleanup:
+- thumbnail.png

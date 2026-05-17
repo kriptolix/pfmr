@@ -1,0 +1,17 @@
+id: webkitgtk
+provides: []
+pkgconfig:
+- webkitgtk
+- gtk
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.webkitgtk.org/releases/webkitgtk-2.4.11.tar.xz
+  sha256: 588aea051bfbacced27fdfe0335a957dca839ebe36aa548df39c7bbafdb65bf7
+config-opts:
+- --prefix=/app
+- --with-gtk=2.0
+- --disable-webkit2
+cleanup:
+- /include
+- /lib/pkgconfig

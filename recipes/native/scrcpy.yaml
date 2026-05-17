@@ -1,0 +1,17 @@
+id: scrcpy
+provides: []
+pkgconfig:
+- scrcpy
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/Genymobile/scrcpy/archive/refs/tags/v1.24.tar.gz
+  sha256: e3054ad453ac577b941f8df0eabc94e842affc6e1d10ba8d21cededfa2eacc73
+config-opts:
+- --buildtype=release
+- --strip
+- -Db_lto=true
+- -Dprebuilt_server=scrcpy-server-v1.24
+cleanup:
+- /include
+- /lib/pkgconfig

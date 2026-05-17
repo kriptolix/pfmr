@@ -1,0 +1,16 @@
+id: icu-60
+provides: []
+pkgconfig:
+- icu-60
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/unicode-org/icu/releases/download/release-60-3/icu4c-60_3-src.tgz
+  sha256: 476287b17db6e0b7da230dce4b58e8e5669b1510847f82cab3647920f1374390
+config-opts:
+- --disable-static
+- --enable-shared
+- --disable-samples
+cleanup:
+- /include
+- /lib/pkgconfig

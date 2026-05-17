@@ -1,0 +1,16 @@
+id: dlib
+provides: []
+pkgconfig:
+- dlib
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: http://dlib.net/files/dlib-20.0.tar.bz2
+  sha256: 5fce3181d9f0bf4e4bc867f13e5a0172f19d47918e6a4d335de478daf269fb63
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_SHARED_LIBS=OFF
+- -DDLIB_NO_GUI_SUPPORT=ON
+cleanup:
+- /include
+- /lib/pkgconfig

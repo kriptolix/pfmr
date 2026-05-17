@@ -1,0 +1,26 @@
+id: liblzma
+provides: []
+pkgconfig:
+- liblzma
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/tukaani-project/xz/releases/download/v5.8.1/xz-5.8.1.tar.xz
+  sha256: 0b54f79df85912504de0b14aec7971e3f964491af1812d83447005807513cd9e
+config-opts:
+- --disable-encoders
+- --enable-decoders=lzma1,lzma2
+- --disable-microlzma
+- --disable-lzip-decoder
+- --disable-xz
+- --disable-xzdec
+- --disable-lzmadec
+- --disable-lzmainfo
+- --disable-lzma-links
+- --disable-scripts
+- --disable-doc
+- --disable-dependency-tracking
+- --disable-shared
+cleanup:
+- /include
+- /lib/pkgconfig

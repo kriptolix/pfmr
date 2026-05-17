@@ -1,0 +1,12 @@
+id: mauikit-texteditor
+provides: []
+pkgconfig:
+- mauikit-texteditor
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/mauikit-texteditor/4.0.2/mauikit-texteditor-4.0.2.tar.xz
+  sha256: b2cc5943453881ba74755c09f0cd2785fa3654cd58e82121821f347bf9fcdcd5
+cleanup:
+- /include
+- /lib/pkgconfig

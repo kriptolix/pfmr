@@ -1,0 +1,28 @@
+id: youtube-dl
+type: python
+pypi_name: youtube-dl
+requires:
+  pkgconfig:
+  - atkmm
+  - cairomm
+  - ffmpeg
+  - glibmm
+  - gst-libav
+  - gst-plugins-bad
+  - gst-plugins-base
+  - gst-plugins-good
+  - gst-plugins-ugly
+  - gtkmm
+  - jsoncpp
+  - libadwaita
+  - libmicrohttpd
+  - mm-common
+  - pangomm
+  - sassc
+  - sigc++
+  - websocketpp
+  - x264
+  - youtubedl-gui
+confidence: 0.6
+source: flathub:io.gitlab.caveman250.gtkeddit
+updated: '2026-05-16'

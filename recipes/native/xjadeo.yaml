@@ -1,0 +1,11 @@
+id: xjadeo
+provides: []
+pkgconfig:
+- xjadeo
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/xjadeo/xjadeo/v0.8.9/xjadeo-0.8.9.tar.gz
+  sha256: 47b7aeb9d0a82178a72944bac31b3934afee620fb05eefb625f6f3f085d266f1
+cleanup:
+- /share/man

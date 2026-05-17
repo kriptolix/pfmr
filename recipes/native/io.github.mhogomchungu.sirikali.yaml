@@ -1,0 +1,15 @@
+id: io.github.mhogomchungu.sirikali
+provides: []
+pkgconfig:
+- io.github.mhogomchungu.sirikali
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/mhogomchungu/sirikali/releases/download/1.8.5/SiriKali-1.8.5.tar.xz
+  sha256: ef89be49387680897f67410f624e70ac21f4acd58caf81bb680eb73eb7440fc1
+config-opts:
+- -DCMAKE_BUILD_TYPE=release
+- -DBUILD_FLATPAK=TRUE
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,19 @@
+id: libjcat
+provides: []
+pkgconfig:
+- libjcat
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/hughsie/libjcat/releases/download/0.2.6/libjcat-0.2.6.tar.xz
+  sha256: d54ad936ceb654e99f59b0227e4d1974b858970d250d98c6484abcfdc8334722
+config-opts:
+- -Dintrospection=false
+- -Dgtkdoc=false
+- -Dtests=false
+- -Dcli=false
+- --sysconfdir=/app/etc
+- --localstatedir=/var/data
+cleanup:
+- /include
+- /lib/pkgconfig

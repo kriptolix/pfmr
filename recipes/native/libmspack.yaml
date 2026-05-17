@@ -1,0 +1,11 @@
+id: libmspack
+provides: []
+pkgconfig:
+- libmspack
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.cabextract.org.uk/libmspack/libmspack-0.11alpha.tar.gz
+  sha256: 70dd1fb2f0aecc36791b71a1e1840e62173079eadaa081192d1c323a0eeea21b
+cleanup:
+- /bin

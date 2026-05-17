@@ -1,0 +1,12 @@
+id: blockout2-data
+provides: []
+pkgconfig:
+- blockout2-data
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/blockout/blockout/BlockOut%202.5/bl25-linux-x64.tar.gz
+  sha256: f273f241a8f6db8ac7289e138a49bcb794a72b9272fba2b51b5f91d6d7963b48
+cleanup:
+- /include
+- /lib/pkgconfig

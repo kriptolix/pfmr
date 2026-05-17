@@ -1,0 +1,13 @@
+id: genshi
+type: python
+pypi_name: genshi
+requires:
+  pkgconfig:
+  - gtest
+  - ome-common
+  - ome-files
+  - ome-model
+  - spdlog
+confidence: 0.6
+source: flathub:io.github.bothlab.omerewriter
+updated: '2026-05-16'

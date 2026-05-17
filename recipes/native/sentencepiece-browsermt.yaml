@@ -1,0 +1,14 @@
+id: sentencepiece-browsermt
+provides: []
+pkgconfig:
+- sentencepiece-browsermt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/kroketio/sentencepiece-browsermt/archive/refs/tags/0.2.tar.gz
+  sha256: 1cdd7b4ef66efad3cfb8c0aa7ac78d648a616b37649c4919056eb94dc3202d29
+config-opts:
+- -DSPM_BUILD_LIBRARY_ONLY=ON
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: mmtf-cpp
+provides: []
+pkgconfig:
+- mmtf-cpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/rcsb/mmtf-cpp/archive/v1.1.0.tar.gz
+  sha256: 021173bdc1814b1d0541c4426277d39df2b629af53151999b137e015418f76c0
+cleanup:
+- /include
+- /lib/pkgconfig

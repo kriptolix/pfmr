@@ -1,0 +1,15 @@
+id: pim-sieve-editor
+provides: []
+pkgconfig:
+- pim-sieve-editor
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/pim-sieve-editor-25.12.3.tar.xz
+  sha256: eae7f687f76950b8e490420747076087bf3fb04da15df6b04b663586b2550f81
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

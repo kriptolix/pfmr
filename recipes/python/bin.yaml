@@ -1,0 +1,13 @@
+id: bin
+type: python
+pypi_name: bin
+requires:
+  pkgconfig:
+  - appstream
+  - flatpak
+  - flatpak-builder
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.flatpak.Builder
+updated: '2026-05-16'

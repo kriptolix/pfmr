@@ -1,0 +1,14 @@
+id: strace
+provides: []
+pkgconfig:
+- strace
+buildsystem: autotools
+source:
+  type: archive
+  url: https://strace.io/files/6.18/strace-6.18.tar.xz
+  sha256: 0ad5dcba973a69e779650ef1cb335b12ee60716fc7326609895bd33e6d2a7325
+config-opts:
+- --disable-mpers
+cleanup:
+- /include
+- /lib/pkgconfig

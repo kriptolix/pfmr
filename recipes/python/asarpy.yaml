@@ -1,0 +1,19 @@
+id: asarpy
+type: python
+pypi_name: asarpy
+requires:
+  pkgconfig:
+  - baratinoo
+  - ibmtts
+  - kali
+  - libgnome-keyring
+  - libsecret
+  - libspeechd
+  - voxin
+  - zypak
+  extensions:
+  - org.freedesktop.Sdk.Extension.golang
+  - org.freedesktop.Sdk.Extension.vala
+confidence: 0.6
+source: flathub:org.electronjs.Electron2.BaseApp
+updated: '2026-05-16'

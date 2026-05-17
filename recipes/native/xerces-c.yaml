@@ -1,0 +1,11 @@
+id: xerces-c
+provides: []
+pkgconfig:
+- xerces-c
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/apache/xerces-c/archive/refs/tags/v3.3.0.tar.gz
+  sha256: 0f28ea2d7a0a3824d326c8bc4be26a3bb01dde289663beb6f15b241f80cbd3ae
+cleanup:
+- /bin

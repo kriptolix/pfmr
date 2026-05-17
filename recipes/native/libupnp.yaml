@@ -1,0 +1,12 @@
+id: libupnp
+provides: []
+pkgconfig:
+- libupnp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/sourceforge/pupnp/libupnp-1.14.31.tar.bz2
+  sha256: e72c7690d5df862c07e9014f99513f5a94b55f80d916120655f73e11863edf3f
+cleanup:
+- /include
+- /lib/pkgconfig

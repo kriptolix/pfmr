@@ -1,0 +1,12 @@
+id: r2ghidra
+provides: []
+pkgconfig:
+- r2ghidra
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/radareorg/r2ghidra/releases/download/6.1.4/r2ghidra-6.1.4.tar.xz
+  sha256: d3447f75fe5dadb2177b9a43d1c8e1c8fafd9cd79b74b5b3c741b52c82b3aca8
+cleanup:
+- /include
+- /lib/pkgconfig

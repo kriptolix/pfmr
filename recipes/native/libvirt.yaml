@@ -1,0 +1,18 @@
+id: libvirt
+provides: []
+pkgconfig:
+- libvirt
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.libvirt.org/libvirt-11.10.0.tar.xz
+  sha256: 66154fee836235678b712676b2589c45f66e3d6a8721ee0697c9f20a66cad0d8
+config-opts:
+- -Ddriver_remote=enabled
+- -Ddriver_libvirtd=enabled
+- -Ddriver_qemu=enabled
+- -Ddocs=disabled
+- -Dtests=disabled
+cleanup:
+- /include
+- /lib/pkgconfig

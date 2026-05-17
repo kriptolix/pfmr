@@ -1,0 +1,12 @@
+id: gnome-mines
+provides: []
+pkgconfig:
+- gnome-mines
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-mines/50/gnome-mines-50.0.tar.xz
+  sha256: 9d3a44122d04af787c64a869ef90dd54ea7500e5b48be457c6d64d9b2773fb9f
+cleanup:
+- /include
+- /lib/pkgconfig

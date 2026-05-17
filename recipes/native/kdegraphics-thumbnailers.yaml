@@ -1,0 +1,15 @@
+id: kdegraphics-thumbnailers
+provides: []
+pkgconfig:
+- kdegraphics-thumbnailers
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kdegraphics-thumbnailers-25.12.3.tar.xz
+  sha256: 05eb9e268c161d25c6899f1affdb99acaf8ec506a11083fea807e335a5de18f9
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DDISABLE_MOBIPOCKET=ON
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: dhewm3
+provides: []
+pkgconfig:
+- dhewm3
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/dhewm/dhewm3/archive/refs/tags/1.5.4.tar.gz
+  sha256: d460d55f7912e220f4d209b66f47e31aad6c2a833af6236a3679096a51f21858
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DREPRODUCIBLE_BUILD=ON
+cleanup:
+- /include
+- /lib/pkgconfig

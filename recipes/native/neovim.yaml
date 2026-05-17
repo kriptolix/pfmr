@@ -1,0 +1,14 @@
+id: neovim
+provides: []
+pkgconfig:
+- neovim
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/neovim/neovim/archive/v0.12.2.tar.gz
+  sha256: ef9f58da7d687ed4d1dad9715542bf0dabdeedbfe8089e2ce17fff21b920a268
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

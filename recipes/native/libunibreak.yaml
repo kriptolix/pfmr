@@ -1,0 +1,13 @@
+id: libunibreak
+provides: []
+pkgconfig:
+- libunibreak
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/adah1972/libunibreak/releases/download/libunibreak_5_0/libunibreak-5.0.tar.gz
+  sha256: 58f2fe4f9d9fc8277eb324075ba603479fa847a99a4b134ccb305ca42adf7158
+config-opts:
+- --disable-static
+cleanup:
+- /include

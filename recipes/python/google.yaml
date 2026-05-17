@@ -1,0 +1,17 @@
+id: google
+type: python
+pypi_name: google
+requires:
+  pkgconfig:
+  - chiaki-ng
+  - ffmpeg
+  - hidapi
+  - json-c
+  - libplacebo
+  - miniupnpc
+  - protobuf-compilers
+  - sdl2-compat
+  - sdl3
+confidence: 0.6
+source: flathub:com.github.thestr4ng3r.Chiaki
+updated: '2026-05-16'

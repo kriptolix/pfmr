@@ -1,0 +1,14 @@
+id: libsigc++
+provides: []
+pkgconfig:
+- libsigc++
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/libsigc++/2.10/libsigc++-2.10.7.tar.xz
+  sha256: d082a2ce72c750f66b1a415abe3e852df2eae1e8af53010f4ac2ea261a478832
+config-opts:
+- --disable-documentation
+cleanup:
+- /include
+- /lib/pkgconfig

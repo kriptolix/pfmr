@@ -1,0 +1,34 @@
+id: requests
+type: python
+pypi_name: requests
+requires:
+  pkgconfig:
+  - blueprint-compiler
+  - chiaki-ng
+  - chronograph
+  - ffmpeg
+  - ffms2
+  - fs-uae
+  - fs-uae-launcher
+  - gpgme
+  - hidapi
+  - json-c
+  - libmpeg2
+  - libnotify
+  - libplacebo
+  - libportal
+  - libportaudio
+  - libspelling
+  - libxmu
+  - miniupnpc
+  - mtdev
+  - protobuf-compilers
+  - pyqtapp
+  - sdl2-compat
+  - sdl3
+  - swig
+  - vte
+  - xclip
+confidence: 0.6
+source: flathub:dev.qwery.AddWater
+updated: '2026-05-16'

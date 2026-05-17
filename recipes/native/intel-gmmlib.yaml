@@ -1,0 +1,15 @@
+id: intel-gmmlib
+provides: []
+pkgconfig:
+- intel-gmmlib
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/intel/gmmlib/archive/refs/tags/intel-gmmlib-22.5.2.tar.gz
+  sha256: dbf7cc401de7ff386306a23c1c61b3cf7bd86a4d9001b3a1d16a81e6b0e3ab2b
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_INSTALL_LIBDIR=lib
+cleanup:
+- /include
+- /lib/pkgconfig

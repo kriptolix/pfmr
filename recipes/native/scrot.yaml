@@ -1,0 +1,12 @@
+id: scrot
+provides: []
+pkgconfig:
+- scrot
+buildsystem: autotools
+source:
+  type: archive
+  url: https://api.github.com/repos/resurrecting-open-source-projects/scrot/tarball/1.12.1
+  sha256: b4087954fa19f2adf16e90f6d3ba6c20ae41000591501933b82a2ce7d2c23cfa
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: libinfinity
+provides: []
+pkgconfig:
+- libinfinity
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/gobby/libinfinity/releases/download/0.7.2/libinfinity-0.7.2.tar.gz
+  sha256: 6e7029375a81c5e3dbcdf23b69402d220b124ac83e349f07fd37fd0e8379239e
+config-opts:
+- --disable-gtk-doc
+- --enable-introspection=no
+cleanup:
+- /include
+- /lib/pkgconfig

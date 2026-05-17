@@ -1,0 +1,14 @@
+id: perl
+provides: []
+pkgconfig:
+- perl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.cpan.org/src/5.0/perl-5.40.1.tar.gz
+  sha256: 02f8c45bb379ed0c3de7514fad48c714fd46be8f0b536bfd5320050165a1ee26
+config-opts:
+- -des
+- -Duseshrplib
+cleanup:
+- /share

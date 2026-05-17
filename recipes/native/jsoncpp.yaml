@@ -1,0 +1,15 @@
+id: jsoncpp
+provides: []
+pkgconfig:
+- jsoncpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/open-source-parsers/jsoncpp/archive/1.8.4.tar.gz
+  sha256: c49deac9e0933bcb7044f08516861a2d560988540b23de2ac1ad443b219afdb6
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/*.a
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: xdelta3
+provides: []
+pkgconfig:
+- xdelta3
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/jmacd/xdelta/archive/refs/tags/v3.1.0.tar.gz
+  sha256: 7515cf5378fca287a57f4e2fee1094aabc79569cfe60d91e06021a8fd7bae29d
+cleanup:
+- /include
+- /lib/pkgconfig

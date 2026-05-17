@@ -1,0 +1,69 @@
+id: beautifulsoup4
+type: python
+pypi_name: beautifulsoup4
+requires:
+  pkgconfig:
+  - abi-version
+  - cxx-binding
+  - cxx-shared
+  - dosbox-staging
+  - ffms2
+  - fluidsynth
+  - gamemode
+  - gamemode-32bit
+  - gconf
+  - glu
+  - glu-32bit
+  - hwdata
+  - libbsd
+  - libbsd-32bit
+  - libcaca
+  - libcaca-32bit
+  - libcapi20
+  - libcapi20-32bit
+  - libgphoto2
+  - libgphoto2-32bit
+  - libjpeg
+  - libjpeg-32bit
+  - libpcap
+  - libpcap-32bit
+  - librsync
+  - libspeechd
+  - libvlc
+  - libxcrypt
+  - libxmu
+  - libxmu-32bit
+  - libyaml
+  - mesa-demos
+  - ncurses
+  - ncurses-32bits
+  - ncurses5
+  - normal
+  - pciutils
+  - perl
+  - psmisc
+  - sdl12-compat
+  - sdl12-compat-32bit
+  - setxkbmap
+  - shared
+  - sndio11
+  - sndio11-32bit
+  - sndio15
+  - sndio15-32bit
+  - systemdsystemunitdir
+  - usbutils
+  - v4l2-utils
+  - v4l2-utils-32bit
+  - versioned-syms
+  - vulkan-tools
+  - xlsclients
+  - xrandr
+  - zenity
+  extensions:
+  - org.freedesktop.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.mono6
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+confidence: 0.6
+source: flathub:com.github.corna.Vivado
+updated: '2026-05-16'

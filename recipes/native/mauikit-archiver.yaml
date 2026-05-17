@@ -1,0 +1,12 @@
+id: mauikit-archiver
+provides: []
+pkgconfig:
+- mauikit-archiver
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/mauikit-archiver/4.0.2/mauikit-archiver-4.0.2.tar.xz
+  sha256: eb191e4e5cbe3b6d2541f703b267ac6e79d845f9b727dfeae81115650afc8890
+cleanup:
+- /include
+- /lib/pkgconfig

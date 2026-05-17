@@ -1,0 +1,12 @@
+id: sdl-gfx
+provides: []
+pkgconfig:
+- sdl_gfx
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/sdlgfx/SDL_gfx-2.0.25.tar.gz
+  sha256: 556eedc06b6cf29eb495b6d27f2dcc51bf909ad82389ba2fa7bdc4dec89059c0
+cleanup:
+- /include
+- /lib/pkgconfig

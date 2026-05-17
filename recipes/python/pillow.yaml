@@ -1,0 +1,50 @@
+id: pillow
+type: python
+pypi_name: pillow
+requires:
+  pkgconfig:
+  - blueprint-compiler
+  - chromaprint
+  - chronograph
+  - eigen3
+  - ensurepip
+  - geos
+  - gtksourceview
+  - imagemagick
+  - lapack
+  - libinsane
+  - libportal
+  - libportaudio
+  - libspelling
+  - libtirpc
+  - libvirt
+  - lto
+  - openblas
+  - perl
+  - poppler
+  - poppler-data
+  - popplerdata
+  - pycairo
+  - python
+  - python-paperwork
+  - python3
+  - qhull
+  - rpcsvc-proto
+  - system-expat
+  - system-ffi
+  - system-libmpdec
+  - tcl
+  - tcltk-includes
+  - tcltk-libs
+  - tk
+  - unrar
+  - vte
+  - x
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.openjdk21
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.texlive
+confidence: 0.6
+source: flathub:com.github.themix_project.Oomox
+updated: '2026-05-16'

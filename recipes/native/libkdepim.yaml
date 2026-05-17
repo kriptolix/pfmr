@@ -1,0 +1,14 @@
+id: libkdepim
+provides: []
+pkgconfig:
+- libkdepim
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/libkdepim-25.12.2.tar.xz
+  sha256: 7ae5f42570914f217e2e073a865b8395dd88818fce8e0e6cd01b75b71454db8f
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

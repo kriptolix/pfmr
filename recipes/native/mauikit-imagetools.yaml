@@ -1,0 +1,14 @@
+id: mauikit-imagetools
+provides: []
+pkgconfig:
+- mauikit-imagetools
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/mauikit-imagetools/4.0.2/mauikit-imagetools-4.0.2.tar.xz
+  sha256: ed636a9566c1fc0424cb59fa048d2c044d1138336dbabf08d227625f84e6a9f4
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

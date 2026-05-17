@@ -1,0 +1,13 @@
+id: libxmu-32bit
+provides: []
+pkgconfig:
+- libxmu-32bit
+buildsystem: autotools
+source:
+  type: archive
+  url: https://xorg.freedesktop.org/releases/individual/lib/libXmu-1.2.1.tar.xz
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

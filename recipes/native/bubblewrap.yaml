@@ -1,0 +1,16 @@
+id: bubblewrap
+provides: []
+pkgconfig:
+- bubblewrap
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/projectatomic/bubblewrap/archive/refs/tags/v0.11.2.tar.gz
+  sha256: 3fc7b94dd133539365dc573fe79d207802ce433e6e34b791a8b1080b17803a28
+config-opts:
+- -Dman=disabled
+- -Dselinux=disabled
+- -Dtests=false
+cleanup:
+- /include
+- /lib/pkgconfig

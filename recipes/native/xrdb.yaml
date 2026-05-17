@@ -1,0 +1,12 @@
+id: xrdb
+provides: []
+pkgconfig:
+- xrdb
+buildsystem: autotools
+source:
+  type: archive
+  url: https://xorg.freedesktop.org/releases/individual/app/xrdb-1.2.2.tar.gz
+  sha256: db2d774a35ae2f7e7ac61cc2de0dcae27fc2aa14399c35721f8300e63ea73549
+cleanup:
+- /include
+- /lib/pkgconfig

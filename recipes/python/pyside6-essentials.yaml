@@ -1,0 +1,15 @@
+id: pyside6-essentials
+type: python
+pypi_name: pyside6-essentials
+requires:
+  pkgconfig:
+  - ffms2
+  - python
+  - tor
+  extensions:
+  - org.freedesktop.Sdk.Extension.golang
+  - org.freedesktop.Sdk.Extension.llvm12
+  - org.freedesktop.Sdk.Extension.llvm19
+confidence: 0.6
+source: flathub:org.coolero.Coolero
+updated: '2026-05-16'

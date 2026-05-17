@@ -1,0 +1,11 @@
+id: messenger-gtk
+provides: []
+pkgconfig:
+- messenger-gtk
+buildsystem: meson
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gnunet/messenger-gtk-0.12.0.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

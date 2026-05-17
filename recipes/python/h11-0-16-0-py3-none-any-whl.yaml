@@ -1,0 +1,14 @@
+id: h11-0-16-0-py3-none-any-whl
+type: python
+pypi_name: h11-0-16-0-py3-none-any-whl
+requires:
+  pkgconfig:
+  - farstream
+  - libsodium
+  - libspelling
+  - libxeddsa
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.poez.Poezio
+updated: '2026-05-16'

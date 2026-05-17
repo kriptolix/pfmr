@@ -1,0 +1,17 @@
+id: plata-theme-flatpak
+provides: []
+pkgconfig:
+- plata-theme-flatpak
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.com/tista500/plata-theme-flatpak/-/archive/0.9.9/plata-theme-flatpak-0.9.9.tar.gz
+  sha256: 7ac3f584b4c38d284cb1a6975779b51b90dac1b67d718aab548360c92dc2b8cb
+config-opts:
+- --enable-mixed
+- --disable-light
+- --disable-dark
+- --disable-compact
+cleanup:
+- /include
+- /lib/pkgconfig

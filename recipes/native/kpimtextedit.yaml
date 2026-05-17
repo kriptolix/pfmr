@@ -1,0 +1,15 @@
+id: kpimtextedit
+provides: []
+pkgconfig:
+- kpimtextedit
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/kpimtextedit-25.12.2.tar.xz
+  sha256: 7efed3b92322f2ed7da80c15eec6b838662d8c4c9e4dd6c909bfccf1609a1e54
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

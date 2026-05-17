@@ -1,0 +1,12 @@
+id: dolphin-plugins
+provides: []
+pkgconfig:
+- dolphin-plugins
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/dolphin-plugins-25.12.3.tar.xz
+  sha256: a738d4f9f1148283ff0552ffc5a440cabc5f216aa2473c22e699593b3b01a7c0
+cleanup:
+- /include
+- /lib/pkgconfig

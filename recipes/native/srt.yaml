@@ -1,0 +1,17 @@
+id: srt
+provides: []
+pkgconfig:
+- srt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Haivision/srt/archive/v1.5.5.tar.gz
+  sha256: c3518bc43a71b5289032395b2db4c3e09e73d78b54247d56c14553a503b491cf
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_SHARED_LIBS=ON
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

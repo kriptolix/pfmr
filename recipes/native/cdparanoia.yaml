@@ -1,0 +1,12 @@
+id: cdparanoia
+provides: []
+pkgconfig:
+- cdparanoia
+buildsystem: meson
+source:
+  type: archive
+  url: http://downloads.xiph.org/releases/cdparanoia/cdparanoia-III-10.2.src.tgz
+  sha256: 005db45ef4ee017f5c32ec124f913a0546e77014266c6a1c50df902a55fe64df
+cleanup:
+- /include
+- /lib/pkgconfig

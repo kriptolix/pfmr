@@ -1,0 +1,14 @@
+id: stellarsolver
+provides: []
+pkgconfig:
+- stellarsolver
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/rlancaste/stellarsolver/archive/refs/tags/2.7.tar.gz
+  sha256: 36ff495f325920b9a23b7c3f7453a99c8d405e0984d4b27da7568625cb6c76c9
+config-opts:
+- -DUSE_QT5=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

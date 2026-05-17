@@ -1,0 +1,11 @@
+id: x11vnc
+provides: []
+pkgconfig:
+- x11vnc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/LibVNC/x11vnc/archive/refs/tags/0.9.17.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

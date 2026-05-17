@@ -1,0 +1,12 @@
+id: gst-thumbnailers
+provides: []
+pkgconfig:
+- gst-thumbnailers
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gst-thumbnailers/1.0/gst-thumbnailers-1.0.0.tar.xz
+  sha256: f2a68019d319995d20a55cf0c32db1bb248834c2300ee757b417a5337d5d6497
+cleanup:
+- /include
+- /lib/pkgconfig

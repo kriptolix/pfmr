@@ -1,0 +1,24 @@
+id: polkit
+provides: []
+pkgconfig:
+- polkit
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/polkit/polkit/-/archive/124/polkit-124.tar.gz
+  sha256: 72457d96a0538fd03a3ca96a6bf9b7faf82184d4d67c793eb759168e4fd49e20
+config-opts:
+- -Dlibs-only=true
+- -Dman=false
+- -Dintrospection=false
+- -Dexamples=false
+- -Dgtk_doc=false
+- -Dauthfw=shadow
+cleanup:
+- /bin/*
+- /etc/pam.d
+- /etc/dbus-1
+- /share/dbus-1/system-services/*
+- /share/polkit-1
+- /share/polkit-1/actions/*
+- /lib/polkit-1

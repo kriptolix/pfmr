@@ -1,0 +1,15 @@
+id: libmygpo-qt
+provides: []
+pkgconfig:
+- libmygpo-qt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/gpodder/libmygpo-qt/archive/1.2.0.tar.gz
+  sha256: 71d6461939be14c044d1688bd3381cb3a724c0acb292d34fe63b9c677a4d2247
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_SHARED_LIBS=ON
+cleanup:
+- /include
+- /lib/pkgconfig

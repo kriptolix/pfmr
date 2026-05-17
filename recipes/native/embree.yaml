@@ -1,0 +1,16 @@
+id: embree
+provides: []
+pkgconfig:
+- embree
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/embree/embree/archive/refs/tags/v3.8.0.tar.gz
+  sha256: 40cbc90640f63c318e109365d29aea00003e4bd14aaba8bb654fc1010ea5753a
+config-opts:
+- -DEMBREE_TUTORIALS:BOOL=OFF
+- -DEMBREE_ISPC_SUPPORT:BOOL=ON
+- -DEMBREE_TBB_INCLUDE_DIR=/app/include
+cleanup:
+- /include
+- /lib/pkgconfig

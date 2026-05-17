@@ -1,0 +1,14 @@
+id: kdev-php
+provides: []
+pkgconfig:
+- kdev-php
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/26.04.0/src/kdev-php-26.04.0.tar.xz
+  sha256: 442cddea8dd86c1190b9c705fdbedfeeac2f33d5550ad3554ebc006a458b3121
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

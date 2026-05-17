@@ -1,0 +1,12 @@
+id: humanize
+type: python
+pypi_name: humanize
+requires:
+  pkgconfig:
+  - evolution-data-server
+  - gnome-online-accounts
+  - libical
+  - librest
+confidence: 0.6
+source: flathub:com.chmouel.gnomeNextMeetingApplet
+updated: '2026-05-16'

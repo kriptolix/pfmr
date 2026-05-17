@@ -1,0 +1,28 @@
+id: net-snmp
+provides: []
+pkgconfig:
+- net-snmp
+- openssl
+- pic
+- default-snmp-version
+- sys-contact
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/net-snmp/net-snmp-5.9.5.2.tar.gz
+  sha256: 16707719f833184a4b72835dac359ae188123b06b5e42817c00790d7dc1384bf
+config-opts:
+- --disable-static
+- --disable-embedded-perl
+- --without-perl-modules
+- --without-rpm
+- --enable-ucd-snmp-compatibility
+- --enable-ipv6
+- --enable-as-needed
+- --with-openssl
+- --with-pic
+- --with-default-snmp-version=3
+- --with-sys-contact=root@localhost
+cleanup:
+- /include
+- /lib/pkgconfig

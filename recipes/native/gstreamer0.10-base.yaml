@@ -1,0 +1,15 @@
+id: gstreamer0.10-base
+provides: []
+pkgconfig:
+- gstreamer0.10-base
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gstreamer.freedesktop.org/src/gst-plugins-base/gst-plugins-base-0.10.36.tar.xz
+  sha256: 1fe45c3894903001d4d008b0713dab089f53726dcb5842d5b40c2595a984e64a
+config-opts:
+- --disable-static
+- --disable-gtk-doc
+cleanup:
+- /include
+- /lib/pkgconfig

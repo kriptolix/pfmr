@@ -1,0 +1,12 @@
+id: qt6-qtdatavis3d
+provides: []
+pkgconfig:
+- qt6-qtdatavis3d
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://invent.kde.org/qt/qt/qtdatavis3d/-/archive/v6.10.0/qtdatavis3d-v6.10.0.tar.gz
+  sha256: 827518719d9efa3c7a8521ac89c22fa1a95cf1a8d4401fd3826feaec95a9e77f
+cleanup:
+- /include
+- /lib/pkgconfig

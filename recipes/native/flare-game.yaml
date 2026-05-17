@@ -1,0 +1,14 @@
+id: flare-game
+provides: []
+pkgconfig:
+- flare-game
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/flareteam/flare-game/archive/v1.15.tar.gz
+  sha256: b6b2e7037dae416c29d2d55f8275491ed9edec690194fc2165a5429582a2518c
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.10
+cleanup:
+- /include
+- /lib/pkgconfig

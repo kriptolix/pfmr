@@ -1,0 +1,13 @@
+id: protobuf
+provides: []
+pkgconfig:
+- protobuf
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/protocolbuffers/protobuf/releases/download/v30.2/protobuf-30.2.tar.gz
+config-opts:
+- -Dprotobuf_BUILD_TESTS=OFF
+- -Dprotobuf_BUILD_LIBUPB=OFF
+cleanup:
+- '*'

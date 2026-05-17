@@ -1,0 +1,12 @@
+id: espeak-ng
+provides: []
+pkgconfig:
+- espeak-ng
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/espeak-ng/espeak-ng/archive/refs/tags/1.52.0.tar.gz
+  sha256: bb4338102ff3b49a81423da8a1a158b420124b055b60fa76cfb4b18677130a23
+cleanup:
+- /include
+- /lib/pkgconfig

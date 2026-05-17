@@ -1,0 +1,9 @@
+id: clean-text
+type: python
+pypi_name: clean-text
+requires:
+  pkgconfig:
+  - ffms2
+confidence: 0.6
+source: flathub:org.subtitld.Subtitld
+updated: '2026-05-16'

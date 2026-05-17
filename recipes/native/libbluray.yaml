@@ -1,0 +1,17 @@
+id: libbluray
+provides: []
+pkgconfig:
+- libbluray
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.videolan.org/pub/videolan/libbluray/1.3.0/libbluray-1.3.0.tar.bz2
+  sha256: e2dbaf99e84e0a9725f4985bcb85d41e52c2261cc651d8884b1b790b5ef016f9
+config-opts:
+- --disable-bdjava-jar
+cleanup:
+- /include
+- '*.a'
+- '*.la'
+- '*.pc'
+- /lib/*.so

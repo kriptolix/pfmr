@@ -1,0 +1,20 @@
+id: mediasdk
+provides: []
+pkgconfig:
+- mediasdk
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Intel-Media-SDK/MediaSDK/archive/refs/tags/intel-mediasdk-22.6.5.tar.gz
+  sha256: 3a671cc692da5111c041088f5e32528b4346e122e8a134fad71310c572705106
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_INSTALL_LIBDIR=lib
+- -DBUILD_SAMPLES=OFF
+- -DBUILD_TESTS=OFF
+- -DBUILD_TOOLS=OFF
+- -DBUILD_TESTS=OFF
+- -DMFX_ENABLE_SW_FALLBACK=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

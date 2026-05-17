@@ -1,0 +1,12 @@
+id: libxaw
+provides: []
+pkgconfig:
+- libxaw
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.x.org/releases/individual/lib/libXaw-1.0.14.tar.bz2
+  sha256: 76aef98ea3df92615faec28004b5ce4e5c6855e716fa16de40c32030722a6f8e
+cleanup:
+- /include
+- /lib/pkgconfig

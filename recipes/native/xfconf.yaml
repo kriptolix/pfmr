@@ -1,0 +1,17 @@
+id: xfconf
+provides: []
+pkgconfig:
+- xfconf
+buildsystem: meson
+source:
+  type: archive
+  url: https://archive.xfce.org/src/xfce/xfconf/4.21/xfconf-4.21.2.tar.xz
+  sha256: 99aa4366e909ba7b9f746aba48b610b9e9d2933aeb283c7fa5f37a7c3dc7a3a6
+config-opts:
+- --auto-features=enabled
+- --buildtype=minsize
+- -Dvala=disabled
+- -Dservice-name-prefix=org.xfce.ristretto
+cleanup:
+- /bin
+- /share/bash-completion

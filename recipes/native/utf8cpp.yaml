@@ -1,0 +1,14 @@
+id: utf8cpp
+provides: []
+pkgconfig:
+- utf8cpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/nemtrif/utfcpp/archive/refs/tags/v3.2.4.tar.gz
+  sha256: fde21a4c519eed25f095a1cd8490167409cc70d7b5e9c38756142e588ccb7c7e
+config-opts:
+- -DUTF8_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

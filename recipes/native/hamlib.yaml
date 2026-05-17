@@ -1,0 +1,17 @@
+id: hamlib
+provides: []
+pkgconfig:
+- hamlib
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/Hamlib/Hamlib/releases/download/4.6.5/hamlib-4.6.5.tar.gz
+  sha256: 90d6f1dba59417c00f8f4545131c7efd31930cd0e178598980a8210425e3852e
+config-opts:
+- --disable-static
+- --without-cxx-binding
+- --disable-winradio
+- --without-indi
+- --without-readline
+cleanup:
+- /bin

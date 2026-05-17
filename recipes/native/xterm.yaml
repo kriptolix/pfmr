@@ -1,0 +1,14 @@
+id: xterm
+provides: []
+pkgconfig:
+- xterm
+buildsystem: autotools
+source:
+  type: archive
+  url: https://invisible-island.net/archives/xterm/xterm-403.tgz
+  sha256: 1331b0df5919cb243ffe326dc6ff10a291e683a262f70cdf964a664be733ad83
+config-opts:
+- --disable-full-tgetent
+cleanup:
+- /include
+- /lib/pkgconfig

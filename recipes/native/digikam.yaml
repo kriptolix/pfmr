@@ -1,0 +1,21 @@
+id: digikam
+provides: []
+pkgconfig:
+- digikam
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/digikam/9.0.0/digiKam-9.0.0.tar.xz
+  sha256: 7680ea024fe00e10c96090e45fe4b7b4a1c3993bc5e87576eddd4e0eefd08ef3
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DENABLE_MYSQLSUPPORT=ON
+- -DENABLE_INTERNALMYSQL=ON
+- -DENABLE_MEDIAPLAYER=ON
+- -DENABLE_DBUS=ON
+- -DENABLE_APPSTYLES=ON
+- -DBUILD_TESTING=OFF
+- -DBUILD_WITH_QT6=ON
+cleanup:
+- /include
+- /lib/pkgconfig

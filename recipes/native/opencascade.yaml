@@ -1,0 +1,30 @@
+id: opencascade
+provides: []
+pkgconfig:
+- opencascade
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://git.dev.opencascade.org/gitweb/?p=occt.git;a=snapshot;h=refs/tags/V7_9_2;sf=tgz
+  sha256: b012222ddeb7c847325c1346eab8ec8c088834636e6063c2a3cb30641240d73c
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_RELEASE_DISABLE_EXCEPTIONS=OFF
+- -DBUILD_LIBRARY_TYPE=Shared
+- -DBUILD_Inspector=OFF
+- -DBUILD_DOC_Overview=OFF
+- -DBUILD_MODULE_ApplicationFramework=ON
+- -DBUILD_MODULE_DataExchange=ON
+- -DBUILD_MODULE_Draw=OFF
+- -DBUILD_MODULE_FoundationClasses=ON
+- -DBUILD_MODULE_ModelingAlgorithms=ON
+- -DBUILD_MODULE_ModelingData=ON
+- -DBUILD_MODULE_Visualization=OFF
+- -DUSE_VTK=OFF
+- -DUSE_TBB=OFF
+- -DINSTALL_FREETYPE=OFF
+- -DINSTALL_SAMPLES=OFF
+- -DINSTALL_TEST_CASES=OFF
+cleanup:
+- /share
+- /bin

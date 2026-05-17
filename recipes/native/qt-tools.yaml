@@ -1,0 +1,16 @@
+id: qt-tools
+provides: []
+pkgconfig:
+- qt-tools
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.11/6.11.1/submodules/qttools-everywhere-src-6.11.1.tar.xz
+  sha256: 8e61835a679c93fa9c6065b142353c2071ba68e297898937c32a03777fcaf50d
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DQT_BUILD_EXAMPLES=OFF
+- -DQT_BUILD_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: gnome-logs
+provides: []
+pkgconfig:
+- gnome-logs
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-logs/50/gnome-logs-50.0.tar.xz
+  sha256: b466c6660155521ba8135339c6df080a0e071a46f9911b99172b21f9e2dfd808
+cleanup:
+- /include
+- /lib/pkgconfig

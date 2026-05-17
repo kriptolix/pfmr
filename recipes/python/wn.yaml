@@ -1,0 +1,10 @@
+id: wn
+type: python
+pypi_name: wn
+requires:
+  pkgconfig:
+  - espeak-ng
+  - pcaudiolib
+confidence: 0.6
+source: flathub:com.github.fushinari.Wordbook
+updated: '2026-05-16'

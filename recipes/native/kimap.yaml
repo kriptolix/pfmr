@@ -1,0 +1,15 @@
+id: kimap
+provides: []
+pkgconfig:
+- kimap
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/kimap-25.12.2.tar.xz
+  sha256: 1e57a183501678c111b0274a70bf42555f7b23e1d5989a31f424543f016e478b
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

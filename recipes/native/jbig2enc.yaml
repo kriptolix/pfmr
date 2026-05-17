@@ -1,0 +1,12 @@
+id: jbig2enc
+provides: []
+pkgconfig:
+- jbig2enc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/agl/jbig2enc/archive/refs/tags/0.31.tar.gz
+  sha256: 35c255e44a9b1c4cbe27d2c84594a43d6666645156a2d186ba60f8832566141d
+cleanup:
+- /include
+- /lib/pkgconfig

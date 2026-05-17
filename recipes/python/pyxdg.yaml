@@ -1,0 +1,17 @@
+id: pyxdg
+type: python
+pypi_name: pyxdg
+requires:
+  pkgconfig:
+  - libinsane
+  - openblas
+  - poppler
+  - poppler-data
+  - pycairo
+  - pygobject
+  - python-paperwork
+  extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
+confidence: 0.6
+source: flathub:work.openpaper.Paperwork
+updated: '2026-05-16'

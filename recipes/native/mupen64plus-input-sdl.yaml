@@ -1,0 +1,12 @@
+id: mupen64plus-input-sdl
+provides: []
+pkgconfig:
+- mupen64plus-input-sdl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/mupen64plus/mupen64plus-input-sdl/releases/download/2.6.0/mupen64plus-input-sdl-src-2.6.0.tar.gz
+  sha256: 3b8629f72bb137fd2bdb9a6cc29ad270c3877f3d40e1f9dae89db24dde0425e4
+cleanup:
+- /include
+- /lib/pkgconfig

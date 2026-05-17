@@ -1,0 +1,21 @@
+id: mozjs
+provides: []
+pkgconfig:
+- mozjs
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.mozilla.org/pub/firefox/releases/68.9.0esr/source/firefox-68.9.0esr.source.tar.xz
+  sha256: 935105e1a8a97d64daffb372690e2b566b5f07641f01470929dbbc82d20d4407
+config-opts:
+- --prefix=/app
+- --enable-optimize
+- --disable-tests
+- --disable-jemalloc
+- --enable-linker=lld
+- --without-intl-api
+- --enable-shared-js
+- --disable-jitspew
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -6,7 +6,7 @@ BuildSandboxProber — Phase 3 core component.
 Orchestrates the full sandbox probe sequence for a set of Python packages:
 
   1. Write test manifest + infoscript.sh to a temp work directory
-  2. Build the base sandbox (flatpak-builder <build-dir> <manifest>)
+  2. Initialise the build directory (flatpak build-init)
   3. Set up a Python venv inside the sandbox
   4. For each package:
        a. Attempt `uv pip install <pkg>` (or pip)
@@ -18,13 +18,13 @@ Orchestrates the full sandbox probe sequence for a set of Python packages:
   5. Collate all errors into a SandboxProbeReport with high-level verdicts
 
 The prober skips gracefully when:
-  - flatpak-builder is not installed (ran=False, skip_reason set)
+  - flatpak is not installed (ran=False, skip_reason set)
   - The sandbox build itself fails
   - A package is pure Python and its wheel installs without issues
 
 Cache strategy (spec §18.4):
   - The build-dir IS cached between probe calls for the same work_dir
-    (flatpak-builder handles this automatically via its own layering)
+    (flatpak build-init creates a persistent build-dir on disk)
   - The Python venv is set up once per session and reused
   - Failed probe states are NOT cached: if errors were found, the
     work-dir is left intact for debugging but not reused as a "clean" base
@@ -45,8 +45,8 @@ from pfmr.models import (
     SandboxErrorType,
     SandboxProbeReport,
 )
+from pfmr.data.mappings import MAPPINGS
 from pfmr.sandbox.errors import parse_errors
-from pfmr.sandbox.manifest import TestManifestBuilder
 from pfmr.sandbox.runner import SandboxRunner
 from pfmr.utils.logging import get_logger
 
@@ -122,8 +122,8 @@ class BuildSandboxProber:
     # ------------------------------------------------------------------
 
     def is_available(self) -> bool:
-        """Return True if flatpak-builder is available on the host."""
-        return shutil.which("flatpak-builder") is not None
+        """Return True if flatpak is available on the host."""
+        return shutil.which("flatpak") is not None
 
     def probe(
         self,
@@ -173,8 +173,8 @@ class BuildSandboxProber:
         if not self.is_available():
             report.ran = False
             report.skip_reason = (
-                "flatpak-builder not found. "
-                "Install it with: flatpak install flathub org.flatpak.Builder"
+                "flatpak not found. "
+                "Install it with your distribution package manager (e.g. apt install flatpak)"
             )
             logger.warning("Probe skipped: %s", report.skip_reason)
             return report
@@ -184,36 +184,32 @@ class BuildSandboxProber:
             report.build_possible = True
             return report
 
-        # --- write manifest ---
-        builder = TestManifestBuilder(
+        import tempfile
+        build_dir = work_dir / "build"
+        runner = SandboxRunner(
+            build_dir=build_dir,
+            sdk=self.sdk,
             runtime=self.runtime,
             runtime_version=self.runtime_version,
-            sdk=self.sdk,
             sdk_extensions=self.sdk_extensions,
-        )
-        manifest_path, _ = builder.write(work_dir)
-
-        runner = SandboxRunner(
-            manifest_path=manifest_path,
-            work_dir=work_dir,
             timeout=self._command_timeout,
         )
 
-        # --- build base sandbox ---
-        build_result = runner.build()
-        report.stdout += build_result.stdout
-        report.stderr += build_result.stderr
+        # --- initialise sandbox ---
+        init_result = runner.init()
+        report.stdout += init_result.stdout
+        report.stderr += init_result.stderr
 
-        if not build_result.succeeded:
+        if not init_result.succeeded:
             report.ran = True
-            report.exit_code = build_result.exit_code
+            report.exit_code = init_result.exit_code
             report.build_possible = False
             errors = parse_errors(
-                build_result.stderr, build_result.stdout, context="sandbox-build"
+                init_result.stderr, init_result.stdout, context="sandbox-init"
             )
             report.errors.extend(errors)
             _apply_errors_to_report(report, errors)
-            logger.error("Sandbox build failed — probe aborted")
+            logger.error("Sandbox init failed — probe aborted")
             return report
 
         # --- set up Python venv ---
@@ -390,33 +386,6 @@ def _apply_errors_to_report(report: SandboxProbeReport, errors: list[SandboxErro
                 report.missing_python_packages.append(err.missing)
 
 
-# Common package-name → import-name mappings
-_IMPORT_NAMES: dict[str, str] = {
-    "pillow": "PIL",
-    "pyyaml": "yaml",
-    "beautifulsoup4": "bs4",
-    "scikit-learn": "sklearn",
-    "scikit-image": "skimage",
-    "opencv-python": "cv2",
-    "opencv_python": "cv2",
-    "opencv-python-headless": "cv2",
-    "python-dateutil": "dateutil",
-    "mysqlclient": "MySQLdb",
-    "psycopg2-binary": "psycopg2",
-    "pycrypto": "Crypto",
-    "pynacl": "nacl",
-    "pyzmq": "zmq",
-    "pyaudio": "pyaudio",
-    "jpype1": "jpype",
-    "python-magic": "magic",
-    "python-dotenv": "dotenv",
-    "pyserial": "serial",
-    "pyusb": "usb",
-}
-
-
 def _pkg_to_import_name(pkg_name: str) -> str:
-    canonical = pkg_name.lower().replace("-", "_")
-    if canonical in _IMPORT_NAMES:
-        return _IMPORT_NAMES[canonical]
-    return canonical
+    """Map PyPI package name to Python import name via mappings.toml."""
+    return MAPPINGS.python_import_name(pkg_name)

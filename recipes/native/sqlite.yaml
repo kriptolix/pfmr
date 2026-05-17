@@ -1,0 +1,13 @@
+id: sqlite
+provides: []
+pkgconfig:
+- sqlite
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.sqlite.org/2020/sqlite-autoconf-3340000.tar.gz
+  sha256: bf6db7fae37d51754737747aaaf413b4d6b3b5fbacd52bdb2d0d6e5b2edd9aee
+config-opts:
+- --enable-fts5
+cleanup:
+- /bin

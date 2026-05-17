@@ -1,0 +1,15 @@
+id: mbox-importer
+provides: []
+pkgconfig:
+- mbox-importer
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/mbox-importer-25.12.3.tar.xz
+  sha256: 628238e028aeaa2a6395a78449abfe4344d69fcff7c7f4b70994a98fc194be95
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

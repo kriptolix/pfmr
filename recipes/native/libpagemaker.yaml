@@ -1,0 +1,17 @@
+id: libpagemaker
+provides: []
+pkgconfig:
+- libpagemaker
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dev-www.libreoffice.org/src/libpagemaker-0.0.4.tar.xz
+  sha256: 66adacd705a7d19895e08eac46d1e851332adf2e736c566bef1164e7a442519d
+config-opts:
+- --without-docs
+- --disable-tools
+- --disable-werror
+cleanup:
+- /include
+- /lib/pkgconfig
+- '*.la'

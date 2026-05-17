@@ -1,0 +1,19 @@
+id: whisper.cpp
+provides: []
+pkgconfig:
+- whisper.cpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ggerganov/whisper.cpp/archive/refs/tags/v1.8.3.tar.gz
+  sha256: 870ba21409cdf66697dc4db15ebdb13bc67037d76c7cc63756c81471d8f1731a
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_SHARED_LIBS=ON
+- -DBUILD_TESTING=OFF
+- -DBUILD_APPS=OFF
+- -DENABLE_AVX512=OFF
+- -DGGML_VULKAN=1
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,19 @@
+id: raylib
+provides: []
+pkgconfig:
+- raylib
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz
+  sha256: aea98ecf5bc5c5e0b789a76de0083a21a70457050ea4cc2aec7566935f5e258e
+config-opts:
+- -DBUILD_EXAMPLES=OFF
+- -DUSE_EXTERNAL_GLFW=OFF
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_EXAMPLES=OFF
+- -DBUILD_SHARED_LIBS=ON
+- -DPLATFORM=Desktop
+cleanup:
+- /include
+- /lib/pkgconfig

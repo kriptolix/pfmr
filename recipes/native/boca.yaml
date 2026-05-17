@@ -1,0 +1,12 @@
+id: boca
+provides: []
+pkgconfig:
+- boca
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/enzo1982/BoCA/releases/download/v1.0.7/boca-1.0.7.tar.gz
+  sha256: 2433f2752e1441f6270460f5f2acb99de67b269e494559134e3ab26173222c7e
+cleanup:
+- /include
+- /lib/pkgconfig

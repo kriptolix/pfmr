@@ -1,0 +1,12 @@
+id: mono
+provides: []
+pkgconfig:
+- mono
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.mono-project.com/sources/mono/mono-5.16.0.179.tar.bz2
+  sha256: 93839af2ef0b8796935d8c1efd4cc693bc294bb2beb657b9edb6b4764f01e12b
+cleanup:
+- /include
+- /lib/pkgconfig

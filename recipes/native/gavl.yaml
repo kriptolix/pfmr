@@ -1,0 +1,14 @@
+id: gavl
+provides: []
+pkgconfig:
+- gavl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/gmerlin/gavl/1.4.0/gavl-1.4.0.tar.gz
+  sha256: 51aaac41391a915bd9bad07710957424b046410a276e7deaff24a870929d33ce
+config-opts:
+- --without-doxygen
+cleanup:
+- /include
+- /lib/pkgconfig

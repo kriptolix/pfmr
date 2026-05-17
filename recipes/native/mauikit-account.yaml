@@ -1,0 +1,12 @@
+id: mauikit-account
+provides: []
+pkgconfig:
+- mauikit-account
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/mauikit-accounts/4.0.2/mauikit-accounts-4.0.2.tar.xz
+  sha256: ba3616e9151d4838a1083765e3cf5241bd97e4c6796ead22493f4de91f286427
+cleanup:
+- /include
+- /lib/pkgconfig

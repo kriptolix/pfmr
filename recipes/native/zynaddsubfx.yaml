@@ -1,0 +1,20 @@
+id: zynaddsubfx
+provides: []
+pkgconfig:
+- zynaddsubfx
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.sourceforge.net/sourceforge/zynaddsubfx/zynaddsubfx/3.0.6/zynaddsubfx-3.0.6.tar.bz2
+  sha256: cbd160778f6cf147f9b0487719edc5197a1404f46d7c7bfd89e153f0d8ce71ae
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+- -DPluginLibDir=${FLATPAK_DEST}
+- -DGuiModule=zest
+- -DDemoMode=false
+- -DZYN_DATADIR:STRING=/app/extensions/Plugins/ZynFusion/share/zynaddsubfx
+cleanup:
+- /bin
+- /share/bash-completion
+- /share/doc
+- /share/applications

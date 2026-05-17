@@ -1,0 +1,12 @@
+id: unrtf
+provides: []
+pkgconfig:
+- unrtf
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/unrtf/unrtf-0.21.10.tar.gz
+  sha256: b49f20211fa69fff97d42d6e782a62d7e2da670b064951f14bbff968c93734ae
+cleanup:
+- /include
+- /lib/pkgconfig

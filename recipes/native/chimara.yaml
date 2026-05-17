@@ -1,0 +1,19 @@
+id: chimara
+provides: []
+pkgconfig:
+- chimara
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/chimara/Chimara/releases/download/0.9.5/chimara-0.9.5.tar.xz
+  sha256: 7839d27b0c95d21c2f835e208cdbec13500de5dfe3ad7d8ca0b972087bb95d78
+config-opts:
+- -Dbocfel=false
+- -Dnitfol=false
+- -Dplayer=false
+- -Dintrospection=false
+cleanup:
+- /include
+- /lib/pkgconfig
+- /libexec
+- /share/doc

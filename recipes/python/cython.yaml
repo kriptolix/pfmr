@@ -1,0 +1,16 @@
+id: cython
+type: python
+pypi_name: cython
+requires:
+  pkgconfig:
+  - gmsh
+  - hdf5
+  - netcdf-c
+  - netcdf-cxx
+  - proj
+  - python
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm12
+confidence: 0.6
+source: flathub:au.edu.uq.esys.escript
+updated: '2026-05-16'

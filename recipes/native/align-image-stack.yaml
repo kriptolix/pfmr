@@ -1,0 +1,33 @@
+id: align-image-stack
+provides: []
+pkgconfig:
+- align_image_stack
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://sourceforge.net/projects/hugin/files/hugin/hugin-2023.0/hugin-2023.0.0.tar.bz2
+cleanup:
+- /bin/autooptimiser
+- /bin/calibrate_lens_gui
+- /bin/celeste_standalone
+- /bin/checkpto
+- /bin/cpclean
+- /bin/cpfind
+- /bin/deghosting_mask
+- /bin/fulla
+- /bin/geocpset
+- /bin/hugin*
+- /bin/icpfind
+- /bin/linefind
+- /bin/nona
+- /bin/pano*
+- /bin/PT*
+- /bin/pto_*
+- /bin/tca_correct
+- /bin/verdandi
+- /bin/vig_optimize
+- /lib/libceleste*
+- /lib/libhuginbaswwx*
+- /lib/libicpfindlib*
+- /lib/liblocalfeatures*
+- /share

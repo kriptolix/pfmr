@@ -1,0 +1,12 @@
+id: gom
+provides: []
+pkgconfig:
+- gom
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gom/0.5/gom-0.5.6.tar.xz
+  sha256: 4d7a5e268698c8e7e40603e36e9e3a2b76133931ce1b637c1136301491b54cc3
+cleanup:
+- /include
+- /lib/pkgconfig

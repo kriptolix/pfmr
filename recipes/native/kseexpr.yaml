@@ -1,0 +1,18 @@
+id: kseexpr
+provides: []
+pkgconfig:
+- kseexpr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/kseexpr/4.0.4/kseexpr-4.0.4.0.tar.gz
+  sha256: ea4f6a8e820e6cc12d2a1e6977e96ea5457f37729fe0bc4ee8cc62d4c26c36ae
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DENABLE_LLVM_BACKEND=OFF
+- -DBUILD_DOC=OFF
+- -DBUILD_TESTS=OFF
+- -DBUILD_UTILS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

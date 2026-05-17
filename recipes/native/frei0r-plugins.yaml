@@ -1,0 +1,15 @@
+id: frei0r-plugins
+provides: []
+pkgconfig:
+- frei0r-plugins
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/dyne/frei0r/archive/v3.1.2.tar.gz
+  sha256: 2c848c6022a0f1b02be0568b99c7c353df82700235e85888f31ca97efded391c
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DWITHOUT_OPENCV=ON
+cleanup:
+- /include
+- /lib/pkgconfig

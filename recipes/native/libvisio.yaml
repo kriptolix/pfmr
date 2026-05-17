@@ -1,0 +1,16 @@
+id: libvisio
+provides: []
+pkgconfig:
+- libvisio
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dev-www.libreoffice.org/src/libvisio/libvisio-0.1.8.tar.xz
+  sha256: b4098ffbf4dcb9e71213fa0acddbd928f27bed30db2d80234813b15d53d0405b
+config-opts:
+- --disable-tests
+cleanup:
+- /include
+- /lib/pkgconfig
+- /bin/vsd*
+- /bin/vss*

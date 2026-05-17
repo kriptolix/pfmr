@@ -1,0 +1,12 @@
+id: png++
+provides: []
+pkgconfig:
+- png++
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.savannah.nongnu.org/releases/pngpp/png++-0.2.10.tar.gz
+  sha256: 998af216ab16ebb88543fbaa2dbb9175855e944775b66f2996fc945c8444eee1
+cleanup:
+- /include
+- /lib/pkgconfig

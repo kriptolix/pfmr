@@ -1,0 +1,16 @@
+id: libwpg
+provides: []
+pkgconfig:
+- libwpg
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/libwpg/libwpg/libwpg-0.3.3/libwpg-0.3.3.tar.xz
+  sha256: 99b3f7f8832385748582ab8130fbb9e5607bd5179bebf9751ac1d51a53099d1c
+config-opts:
+- --without-docs
+cleanup:
+- /include
+- /share/doc
+- /lib/pkgconfig
+- /bin/wpg*

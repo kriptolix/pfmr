@@ -1,0 +1,12 @@
+id: r2dec
+provides: []
+pkgconfig:
+- r2dec
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/wargio/r2dec-js/releases/download/6.0.7/r2dec-6.0.7-src-with-deps.zip
+  sha256: 198f01c778832b969566d9604d98cce2cb38f1dba6a8a473a3991db8f6c7a65a
+cleanup:
+- /include
+- /lib/pkgconfig

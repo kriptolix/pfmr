@@ -1,0 +1,14 @@
+id: glaze
+provides: []
+pkgconfig:
+- glaze
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/stephenberry/glaze/archive/v7.6.0.tar.gz
+  sha256: 839cd7bd2bda4db1a4e973f18851c2ecdccf82c75512453f68b2389d43a3e8ad
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

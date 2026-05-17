@@ -1,0 +1,11 @@
+id: tinydb
+type: python
+pypi_name: tinydb
+requires:
+  pkgconfig:
+  - libxmu
+  - mtdev
+  - xclip
+confidence: 0.6
+source: flathub:org.gnuhealth.mygnuhealth
+updated: '2026-05-16'

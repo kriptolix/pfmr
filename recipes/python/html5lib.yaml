@@ -1,0 +1,16 @@
+id: html5lib
+type: python
+pypi_name: html5lib
+requires:
+  pkgconfig:
+  - ffms2
+  - fmt
+  - geos
+  - qthttpserver
+  - shaderc
+  - volk
+  - vulkan-headers
+  - vulkan-tools
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

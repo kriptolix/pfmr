@@ -1,0 +1,14 @@
+id: libplacebo
+provides: []
+pkgconfig:
+- libplacebo
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/haasn/libplacebo/archive/refs/tags/v0.2.1.tar.gz
+  sha256: d5d920a1745e4209287d32e8b96a85127b61b843304813980e11104cd9f15e82
+config-opts:
+- -Dvulkan=false
+cleanup:
+- /include
+- /lib/pkgconfig

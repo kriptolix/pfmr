@@ -1,0 +1,12 @@
+id: etl
+provides: []
+pkgconfig:
+- etl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/synfig/synfig/releases/download/v1.5.3/ETL-1.5.3.tar.gz
+  sha256: 640f4d2cbcc1fb580028de8d23b530631c16e234018cefce33469170a41b06bf
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: plasma5support
+provides: []
+pkgconfig:
+- plasma5support
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/plasma/6.6.5/plasma5support-6.6.5.tar.xz
+  sha256: 5f45687e2d281cdfc0666a0ad777adfcbbbb2534284ca6450d3aa7d700b9f763
+cleanup:
+- /include
+- /lib/pkgconfig

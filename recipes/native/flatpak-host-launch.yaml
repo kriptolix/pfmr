@@ -1,0 +1,12 @@
+id: flatpak-host-launch
+provides: []
+pkgconfig:
+- flatpak-host-launch
+buildsystem: meson
+source:
+  type: archive
+  url: https://codeberg.org/JakobDev/flatpak-host-launch/archive/1.2.tar.gz
+  sha256: bd4b1861b68f544c0176ec6808280c1e302e32fbeeb1830fd1312239d5321c1a
+cleanup:
+- /include
+- /lib/pkgconfig

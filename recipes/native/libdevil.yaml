@@ -1,0 +1,17 @@
+id: libdevil
+provides: []
+pkgconfig:
+- libdevil
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/LuaDist/libdevil/archive/1.7.8.tar.gz
+  sha256: eaa088ea7544343750096fad2bcf8d14b907c6c3fe9714a56e2b54d391a2e25e
+config-opts:
+- --enable-IL=yes
+- --enable-ILU=yes
+- --enable-ILUT=yes
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

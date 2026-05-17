@@ -1,0 +1,14 @@
+id: flare-engine
+provides: []
+pkgconfig:
+- flare-engine
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/flareteam/flare-engine/archive/v1.15.tar.gz
+  sha256: 642db16111487bf8a3fb7ebadcfc635909c7eaf91df7723ee22fae1caac9fe93
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.10
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: nemo-qml-plugin-dbus
+provides: []
+pkgconfig:
+- nemo-qml-plugin-dbus
+buildsystem: qmake
+source:
+  type: archive
+  url: https://github.com/sailfishos/nemo-qml-plugin-dbus/archive/refs/tags/2.1.38.tar.gz
+  sha256: 201bdbe1c1eac81e572483af4f5f3558e2e932fc217dc53daa8a425d99d64263
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: libdigidocpp
+provides: []
+pkgconfig:
+- libdigidocpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/open-eid/libdigidocpp/archive/refs/tags/v4.3.0.tar.gz
+  sha256: d728d15298a7548f9f481ad746dd0961c9cfd1f7130c3b83f5d89a8eab7cd75d
+cleanup:
+- /include
+- /lib/pkgconfig

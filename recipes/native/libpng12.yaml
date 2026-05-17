@@ -1,0 +1,16 @@
+id: libpng12
+provides: []
+pkgconfig:
+- libpng12
+- libpng-compat
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp-osl.osuosl.org/pub/libpng/src/libpng12/libpng-1.2.59.tar.xz
+  sha256: b4635f15b8adccc8ad0934eea485ef59cc4cae24d0f0300a9a941e51974ffcc7
+config-opts:
+- --disable-static
+- --with-libpng-compat
+cleanup:
+- /include
+- /lib/pkgconfig

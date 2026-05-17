@@ -1,0 +1,12 @@
+id: libimagequant
+provides: []
+pkgconfig:
+- libimagequant
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/lovell/libimagequant/archive/v2.4.1.tar.gz
+  sha256: da531249038e17f0674cef6e5d4100e43bf8cdfb4f330bc2a590bff50cd91913
+cleanup:
+- /include
+- /lib/pkgconfig

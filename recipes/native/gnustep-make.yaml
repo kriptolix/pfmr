@@ -1,0 +1,12 @@
+id: gnustep-make
+provides: []
+pkgconfig:
+- gnustep-make
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/gnustep/tools-make/archive/make-2_9_3.tar.gz
+  sha256: aad12caecb0398b099f3b8b0282cecc3f01a9f371200641b2e1e535ae6ee2543
+cleanup:
+- /include
+- /lib/pkgconfig

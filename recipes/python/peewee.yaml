@@ -1,0 +1,9 @@
+id: peewee
+type: python
+pypi_name: peewee
+requires:
+  pkgconfig:
+  - chronograph
+confidence: 0.6
+source: flathub:io.github.dzheremi2.lrcmake-gtk
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: cef
+provides: []
+pkgconfig:
+- cef
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://cdn-fastly.obsproject.com/downloads/cef_binary_4280_linux64.tar.bz2
+  sha256: d91c78349ecbfbfdfc18d5f882dc28b939028f1a631191c603b5d0d938ada972
+cleanup:
+- '*.a'
+- ./*

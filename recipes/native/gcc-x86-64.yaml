@@ -1,0 +1,32 @@
+id: gcc-x86-64
+provides: []
+pkgconfig:
+- gcc-x86_64
+- system-zlib
+- isl
+- dwarf2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gcc/gcc-15.2.0/gcc-15.2.0.tar.xz
+  sha256: 438fd996826b0c82485a29da03a72d71d6e3541a83ec702df4271f6fe025d24e
+config-opts:
+- --disable-multilib
+- --enable-checking=release
+- --enable-languages=c,c++,lto
+- --with-system-zlib
+- --enable-shared
+- --enable-static
+- --enable-threads=posix
+- --enable-libstdcxx-time=yes
+- --enable-libstdcxx-filesystem-ts=yes
+- --enable-fully-dynamic-string
+- --enable-libgomp
+- --enable-lto
+- --with-isl
+- --enable-cloog-backend=isl
+- --disable-sjlj-exceptions
+- --with-dwarf2
+cleanup:
+- /include
+- /lib/pkgconfig

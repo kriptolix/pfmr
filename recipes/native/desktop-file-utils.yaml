@@ -1,0 +1,15 @@
+id: desktop-file-utils
+provides: []
+pkgconfig:
+- desktop-file-utils
+buildsystem: meson
+source:
+  type: archive
+  url: https://www.freedesktop.org/software/desktop-file-utils/releases/desktop-file-utils-0.28.tar.xz
+  sha256: 4401d4e231d842c2de8242395a74a395ca468cd96f5f610d822df33594898a70
+cleanup:
+- /bin/update-desktop-database
+- /bin/desktop-file-install
+- /bin/desktop-file-edit
+- /share/emacs
+- /share/man

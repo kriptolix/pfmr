@@ -1,0 +1,15 @@
+id: sfml
+provides: []
+pkgconfig:
+- sfml
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: http://www.sfml-dev.org/files/SFML-2.5.1-sources.zip
+  sha256: bf1e0643acb92369b24572b703473af60bac82caf5af61e77c063b779471bb7f
+config-opts:
+- -DSFML_INSTALL_PKGCONFIG_FILES=TRUE
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

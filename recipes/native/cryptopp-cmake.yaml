@@ -1,0 +1,16 @@
+id: cryptopp-cmake
+provides: []
+pkgconfig:
+- cryptopp-cmake
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/abdes/cryptopp-cmake/archive/refs/tags/CRYPTOPP_8_9_0.tar.gz
+  sha256: 191d69061c56602de1610ebf03b44dcf75636006e7e60ef8105bee6472ec0caf
+config-opts:
+- -DCMAKE_BUILD_TYPE=release
+- -DCRYPTOPP_SOURCES=src/deps/cryptopp1
+- -DCRYPTOPP_BUILD_TESTING=OFF
+- -DCRYPTOPP_BUILD_DOCUMENTATION=OFF
+cleanup:
+- '*'

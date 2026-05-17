@@ -1,0 +1,9 @@
+id: trove-classifiers-
+type: python
+pypi_name: trove-classifiers-
+requires:
+  pkgconfig:
+  - qgis
+confidence: 0.6
+source: flathub:org.qgis.qgis
+updated: '2026-05-16'

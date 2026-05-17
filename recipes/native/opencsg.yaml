@@ -1,0 +1,11 @@
+id: opencsg
+provides: []
+pkgconfig:
+- opencsg
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/floriankirsch/OpenCSG/archive/refs/tags/opencsg-1-5-1-release.tar.gz
+  sha256: 9dd466ae844c8bf48d61674312f7261bd87980ec3c0b74fd3831f8d7904cbf8d
+cleanup:
+- /bin

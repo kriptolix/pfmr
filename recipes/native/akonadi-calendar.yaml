@@ -1,0 +1,15 @@
+id: akonadi-calendar
+provides: []
+pkgconfig:
+- akonadi-calendar
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/akonadi-calendar-25.12.3.tar.xz
+  sha256: ac606d2210ba581167b0f17bc81dc60ed4c0de66daf9adcd55fce25c73c60014
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

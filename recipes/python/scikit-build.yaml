@@ -1,0 +1,19 @@
+id: scikit-build
+type: python
+pypi_name: scikit-build
+requires:
+  pkgconfig:
+  - libinsane
+  - miniupnpc
+  - mpv
+  - openblas
+  - poppler
+  - poppler-data
+  - python-paperwork
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.openjdk21
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:work.openpaper.Paperwork
+updated: '2026-05-16'

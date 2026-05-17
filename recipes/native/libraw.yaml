@@ -1,0 +1,19 @@
+id: libraw
+provides: []
+pkgconfig:
+- libraw
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.libraw.org/data/LibRaw-0.22.1.tar.gz
+  sha256: a789dc4e2409e2901d93793a4e0b80c7b49d0d97cf6ad71c850eb7616acfd786
+config-opts:
+- --disable-examples
+- --disable-jasper
+- --disable-static
+- --enable-jpeg
+- --enable-lcms
+- --enable-openmp
+cleanup:
+- /include
+- /lib/pkgconfig

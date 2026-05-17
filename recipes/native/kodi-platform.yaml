@@ -1,0 +1,12 @@
+id: kodi-platform
+provides: []
+pkgconfig:
+- kodi-platform
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/xbmc/kodi-platform/archive/844cf3ef5ad0649b8d97894d422928ec8a7a7d71.tar.gz
+  sha256: 3215ff51649c852645e499917b69c7393f3998cd458440ab6025c1ce2434dd88
+cleanup:
+- /include
+- /lib/pkgconfig

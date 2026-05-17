@@ -1,0 +1,14 @@
+id: libsixel
+provides: []
+pkgconfig:
+- libsixel
+buildsystem: meson
+source:
+  type: archive
+  url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.5
+  sha256: 402da9e24caea62fe1e4c5d6f9c9211141f7a5d8016e717527ecde10c5522344
+config-opts:
+- --libdir=lib
+cleanup:
+- /include
+- /lib/pkgconfig

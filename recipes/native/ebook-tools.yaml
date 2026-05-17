@@ -1,0 +1,15 @@
+id: ebook-tools
+provides: []
+pkgconfig:
+- ebook-tools
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/ebook-tools/ebook-tools/0.2.2/ebook-tools-0.2.2.tar.gz
+  sha256: cbc35996e911144fa62925366ad6a6212d6af2588f1e39075954973bbee627ae
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: qrencode
+provides: []
+pkgconfig:
+- qrencode
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/fukuchi/libqrencode/archive/refs/tags/v4.1.1.tar.gz
+config-opts:
+- --disable-shared
+cleanup:
+- '*'

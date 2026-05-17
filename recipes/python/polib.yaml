@@ -1,0 +1,52 @@
+id: polib
+type: python
+pypi_name: polib
+requires:
+  pkgconfig:
+  - app-name
+  - branding
+  - collabora-office
+  - cppunit
+  - docrepair-fonts
+  - fonts
+  - galleries
+  - icoutils
+  - info-url
+  - lang
+  - libreoffice
+  - linker-hash-style
+  - lo-path
+  - lokit-path
+  - perl
+  - poco
+  - poco-includes
+  - poco-libs
+  - rsync
+  - system-altlinuxhyph
+  - system-curl
+  - system-dicts
+  - system-expat
+  - system-fontconfig
+  - system-freetype
+  - system-graphite
+  - system-harfbuzz
+  - system-hunspell
+  - system-icu
+  - system-lcms2
+  - system-libpng
+  - system-libtiff
+  - system-libwebp
+  - system-libxml
+  - system-mythes
+  - system-nss
+  - system-openssl
+  - system-zlib
+  - theme
+  - vendor
+  - vte
+  - zenity
+  extensions:
+  - org.freedesktop.Sdk.Extension.node20
+confidence: 0.6
+source: flathub:com.collaboraoffice.Office
+updated: '2026-05-16'

@@ -1,0 +1,14 @@
+id: hydrasdr
+provides: []
+pkgconfig:
+- hydrasdr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/hydrasdr/hydrasdr-host/archive/refs/tags/v1.0.4.tar.gz
+  sha256: e1aaf437e7bfc97141cf73e16d7bf4960b07677cb2ee6787dfd84cd3ad5c2fd7
+config-opts:
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: cgal
+provides: []
+pkgconfig:
+- cgal
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/CGAL/cgal/archive/refs/tags/releases/CGAL-4.14.3.tar.gz
+  sha256: 05badca4025ec85012942533f5f1af6314ae10ce2f7effcc094b6844c4a54985
+cleanup:
+- /include
+- /lib/pkgconfig

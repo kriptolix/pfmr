@@ -1,0 +1,14 @@
+id: systemd
+provides: []
+pkgconfig:
+- systemd
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/systemd/systemd/archive/v260.1/systemd-260.1.tar.gz
+  sha256: 11b9821892b75d19af7b21f0f7f4e53636638147faf3e6a4ded78b40cb38993f
+config-opts:
+- --buildtype=plain
+cleanup:
+- /include
+- /lib/pkgconfig

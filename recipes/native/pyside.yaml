@@ -1,0 +1,18 @@
+id: pyside
+provides: []
+pkgconfig:
+- pyside
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/official_releases/QtForPython/pyside6/PySide6-6.10.1-src/pyside-setup-everywhere-src-6.10.1.tar.xz
+  sha256: fd54f40853d61dfd845dbb40d4f89fbd63df5ed341b3d9a2c77bb5c947a0a838
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_TESTS=OFF
+- -DCMAKE_SKIP_RPATH:BOOL=YES
+- -DFORCE_LIMITED_API=OFF
+cleanup:
+- /bin
+- /lib/plugins/designer
+- /PySide6

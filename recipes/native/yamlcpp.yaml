@@ -1,0 +1,18 @@
+id: yamlcpp
+provides: []
+pkgconfig:
+- yamlcpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/loot/yaml-cpp/archive/0.8.0+merge-key-support.2.tar.gz
+  sha256: e91779044cd4025ec10ed31986031031ef22ebce90a64cc8f85e7c7e95a1abc6
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DYAML_MSVC_SHARED_RT=ON
+- -DYAML_CPP_BUILD_CONTRIB=OFF
+- -DYAML_CPP_BUILD_TOOLS=OFF
+- -DYAML_BUILD_SHARED_LIBS=OFF
+- -DYAML_CPP_BUILD_TESTS=OFF
+cleanup:
+- '*'

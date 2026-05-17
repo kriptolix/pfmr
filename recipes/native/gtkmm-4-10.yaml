@@ -1,0 +1,16 @@
+id: gtkmm-4-10
+provides: []
+pkgconfig:
+- gtkmm-4-10
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gtkmm/4.20/gtkmm-4.20.0.tar.xz
+  sha256: daad9bf9b70f90975f91781fc7a656c923a91374261f576c883cd3aebd59c833
+config-opts:
+- -Dmaintainer-mode=false
+- -Dbuild-demos=false
+- -Dbuild-tests=false
+cleanup:
+- /lib/gdkmm-4.0
+- /lib/gtkmm-4.0

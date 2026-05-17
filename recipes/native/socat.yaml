@@ -1,0 +1,53 @@
+id: socat
+provides: []
+pkgconfig:
+- socat
+buildsystem: autotools
+source:
+  type: archive
+  url: http://www.dest-unreach.org/socat/download/socat-1.8.1.1.tar.gz
+  sha256: f68b602c80e94b4b7498d74ec408785536fe33534b39467977a82ab2f7f01ddb
+config-opts:
+- --disable-largefile
+- --disable-stats
+- --disable-stdio
+- --disable-fdnum
+- --disable-creat
+- --disable-gopen
+- --disable-pipe
+- --disable-socketpair
+- --disable-termios
+- --disable-abstract-unixsocket
+- --disable-ip6
+- --disable-rawip
+- --disable-genericsocket
+- --disable-interface
+- --disable-tcp
+- --disable-udp
+- --disable-udplite
+- --disable-sctp
+- --disable-dccp
+- --disable-vsock
+- --disable-namespaces
+- --disable-posixmq
+- --disable-socks4
+- --disable-socks4a
+- --disable-socks5
+- --disable-proxy
+- --disable-exec
+- --disable-system
+- --disable-shell
+- --disable-pty
+- --disable-fs
+- --disable-readline
+- --disable-openssl
+- --disable-tun
+- --disable-sycls
+- --disable-filan
+- --disable-libwrap
+- --disable-resolve
+cleanup:
+- /bin/*.sh
+- /bin/filan
+- /bin/procan
+- /share/man

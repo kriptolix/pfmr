@@ -1,0 +1,14 @@
+id: hwdata
+provides: []
+pkgconfig:
+- hwdata
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/vcrhonek/hwdata/archive/refs/tags/v0.403.tar.gz
+  sha256: 77d0a69e5558d16d33bbb510a09093deaf11c882baf9ef6ec5f18a8ef96e2c13
+config-opts:
+- --datarootdir=/app/share
+cleanup:
+- /include
+- /lib/pkgconfig

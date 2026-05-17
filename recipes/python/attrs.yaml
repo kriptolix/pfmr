@@ -1,0 +1,12 @@
+id: attrs
+type: python
+pypi_name: attrs
+requires:
+  pkgconfig:
+  - avahi
+  - distro
+  - pycairo
+  - pygobject
+confidence: 0.6
+source: flathub:io.github.input_leap.input-leap
+updated: '2026-05-16'

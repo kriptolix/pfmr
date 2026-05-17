@@ -1,0 +1,14 @@
+id: sndio11
+provides: []
+pkgconfig:
+- sndio11
+- libbsd
+buildsystem: autotools
+source:
+  type: archive
+  url: http://archive.ubuntu.com/ubuntu/pool/universe/s/sndio/sndio_1.1.0.orig.tar.gz
+  sha256: fcd7f845ff70f38c2898d737450b8aa3e1bb0afb9d147e8429ef22c0b2c2db57
+config-opts:
+- --with-libbsd
+cleanup:
+- /bin

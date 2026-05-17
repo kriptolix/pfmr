@@ -1,0 +1,14 @@
+id: makemkv-oss
+provides: []
+pkgconfig:
+- makemkv-oss
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.makemkv.com/download/makemkv-oss-1.18.3.tar.gz
+  sha256: bc8bb084ae3aabcd503d5bb93efc273e046e4fd4663d39a9836ce0c047fee823
+config-opts:
+- --enable-allcodecs
+cleanup:
+- /include
+- /lib/pkgconfig

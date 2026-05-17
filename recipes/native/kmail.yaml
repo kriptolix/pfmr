@@ -1,0 +1,15 @@
+id: kmail
+provides: []
+pkgconfig:
+- kmail
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kmail-25.12.3.tar.xz
+  sha256: e1ed980945ea3428100e01b5fccbb4e98b109c1d8503340c23b97238d36821c1
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: d-spy
+provides: []
+pkgconfig:
+- d-spy
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/d-spy/50/d-spy-50.0.tar.xz
+  sha256: 1bddc86d8a2cf67b4f652dc461ccd8353112f088753420037c75f5454deaad10
+cleanup:
+- /include
+- /lib/pkgconfig

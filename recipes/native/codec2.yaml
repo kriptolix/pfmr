@@ -1,0 +1,14 @@
+id: codec2
+provides: []
+pkgconfig:
+- codec2
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/drowe67/codec2/archive/refs/tags/1.2.0.tar.gz
+  sha256: cbccae52b2c2ecc5d2757e407da567eb681241ff8dadce39d779a7219dbcf449
+config-opts:
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

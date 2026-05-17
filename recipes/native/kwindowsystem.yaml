@@ -1,0 +1,14 @@
+id: kwindowsystem
+provides: []
+pkgconfig:
+- kwindowsystem
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.101/kwindowsystem-5.101.0.tar.xz
+  sha256: ef6b9e733e320be63a4557da0453b1a8ea81519e01c1737eff69b66401302eb8
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,38 @@
+id: setuptools-rust
+type: python
+pypi_name: setuptools-rust
+requires:
+  pkgconfig:
+  - bubblewrap
+  - curl
+  - dbus
+  - io.github.mhogomchungu.media-downloader
+  - iproute2
+  - jq
+  - libfuse
+  - libfyaml
+  - libndp
+  - libnma
+  - libxml-prefix
+  - libxslt-prefix
+  - networkmanager
+  - networkmanager-openvpn
+  - optipng
+  - ostree
+  - p7zip
+  - polkit
+  - popt
+  - rpm
+  - svn
+  - system-libs
+  - systemd
+  - systemdsystemgeneratordir
+  - xdg-dbus-proxy
+  - xmlstarlet
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.github.mhogomchungu.media-downloader
+updated: '2026-05-16'

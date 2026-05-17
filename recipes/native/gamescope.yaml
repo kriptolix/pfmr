@@ -1,0 +1,19 @@
+id: gamescope
+provides: []
+pkgconfig:
+- gamescope
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/nothings/stb/archive/5736b15f7ea0ffb08dd38af21067c314d6a3aae9/stb.tar.gz
+  sha256: d00921d49b06af62aa6bfb97c1b136bec661dd11dd4eecbcb0da1f6da7cedb4c
+config-opts:
+- -Dpipewire=enabled
+- -Dforce_fallback_for=stb,wlroots,libliftoff,vkroots
+cleanup:
+- /include
+- /lib/pkgconfig
+- /lib/*.a
+- /share/pkgconfig
+- /share/applications
+- /bin/di-edid-decode

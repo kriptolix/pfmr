@@ -1,0 +1,308 @@
+# pfmr/data/mappings.toml
+# ========================
+# Global name correspondence tables used across all pfmr subsystems.
+# Edit this file to add new mappings — no code changes needed.
+#
+# Sections:
+#   [module_to_pkgconfig]   Flatpak module name  → pkg-config name(s)
+#   [module_to_soname]      Flatpak module name  → shared library soname(s)
+#   [pkgconfig_to_soname]   pkg-config name      → shared library soname(s)
+#   [python_import_names]   PyPI package name    → Python import name
+#   [runtime_baseline_libs] sonames always present in any Flatpak runtime
+#   [app_module_indicators] patterns that identify the app module (to skip)
+
+# ---------------------------------------------------------------------------
+# Flatpak module name → pkg-config name(s)
+# Used by: ManifestAnalyzer, SharedModulesImporter
+# ---------------------------------------------------------------------------
+[module_to_pkgconfig]
+openssl          = ["openssl", "libcrypto", "libssl"]
+libssl           = ["openssl"]
+zlib             = ["zlib"]
+libffi           = ["libffi"]
+libxml2          = ["libxml-2.0"]
+libxslt          = ["libxslt"]
+libjpeg          = ["libjpeg"]
+"libjpeg-turbo"  = ["libjpeg"]
+libpng           = ["libpng"]
+libpng16         = ["libpng"]
+libtiff          = ["libtiff-4"]
+libwebp          = ["libwebp"]
+sqlite           = ["sqlite3"]
+sqlite3          = ["sqlite3"]
+curl             = ["libcurl"]
+libcurl          = ["libcurl"]
+libusb           = ["libusb-1.0"]
+libusb1          = ["libusb-1.0"]
+hidapi           = ["hidapi-libusb", "hidapi-hidraw"]
+openblas         = ["openblas"]
+libvips          = ["vips"]
+portaudio        = ["portaudio-2.0"]
+portaudio19      = ["portaudio-2.0"]
+libsndfile       = ["sndfile"]
+libzmq           = ["libzmq"]
+zeromq           = ["libzmq"]
+postgresql       = ["libpq"]
+libpq            = ["libpq"]
+libldap          = ["ldap"]
+openldap         = ["ldap"]
+libyaml          = ["yaml-0.1"]
+lz4              = ["liblz4"]
+zstd             = ["libzstd"]
+bzip2            = ["bzip2"]
+xz               = ["liblzma"]
+libgit2          = ["libgit2"]
+libssh2          = ["libssh2"]
+libevent         = ["libevent"]
+libpcap          = ["libpcap"]
+libgmp           = ["gmp"]
+libnettle        = ["nettle"]
+gnutls           = ["gnutls"]
+harfbuzz         = ["harfbuzz"]
+freetype         = ["freetype2"]
+fontconfig       = ["fontconfig"]
+cairo            = ["cairo"]
+pango            = ["pango"]
+glib             = ["glib-2.0"]
+gobject          = ["gobject-2.0"]
+gio              = ["gio-2.0"]
+libgio           = ["gio-2.0"]
+dbus             = ["dbus-1"]
+libdbus          = ["dbus-1"]
+alsa             = ["alsa"]
+libasound        = ["alsa"]
+pulseaudio       = ["libpulse"]
+libpulse         = ["libpulse"]
+opencv           = ["opencv4"]
+"libopencv"      = ["opencv4"]
+"boost"          = ["boost"]
+eigen            = ["eigen3"]
+hdf5             = ["hdf5"]
+netcdf           = ["netcdf"]
+lapack           = ["lapack"]
+cblas            = ["cblas"]
+fftw             = ["fftw3"]
+"libfftw"        = ["fftw3"]
+luajit           = ["luajit"]
+lua              = ["lua5.4"]
+tcl              = ["tcl"]
+tk               = ["tk"]
+poppler          = ["poppler"]
+"poppler-glib"   = ["poppler-glib"]
+imagemagick      = ["MagickCore"]
+ffmpeg           = ["libavcodec", "libavformat", "libavutil"]
+libav            = ["libavcodec", "libavformat", "libavutil"]
+gstreamer        = ["gstreamer-1.0"]
+"gst-plugins"    = ["gstreamer-plugins-base-1.0"]
+sdl2             = ["sdl2"]
+"libSDL2"        = ["sdl2"]
+"SDL2"           = ["sdl2"]
+vulkan           = ["vulkan"]
+spirv            = ["SPIRV-Tools"]
+leveldb          = ["leveldb"]
+rocksdb          = ["rocksdb"]
+lmdb             = ["lmdb"]
+libuv            = ["libuv"]
+libev            = ["libev"]
+libidn2          = ["libidn2"]
+libpsl           = ["libpsl"]
+nghttp2          = ["libnghttp2"]
+liburing         = ["liburing"]
+capstone         = ["capstone"]
+unicorn          = ["unicorn"]
+keystone         = ["keystone"]
+
+# ---------------------------------------------------------------------------
+# Flatpak module name → shared library soname(s)
+# Used by: ManifestAnalyzer, Exporter
+# ---------------------------------------------------------------------------
+[module_to_soname]
+openssl         = ["libssl.so.3", "libcrypto.so.3"]
+zlib            = ["libz.so.1"]
+libffi          = ["libffi.so.8"]
+libxml2         = ["libxml2.so.2"]
+libxslt         = ["libxslt.so.1"]
+libjpeg         = ["libjpeg.so.62"]
+"libjpeg-turbo" = ["libjpeg.so.62"]
+libpng          = ["libpng16.so.16"]
+libwebp         = ["libwebp.so.7"]
+sqlite          = ["libsqlite3.so.0"]
+sqlite3         = ["libsqlite3.so.0"]
+libusb          = ["libusb-1.0.so.0"]
+openblas        = ["libopenblas.so.0"]
+libvips         = ["libvips.so.42"]
+portaudio       = ["libportaudio.so.2"]
+portaudio19     = ["libportaudio.so.2"]
+libsndfile      = ["libsndfile.so.1"]
+libzmq          = ["libzmq.so.5"]
+libpq           = ["libpq.so.5"]
+libyaml         = ["libyaml-0.1.so.2"]
+libcurl         = ["libcurl.so.4"]
+libgit2         = ["libgit2.so.1"]
+libssh2         = ["libssh2.so.1"]
+gnutls          = ["libgnutls.so.30"]
+harfbuzz        = ["libharfbuzz.so.0"]
+freetype        = ["libfreetype.so.6"]
+fontconfig      = ["libfontconfig.so.1"]
+cairo           = ["libcairo.so.2"]
+pango           = ["libpango-1.0.so.0"]
+
+# ---------------------------------------------------------------------------
+# pkg-config name → shared library soname(s)
+# Used by: Exporter (enriching recipe "provides" field)
+# ---------------------------------------------------------------------------
+[pkgconfig_to_soname]
+"libusb-1.0"    = ["libusb-1.0.so.0"]
+libffi          = ["libffi.so.8"]
+openssl         = ["libssl.so.3", "libcrypto.so.3"]
+zlib            = ["libz.so.1"]
+"libxml-2.0"    = ["libxml2.so.2"]
+libxslt         = ["libxslt.so.1"]
+libjpeg         = ["libjpeg.so.62"]
+libpng          = ["libpng16.so.16"]
+"libtiff-4"     = ["libtiff.so.6"]
+libwebp         = ["libwebp.so.7"]
+sqlite3         = ["libsqlite3.so.0"]
+libcurl         = ["libcurl.so.4"]
+openblas        = ["libopenblas.so.0"]
+vips            = ["libvips.so.42"]
+sndfile         = ["libsndfile.so.1"]
+libzmq          = ["libzmq.so.5"]
+libpq           = ["libpq.so.5"]
+"yaml-0.1"      = ["libyaml-0.1.so.2"]
+"portaudio-2.0" = ["libportaudio.so.2"]
+libgit2         = ["libgit2.so.1"]
+libssh2         = ["libssh2.so.1"]
+gnutls          = ["libgnutls.so.30"]
+harfbuzz        = ["libharfbuzz.so.0"]
+freetype2       = ["libfreetype.so.6"]
+fontconfig      = ["libfontconfig.so.1"]
+cairo           = ["libcairo.so.2"]
+"pango"         = ["libpango-1.0.so.0"]
+
+# ---------------------------------------------------------------------------
+# PyPI package name → Python import name
+# Used by: BuildSandboxProber (import testing)
+# PyPI names are normalized (lowercase, hyphens → underscores)
+# ---------------------------------------------------------------------------
+[python_import_names]
+pillow                  = "PIL"
+pyyaml                  = "yaml"
+beautifulsoup4          = "bs4"
+"scikit-learn"          = "sklearn"
+scikit_learn            = "sklearn"
+"scikit-image"          = "skimage"
+scikit_image            = "skimage"
+"opencv-python"         = "cv2"
+opencv_python           = "cv2"
+"opencv-python-headless" = "cv2"
+opencv_python_headless  = "cv2"
+"python-dateutil"       = "dateutil"
+python_dateutil         = "dateutil"
+mysqlclient             = "MySQLdb"
+"psycopg2-binary"       = "psycopg2"
+psycopg2_binary         = "psycopg2"
+pycrypto                = "Crypto"
+pynacl                  = "nacl"
+pyzmq                   = "zmq"
+pyaudio                 = "pyaudio"
+jpype1                  = "jpype"
+"python-magic"          = "magic"
+python_magic            = "magic"
+"python-dotenv"         = "dotenv"
+python_dotenv           = "dotenv"
+pyserial                = "serial"
+pyusb                   = "usb"
+"python-ldap"           = "ldap"
+python_ldap             = "ldap"
+"python-xlib"           = "Xlib"
+python_xlib             = "Xlib"
+"PyGObject"             = "gi"
+pygobject               = "gi"
+pycairo                 = "cairo"
+"python-magic"          = "magic"
+pygame                  = "pygame"
+"Pillow-SIMD"           = "PIL"
+pillow_simd             = "PIL"
+paramiko                = "paramiko"
+cryptography            = "cryptography"
+cffi                    = "cffi"
+lxml                    = "lxml"
+
+# ---------------------------------------------------------------------------
+# Shared libraries always present in any Flatpak runtime baseline
+# Used by: NativeDependencyAnalyzer (ELF filter), BuildSandboxProber
+# These are NEVER added as native_deps — they come from glibc/libstdc++
+# ---------------------------------------------------------------------------
+[runtime_baseline_libs]
+libs = [
+  "libpthread.so.0",
+  "libm.so.6",
+  "libc.so.6",
+  "libdl.so.2",
+  "librt.so.1",
+  "libutil.so.1",
+  "libgcc_s.so.1",
+  "libstdc++.so.6",
+  "ld-linux-x86-64.so.2",
+  "ld-linux-aarch64.so.1",
+  "ld-linux-armhf.so.3",
+  "linux-vdso.so.1",
+  "linux-gate.so.1",
+]
+
+# Soname prefixes matching glibc dynamic linker variants
+baseline_prefixes = ["linux-vdso", "ld-linux", "linux-gate"]
+
+# ---------------------------------------------------------------------------
+# Indicators that a module is the application itself (not a dependency)
+# Used by: ManifestAnalyzer to skip the app module
+#
+# A module is considered the app module when it:
+#   - has sources of type "dir" (local source tree)
+#   - AND appears last in the module list (conventional position)
+#   - OR has buildsystem matching the project type with a local dir source
+#
+# buildsystem values that typically indicate the app, not a dep:
+# ---------------------------------------------------------------------------
+[app_module_indicators]
+# Source types that signal "this is the app being built, not a dependency"
+app_source_types = ["dir"]
+
+# Module names that are always the app (regardless of source type)
+# Add known app module names here if the heuristic misses them
+always_app_names = []
+
+# Module names that are never the app (always deps, even if last)
+never_app_names = [
+  "python3",
+  "python",
+  "pip",
+  "setuptools",
+  "glib",
+  "gtk",
+  "gtk3",
+  "gtk4",
+  "libffi",
+  "openssl",
+  "zlib",
+  "libusb",
+  "hidapi",
+]
+
+# ---------------------------------------------------------------------------
+# Module names that are meta/bootstrap and should always be skipped
+# Used by: ManifestAnalyzer, SharedModulesImporter
+# ---------------------------------------------------------------------------
+[skip_module_names]
+names = [
+  "platform-bootstrap",
+  "sdk-bootstrap",
+  "python3",
+  "python",
+  "pip",
+  "setuptools",
+  "wheel",
+  "build-tools",
+  "host-tools",
+]

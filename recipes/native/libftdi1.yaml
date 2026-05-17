@@ -1,0 +1,12 @@
+id: libftdi1
+provides: []
+pkgconfig:
+- libftdi1
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ikarustechnologies/libftdi/archive/refs/tags/v1.5.tar.gz
+  sha256: 09b622f9e7fc40e68a15f9c4495d840dc646a974de2f64f68efad63532e88cae
+cleanup:
+- /include
+- /lib/pkgconfig

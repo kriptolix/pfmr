@@ -1,0 +1,19 @@
+id: libvte
+provides: []
+pkgconfig:
+- libvte
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/vte/0.78/vte-0.78.5.tar.xz
+  sha256: bab93bff8d8acb05fc7c81a469e0d17c853da3851ce4be2a66d4d18772163a46
+config-opts:
+- -Dvapi=false
+- -Dgir=true
+- -Ddocs=false
+- -Dgnutls=true
+- -Dgtk3=false
+- -Dgtk4=true
+cleanup:
+- /include
+- /lib/pkgconfig

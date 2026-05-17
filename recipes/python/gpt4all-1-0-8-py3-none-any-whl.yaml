@@ -1,0 +1,10 @@
+id: gpt4all-1-0-8-py3-none-any-whl
+type: python
+pypi_name: gpt4all-1-0-8-py3-none-any-whl
+requires:
+  pkgconfig:
+  - blueprint-compiler
+  - libportal
+confidence: 0.6
+source: flathub:io.github.Bavarder.Bavarder
+updated: '2026-05-16'

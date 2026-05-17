@@ -1,0 +1,12 @@
+id: ryokucha
+provides: []
+pkgconfig:
+- ryokucha
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/ryonakano/ryokucha/archive/0.4.0.tar.gz
+  sha256: b7bebd8caba5b33714958f6014f3bfedfbb3b5d92b0f046c0b0ab1a8fde0bcc2
+cleanup:
+- /include
+- /lib/pkgconfig

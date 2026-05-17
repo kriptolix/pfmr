@@ -1,0 +1,18 @@
+id: lc0
+provides: []
+pkgconfig:
+- lc0
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/LeelaChessZero/lc0/archive/refs/tags/v0.31.2.zip
+  sha256: 229273ad25a4948dbd6aa3c0162dc87f19e8e763f3c0ebdc2536cd97039172a8
+config-opts:
+- -Dopenblas=true
+- -Dopenblas_libdirs=/app/lib
+- -Dgtest=false
+- -Db_lto=true
+- -Dopencl=false
+cleanup:
+- /include
+- /lib/pkgconfig

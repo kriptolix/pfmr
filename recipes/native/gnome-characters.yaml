@@ -1,0 +1,14 @@
+id: gnome-characters
+provides: []
+pkgconfig:
+- gnome-characters
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-characters/50/gnome-characters-50.0.tar.xz
+  sha256: 4070734dd639b3094be467bb055a5461b2fc301cdfc9feddcb4a68f476ed5aad
+config-opts:
+- --buildtype=release
+cleanup:
+- /include
+- /lib/pkgconfig

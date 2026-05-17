@@ -1,0 +1,51 @@
+id: pcl
+provides: []
+pkgconfig:
+- pcl
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/PointCloudLibrary/pcl/releases/download/pcl-1.15.1/source.tar.gz
+  sha256: f187b2646422ae6fb6daf7eec2d62c538ae7fe626397ed649c0e9b5a5b862b5a
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_SHARED_LIBS=OFF
+- -DPCL_SHARED_LIBS=OFF
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DWITH_LIBUSB=OFF
+- -DWITH_OPENGL=OFF
+- -DWITH_QT=OFF
+- -DWITH_VTK=OFF
+- -DWITH_PCAP=OFF
+- -DPCL_ONLY_CORE_POINT_TYPES=ON
+- -DBUILD_2d=ON
+- -DBUILD_CUDA=OFF
+- -DBUILD_GPU=OFF
+- -DBUILD_apps=OFF
+- -DBUILD_common=ON
+- -DBUILD_examples=OFF
+- -DBUILD_features=ON
+- -DBUILD_filters=ON
+- -DBUILD_geometry=OFF
+- -DBUILD_global_tests=OFF
+- -DBUILD_io=ON
+- -DBUILD_kdtree=ON
+- -DBUILD_keypoints=ON
+- -DBUILD_ml=OFF
+- -DBUILD_octree=ON
+- -DBUILD_outofcore=OFF
+- -DBUILD_people=OFF
+- -DBUILD_recognition=OFF
+- -DBUILD_registration=OFF
+- -DBUILD_sample_consensus=ON
+- -DBUILD_search=ON
+- -DBUILD_segmentation=OFF
+- -DBUILD_simulation=OFF
+- -DBUILD_stereo=OFF
+- -DBUILD_surface=ON
+- -DBUILD_tools=OFF
+- -DBUILD_tracking=OFF
+- -DBUILD_visualization=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

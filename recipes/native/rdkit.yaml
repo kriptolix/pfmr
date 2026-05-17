@@ -1,0 +1,22 @@
+id: rdkit
+provides: []
+pkgconfig:
+- rdkit
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/schrodinger/maeparser/archive/refs/tags/v1.3.1.tar.gz
+  sha256: a8d80f67d1b9be6e23b9651cb747f4a3200132e7d878a285119c86bf44568e36
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCatch2_DIR=/app
+- -DPython_EXECUTABLE=/usr/bin/python3
+- -DPYTHON_INCLUDE_DIR=/usr/include/python3.13
+- -DRDK_BUILD_CAIRO_SUPPORT=ON
+- -DRDK_INSTALL_INTREE=OFF
+- -DRDK_INSTALL_COMIC_FONTS=OFF
+- -DRDK_BUILD_MAEPARSER_SUPPORT=OFF
+- -DRDK_BUILD_CHEMDRAW_SUPPORT=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: polychromatic
+provides: []
+pkgconfig:
+- polychromatic
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/polychromatic/polychromatic/archive/v0.9.7.tar.gz
+  sha256: fffec422e936c47d4f53c2153ed56a4c73a9e80fb8c62dcb9076c03815e2e7b3
+cleanup:
+- /include
+- /lib/pkgconfig

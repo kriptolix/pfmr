@@ -1,0 +1,40 @@
+id: ffmpeg-4.4
+provides: []
+pkgconfig:
+- ffmpeg-4.4
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ffmpeg.org/releases/ffmpeg-4.4.6.tar.xz
+  sha256: 2290461f467c08ab801731ed412d8e724a5511d6c33173654bd9c1d2e25d0617
+config-opts:
+- --enable-shared
+- --disable-static
+- --enable-gnutls
+- --disable-doc
+- --disable-avdevice
+- --disable-avfilter
+- --disable-programs
+- --disable-encoders
+- --disable-hwaccels
+- --disable-devices
+- --disable-filters
+- --disable-bsfs
+- --disable-muxers
+- --disable-protocols
+- --enable-protocol=file
+- --disable-decoders
+- --enable-decoder=aac
+- --enable-decoder=aac_latm
+- --enable-decoder=ac3
+- --enable-decoder=flac
+- --enable-decoder=als
+- --enable-decoder=mp1
+- --enable-decoder=mp2
+- --enable-decoder=mp3
+- --enable-decoder=mp3adu
+- --enable-decoder=opus
+- --enable-decoder=vorbis
+cleanup:
+- /include
+- /lib/pkgconfig

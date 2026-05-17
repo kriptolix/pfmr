@@ -1,0 +1,14 @@
+id: kdsingleapplication
+provides: []
+pkgconfig:
+- kdsingleapplication
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/KDAB/KDSingleApplication/archive/refs/tags/v1.2.1.tar.gz
+  sha256: e3254ce9dc5ecf6d61ef83264bc61d486a307f0e3c9ed1bb2176f068cdbcbe09
+config-opts:
+- -DKDSingleApplication_QT6=ON
+cleanup:
+- /include
+- /lib/pkgconfig

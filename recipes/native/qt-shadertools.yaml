@@ -1,0 +1,16 @@
+id: qt-shadertools
+provides: []
+pkgconfig:
+- qt-shadertools
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.11/6.11.1/submodules/qtshadertools-everywhere-src-6.11.1.tar.xz
+  sha256: 2075052f9b23bcf9de045bbd180037084942f82cce870aab14a1454902c982fc
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DQT_BUILD_EXAMPLES=OFF
+- -DQT_BUILD_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

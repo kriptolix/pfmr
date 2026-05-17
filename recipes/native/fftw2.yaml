@@ -1,0 +1,21 @@
+id: fftw2
+provides: []
+pkgconfig:
+- fftw2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://fftw.org/fftw-2.1.5.tar.gz
+  sha256: f8057fae1c7df8b99116783ef3e94a6a44518d49c72e2e630c24b689c6022630
+config-opts:
+- --enable-float
+- --disable-debug
+- --disable-docs
+- --disable-dependency-tracking
+- --disable-silent-rules
+- --enable-shared
+- --disable-static
+- --disable-Werror
+cleanup:
+- /include
+- /lib/pkgconfig

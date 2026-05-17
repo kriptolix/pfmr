@@ -1,0 +1,26 @@
+id: espeak
+provides: []
+pkgconfig:
+- espeak
+- pic
+- pcaudiolib
+- sonic
+- speechplayer
+- mbrola
+- extdict-ru
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/rhasspy/espeak-ng/archive/8593723f10cfd9befd50de447f14bf0a9d2a14a4.zip
+  sha256: cc8092f23a28ccd79b1c5e62984a4c4ac1959d2d0b8193ac208d728c620bd5ed
+config-opts:
+- --with-pic
+- --enable-static
+- --with-pcaudiolib=no
+- --with-sonic=no
+- --with-speechplayer=no
+- --with-mbrola=yes
+- --with-extdict-ru
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,17 @@
+id: spatialaudio
+provides: []
+pkgconfig:
+- spatialaudio
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/videolabs/libspatialaudio/releases/download/0.3.0/spatialaudio-0.3.0.tar.bz2
+  sha256: 284c1dbd8efd46c03be84ac7070bc87cae81b7125352b143a70be3e2b96988e3
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_SHARED_LIBS=ON
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: mariadb
+provides: []
+pkgconfig:
+- mariadb
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/mariadb-corporation/mariadb-connector-c/archive/refs/tags/v3.2.6.zip
+  sha256: 9fe6a161d1c1ff4f74bb87e4c587bbd2a14146a2bc3ba7b677633bfa0445b8b5
+cleanup:
+- /bin/
+- /include/
+- /lib/pkgconfig/
+- /lib/mariadb/
+- /man/

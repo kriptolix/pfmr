@@ -1,0 +1,9 @@
+id: python-i18n
+type: python
+pypi_name: python-i18n
+requires:
+  pkgconfig:
+  - ffms2
+confidence: 0.6
+source: flathub:org.subtitld.Subtitld
+updated: '2026-05-16'

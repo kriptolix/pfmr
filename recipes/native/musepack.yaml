@@ -1,0 +1,15 @@
+id: musepack
+provides: []
+pkgconfig:
+- musepack
+buildsystem: autotools
+source:
+  type: archive
+  url: https://files.musepack.net/source/musepack_src_r475.tar.gz
+  sha256: a4b1742f997f83e1056142d556a8c20845ba764b70365ff9ccf2e3f81c427b2b
+config-opts:
+- --disable-shared
+cleanup:
+- /bin/mpc2sv8
+- /bin/mpccut
+- /bin/wavcmp

@@ -1,0 +1,12 @@
+id: rpcsvc-proto
+provides: []
+pkgconfig:
+- rpcsvc-proto
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.4.tar.gz
+  sha256: 7988641deae8463303b6273d7af98ece09111c385d4c9134a142a5fad3cdfef8
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,11 @@
+id: libfilezilla
+provides: []
+pkgconfig:
+- libfilezilla
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.debian.org/debian/pool/main/libf/libfilezilla/libfilezilla_0.54.1.orig.tar.xz
+cleanup:
+- /include
+- /lib/pkgconfig

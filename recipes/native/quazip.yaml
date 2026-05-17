@@ -1,0 +1,13 @@
+id: quazip
+provides: []
+pkgconfig:
+- quazip
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/stachenov/quazip/archive/refs/tags/v1.5.tar.gz
+config-opts:
+- -DQUAZIP_QT_MAJOR_VERSION=6
+cleanup:
+- /include
+- /lib/pkgconfig

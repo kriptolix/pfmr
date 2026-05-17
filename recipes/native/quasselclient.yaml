@@ -1,0 +1,17 @@
+id: quasselclient
+provides: []
+pkgconfig:
+- quasselclient
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://quassel-irc.org/pub/quassel-0.14.0.tar.xz
+  sha256: 090777f37a6ae1057a046d5c2896ce5e4bef2382377e3ba52c63efe6b5fe4e10
+config-opts:
+- -DWANT_CORE=0
+- -DWANT_MONO=0
+- -DWITH_KDE=0
+- -DENABLE_SHARED=0
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: libconfig
+provides: []
+pkgconfig:
+- libconfig
+buildsystem: autotools
+source:
+  type: archive
+  url: https://hyperrealm.github.io/libconfig/dist/libconfig-1.8.1.tar.gz
+  sha256: c73ee3d914ec68c99b61e864832931e9a7112eeabfb449dad217fd83e385cbdf
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

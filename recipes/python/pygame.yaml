@@ -1,0 +1,9 @@
+id: pygame
+type: python
+pypi_name: pygame
+requires:
+  pkgconfig:
+  - swig
+confidence: 0.6
+source: flathub:org.sugarlabs.Physics
+updated: '2026-05-16'

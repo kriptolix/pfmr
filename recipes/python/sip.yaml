@@ -1,0 +1,58 @@
+id: sip
+type: python
+pypi_name: sip
+requires:
+  pkgconfig:
+  - catch2
+  - eigen
+  - exiv2
+  - extra-cmake-modules
+  - fcitx5-qt
+  - fftw
+  - gmic
+  - gsl
+  - hiredis
+  - imath
+  - immer
+  - karchive
+  - kcompletion
+  - kconfig
+  - kcoreaddons
+  - kcrash
+  - kguiaddons
+  - ki18n
+  - kimageformats
+  - kitemviews
+  - krita
+  - kseexpr
+  - kwidgetsaddons
+  - kwindowsystem
+  - lager
+  - libkdcraw
+  - libmypaint
+  - libraw
+  - libunibreak
+  - libvpl
+  - minizip-ng
+  - mlt
+  - opencolorio
+  - openexr
+  - poppler
+  - pystring
+  - qtbase
+  - qtdeclarative
+  - qtgraphicaleffects
+  - qtimageformats
+  - qtquickcontrols2
+  - qtsvg
+  - qttools
+  - qttranslations
+  - qtx11extras
+  - quazip
+  - raqm
+  - xsimd
+  - yaml-cpp
+  - zug
+confidence: 0.6
+source: flathub:org.kde.krita
+updated: '2026-05-16'

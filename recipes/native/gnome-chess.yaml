@@ -1,0 +1,12 @@
+id: gnome-chess
+provides: []
+pkgconfig:
+- gnome-chess
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-chess/50/gnome-chess-50.0.tar.xz
+  sha256: a2dbe7c613b46729141747e28bb0cb8614e57de156d3b9dda6ace8b0146a5bfc
+cleanup:
+- /include
+- /lib/pkgconfig

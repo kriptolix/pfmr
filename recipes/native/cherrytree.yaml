@@ -1,0 +1,12 @@
+id: cherrytree
+provides: []
+pkgconfig:
+- cherrytree
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://www.giuspen.net/software/cherrytree_0.99.47.2.tar.xz
+  sha256: ca22f0ec6a02ed79a403d38e10c5c1630c493976111bc4e7532877e33f6981b7
+cleanup:
+- /include
+- /lib/pkgconfig

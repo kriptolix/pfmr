@@ -1,0 +1,15 @@
+id: akonadi-mime
+provides: []
+pkgconfig:
+- akonadi-mime
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/akonadi-mime-25.12.2.tar.xz
+  sha256: ad7456cccdad965bc7586136f3f1220b83af0746b305a1880beb5714cbf6a389
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

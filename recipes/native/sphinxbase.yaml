@@ -1,0 +1,13 @@
+id: sphinxbase
+provides: []
+pkgconfig:
+- sphinxbase
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/cmusphinx/sphinxbase/archive/9e901850ee4cd1c0b22f2d3b3c15f162564ca283.zip
+  sha256: 4369fc4416b2bd3a396ca791cee1ca62c7360f549a78a3c754bb49ba0ebc843a
+config-opts:
+- --without-python
+cleanup:
+- /share/sphinxbase

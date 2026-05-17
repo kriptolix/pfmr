@@ -1,0 +1,16 @@
+id: muse4
+provides: []
+pkgconfig:
+- muse4
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/muse-sequencer/muse/releases/download/4.2.1/muse-4.2.1.tar.gz
+  sha256: 05b896a885c0fcb5e48f17475516f8f3f8346d4c6425718f011ce7e409e1c5b0
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DLIB_INSTALL_DIR=/app/lib
+- -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
+cleanup:
+- /include
+- /lib/pkgconfig

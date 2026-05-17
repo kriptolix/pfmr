@@ -1,0 +1,15 @@
+id: eog-plugins
+provides: []
+pkgconfig:
+- eog-plugins
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/eog-plugins/44/eog-plugins-44.1.tar.xz
+  sha256: c4c384155fabb34889d76b616065483f94c8310fa0147236d009c68cd4a85c93
+config-opts:
+- -Dplugin_map=false
+- -Dplugin_postasa=false
+cleanup:
+- /include
+- /lib/pkgconfig

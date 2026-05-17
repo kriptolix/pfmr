@@ -1,0 +1,13 @@
+id: kdevelop
+provides: []
+pkgconfig:
+- kdevelop
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/26.04.0/src/kdevelop-26.04.0.tar.xz
+  sha256: 4af9c4a2a7d3c9c76caa53556ee756e1179b31e91363a909fcc3dbba64d8e3ca
+config-opts:
+- -DBUILD_TESTING=OFF
+cleanup:
+- /share/icons/hicolor/1024x1024

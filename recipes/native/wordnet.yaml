@@ -1,0 +1,18 @@
+id: wordnet
+provides: []
+pkgconfig:
+- wordnet
+- tcl
+- tk
+buildsystem: autotools
+source:
+  type: archive
+  url: http://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.bz2
+  sha256: 6c492d0c7b4a40e7674d088191d3aa11f373bb1da60762e098b8ee2dda96ef22
+config-opts:
+- --with-tcl=/app/lib
+- --with-tk=/app/lib
+- --enable-static=no
+cleanup:
+- /include
+- /lib/pkgconfig

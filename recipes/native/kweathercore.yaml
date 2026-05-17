@@ -1,0 +1,15 @@
+id: kweathercore
+provides: []
+pkgconfig:
+- kweathercore
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/26.04.1/src/kweathercore-26.04.1.tar.xz
+  sha256: fc3ac8c0c5f0ae5a2a43f9587d7e811d53d4ffafba1de3ee02ab55105a0a536c
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

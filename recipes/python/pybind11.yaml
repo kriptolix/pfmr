@@ -1,0 +1,89 @@
+id: pybind11
+type: python
+pypi_name: pybind11
+requires:
+  pkgconfig:
+  - april-asr
+  - bergamot
+  - bergamot-fallback
+  - chromaprint
+  - clblast
+  - ctranslate2
+  - dav1d
+  - dsnote
+  - espeak
+  - extdict-ru
+  - ffmpeg
+  - flatbuffers
+  - fmt
+  - fstrcmp
+  - glm
+  - html2md
+  - hwdata
+  - json
+  - jsoncpp
+  - kodi
+  - kodi-platform
+  - libaacs
+  - libass
+  - libbdplus
+  - libbluray
+  - libcdio
+  - libcec
+  - libdisplay-info
+  - libinput
+  - libmicrohttpd
+  - libnfs
+  - libnumbertext
+  - libplist
+  - libportal
+  - libportaudio
+  - libspelling
+  - libudfread
+  - lirc
+  - mariadb-connector
+  - mbrola
+  - numa
+  - onednn
+  - openblas
+  - opencl-headers
+  - pcaudiolib
+  - pic
+  - piper
+  - piperphonemize
+  - pybind11
+  - qhotkey
+  - rapidjson
+  - rhvoice
+  - rnnoise
+  - rubberband
+  - sam
+  - samba
+  - shairplay
+  - sonic
+  - spdlog
+  - speechplayer
+  - ssplitcpp
+  - suitesparse
+  - swig
+  - systemdsystemunitdir
+  - taglib
+  - tinyxml
+  - tinyxml2
+  - unrar
+  - vte
+  - waylandpp
+  - webrtcvad
+  - whispercpp-clblast
+  - whispercpp-fallback
+  - whispercpp-fallback1
+  - whispercpp-openblas
+  - whispercpp-openvino
+  - whispercpp-vulkan
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:net.mkiol.SpeechNote
+updated: '2026-05-16'

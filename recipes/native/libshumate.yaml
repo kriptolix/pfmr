@@ -1,0 +1,18 @@
+id: libshumate
+provides: []
+pkgconfig:
+- libshumate
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/libshumate/1.4/libshumate-1.4.0.tar.xz
+  sha256: 3984368e0259862b3810d1ddc86d2dadd6d372a2b32376ccf4aff7c2e48c6d30
+config-opts:
+- -Ddemos=false
+- -Dvector_renderer=false
+- -Dgir=false
+- -Dvapi=false
+- -Dgtk_doc=false
+cleanup:
+- /include
+- /lib/pkgconfig

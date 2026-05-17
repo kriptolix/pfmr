@@ -1,0 +1,12 @@
+id: pciutils
+provides: []
+pkgconfig:
+- pciutils
+buildsystem: autotools
+source:
+  type: archive
+  url: https://mirrors.edge.kernel.org/pub/software/utils/pciutils/pciutils-3.7.0.tar.gz
+  sha256: 2432e7a2e12000502d36cf769ab6e5a0cf4931e5050ccaf8b02984b2d3cb0948
+cleanup:
+- /include
+- /lib/pkgconfig

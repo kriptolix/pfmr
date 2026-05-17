@@ -1,0 +1,16 @@
+id: qt5compat
+provides: []
+pkgconfig:
+- qt5compat
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.6/6.6.2/submodules/qt5compat-everywhere-src-6.6.2.tar.xz
+  sha256: e07b08ab7658e4856f07e3262ab342df4ed7e7a69f2720e56bb2128729191967
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DQT_BUILD_EXAMPLES=OFF
+- -DQT_BUILD_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

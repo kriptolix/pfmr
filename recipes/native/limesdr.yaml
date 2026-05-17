@@ -1,0 +1,20 @@
+id: limesdr
+provides: []
+pkgconfig:
+- limesdr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/myriadrf/LimeSuite/archive/refs/tags/v23.11.0.tar.gz
+  sha256: fd8a448b92bc5ee4012f0ba58785f3c7e0a4d342b24e26275318802dfe00eb33
+config-opts:
+- -DENABLE_QUICKTEST=OFF
+- -DENABLE_GUI=OFF
+- -DENABLE_SOAPY_LMS7=OFF
+- -DENABLE_EXAMPLES=OFF
+- -DENABLE_UTILITIES=OFF
+- -DENABLE_HEADERS=ON
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: liborcus
+provides: []
+pkgconfig:
+- liborcus
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.com/api/v4/projects/orcus%2Forcus/packages/generic/source/0.20.1/liborcus-0.20.1.tar.xz
+  sha256: ec27f30e8445a2a3f307f7e829fc446fd48193150b7f8f23bb5bfb25ec6e4e27
+cleanup:
+- /include
+- /lib/pkgconfig

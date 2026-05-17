@@ -1,0 +1,19 @@
+id: flann
+provides: []
+pkgconfig:
+- flann
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/flann-lib/flann/archive/refs/tags/1.9.2.tar.gz
+  sha256: e26829bb0017f317d9cc45ab83ddcb8b16d75ada1ae07157006c1e7d601c8824
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_SHARED_LIBS=OFF
+- -DBUILD_C_BINDINGS=OFF
+- -DBUILD_EXAMPLES=OFF
+- -DBUILD_TESTS=OFF
+- -DBUILD_DOC=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

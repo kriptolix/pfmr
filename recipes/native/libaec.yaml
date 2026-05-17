@@ -1,0 +1,18 @@
+id: libaec
+provides: []
+pkgconfig:
+- libaec
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.dkrz.de/k202009/libaec/-/archive/v1.1.2/libaec-v1.1.2.tar.bz2
+  sha256: bdad8c7923537c3695327aa85afdcd714fb3d30a5f956a27ba2971ef98c043ac
+config-opts:
+- -DBUILD_TESTING:BOOL=OFF
+cleanup:
+- /bin
+- /include
+- /lib/libaec.a
+- /lib/libaec.so*
+- /lib/libsz.a
+- /cmake

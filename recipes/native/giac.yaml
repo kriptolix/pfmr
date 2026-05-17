@@ -1,0 +1,12 @@
+id: giac
+provides: []
+pkgconfig:
+- giac
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac-2.0.0.tar.bz2
+  sha256: 2deb2f46824cbaf8decc013262e48e2f0b1520cc60e1f630751b5c5e3f853e50
+cleanup:
+- /include
+- /lib/pkgconfig

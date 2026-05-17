@@ -1,0 +1,14 @@
+id: mediainfo-gui
+provides: []
+pkgconfig:
+- mediainfo-gui
+buildsystem: autotools
+source:
+  type: archive
+  url: https://mediaarea.net/download/source/mediainfo/26.05/mediainfo_26.05.tar.xz
+  sha256: f852093f9050022d699606eeabb38b24da5523d0212fab64dc4e4d3e46b56de1
+cleanup:
+- /share/pixmaps
+- /share/apps
+- /share/kde4
+- /share/kservices5

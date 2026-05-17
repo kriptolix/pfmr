@@ -1,0 +1,10 @@
+id: buzz-captions
+type: python
+pypi_name: buzz-captions
+requires:
+  pkgconfig:
+  - kerberos
+  - portaudio
+confidence: 0.6
+source: flathub:io.github.chidiwilliams.Buzz
+updated: '2026-05-16'

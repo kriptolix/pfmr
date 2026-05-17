@@ -1,0 +1,14 @@
+id: libgstreamermm
+provides: []
+pkgconfig:
+- libgstreamermm
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gstreamermm/1.10/gstreamermm-1.10.0.tar.xz
+  sha256: be58fe9ef7d7e392568ec85e80a84f4730adbf91fb0355ff7d7c616675ea8d60
+config-opts:
+- --disable-documentation
+cleanup:
+- /include
+- /lib/pkgconfig

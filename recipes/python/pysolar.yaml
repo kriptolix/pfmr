@@ -1,0 +1,39 @@
+id: pysolar
+type: python
+pypi_name: pysolar
+requires:
+  pkgconfig:
+  - arpack
+  - cgal
+  - coin
+  - eigen
+  - fmt
+  - geos
+  - git
+  - gmp
+  - gmsh
+  - graphviz
+  - hdf5
+  - ifcopenshell
+  - lapack
+  - libspnav
+  - libxmu
+  - med
+  - mpfr
+  - netcdf
+  - openblas
+  - opencascade
+  - openmpi
+  - pyside2
+  - rapidjson
+  - soqt
+  - swig
+  - tcl
+  - tk
+  - vtk
+  - xerces-c
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm15
+confidence: 0.6
+source: flathub:org.freecadweb.FreeCAD
+updated: '2026-05-16'

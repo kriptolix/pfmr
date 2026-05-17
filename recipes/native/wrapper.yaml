@@ -1,0 +1,19 @@
+id: wrapper
+provides: []
+pkgconfig:
+- wrapper
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/blt-r/ide-flatpak-wrapper/archive/46d5af265d43d82e03f12daa5877e796dd982f41.tar.gz
+  sha256: 2ba61dca6cd1c3222ab3e28d0b9f32feda5602f70d0da7a8dc21b03c54332947
+config-opts:
+- -Deditor_binary=/app/lib/helix/hx
+- -Dprogram_name=hx
+- -Deditor_title=Helix
+- -Dflagfile_prefix=flatpak-helix
+- -Dfirst_run_template=./HELIX_FIRST_RUN.md
+- -Ddefault_loglevel=0
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: kicad-templates
+provides: []
+pkgconfig:
+- kicad-templates
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.com/kicad/libraries/kicad-templates/-/archive/5.1.9/kicad-templates-5.1.9.tar.gz
+  sha256: 0c1bf3d2e6d8d1056a5da6c1f7a173551c154b4bdaddb86b6a34155b18e65da6
+cleanup:
+- /include
+- /lib/pkgconfig

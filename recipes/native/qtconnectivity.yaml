@@ -1,0 +1,16 @@
+id: qtconnectivity
+provides: []
+pkgconfig:
+- qtconnectivity
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.11/6.11.1/submodules/qtconnectivity-everywhere-src-6.11.1.tar.xz
+  sha256: 2105289ea414b46ed5fa53ba8782230045b9e47cc8156b5940c9e31e3980e591
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DQT_BUILD_EXAMPLES=OFF
+- -DQT_BUILD_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

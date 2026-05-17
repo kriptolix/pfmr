@@ -1,0 +1,13 @@
+id: pycdio
+type: python
+pypi_name: pycdio
+requires:
+  pkgconfig:
+  - gst-plugins-ugly
+  - libcdio
+  - libcdio-paranoia
+  - libdiscid
+  - swig
+confidence: 0.6
+source: flathub:nl.andreasknoben.Laser
+updated: '2026-05-16'

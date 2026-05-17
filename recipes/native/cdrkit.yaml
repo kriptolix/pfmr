@@ -1,0 +1,11 @@
+id: cdrkit
+provides: []
+pkgconfig:
+- cdrkit
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Distrotech/cdrkit/archive/refs/tags/release_1.1.11.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

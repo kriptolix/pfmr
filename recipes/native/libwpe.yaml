@@ -1,0 +1,16 @@
+id: libwpe
+provides: []
+pkgconfig:
+- libwpe
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://wpewebkit.org/releases/libwpe-1.16.3.tar.xz
+  sha256: c880fa8d607b2aa6eadde7d6d6302b1396ebc38368fe2332fa20e193c7ee1420
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_C_FLAGS_RELEASE=-DNDEBUG
+- -DCMAKE_CXX_FLAGS_RELEASE=-DNDEBUG
+cleanup:
+- /include
+- /lib/pkgconfig

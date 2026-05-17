@@ -1,0 +1,12 @@
+id: libxft
+provides: []
+pkgconfig:
+- libxft
+buildsystem: autotools
+source:
+  type: archive
+  url: https://xorg.freedesktop.org/releases/individual/lib/libXft-2.3.4.tar.bz2
+  sha256: 57dedaab20914002146bdae0cb0c769ba3f75214c4c91bd2613d6ef79fc9abdd
+cleanup:
+- /include
+- /lib/pkgconfig

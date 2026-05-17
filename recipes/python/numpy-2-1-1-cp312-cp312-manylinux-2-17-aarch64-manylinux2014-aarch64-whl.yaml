@@ -1,0 +1,16 @@
+id: numpy-2-1-1-cp312-cp312-manylinux-2-17-aarch64-manylinux2014-aarch64-whl
+type: python
+pypi_name: numpy-2-1-1-cp312-cp312-manylinux-2-17-aarch64-manylinux2014-aarch64-whl
+requires:
+  pkgconfig:
+  - gsl
+  - nanomsg
+  - nlopt
+  - protobuf
+  - r
+  - x
+  extensions:
+  - org.freedesktop.Sdk.Extension.node22
+confidence: 0.6
+source: flathub:org.jamovi.jamovi
+updated: '2026-05-16'

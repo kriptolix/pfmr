@@ -1,0 +1,12 @@
+id: gnome-weather
+provides: []
+pkgconfig:
+- gnome-weather
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-weather/50/gnome-weather-50.0.tar.xz
+  sha256: 57de7578605f91f9ab400551ce7738db7505bc88f42a33c70ce7a70167fdb513
+cleanup:
+- /include
+- /lib/pkgconfig

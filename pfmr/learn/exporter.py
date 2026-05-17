@@ -1,43 +1,46 @@
 """
 pfmr.learn.exporter
 ~~~~~~~~~~~~~~~~~~~~
-Exporter — writes knowledge graph facts directly into the recipes/
-directory as YAML files that pfmr's resolver can consume immediately.
+Exporter — converts ManifestAnalysis objects directly into recipe files.
 
-Structure evaluation
---------------------
-The original design had 4 output layers:
-  1. recipes/native/*.yaml       — how to build a lib
-  2. data/native-hints/…         — what libs a Python package needs
-  3. data/sdk-profiles/…         — what the SDK already provides
-  4. data/extension-profiles/…  — what extensions provide
+No knowledge graph intermediary. The pipeline is:
 
-Layers 3 and 4 are distinct and necessary: they describe the *environment*,
-not the packages.
+  ManifestAnalysis (from FlathubMiner / ManifestAnalyzer)
+      ↓
+  Exporter.export()
+      ↓
+  recipes/native/<lib-id>.yaml   — how to build the native lib
+  recipes/python/<pkg-id>.yaml   — what libs a Python package needs
 
-Layers 1 and 2 are partially redundant. A recipe already contains:
-  pkgconfig, provides (sonames), id — everything native-hints needs.
-And native-hints needs:
-  which packages require which pkgconfig names.
+Two recipe types
+----------------
+native recipe (same format as existing curated recipes):
+  id: libusb
+  provides: [libusb-1.0.so.0]
+  pkgconfig: [libusb-1.0]
+  buildsystem: autotools
+  source:
+    type: archive
+    url: https://...
+    sha256: ...
+  cleanup: [/include, /lib/pkgconfig]
 
-Resolution: merge into a single recipe YAML format that covers both:
-  - recipes/native/<lib>.yaml         — builds the lib (existing format)
-  - recipes/python/<pkg>.yaml         — NEW: which libs a Python package needs
-
-This way there is exactly one place to look for any package dependency,
-and contributions via git are straightforward: add a YAML file.
-
-python package recipe format:
+python recipe (new — declares what a Python package needs):
   id: cryptography
   type: python
   pypi_name: cryptography
-  build_backend: maturin
   requires:
     pkgconfig: [openssl, libffi]
     extensions: [org.freedesktop.Sdk.Extension.rust-stable]
-  confidence: 1.0
-  source: sandbox:org.freedesktop.Sdk/24.08
+  confidence: 0.6
+  source: flathub:org.gnome.Crypto
   updated: 2025-05-14
+
+Confidence
+----------
+Co-occurrence in a manifest (Python pkg next to native module) → 0.6.
+This is intentionally low — enough to surface a candidate without
+over-claiming. Higher confidence requires sandbox probing (Phase 3).
 """
 from __future__ import annotations
 
@@ -47,17 +50,22 @@ from pathlib import Path
 from typing import Optional
 
 import yaml
+from packaging.utils import canonicalize_name
 
-from pfmr.learn.graph import KGEdge, KGNode, KnowledgeGraph, Rel
+from pfmr.data.mappings import MAPPINGS
+from pfmr.learn.manifest import ManifestAnalysis, LearnedNativeModule
 from pfmr.utils.logging import get_logger
 
 logger = get_logger(__name__)
+
+# pkg-config name → known soname(s), for enriching recipe "provides"
+
 
 
 @dataclass
 class ExportChange:
     path: Path
-    action: str          # "create" | "update" | "skip"
+    action: str       # "create" | "update" | "skip"
     reason: str = ""
 
 
@@ -81,24 +89,21 @@ class ExportReport:
 
 class Exporter:
     """
-    Exports KnowledgeGraph facts into the recipes/ directory.
-
-    Two recipe types:
-      recipes/native/<lib-id>.yaml    — how to build the native lib
-      recipes/python/<pkg-id>.yaml    — what native libs a Python pkg needs
+    Converts a list of ManifestAnalysis objects into recipe YAML files.
 
     Usage::
 
-        kg = KnowledgeGraph(Path("knowledge/"))
-        exporter = Exporter(kg, repo_root=Path("."))
+        exporter = Exporter(analyses, repo_root=Path("."))
         report = exporter.export()
         for c in report.created:
             print("New:", c.path)
     """
 
-    def __init__(self, graph: KnowledgeGraph, repo_root: Path):
-        self.graph = graph
+    def __init__(self, analyses: list[ManifestAnalysis], repo_root: Path):
+        self.analyses = analyses
         self.repo_root = repo_root
+        self._native_dir = repo_root / "recipes" / "native"
+        self._python_dir = repo_root / "recipes" / "python"
 
     # ------------------------------------------------------------------
     # Public API
@@ -106,8 +111,8 @@ class Exporter:
 
     def export(self, dry_run: bool = False) -> ExportReport:
         report = ExportReport(dry_run=dry_run)
-        self._export_native_recipes(report, dry_run)
-        self._export_python_recipes(report, dry_run)
+        self._export_native(report, dry_run)
+        self._export_python(report, dry_run)
         logger.info(
             "Export: %d created, %d updated, %d skipped",
             len(report.created), len(report.updated), len(report.skipped),
@@ -116,177 +121,177 @@ class Exporter:
 
     def export_native_recipes(self, dry_run: bool = False) -> ExportReport:
         report = ExportReport(dry_run=dry_run)
-        self._export_native_recipes(report, dry_run)
+        self._export_native(report, dry_run)
         return report
 
     def export_python_recipes(self, dry_run: bool = False) -> ExportReport:
         report = ExportReport(dry_run=dry_run)
-        self._export_python_recipes(report, dry_run)
+        self._export_python(report, dry_run)
         return report
 
     # ------------------------------------------------------------------
-    # Native recipes (how to build a lib)
+    # Native
     # ------------------------------------------------------------------
 
-    def _export_native_recipes(self, report: ExportReport, dry_run: bool) -> None:
-        recipes_dir = self.repo_root / "recipes" / "native"
-        existing_ids = {p.stem for p in recipes_dir.glob("*.yaml")} if recipes_dir.exists() else set()
+    def _export_native(self, report: ExportReport, dry_run: bool) -> None:
+        existing = {p.stem for p in self._native_dir.glob("*.yaml")} if self._native_dir.exists() else set()
+        # Collect all native modules across analyses, dedup by normalised id
+        seen: dict[str, tuple[LearnedNativeModule, str]] = {}  # id → (mod, source)
 
-        for lib_node in sorted(self.graph.nodes_of_type("library"), key=lambda n: n.id):
-            if lib_node.id in existing_ids:
-                continue  # never overwrite curated recipes
-
-            source_url = lib_node.attrs.get("source_url")
-            if not source_url:
-                continue  # not enough info to build a recipe
-
-            recipe = self._build_native_recipe(lib_node)
-            recipe_path = recipes_dir / f"{lib_node.id}.yaml"
-
-            if not dry_run:
-                recipes_dir.mkdir(parents=True, exist_ok=True)
-                recipe_path.write_text(
-                    yaml.dump(recipe, default_flow_style=False, allow_unicode=True, sort_keys=False)
-                )
-
-            report.changes.append(ExportChange(
-                path=recipe_path,
-                action="create" if not dry_run else "skip",
-                reason=f"learned from {lib_node.attrs.get('source', '?')}",
-            ))
-
-    # ------------------------------------------------------------------
-    # Python recipes (what libs a Python pkg needs)
-    # ------------------------------------------------------------------
-
-    def _export_python_recipes(self, report: ExportReport, dry_run: bool) -> None:
-        recipes_dir = self.repo_root / "recipes" / "python"
-        existing_ids = {p.stem for p in recipes_dir.glob("*.yaml")} if recipes_dir.exists() else set()
-
-        for pkg_node in sorted(self.graph.nodes_of_type("package"), key=lambda n: n.id):
-            pc_edges = [e for e in self.graph.edges_from(pkg_node.id, Rel.REQUIRES_PKGCONFIG)
-                        if e.confidence >= 0.7]
-            lib_edges = [e for e in self.graph.edges_from(pkg_node.id, Rel.REQUIRES_LIBRARY)
-                         if e.confidence >= 0.7]
-            ext_edges = [e for e in self.graph.edges_from(pkg_node.id, Rel.REQUIRES_EXTENSION)
-                         if e.confidence >= 0.7]
-
-            if not (pc_edges or lib_edges or ext_edges):
-                continue  # nothing to write
-
-            recipe = self._build_python_recipe(pkg_node, pc_edges, lib_edges, ext_edges)
-            recipe_path = recipes_dir / f"{pkg_node.id}.yaml"
-
-            # Python recipes CAN be updated — new evidence may raise confidence
-            # or add new deps. We update if the file already exists.
-            action = "skip"
-            if pkg_node.id in existing_ids:
-                existing = self._load_yaml(recipe_path)
-                if existing and self._recipe_changed(existing, recipe):
-                    action = "update"
-                else:
-                    report.changes.append(ExportChange(recipe_path, "skip", "unchanged"))
+        for analysis in self.analyses:
+            for mod in analysis.native_modules:
+                mod_id = _normalise_id(mod.module_name)
+                if mod_id in existing or mod_id in seen:
                     continue
-            else:
-                action = "create"
+                if not mod.source_url:
+                    continue
+                seen[mod_id] = (mod, analysis.source_path or analysis.app_id)
+
+        for mod_id, (mod, source) in sorted(seen.items()):
+            recipe = _build_native_recipe(mod_id, mod)
+            path = self._native_dir / f"{mod_id}.yaml"
 
             if not dry_run:
-                recipes_dir.mkdir(parents=True, exist_ok=True)
-                recipe_path.write_text(
+                self._native_dir.mkdir(parents=True, exist_ok=True)
+                path.write_text(
                     yaml.dump(recipe, default_flow_style=False, allow_unicode=True, sort_keys=False)
                 )
 
             report.changes.append(ExportChange(
-                path=recipe_path,
-                action=action if not dry_run else "skip",
-                reason=f"confidence={max((e.confidence for e in pc_edges + lib_edges + ext_edges), default=0):.1f}",
+                path=path,
+                action="create" if not dry_run else "skip",
+                reason=f"from {source}",
             ))
 
     # ------------------------------------------------------------------
-    # Recipe builders
+    # Python
     # ------------------------------------------------------------------
 
-    @staticmethod
-    def _build_native_recipe(node: KGNode) -> dict:
-        attrs = node.attrs
-        recipe: dict = {"id": node.id, "type": "native"}
+    def _export_python(self, report: ExportReport, dry_run: bool) -> None:
+        existing = {p.stem for p in self._python_dir.glob("*.yaml")} if self._python_dir.exists() else set()
 
-        pc = attrs.get("pkgconfig", "")
-        recipe["pkgconfig"] = [pc] if isinstance(pc, str) and pc else (pc if pc else [])
+        # Collect package → {pkgconfig_names, extensions} across analyses
+        # Key: canonical package name
+        # Value: dict with "pkgconfig": set, "extensions": set, "sources": list
+        pkg_data: dict[str, dict] = {}
 
-        if soname := attrs.get("soname"):
-            recipe["provides"] = [soname]
-        else:
-            recipe["provides"] = []
+        for analysis in self.analyses:
+            if not analysis.python_packages or not analysis.native_modules:
+                continue
+            source = f"flathub:{analysis.app_id}" if analysis.app_id else analysis.source_path
 
-        recipe["buildsystem"] = attrs.get("buildsystem", "autotools")
+            # All pkgconfig names provided by native modules in this manifest
+            manifest_pc: set[str] = set()
+            for mod in analysis.native_modules:
+                manifest_pc.update(mod.pkgconfig_names)
 
-        source_entry: dict = {"type": "archive", "url": attrs["source_url"]}
-        if sha256 := attrs.get("source_sha256"):
-            source_entry["sha256"] = sha256
-        recipe["source"] = source_entry
-        recipe["cleanup"] = ["/include", "/lib/pkgconfig"]
-        return recipe
+            for pkg_name in analysis.python_packages:
+                canonical = canonicalize_name(pkg_name)
+                if canonical not in pkg_data:
+                    pkg_data[canonical] = {
+                        "pypi_name": pkg_name,
+                        "pkgconfig": set(),
+                        "extensions": set(),
+                        "sources": [],
+                    }
+                pkg_data[canonical]["pkgconfig"].update(manifest_pc)
+                pkg_data[canonical]["extensions"].update(analysis.sdk_extensions)
+                if source not in pkg_data[canonical]["sources"]:
+                    pkg_data[canonical]["sources"].append(source)
 
-    @staticmethod
-    def _build_python_recipe(
-        node: KGNode,
-        pc_edges: list[KGEdge],
-        lib_edges: list[KGEdge],
-        ext_edges: list[KGEdge],
-    ) -> dict:
-        attrs = node.attrs
-        # Best confidence across all edges
-        max_conf = max(
-            (e.confidence for e in pc_edges + lib_edges + ext_edges), default=0.0
-        )
-        sources = sorted({e.source for e in pc_edges + lib_edges + ext_edges if e.source})
+        for canonical, data in sorted(pkg_data.items()):
+            if not data["pkgconfig"] and not data["extensions"]:
+                continue
+            if canonical in existing:
+                # Update only if new deps found
+                existing_recipe = _load_yaml(self._python_dir / f"{canonical}.yaml")
+                if existing_recipe:
+                    old_pc = set(existing_recipe.get("requires", {}).get("pkgconfig", []))
+                    if not data["pkgconfig"] - old_pc:
+                        report.changes.append(ExportChange(
+                            self._python_dir / f"{canonical}.yaml", "skip", "unchanged"
+                        ))
+                        continue
 
-        recipe: dict = {
-            "id": node.id,
-            "type": "python",
-            "pypi_name": attrs.get("pypi_name", node.id),
-        }
-        if backend := attrs.get("build_backend"):
-            recipe["build_backend"] = backend
+            recipe = _build_python_recipe(canonical, data)
+            path = self._python_dir / f"{canonical}.yaml"
 
-        requires: dict = {}
-        if pc_edges:
-            requires["pkgconfig"] = sorted({e.to_id for e in pc_edges})
-        if lib_edges:
-            requires["libraries"] = sorted({e.to_id for e in lib_edges})
-        if ext_edges:
-            requires["extensions"] = sorted({e.to_id for e in ext_edges})
-        if requires:
-            recipe["requires"] = requires
+            action = "update" if canonical in existing else "create"
+            if not dry_run:
+                self._python_dir.mkdir(parents=True, exist_ok=True)
+                path.write_text(
+                    yaml.dump(recipe, default_flow_style=False, allow_unicode=True, sort_keys=False)
+                )
 
-        recipe["confidence"] = round(max_conf, 2)
-        if sources:
-            recipe["source"] = sources[0]
-        recipe["updated"] = str(date.today())
-        return recipe
+            report.changes.append(ExportChange(
+                path=path,
+                action=action if not dry_run else "skip",
+                reason=f"pc={sorted(data['pkgconfig'])[:3]} confidence=0.6",
+            ))
 
-    # ------------------------------------------------------------------
-    # Helpers
-    # ------------------------------------------------------------------
 
-    @staticmethod
-    def _load_yaml(path: Path) -> Optional[dict]:
-        try:
-            return yaml.safe_load(path.read_text()) or {}
-        except Exception:
-            return None
+# ---------------------------------------------------------------------------
+# Recipe builders
+# ---------------------------------------------------------------------------
 
-    @staticmethod
-    def _recipe_changed(existing: dict, new: dict) -> bool:
-        """True if the new recipe has more or higher-confidence deps."""
-        old_reqs = existing.get("requires", {})
-        new_reqs = new.get("requires", {})
-        if set(new_reqs.keys()) != set(old_reqs.keys()):
-            return True
-        for key in new_reqs:
-            if set(new_reqs[key]) != set(old_reqs.get(key, [])):
-                return True
-        old_conf = existing.get("confidence", 0.0)
-        new_conf = new.get("confidence", 0.0)
-        return new_conf > old_conf
+def _build_native_recipe(recipe_id: str, mod: LearnedNativeModule) -> dict:
+    pkgconfig = mod.pkgconfig_names or [recipe_id]
+    provides: list[str] = []
+    for pc in pkgconfig:
+        provides.extend(MAPPINGS.pkgconfig_to_soname(pc))
+    provides = list(dict.fromkeys(provides))  # dedup
+
+    recipe: dict = {
+        "id": recipe_id,
+        "provides": provides,
+        "pkgconfig": pkgconfig,
+        "buildsystem": mod.buildsystem,
+    }
+
+    if mod.source_url:
+        src: dict = {"type": "archive", "url": mod.source_url}
+        if mod.source_sha256:
+            src["sha256"] = mod.source_sha256
+        recipe["source"] = src
+
+    if mod.config_opts:
+        recipe["config-opts"] = mod.config_opts
+
+    recipe["cleanup"] = mod.cleanup or ["/include", "/lib/pkgconfig"]
+    return recipe
+
+
+def _build_python_recipe(canonical: str, data: dict) -> dict:
+    requires: dict = {}
+    if data["pkgconfig"]:
+        requires["pkgconfig"] = sorted(data["pkgconfig"])
+    if data["extensions"]:
+        requires["extensions"] = sorted(data["extensions"])
+
+    recipe: dict = {
+        "id": canonical,
+        "type": "python",
+        "pypi_name": data["pypi_name"],
+    }
+    if requires:
+        recipe["requires"] = requires
+    recipe["confidence"] = 0.6
+    if data["sources"]:
+        recipe["source"] = data["sources"][0]
+    recipe["updated"] = str(date.today())
+    return recipe
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _normalise_id(name: str) -> str:
+    return name.lower().replace(" ", "-").replace("_", "-")
+
+
+def _load_yaml(path: Path) -> Optional[dict]:
+    try:
+        return yaml.safe_load(path.read_text()) or {}
+    except Exception:
+        return None

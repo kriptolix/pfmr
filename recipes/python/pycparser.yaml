@@ -1,0 +1,26 @@
+id: pycparser
+type: python
+pypi_name: pycparser
+requires:
+  pkgconfig:
+  - geos
+  - iproute2
+  - krb5
+  - libndp
+  - libnma
+  - libpq
+  - mpv
+  - networkmanager
+  - networkmanager-openvpn
+  - openssl
+  - polkit
+  - pycairo
+  - pygobject
+  - rsync
+  - systemd
+  extensions:
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:com.kavilgroup.gelectrical
+updated: '2026-05-16'

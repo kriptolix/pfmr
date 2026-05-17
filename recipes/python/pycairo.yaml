@@ -1,0 +1,20 @@
+id: pycairo
+type: python
+pypi_name: pycairo
+requires:
+  pkgconfig:
+  - evolution-data-server
+  - gnome-online-accounts
+  - libgme
+  - libical
+  - libopenmpt
+  - librest
+  - opusfile
+  - unrar
+  - wavpack
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:com.github.taiko2k.tauonmb
+updated: '2026-05-16'

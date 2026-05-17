@@ -1,0 +1,15 @@
+id: libtbb
+provides: []
+pkgconfig:
+- libtbb
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/uxlfoundation/oneTBB/archive/refs/tags/v2022.3.0.tar.gz
+  sha256: 01598a46c1162c27253a0de0236f520fd8ee8166e9ebb84a4243574f88e6e50a
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DTBB_TEST=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

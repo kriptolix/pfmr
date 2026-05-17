@@ -1,0 +1,12 @@
+id: cryptopp
+provides: []
+pkgconfig:
+- cryptopp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/weidai11/cryptopp/archive/CRYPTOPP_8_9_0.tar.gz
+  sha256: ab5174b9b5c6236588e15a1aa1aaecb6658cdbe09501c7981ac8db276a24d9ab
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: librexgen
+provides: []
+pkgconfig:
+- librexgen
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/janstarke/rexgen/archive/2.1.5.zip
+  sha256: c176cc7c08bc20fd6493f26bf0cd350562cdd96e3b507b08738dd442a17fa441
+cleanup:
+- /include
+- /lib/pkgconfig

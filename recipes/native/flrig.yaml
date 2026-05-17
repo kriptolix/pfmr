@@ -1,0 +1,12 @@
+id: flrig
+provides: []
+pkgconfig:
+- flrig
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.w1hkj.org/files/flrig/flrig-2.0.10.tar.gz
+  sha256: 6a5f2b87d4fffed410a35b3a176b5d04e60ed4de3fda545079f3656e42ef42bd
+cleanup:
+- /include
+- /lib/pkgconfig

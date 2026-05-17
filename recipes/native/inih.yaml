@@ -1,0 +1,16 @@
+id: inih
+provides: []
+pkgconfig:
+- inih
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/benhoyt/inih/archive/refs/tags/r60.tar.gz
+  sha256: 706aa05c888b53bd170e5d8aa8f8a9d9ccf5449dfed262d5103d1f292af26774
+config-opts:
+- -Ddefault_library=shared
+- -Ddistro_install=true
+- -Dwith_INIReader=true
+cleanup:
+- /include
+- /lib/pkgconfig

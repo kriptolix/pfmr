@@ -1,0 +1,14 @@
+id: ksanecore
+provides: []
+pkgconfig:
+- ksanecore
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/26.04.1/src/ksanecore-26.04.1.tar.xz
+  sha256: 72adb895213faecd2782d7cd2d5125f2cd8ef405e6f4653f3d706a49159205e2
+config-opts:
+- -DQT_MAJOR_VERSION=6
+cleanup:
+- /include
+- /lib/pkgconfig

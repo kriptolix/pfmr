@@ -1,0 +1,15 @@
+id: kontact
+provides: []
+pkgconfig:
+- kontact
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kontact-25.12.3.tar.xz
+  sha256: 4124c873d26a9047332aeeac8002a5619a1455f19280538f191efbf6edeef604
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

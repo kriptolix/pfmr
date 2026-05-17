@@ -1,0 +1,12 @@
+id: libprotobuf-c
+provides: []
+pkgconfig:
+- libprotobuf-c
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/protobuf-c/protobuf-c/releases/download/v1.5.2/protobuf-c-1.5.2.tar.gz
+config-opts:
+- CFLAGS=-fPIC
+cleanup:
+- '*'

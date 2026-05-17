@@ -1,0 +1,23 @@
+id: fwupd
+provides: []
+pkgconfig:
+- fwupd
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/fwupd/fwupd/releases/download/2.1.3/fwupd-2.1.3.tar.xz
+  sha256: 9609b75b0706265f589b9b15e9c1f986832b523b94f994d00f5284d3ff15f503
+config-opts:
+- --libdir=/app/lib
+- -Dbuild=library
+- -Dfish_completion=false
+- -Dbash_completion=false
+- -Dman=false
+- -Dsystemd=disabled
+- -Dpassim=disabled
+- -Ddocs=disabled
+- -Dtests=false
+- -Dvendor_ids_dir=/app/share/hwdata
+cleanup:
+- /include
+- /lib/pkgconfig

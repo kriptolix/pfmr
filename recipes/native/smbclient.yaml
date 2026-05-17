@@ -1,0 +1,24 @@
+id: smbclient
+provides: []
+pkgconfig:
+- smbclient
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.samba.org/pub/samba/stable/samba-4.24.2.tar.gz
+  sha256: ac24583f271a82ac324f7c6fad7327f65b591ad3492e1dccfee988e2c1c81dd1
+config-opts:
+- --without-json
+- --without-ad-dc
+- --without-ldap
+- --without-ads
+- --without-pam
+- --disable-python
+- --disable-cups
+- --disable-iprint
+- --without-systemd
+- --bindir=.
+- --sbindir=.
+- --sysconfdir=.
+cleanup:
+- /lib/perl5

@@ -1,0 +1,21 @@
+id: evince
+provides: []
+pkgconfig:
+- evince
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/evince/48/evince-48.1.tar.xz
+  sha256: 7d8b9a6fa3a05d3f5b9048859027688c73a788ff6e923bc3945126884943fa10
+config-opts:
+- -Dnautilus=false
+- -Dviewer=false
+- -Dpreviewer=false
+- -Ddbus=false
+- -Dintrospection=true
+- -Dcomics=disabled
+- -Dgspell=disabled
+- -Dgtk_doc=false
+cleanup:
+- /share/GConf
+- /share/help

@@ -1,0 +1,11 @@
+id: puccinialin
+type: python
+pypi_name: puccinialin
+requires:
+  pkgconfig:
+  - io.github.mhogomchungu.media-downloader
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.github.mhogomchungu.media-downloader
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: faac
+provides: []
+pkgconfig:
+- faac
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/faac/files/faac-src/faac-1.30/faac-1_30.tar.gz
+  sha256: adc387ce588cca16d98c03b6ec1e58f0ffd9fc6eadb00e254157d6b16203b2d2
+cleanup:
+- /include
+- /lib/pkgconfig

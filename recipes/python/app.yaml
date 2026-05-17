@@ -1,0 +1,10 @@
+id: app
+type: python
+pypi_name: app
+requires:
+  pkgconfig:
+  - talloc
+  - vte
+confidence: 0.6
+source: flathub:pm.mirko.Atoms
+updated: '2026-05-16'

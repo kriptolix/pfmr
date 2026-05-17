@@ -1,0 +1,15 @@
+id: patchelf
+type: python
+pypi_name: patchelf
+requires:
+  pkgconfig:
+  - miniupnpc
+  - mpv
+  - openrazer-pylib
+  - polychromatic
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:app.polychromatic.controller
+updated: '2026-05-16'

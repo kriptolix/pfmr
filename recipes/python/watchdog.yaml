@@ -1,0 +1,9 @@
+id: watchdog
+type: python
+pypi_name: watchdog
+requires:
+  pkgconfig:
+  - python
+confidence: 0.6
+source: flathub:org.openandroidinstaller.OpenAndroidInstaller
+updated: '2026-05-16'

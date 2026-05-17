@@ -1,0 +1,14 @@
+id: colobot-data
+provides: []
+pkgconfig:
+- colobot-data
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/colobot/colobot-data/archive/colobot-gold-0.2.2-alpha.tar.gz
+  sha256: 5c959a65ffc6047b656339bad425e2c050d3eb826e857dd80e2a03da0418c000
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

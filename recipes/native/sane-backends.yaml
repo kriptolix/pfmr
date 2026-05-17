@@ -1,0 +1,23 @@
+id: sane-backends
+provides: []
+pkgconfig:
+- sane-backends
+- usb
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.com/sane-project/backends/-/archive/1.4.0/backends-1.4.0.tar.gz
+  sha256: 9c50ee76e35d98d7ae0cbb97d4c2a3c15663a78fdd74b0ed2bf2fe8e1a73f63a
+config-opts:
+- --prefix=/app
+- --sysconfdir=/app/etc
+- --localstatedir=/app/var
+- --with-usb
+- --disable-locking
+cleanup:
+- /share/doc
+- /share/man
+- /include
+- /lib/*.a
+- /lib/*.la
+- /lib/pkgconfig

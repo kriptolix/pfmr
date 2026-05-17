@@ -1,0 +1,12 @@
+id: inotify-tools
+provides: []
+pkgconfig:
+- inotify-tools
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/inotify-tools/inotify-tools-3.13.tar.gz
+  sha256: 464146acec2c118be63a6c2a090d9252fbe9689c093db85b695d0502fa229445
+cleanup:
+- /include
+- /lib/pkgconfig

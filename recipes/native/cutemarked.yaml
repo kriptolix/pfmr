@@ -1,0 +1,14 @@
+id: cutemarked
+provides: []
+pkgconfig:
+- cutemarked
+buildsystem: qmake
+source:
+  type: archive
+  url: https://github.com/cloose/CuteMarkEd/archive/v0.11.3.tar.gz
+  sha256: 78a41808c2f0452375810abdff76eeaaee012f8d1368a2b8772ec6b4d2ceeec8
+config-opts:
+- QMAKE_LIBDIR=/app/lib
+cleanup:
+- /include
+- /lib/pkgconfig

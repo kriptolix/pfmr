@@ -1,0 +1,12 @@
+id: libxmp
+provides: []
+pkgconfig:
+- libxmp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/libxmp/libxmp/releases/download/libxmp-4.7.0/libxmp-4.7.0.tar.gz
+  sha256: b6251de1859352c6988752563d60983cb8aa9fd7dfe9f81b8bc6688da47f3464
+cleanup:
+- /include
+- /lib/pkgconfig

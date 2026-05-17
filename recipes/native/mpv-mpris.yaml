@@ -1,0 +1,12 @@
+id: mpv-mpris
+provides: []
+pkgconfig:
+- mpv-mpris
+buildsystem: autotools
+source:
+  type: archive
+  url: https://api.github.com/repos/hoyon/mpv-mpris/tarball/1.2
+  sha256: 0d6ee6e310c8ed7d786fff98b64343a02a4bf76bec6786c72258360c94c4967c
+cleanup:
+- /include
+- /lib/pkgconfig

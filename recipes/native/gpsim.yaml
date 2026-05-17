@@ -1,0 +1,17 @@
+id: gpsim
+provides: []
+pkgconfig:
+- gpsim
+- pic
+buildsystem: autotools
+source:
+  type: archive
+  url: http://downloads.sourceforge.net/project/gpsim/gpsim/0.32.0/gpsim-0.32.1.tar.gz
+  sha256: c704d923ae771fabb7f63775a564dfefd7018a79c914671c4477854420b32e69
+config-opts:
+- --disable-static
+- --disable-gui
+- --with-pic
+cleanup:
+- /include
+- /lib/pkgconfig

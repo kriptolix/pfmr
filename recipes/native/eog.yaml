@@ -1,0 +1,12 @@
+id: eog
+provides: []
+pkgconfig:
+- eog
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/eog/50/eog-50.1.tar.xz
+  sha256: 6f5ee6d756548b88e25a987e0d06dabc3c6c32598fb7df49fb08945c1fe94a55
+cleanup:
+- /include
+- /lib/pkgconfig

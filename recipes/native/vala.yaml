@@ -1,0 +1,15 @@
+id: vala
+provides: []
+pkgconfig:
+- vala
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/vala/0.36/vala-0.36.14.tar.xz
+  sha256: 31df542f37f78d8847c3675a76f691df9e8a6ccfd93045ca3a33cd25db3aa4d2
+config-opts:
+- --enable-vapigen
+- --enable-unversioned
+cleanup:
+- /include
+- /lib/pkgconfig

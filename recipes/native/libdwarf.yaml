@@ -1,0 +1,20 @@
+id: libdwarf
+provides: []
+pkgconfig:
+- libdwarf
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.prevanders.net/libdwarf-2.3.1.tar.xz
+  sha256: 28cf9a5d27aceff5c1f906244a4fe7ae208e41d20a6d8fc7e091c633a40b6e97
+config-opts:
+- --disable-debug
+- --disable-docs
+- --disable-dependency-tracking
+- --disable-silent-rules
+- --enable-shared
+- --disable-static
+- --disable-Werror
+cleanup:
+- /include
+- /lib/pkgconfig

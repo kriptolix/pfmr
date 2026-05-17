@@ -1,0 +1,16 @@
+id: med
+provides: []
+pkgconfig:
+- med
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/chennes/med/archive/refs/tags/v5.0.0.tar.gz
+  sha256: 8701f142087b87e8b74958fd0432498eadf28011b20ad05cf56bf911be081888
+config-opts:
+- -D MEDFILE_BUILD_PYTHON=ON
+- -D MEDFILE_BUILD_TESTS=OFF
+- -D MEDFILE_INSTALL_DOC=OFF
+cleanup:
+- /bin
+- /share/doc

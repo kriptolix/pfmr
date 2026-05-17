@@ -1,0 +1,29 @@
+id: llvm-stage1
+provides: []
+pkgconfig:
+- llvm-stage1
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/llvm/llvm-project/releases/download/llvmorg-12.0.1/llvm-project-12.0.1.src.tar.xz
+  sha256: 129cb25cd13677aad951ce5c2deb0fe4afc1e9d98950f53b51bdcfb5a73afa0e
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_C_FLAGS_RELEASE='-DNDEBUG'
+- -DCMAKE_CXX_FLAGS_RELEASE='-DNDEBUG'
+- -DLLVM_ENABLE_PROJECTS='clang;compiler-rt;lld'
+- -DLLVM_TARGETS_TO_BUILD='Native'
+- -DLLVM_LIBDIR_SUFFIX=''
+- -DLLVM_INCLUDE_TESTS:BOOL=OFF
+- -DLLVM_INCLUDE_EXAMPLES:BOOL=OFF
+- -DLLVM_INCLUDE_DOCS:BOOL=OFF
+- -DLLVM_INCLUDE_BENCHMARKS=OFF
+- -DLLVM_INSTALL_UTILS:BOOL=ON
+- -DLLVM_BINUTILS_INCDIR=/usr/include
+- -DCLANG_ENABLE_ARCMT:BOOL=OFF
+- -DCLANG_ENABLE_STATIC_ANALYZER:BOOL=OFF
+- -DCOMPILER_RT_BUILD_SANITIZERS:BOOL=OFF
+- -DCOMPILER_RT_BUILD_XRAY:BOOL=OFF
+- -Wno-dev
+cleanup:
+- '*'

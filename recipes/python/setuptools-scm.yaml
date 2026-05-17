@@ -1,0 +1,23 @@
+id: setuptools-scm
+type: python
+pypi_name: setuptools-scm
+requires:
+  pkgconfig:
+  - iproute2
+  - libinsane
+  - libndp
+  - libnma
+  - networkmanager
+  - networkmanager-openvpn
+  - openblas
+  - polkit
+  - poppler
+  - poppler-data
+  - python-paperwork
+  - systemd
+  extensions:
+  - org.freedesktop.Sdk.Extension.openjdk21
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:work.openpaper.Paperwork
+updated: '2026-05-16'

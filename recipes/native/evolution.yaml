@@ -1,0 +1,27 @@
+id: evolution
+provides: []
+pkgconfig:
+- evolution
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.gnome.org/sources/evolution/3.60/evolution-3.60.1.tar.xz
+  sha256: 8f333ceb4c31cce7d77495e8901a00efdc5376da5429c1c294d7e3efbc6f7308
+config-opts:
+- -DVERSION_SUBSTRING= (by Flathub.org)
+- -DENABLE_AUTOAR=OFF
+- -DENABLE_GTK4=OFF
+- -DENABLE_CONTACT_MAPS=OFF
+- -DENABLE_GNOME_DESKTOP=OFF
+- -DENABLE_GTK_DOC=OFF
+- -DENABLE_INSTALLED_TESTS=OFF
+- -DENABLE_PST_IMPORT=OFF
+- -DENABLE_TEXT_HIGHLIGHT=OFF
+- -DENABLE_YTNEF=OFF
+- -DWITH_BOGOFILTER=/app/bin/bogofilter
+- -DWITH_GLADE_CATALOG=OFF
+- -DWITH_HELP=ON
+- -DWITH_WMCLASS_OVERRIDE=evolution.bin
+cleanup:
+- /etc/xdg
+- /share/GConf

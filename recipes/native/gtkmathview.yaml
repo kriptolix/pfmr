@@ -1,0 +1,14 @@
+id: gtkmathview
+provides: []
+pkgconfig:
+- gtkmathview
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/AbiWord/gtkmathview/releases/download/0.8.1/gtkmathview-0.8.1.tar.xz
+  sha256: 2ab60a33ef1cd76591e70770799e6bc0b2600c5366933a7c1978a33a54faae44
+cleanup:
+- /include
+- /lib/pkgconfig
+- /share/man
+- /bin/mathml*

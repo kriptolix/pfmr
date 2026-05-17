@@ -1,0 +1,15 @@
+id: gstqroverlay
+provides: []
+pkgconfig:
+- gstqroverlay
+buildsystem: meson
+source:
+  type: archive
+  url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.26.6.tar.xz
+  sha256: b3bf4b1ad3017eac1fcf1209eae8a61208f8ef43b9b1ef99b9366acf14d74a79
+config-opts:
+- --auto-features=disabled
+- -Dqroverlay=enabled
+cleanup:
+- /include
+- /lib/pkgconfig

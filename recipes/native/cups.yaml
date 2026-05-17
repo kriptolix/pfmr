@@ -1,0 +1,51 @@
+id: cups
+provides: []
+pkgconfig:
+- cups
+- menudir
+- icondir
+- rundir
+- logdir
+- cachedir
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/OpenPrinting/cups/releases/download/v2.4.11/cups-2.4.11-source.tar.gz
+  sha256: 9a88fe1da3a29a917c3fc67ce6eb3178399d68e1a548c6d86c70d9b13651fd71
+config-opts:
+- --disable-systemd
+- --disable-avahi
+- --disable-launchd
+- --disable-dbus
+- --disable-pam
+- --disable-gssapi
+- --disable-ssl
+- --without-rcdir
+- --without-systemd
+- --without-xinetd
+- --without-tls
+- --localstatedir=/app/var
+- --sysconfdir=/app/etc
+- --with-menudir=/app/share/applications
+- --with-icondir=/app/share/icons
+- --with-rundir=/app/var/run/cups
+- --with-logdir=/app/var/log/cups
+- --with-cachedir=/app/var/cache/cups
+cleanup:
+- /sbin
+- /etc
+- /var
+- /lib/cups
+- /share/cups
+- /share/doc
+- /share/man
+- /share/locale
+- /share/applications
+- /share/icons
+- /bin/cups-config
+- /bin/ippeveprinter
+- /bin/ippfind
+- /bin/ipptool
+- /include
+- /lib/*.a
+- /lib/pkgconfig

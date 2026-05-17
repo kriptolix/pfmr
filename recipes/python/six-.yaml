@@ -1,0 +1,10 @@
+id: six-
+type: python
+pypi_name: six-
+requires:
+  pkgconfig:
+  - ffmpeg
+  - libmpv
+confidence: 0.6
+source: flathub:nl.g4d.Girens
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: perl-compress-bzip2
+provides: []
+pkgconfig:
+- perl-compress-bzip2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/R/RU/RURBAN/Compress-Bzip2-2.25.tar.gz
+  sha256: 1b8a470f22bdd7f7f5b22aeda6779e47f829e7af2d04110f6e8ec2e3f25b4079
+cleanup:
+- /include
+- /lib/pkgconfig

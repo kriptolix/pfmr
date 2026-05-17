@@ -1,0 +1,20 @@
+id: clamav
+provides: []
+pkgconfig:
+- clamav
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Cisco-Talos/clamav/releases/download/clamav-1.4.3/clamav-1.4.3.tar.gz
+  sha256: d874cabf3d4765b35b518ef535658a1e6ec74802006a1d613f9f124aa1343210
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DENABLE_MILTER=OFF
+- -DENABLE_CLAMONACC=OFF
+- -DENABLE_TESTS=OFF
+- -DENABLE_EXAMPLES=OFF
+- -DENABLE_SYSTEMD=OFF
+- -DENABLE_MAN_PAGES=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

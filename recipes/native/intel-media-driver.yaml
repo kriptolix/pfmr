@@ -1,0 +1,17 @@
+id: intel-media-driver
+provides: []
+pkgconfig:
+- intel-media-driver
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/intel/media-driver/archive/refs/tags/intel-media-24.3.4.tar.gz
+  sha256: 58978f9ee4981532e60be2f2768673b1f3825db09971ebb98fbd7e8819cab6eb
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_INSTALL_LIBDIR=lib
+- -DMEDIA_RUN_TEST_SUITE=OFF
+- -DENABLE_PRODUCTION_KMD=ON
+cleanup:
+- /include
+- /lib/pkgconfig

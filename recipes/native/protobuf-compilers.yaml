@@ -1,0 +1,12 @@
+id: protobuf-compilers
+provides: []
+pkgconfig:
+- protobuf-compilers
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/protocolbuffers/protobuf/releases/download/v3.13.0/protobuf-cpp-3.13.0.tar.gz
+  sha256: f8a547dfe143a9f61fadafba47fa6573713a33cb80909307c1502e26e1102298
+cleanup:
+- /include
+- /lib/pkgconfig

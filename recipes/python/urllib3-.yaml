@@ -1,0 +1,11 @@
+id: urllib3-
+type: python
+pypi_name: urllib3-
+requires:
+  pkgconfig:
+  - ffmpeg
+  - libmpv
+  - qgis
+confidence: 0.6
+source: flathub:org.qgis.qgis
+updated: '2026-05-16'

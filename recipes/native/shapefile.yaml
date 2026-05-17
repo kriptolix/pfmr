@@ -1,0 +1,12 @@
+id: shapefile
+provides: []
+pkgconfig:
+- shapefile
+buildsystem: cmake
+source:
+  type: archive
+  url: https://download.osgeo.org/shapelib/shapelib-1.6.1.tar.gz
+  sha256: 5da90a60e25440f108f4e8e95732bfa83ede13c8e0c2bcf80ae41006cc8ebc20
+cleanup:
+- /include
+- /lib/pkgconfig

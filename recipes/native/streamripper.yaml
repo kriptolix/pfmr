@@ -1,0 +1,11 @@
+id: streamripper
+provides: []
+pkgconfig:
+- streamripper
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/sourceforge/streamripper/streamripper-1.64.6.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

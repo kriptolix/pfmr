@@ -1,0 +1,11 @@
+id: love
+provides: []
+pkgconfig:
+- love
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/love2d/love/releases/download/11.5/love-11.5-linux-src.tar.gz
+  sha256: 066e0843f71aa9fd28b8eaf27d41abb74bfaef7556153ac2e3cf08eafc874c39
+cleanup:
+- /share

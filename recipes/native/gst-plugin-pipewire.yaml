@@ -1,0 +1,18 @@
+id: gst-plugin-pipewire
+provides: []
+pkgconfig:
+- gst-plugin-pipewire
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/0.3.83/pipewire-0.3.83.tar.gz
+  sha256: b681bbf590cd02deec41802444ba5b05fe4df3e497eaa80260d1c5f7bb830bda
+config-opts:
+- -Ddocs=disabled
+- -Djack-devel=false
+- -Dselinux=disabled
+- -Dsession-managers=[]
+- -Dudevrulesdir=/app/lib/udev
+cleanup:
+- /include
+- /lib/pkgconfig

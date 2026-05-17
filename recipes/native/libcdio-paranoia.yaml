@@ -1,0 +1,15 @@
+id: libcdio-paranoia
+provides: []
+pkgconfig:
+- libcdio-paranoia
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/libcdio/libcdio-paranoia/releases/download/release-10.2+2.0.2/libcdio-paranoia-10.2+2.0.2.tar.gz
+  sha256: 99488b8b678f497cb2e2f4a1a9ab4a6329c7e2537a366d5e4fef47df52907ff6
+config-opts:
+- --disable-static
+- --enable-shared
+cleanup:
+- /include
+- /lib/pkgconfig

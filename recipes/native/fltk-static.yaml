@@ -1,0 +1,19 @@
+id: fltk-static
+provides: []
+pkgconfig:
+- fltk-static
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/fltk/fltk/releases/download/release-1.4.4/fltk-1.4.4-source.tar.bz2
+  sha256: 2b302c80b7ea937a8bdc01ed6718fd995035bf63e9a2895491c1001821725f1f
+cleanup:
+- /bin
+- /include
+- /man
+- /share/doc
+- /share/man
+- /lib/pkgconfig
+- '*.so'
+- '*.la'
+- '*.a'

@@ -1,0 +1,12 @@
+id: libudev1
+provides: []
+pkgconfig:
+- libudev1
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/gentoo/eudev/archive/v3.2.7.tar.gz
+  sha256: ce2fda4dea129bbcf824c947aab23504bcd26911481b47dbaf10646f723083a4
+cleanup:
+- /include
+- /lib/pkgconfig

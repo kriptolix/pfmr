@@ -1,0 +1,15 @@
+id: x264
+provides: []
+pkgconfig:
+- x264
+buildsystem: autotools
+source:
+  type: archive
+  url: https://code.videolan.org/videolan/x264/-/archive/4613ac3c15fd75cebc4b9f65b7fb95e70a3acce1/x264-4613ac3c15fd75cebc4b9f65b7fb95e70a3acce1.tar.bz2
+config-opts:
+- --disable-opencl
+- --disable-cli
+- --enable-shared
+cleanup:
+- /include
+- /lib/pkgconfig

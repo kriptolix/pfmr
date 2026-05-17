@@ -1,0 +1,17 @@
+id: libjpeg
+provides: []
+pkgconfig:
+- libjpeg
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libjpeg-turbo/libjpeg-turbo/archive/refs/tags/3.1.2.tar.gz
+  sha256: 560f6338b547544c4f9721b18d8b87685d433ec78b3c644c70d77adad22c55e6
+config-opts:
+- -DCMAKE_SKIP_RPATH:BOOL=YES
+- -DENABLE_STATIC:BOOL=NO
+- -DWITH_JPEG8:BOOL=YES
+- -DCMAKE_INSTALL_LIBDIR=/app/lib
+cleanup:
+- /include
+- /lib/pkgconfig

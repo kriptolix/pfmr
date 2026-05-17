@@ -1,0 +1,12 @@
+id: libgnome-games-support
+provides: []
+pkgconfig:
+- libgnome-games-support
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/libgnome-games-support/2.0/libgnome-games-support-2.0.2.tar.xz
+  sha256: 82bbc74f08f98b833a9b6444b8479e1bd84ded0a07425d057b45f38e8783e5bd
+cleanup:
+- /include
+- /lib/pkgconfig

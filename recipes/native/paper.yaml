@@ -1,0 +1,12 @@
+id: paper
+provides: []
+pkgconfig:
+- paper
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/snwh/paper-icon-theme/archive/v1.4.0.tar.gz
+  sha256: b90f3a84634572bcba76cdd0c2a0d305a5c521c2054d3d390edffda5f233928b
+cleanup:
+- /include
+- /lib/pkgconfig

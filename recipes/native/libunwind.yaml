@@ -1,0 +1,16 @@
+id: libunwind
+provides: []
+pkgconfig:
+- libunwind
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.savannah.nongnu.org/releases/libunwind/libunwind-1.4.0.tar.gz
+  sha256: df59c931bd4d7ebfd83ee481c943edf015138089b8e50abed8d9c57ba9338435
+cleanup:
+- /include
+- /pkgconfig
+- '*.a'
+- '*.la'
+- '*ptrace.so*'
+- '*setjmp.so*'

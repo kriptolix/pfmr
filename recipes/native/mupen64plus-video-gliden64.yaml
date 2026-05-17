@@ -1,0 +1,16 @@
+id: mupen64plus-video-gliden64
+provides: []
+pkgconfig:
+- mupen64plus-video-gliden64
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/gonetz/GLideN64/archive/f4b0755e2722d59fe1c20d7e470f7b8929dcae85.tar.gz
+  sha256: 738ed313ce93f3faca15420cf45549fb51e683e6ab1c2dcd91e42ead1eed8a89
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DMUPENPLUSAPI=On
+- -DUSE_SYSTEM_LIBS=On
+cleanup:
+- /include
+- /lib/pkgconfig

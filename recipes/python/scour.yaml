@@ -1,0 +1,11 @@
+id: scour
+type: python
+pypi_name: scour
+requires:
+  pkgconfig:
+  - jpegoptim
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.kde.optiimage
+updated: '2026-05-16'

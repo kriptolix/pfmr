@@ -1,0 +1,14 @@
+id: gtkspell3
+provides: []
+pkgconfig:
+- gtkspell3
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/gtkspell/gtkspell3-3.0.10.tar.xz
+  sha256: b040f63836b347eb344f5542443dc254621805072f7141d49c067ecb5a375732
+config-opts:
+- --disable-gtk-doc
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: ashpd-demo
+provides: []
+pkgconfig:
+- ashpd-demo
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/bilelmoussaoui/ashpd/releases/download/0.5.0-demo/ashpd-demo-0.5.0.tar.xz
+  sha256: 1387915d6bb238aa5d2c658a735f5ee96f99704210e01d96b56ad96024c51215
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: mangareader
+provides: []
+pkgconfig:
+- mangareader
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/g-fb/mangareader/archive/refs/tags/2.4.0.tar.gz
+  sha256: 8c19856110256702563dd1e7513878a4fc4212390b409e7030c7a604f8745834
+cleanup:
+- /include
+- /lib/pkgconfig

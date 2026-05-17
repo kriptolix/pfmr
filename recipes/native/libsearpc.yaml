@@ -1,0 +1,15 @@
+id: libsearpc
+provides: []
+pkgconfig:
+- libsearpc
+- python_prefix
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/haiwen/libsearpc/archive/refs/tags/v3.3-latest.tar.gz
+  sha256: 61674ce451c643c8e96e33ff32874f0f05cf5fe958a26d625486375796406618
+config-opts:
+- --with-python_prefix=/app
+cleanup:
+- /include
+- /lib/pkgconfig

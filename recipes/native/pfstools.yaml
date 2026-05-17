@@ -1,0 +1,11 @@
+id: pfstools
+provides: []
+pkgconfig:
+- pfstools
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://altushost-swe.dl.sourceforge.net/project/pfstools/pfstools/2.2.0/pfstools-2.2.0.tgz
+  sha256: 9bf6844985663226c21998eeb43c261acb8e4b3891b9a91b729554406289d7ca
+cleanup:
+- /bin

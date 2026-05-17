@@ -1,0 +1,15 @@
+id: mariadb-connector
+provides: []
+pkgconfig:
+- mariadb-connector
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/mariadb-corporation/mariadb-connector-c/archive/refs/tags/v3.4.8.tar.gz
+config-opts:
+- -DWITH_UNIT_TESTS=OFF
+- -DDEFAULT_SSL_VERIFY_SERVER_CERT=OFF
+- -DINSTALL_LIBDIR=/app/lib
+cleanup:
+- /include
+- '*.a'

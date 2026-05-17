@@ -1,0 +1,15 @@
+id: intel-compute-runtime
+provides: []
+pkgconfig:
+- intel-compute-runtime
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/intel/compute-runtime/archive/refs/tags/26.01.36711.4.tar.gz
+  sha256: f92c011244488e8a0832a3fc524e30571a2253dbdfd9b6b541438a85f2c2674c
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DNEO_SKIP_UNIT_TESTS=1
+cleanup:
+- /include
+- /lib/pkgconfig

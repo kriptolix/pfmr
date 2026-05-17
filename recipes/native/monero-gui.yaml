@@ -1,0 +1,16 @@
+id: monero-gui
+provides: []
+pkgconfig:
+- monero-gui
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://downloads.getmonero.org/gui/monero-gui-source-v0.18.4.7.tar.bz2
+  sha256: 03597136cd418b63d9f2866be874662dc74604299987de50d19ac1af6ba52af1
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DWITH_DESKTOP_ENTRY=OFF
+- -DWITH_UPDATER=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

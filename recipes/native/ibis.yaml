@@ -1,0 +1,15 @@
+id: ibis
+provides: []
+pkgconfig:
+- ibis
+buildsystem: meson
+source:
+  type: archive
+  url: https://sourceforge.net/projects/pidgin/files/ibis/0.15.0/ibis-0.15.0.tar.xz/download
+  sha256: 2dc7209f4aad52b0549ba829c3fbe057178f3a30fcf7d65238d02d1c3e2cbebe
+config-opts:
+- -Ddoc=false
+- --wrap-mode=nofallback
+cleanup:
+- /include
+- /lib/pkgconfig

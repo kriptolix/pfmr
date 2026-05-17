@@ -1,0 +1,12 @@
+id: tcl
+provides: []
+pkgconfig:
+- tcl
+buildsystem: autotools
+source:
+  type: archive
+  url: http://downloads.sourceforge.net/sourceforge/tcl/tcl-core8.6.8-src.tar.gz
+  sha256: 85d4279d647bb705813c6453fa78040d74753bf707547723b124276749fc077d
+cleanup:
+- /include
+- /lib/pkgconfig

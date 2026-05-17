@@ -1,0 +1,86 @@
+id: php
+provides: []
+pkgconfig:
+- php
+- config-file-path
+- config-file-scan-dir
+- bz2
+- curl
+- gd
+- jpeg-dir
+- png-dir
+- xpm-dir
+- webp-dir
+- freetype-dir
+- gettext
+- ldap
+- libzip
+- mhash
+- mysqli
+- openssl
+- password-argon2
+- pdo-mysql
+- pdo-pgsql
+- pdo-sqlite
+- pspell
+- readline
+- sodium
+- sqlite3
+- xmlrpc
+- xsl
+- zlib
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.php.net/distributions/php-7.3.33.tar.xz
+  sha256: 166eaccde933381da9516a2b70ad0f447d7cec4b603d07b9a916032b215b90cc
+config-opts:
+- --enable-option-checking=fatal
+- --with-config-file-path=/usr/lib/sdk/php73/etc/php
+- --with-config-file-scan-dir=/usr/lib/sdk/php73/etc/php/conf.d:/app/etc/php:/var/config/php/7.3/ini
+- --disable-cgi
+- --enable-bcmath
+- --enable-calendar
+- --enable-dba=shared
+- --enable-exif
+- --enable-ftp
+- --enable-intl
+- --enable-mbstring
+- --enable-opcache
+- --enable-pcntl
+- --enable-phpdbg
+- --enable-re2c-cgoto
+- --enable-sockets
+- --enable-sysvmsg
+- --enable-sysvsem
+- --enable-sysvshm
+- --enable-wddx
+- --enable-zip
+- --with-bz2
+- --with-curl
+- --with-gd
+- --with-jpeg-dir=/usr
+- --with-png-dir=/usr
+- --with-xpm-dir=/usr
+- --with-webp-dir=/usr
+- --with-freetype-dir=/usr
+- --with-gettext
+- --with-ldap=/usr/lib/sdk/php73
+- --with-libzip
+- --with-mhash
+- --with-mysqli
+- --with-openssl
+- --with-password-argon2=/usr/lib/sdk/php73
+- --with-pdo-mysql
+- --with-pdo-pgsql=/usr/lib/sdk/php73
+- --with-pdo-sqlite=/usr
+- --with-pspell
+- --with-readline
+- --with-sodium
+- --with-sqlite3=/usr
+- --with-xmlrpc
+- --with-xsl
+- --with-zlib
+cleanup:
+- /include
+- /lib/pkgconfig

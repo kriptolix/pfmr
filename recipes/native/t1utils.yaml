@@ -1,0 +1,11 @@
+id: t1utils
+provides: []
+pkgconfig:
+- t1utils
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/kohler/t1utils/archive/v1.41.tar.gz
+  sha256: 0129fbfabb212143f52ff1e5de8ccbef5e5295d46772bad3ed149115bab5a094
+cleanup:
+- '*'

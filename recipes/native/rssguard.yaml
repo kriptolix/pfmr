@@ -1,0 +1,19 @@
+id: rssguard
+provides: []
+pkgconfig:
+- rssguard
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/martinrotter/rssguard/releases/download/5.1.2/rssguard-5.1.2-src.tar.gz
+  sha256: 0cdc8f83852cff51e8bc9c5e0edeb664b0c3f37c22c55d4c175f3dcc33d98dfb
+config-opts:
+- -DIS_DEV_BUILD=OFF
+- -DREVISION_FROM_GIT=OFF
+- -DNO_UPDATE_CHECK=ON
+- -DIS_FLATPAK_BUILD=ON
+- -DBUILD_XMPP_PLUGIN=ON
+- -DWEB_ARTICLE_VIEWER_WEBENGINE=OFF
+- -DENABLE_MEDIAPLAYER_LIBMPV=OFF
+cleanup:
+- /include

@@ -1,0 +1,12 @@
+id: spread-sheet-widget
+provides: []
+pkgconfig:
+- spread-sheet-widget
+buildsystem: autotools
+source:
+  type: archive
+  url: https://alpha.gnu.org/gnu/ssw/spread-sheet-widget-0.10.tar.gz
+  sha256: 80692ec350271995e147dc759929cdd79d3b645e6b5efaa6b57f4d2d05e847e5
+cleanup:
+- /include
+- /lib/pkgconfig

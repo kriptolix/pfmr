@@ -1,0 +1,15 @@
+id: ladspa-noise-suppressor
+provides: []
+pkgconfig:
+- ladspa-noise-suppressor
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/werman/noise-suppression-for-voice/archive/refs/tags/v1.10.tar.gz
+  sha256: 6e0c11aeb8392891750b0243c2ba695dab07654bf3f4e01adbed927b36cc690a
+config-opts:
+- -DBUILD_LV2_PLUGIN=OFF
+- -DBUILD_VST_PLUGIN=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

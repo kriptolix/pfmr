@@ -1,0 +1,14 @@
+id: libmng
+provides: []
+pkgconfig:
+- libmng
+buildsystem: autotools
+source:
+  type: archive
+  url: https://src.fedoraproject.org/repo/pkgs/rpms/libmng/libmng-2.0.3.tar.gz/7e9a12ba2a99dff7e736902ea07383d4/libmng-2.0.3.tar.gz
+  sha256: cf112a1fb02f5b1c0fce5cab11ea8243852c139e669c44014125874b14b7dfaa
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

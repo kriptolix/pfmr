@@ -1,0 +1,12 @@
+id: perl-file-slurp
+provides: []
+pkgconfig:
+- perl-file-slurp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/U/UR/URI/File-Slurp-9999.19.tar.gz
+  sha256: ce29ebe995097ebd6e9bc03284714cdfa0c46dc94f6b14a56980747ea3253643
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: mhash
+provides: []
+pkgconfig:
+- mhash
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/mhash/files/mhash/0.9.9.9/mhash-0.9.9.9.tar.bz2
+  sha256: 56521c52a9033779154432d0ae47ad7198914785265e1f570cee21ab248dfef0
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,9 @@
+id: pyqt6
+type: python
+pypi_name: pyqt6
+requires:
+  pkgconfig:
+  - libfuse
+confidence: 0.6
+source: flathub:org.gitfourchette.gitfourchette
+updated: '2026-05-16'

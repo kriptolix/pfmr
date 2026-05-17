@@ -612,6 +612,287 @@ def _print_probe_report(report) -> None:
             rprint(f"  - {ext}")
 
 # ---------------------------------------------------------------------------
+# pfmr add — the main user-facing command
+# ---------------------------------------------------------------------------
+
+@app.command("add")
+def add(
+    packages: list[str] = typer.Argument(
+        ...,
+        help="Python package name(s) to resolve, e.g. 'cryptography' or 'numpy==1.26.4'",
+    ),
+    sdk: str = typer.Option("org.freedesktop.Sdk", "--sdk", "-s"),
+    sdk_version: str = typer.Option("24.08", "--sdk-version", "-V"),
+    runtime: str = typer.Option("org.freedesktop.Platform", "--runtime"),
+    python_version: str = typer.Option("3.11", "--python", "-p"),
+    output_format: OutputFormat = typer.Option(OutputFormat.yaml, "--format", "-f"),
+    probe: bool = typer.Option(True, "--probe/--no-probe",
+        help="Run sandbox probe when recipes are missing"),
+    offline: bool = typer.Option(False, "--offline",
+        help="Skip sandbox probe, report missing deps only"),
+    verbose: bool = typer.Option(False, "--verbose", "-v"),
+):
+    """
+    Resolve Python package(s) and output the Flatpak modules needed.
+
+    This is the primary command. Given one or more Python package names:
+
+      1. If a recipe exists → emit ready-to-paste YAML modules.
+      2. If no recipe → probe the SDK sandbox to find missing native deps,
+         then try to resolve them from native recipes.
+      3. Report anything that could not be resolved.
+
+    The output is module YAML you can paste directly into your manifest.
+
+    Examples:
+      pfmr add cryptography
+      pfmr add numpy scipy --sdk org.freedesktop.Sdk --sdk-version 24.08
+      pfmr add pycurl --no-probe
+    """
+    import os
+    if verbose:
+        os.environ["PFMR_LOG_LEVEL"] = "DEBUG"
+
+    from pfmr.recipes.db import RecipeDB
+    from pfmr.resolvers.sdk_capability import SDKCapabilityResolver, SDKQuery
+
+    recipe_db = RecipeDB()
+    sdk_resolver = SDKCapabilityResolver(
+        sdk_id=sdk,
+        sdk_version=sdk_version,
+        offline=True,
+    )
+
+    resolved_modules: list[dict] = []       # modules ready to emit
+    missing_native: list[str] = []          # pkg-config names with no recipe
+    probe_needed: list[str] = []            # packages that need probing
+
+    rprint(f"\n[bold]pfmr add[/bold]: resolving {packages} for [cyan]{sdk}//{sdk_version}[/cyan]\n")
+
+    for pkg_spec in packages:
+        pkg_name = pkg_spec.split("==")[0].split(">=")[0].split("<=")[0].strip()
+        rprint(f"[bold]{pkg_name}[/bold]")
+
+        # ── Step 1: Python recipe lookup ─────────────────────────────
+        python_recipe = recipe_db.find_python(pkg_name)
+        if python_recipe:
+            rprint(f"  [green]✓[/green] Python recipe found (confidence={python_recipe.confidence:.1f})")
+
+            if python_recipe.sdk_sufficient:
+                rprint(f"  [green]✓[/green] SDK is sufficient — no extra modules needed")
+                # Still emit the pip install module
+                resolved_modules.append(_pip_install_module(pkg_spec, python_recipe.requires_extensions))
+                continue
+
+            # Check which native deps the SDK already provides
+            all_pc = python_recipe.requires_pkgconfig
+            satisfied, unsatisfied = _check_sdk_provides(sdk_resolver, all_pc)
+            if satisfied:
+                rprint(f"  [dim]  SDK provides: {satisfied}[/dim]")
+
+            # For unsatisfied deps, find native recipes
+            for pc in unsatisfied:
+                native = recipe_db.find_by_pkgconfig(pc) or recipe_db.find(pc)
+                if native:
+                    rprint(f"  [green]✓[/green] Native recipe for [cyan]{pc}[/cyan]: {native.id}")
+                    mod = _native_recipe_to_module(native, output_format)
+                    if not any(m.get("name") == native.id for m in resolved_modules):
+                        resolved_modules.append(mod)
+                else:
+                    rprint(f"  [yellow]![/yellow] No recipe for [yellow]{pc}[/yellow]")
+                    if pc not in missing_native:
+                        missing_native.append(pc)
+
+            # Extensions
+            for ext in python_recipe.requires_extensions:
+                rprint(f"  [cyan]→[/cyan] Requires SDK extension: {ext}")
+
+            resolved_modules.append(_pip_install_module(pkg_spec, python_recipe.requires_extensions))
+            continue
+
+        # ── Step 2: No python recipe — probe or report ────────────────
+        rprint(f"  [dim]No python recipe found.[/dim]")
+        if offline or not probe:
+            rprint(f"  [yellow]![/yellow] Cannot determine deps without probe (use --probe)")
+            probe_needed.append(pkg_name)
+        else:
+            probe_needed.append(pkg_name)
+
+    # ── Step 3: Sandbox probe for packages without recipes ────────────
+    if probe_needed and not offline:
+        rprint(f"\n[bold]Probing {probe_needed} in sandbox...[/bold]")
+        probe_results = _run_probe(probe_needed, sdk, sdk_version, runtime, python_version)
+        if probe_results:
+            for pkg_name, pkg_errors in probe_results.items():
+                rprint(f"\n  [bold]{pkg_name}[/bold] probe results:")
+                if not pkg_errors:
+                    rprint(f"  [green]✓[/green] Installs cleanly — no native deps found")
+                    resolved_modules.append(_pip_install_module(pkg_name, []))
+                    continue
+                for pc, recipe in pkg_errors.get("satisfied", {}).items():
+                    rprint(f"  [green]✓[/green] [cyan]{pc}[/cyan] → recipe: {recipe}")
+                    native = recipe_db.find(recipe)
+                    if native:
+                        mod = _native_recipe_to_module(native, output_format)
+                        if not any(m.get("name") == native.id for m in resolved_modules):
+                            resolved_modules.append(mod)
+                for pc in pkg_errors.get("missing", []):
+                    rprint(f"  [red]✗[/red] [red]{pc}[/red] — no recipe available")
+                    if pc not in missing_native:
+                        missing_native.append(pc)
+                resolved_modules.append(_pip_install_module(pkg_name, []))
+
+    # ── Output ────────────────────────────────────────────────────────
+    if resolved_modules:
+        rprint(f"\n[bold green]Modules to add to your manifest:[/bold green]")
+        _emit_modules(resolved_modules, output_format)
+
+    if missing_native:
+        rprint(f"\n[bold yellow]Unresolved native dependencies:[/bold yellow]")
+        for dep in missing_native:
+            rprint(f"  [yellow]✗[/yellow] {dep}")
+        rprint(
+            f"\n[dim]These pkg-config names have no recipe yet. "
+            f"You may need to add native modules manually, or run "
+            f"[bold]pfmr learn flathub[/bold] to mine more recipes.[/dim]"
+        )
+
+    if not resolved_modules and not missing_native and not probe_needed:
+        rprint("[green]Nothing to do.[/green]")
+
+    if missing_native:
+        raise typer.Exit(1)
+
+
+# ---------------------------------------------------------------------------
+# add command helpers
+# ---------------------------------------------------------------------------
+
+def _check_sdk_provides(
+    sdk_resolver,
+    pc_names: list[str],
+) -> tuple[list[str], list[str]]:
+    """Return (satisfied, unsatisfied) pkgconfig names."""
+    from pfmr.resolvers.sdk_capability import SDKQuery
+    satisfied, unsatisfied = [], []
+    for pc in pc_names:
+        report = sdk_resolver.resolve([SDKQuery(pc, "pkgconfig")])
+        if report.is_sufficient:
+            satisfied.append(pc)
+        else:
+            unsatisfied.append(pc)
+    return satisfied, unsatisfied
+
+
+def _pip_install_module(pkg_spec: str, extensions: list[str]) -> dict:
+    """Build a simple pip-install module dict."""
+    mod: dict = {
+        "name": f"python-{pkg_spec.split('==')[0].lower().replace('_', '-')}",
+        "buildsystem": "simple",
+        "build-commands": [
+            f"/app/venv/bin/pip install --no-build-isolation {pkg_spec}",
+        ],
+    }
+    if extensions:
+        mod["_requires_extensions"] = extensions  # informational, stripped before output
+    return mod
+
+
+def _native_recipe_to_module(recipe, fmt: OutputFormat) -> dict:
+    """Convert a NativeRecipe to a module dict."""
+    mod: dict = {
+        "name": recipe.id,
+        "buildsystem": recipe.buildsystem,
+    }
+    if recipe.config_opts:
+        mod["config-opts"] = recipe.config_opts
+    if recipe.cleanup:
+        mod["cleanup"] = recipe.cleanup
+    if recipe.source:
+        src: dict = {"type": recipe.source.type or "archive"}
+        if recipe.source.url:
+            src["url"] = recipe.source.url
+        if recipe.source.sha256:
+            src["sha256"] = recipe.source.sha256
+        mod["sources"] = [src]
+    if recipe.build_commands:
+        mod["buildsystem"] = "simple"
+        mod["build-commands"] = recipe.build_commands
+    return mod
+
+
+def _run_probe(
+    packages: list[str],
+    sdk: str,
+    sdk_version: str,
+    runtime: str,
+    python_version: str,
+) -> Optional[dict]:
+    """
+    Run a quick sandbox probe and return per-package results.
+    Returns None if flatpak is not available.
+    """
+    from pfmr.sandbox.probe import BuildSandboxProber
+    from pfmr.models import ResolvedPackage, BuildBackend
+    from pfmr.recipes.db import RecipeDB
+
+    prober = BuildSandboxProber(
+        runtime=runtime,
+        runtime_version=sdk_version,
+        sdk=sdk,
+    )
+    if not prober.is_available():
+        rprint("[yellow]flatpak not available — skipping probe[/yellow]")
+        return None
+
+    recipe_db = RecipeDB()
+    pkgs = [ResolvedPackage(name=p, version="", build_backend=BuildBackend.UNKNOWN)
+            for p in packages]
+
+    with console.status("[bold green]Running sandbox probe..."):
+        report = prober.probe(pkgs)
+
+    if not report.ran:
+        rprint(f"[yellow]Probe did not run: {report.skip_reason}[/yellow]")
+        return None
+
+    # Group errors by package
+    results: dict[str, dict] = {p: {"satisfied": {}, "missing": []} for p in packages}
+
+    for err in report.errors:
+        pkg = err.context.split(" ")[0] if err.context else packages[0]
+        if pkg not in results:
+            pkg = packages[0]
+        missing = err.missing
+        native = recipe_db.find(missing) or recipe_db.find_by_pkgconfig(missing)
+        if native:
+            results[pkg]["satisfied"][missing] = native.id
+        else:
+            if missing not in results[pkg]["missing"]:
+                results[pkg]["missing"].append(missing)
+
+    return results
+
+
+def _emit_modules(modules: list[dict], fmt: OutputFormat) -> None:
+    """Print modules as YAML or JSON, stripping internal keys."""
+    import json as _json
+    clean = []
+    for m in modules:
+        cm = {k: v for k, v in m.items() if not k.startswith("_")}
+        clean.append(cm)
+
+    if fmt == OutputFormat.json:
+        rprint(_json.dumps(clean, indent=2))
+    else:
+        import yaml as _yaml
+        # Print each module separated by --- for easy copy-paste
+        for mod in clean:
+            rprint("---")
+            rprint(_yaml.dump(mod, default_flow_style=False, allow_unicode=True).rstrip())
+    rprint("---")
+
+# ---------------------------------------------------------------------------
 # pfmr version
 # ---------------------------------------------------------------------------
 

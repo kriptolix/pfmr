@@ -1,0 +1,24 @@
+id: ares
+provides: []
+pkgconfig:
+- ares
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://api.github.com/repos/ares-emulator/ares/tarball/v147
+  sha256: 0f0e193584c93628ed84babaea5ac47457d270aa2858b0ce262bf77b2de556f1
+config-opts:
+- -W no-dev
+- -D CMAKE_BUILD_TYPE=RelWithDebInfo
+- -D CMAKE_INSTALL_PREFIX=/app
+- -D CMAKE_PREFIX_PATH=/app
+- -D ARES_BUILD_LOCAL=OFF
+- -D ARES_BUNDLE_SHADERS=OFF
+- -D ARES_SKIP_DEPS=ON
+- -D CMAKE_C_COMPILER=clang
+- -D CMAKE_CXX_COMPILER=clang++
+- -D ARES_BUILD_OFFICIAL=YES
+- -G Ninja
+cleanup:
+- /include
+- /lib/pkgconfig

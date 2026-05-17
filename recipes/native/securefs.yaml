@@ -1,0 +1,17 @@
+id: securefs
+provides: []
+pkgconfig:
+- securefs
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/mirror/tclap/archive/refs/tags/v1.2.5.tar.gz
+  sha256: 7e87d13734076fa4f626f6144ce9a02717198b3f054341a6886e2107b048b235
+config-opts:
+- -DCMAKE_BUILD_TYPE=release
+- -DSECUREFS_USE_VCPKG=FALSE
+- -DSECUREFS_ENABLE_UNIT_TEST=FALSE
+- -DTCLAP_INCLUDE_DIRS=tclap/include
+cleanup:
+- /include
+- /lib/pkgconfig

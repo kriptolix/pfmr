@@ -1,0 +1,12 @@
+id: ffmpeg-2.1.3
+provides: []
+pkgconfig:
+- ffmpeg-2.1.3
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/FFmpeg/FFmpeg/archive/n2.1.3.tar.gz
+  sha256: cfafef9c9fb2581ac234fc11da97c677e5a911db4e16b341ab724b7e6aa03b62
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,18 @@
+id: qwt
+provides: []
+pkgconfig:
+- qwt
+buildsystem: qmake
+source:
+  type: archive
+  url: https://sourceforge.net/projects/qwt/files/qwt/6.3.0/qwt-6.3.0.tar.bz2
+  sha256: dcb085896c28aaec5518cbc08c0ee2b4e60ada7ac929d82639f6189851a6129a
+config-opts:
+- -after
+- QWT_INSTALL_PREFIX=/app
+cleanup:
+- /doc
+- /features
+- /plugins
+- /include
+- /lib/pkgconfig

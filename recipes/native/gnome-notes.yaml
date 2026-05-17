@@ -1,0 +1,14 @@
+id: gnome-notes
+provides: []
+pkgconfig:
+- gnome-notes
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/bijiben/40/bijiben-40.2.tar.xz
+  sha256: b22111bc06956bef359aacf1d6ede1e52a35b000c88113936632f8ac6cedce67
+config-opts:
+- -Dprivate_store=true
+cleanup:
+- /include
+- /lib/pkgconfig

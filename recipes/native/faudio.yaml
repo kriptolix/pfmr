@@ -1,0 +1,14 @@
+id: faudio
+provides: []
+pkgconfig:
+- faudio
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/FNA-XNA/FAudio/archive/refs/tags/24.11.tar.gz
+  sha256: 7aa5fdc762e1abbf4721e793de589eced46eef872ee2b9a03ab79ac81b64082c
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

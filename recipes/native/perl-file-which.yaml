@@ -1,0 +1,11 @@
+id: perl-file-which
+provides: []
+pkgconfig:
+- perl-file-which
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/P/PE/PEREINAR/File-Which-0.05.tar.gz
+  sha256: ee85f83119c7a5952c2a44a0183ea5c0809e98129a3473ee36cdf2227c836765
+cleanup:
+- /bin

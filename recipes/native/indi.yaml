@@ -1,0 +1,14 @@
+id: indi
+provides: []
+pkgconfig:
+- indi
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/indilib/indi/archive/refs/tags/v2.2.1.1.tar.gz
+  sha256: 270e0767768dcca6879d6a9f410ad6086b067ea492228c48e03ba3803c718271
+config-opts:
+- -DINDI_INSTALL_UDEV_RULES=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

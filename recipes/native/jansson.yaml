@@ -1,0 +1,15 @@
+id: jansson
+provides: []
+pkgconfig:
+- jansson
+buildsystem: autotools
+source:
+  type: archive
+  url: http://www.digip.org/jansson/releases/jansson-2.10.tar.bz2
+  sha256: 241125a55f739cd713808c4e0089986b8c3da746da8b384952912ad659fa2f5a
+config-opts:
+- --enable-shared
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

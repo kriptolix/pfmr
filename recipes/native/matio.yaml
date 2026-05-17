@@ -1,0 +1,12 @@
+id: matio
+provides: []
+pkgconfig:
+- matio
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/tbeu/matio/archive/v1.5.30.tar.gz
+  sha256: cd514c42e13bb39477e7d8fdeaa1502014c552a6a53f0678809cce6951db2bc1
+cleanup:
+- /include
+- /lib/pkgconfig

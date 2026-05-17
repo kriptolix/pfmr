@@ -1,0 +1,24 @@
+id: dbus-python
+type: python
+pypi_name: dbus-python
+requires:
+  pkgconfig:
+  - blueprint
+  - bluez
+  - evolution-data-server
+  - gnome-online-accounts
+  - gpgme
+  - gst-plugins-bad
+  - gtksourceview
+  - icon-naming-utils
+  - libical
+  - librest
+  - meld
+  - python3
+  - sugar-artwork
+  - sugar-toolkit-gtk3
+  - telepathy-glib
+  - xcursorgen
+confidence: 0.6
+source: flathub:de.philippun1.turtle
+updated: '2026-05-16'

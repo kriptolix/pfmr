@@ -1,0 +1,24 @@
+id: poco
+provides: []
+pkgconfig:
+- poco
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://pocoproject.org/releases/poco-1.14.2/poco-1.14.2-all.tar.bz2
+  sha256: 7738a4c880f08e89318fc53915f86be5a0e70f14eb1e7f0e1767c8781c40d794
+config-opts:
+- -DENABLE_ENCODINGS=OFF
+- -DENABLE_ACTIVERECORD=OFF
+- -DENABLE_ACTIVERECORD_COMPILER=OFF
+- -DENABLE_MONGODB=OFF
+- -DENABLE_DATA_SQLITE=OFF
+- -DENABLE_REDIS=OFF
+- -DENABLE_PROMETHEUS=OFF
+- -DENABLE_PDF=OFF
+- -DENABLE_ZIP=OFF
+- -DENABLE_PAGECOMPILER=OFF
+- -DENABLE_PAGECOMPILER_FILE2PAGE=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,11 @@
+id: rsgain
+provides: []
+pkgconfig:
+- rsgain
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/complexlogic/rsgain/releases/download/v3.6/rsgain-3.6-source.tar.xz
+  sha256: 26d46f1240a83366e82cbc9121a467fc1dcc977c7adfb4e15c99ead6b3d07ec8
+cleanup:
+- /share

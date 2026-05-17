@@ -1,0 +1,14 @@
+id: projectm
+provides: []
+pkgconfig:
+- projectm
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/projectM-visualizer/projectm/releases/download/v2.2.1/projectM-2.2.1.tar.gz
+  sha256: 9bbb33c5ba048537e97ea5ba2bd9fef76972c881597599a272b0194ec1d5f2a3
+config-opts:
+- --disable-static
+cleanup:
+- /share/projectM/fonts
+- /bin

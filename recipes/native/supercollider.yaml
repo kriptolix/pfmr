@@ -1,0 +1,18 @@
+id: supercollider
+provides: []
+pkgconfig:
+- supercollider
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/supercollider/supercollider/releases/download/Version-3.11.2/SuperCollider-3.11.2-Source.tar.bz2
+  sha256: c22c32c6bc482671d4fb8f51672df712d97a6a6277235c4da2312910303a0506
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DSC_EL=NO
+- -DSC_QT=OFF
+cleanup:
+- /include
+- /lib/gedit
+- /share/pkgconfig

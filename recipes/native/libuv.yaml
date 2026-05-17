@@ -1,0 +1,17 @@
+id: libuv
+provides: []
+pkgconfig:
+- libuv
+buildsystem: autotools
+source:
+  type: archive
+  url: http://dist.libuv.org/dist/v1.9.1/libuv-v1.9.1.tar.gz
+  sha256: e83953782c916d7822ef0b94e8115ce5756fab5300cca173f0de5f5b0e0ae928
+config-opts:
+- --disable-shared
+- --enable-static
+cleanup:
+- /include
+- /lib/pkgconfig
+- '*.a'
+- '*.la'

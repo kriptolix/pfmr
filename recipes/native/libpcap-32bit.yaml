@@ -1,0 +1,14 @@
+id: libpcap-32bit
+provides: []
+pkgconfig:
+- libpcap-32bit
+buildsystem: autotools
+source:
+  type: archive
+  url: http://www.tcpdump.org/release/libpcap-1.10.6.tar.gz
+  sha256: 872dd11337fe1ab02ad9d4fee047c9da244d695c6ddf34e2ebb733efd4ed8aa9
+config-opts:
+- --enable-ipv6
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,18 @@
+id: ssplitcpp
+provides: []
+pkgconfig:
+- ssplitcpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ugermann/ssplit-cpp/archive/49a8e12f11945fac82581cf056560965dcb641e6.zip
+  sha256: 31b9556e539bbd35b79d9075e1a0593233b2050c277c4058fbd290985930a39b
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DSSPLIT_COMPILE_LIBRARY_ONLY=ON
+- -DSSPLIT_PREFER_STATIC_COMPILE=ON
+- -DBUILD_SHARED_LIBS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

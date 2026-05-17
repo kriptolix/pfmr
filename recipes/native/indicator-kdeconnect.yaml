@@ -1,0 +1,12 @@
+id: indicator-kdeconnect
+provides: []
+pkgconfig:
+- indicator-kdeconnect
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/b4j4/indicator-kdeconnect/archive/refs/tags/0.9.4.tar.gz
+  sha256: 416510171e6c2a7a87f7b0b43e2ddf135b152952c5032aecd82880ba88f9c2e0
+cleanup:
+- /include
+- /lib/pkgconfig

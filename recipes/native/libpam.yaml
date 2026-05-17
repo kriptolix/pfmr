@@ -1,0 +1,12 @@
+id: libpam
+provides: []
+pkgconfig:
+- libpam
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/linux-pam/linux-pam/releases/download/v1.6.1/Linux-PAM-1.6.1.tar.xz
+  sha256: f8923c740159052d719dbfc2a2f81942d68dd34fcaf61c706a02c9b80feeef8e
+cleanup:
+- /include
+- /lib/pkgconfig

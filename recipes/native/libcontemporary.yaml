@@ -1,0 +1,14 @@
+id: libcontemporary
+provides: []
+pkgconfig:
+- libcontemporary
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/theCheeseboard/libcontemporary/archive/v6.1.tar.gz
+  sha256: a9b8ca64237f85c2e2cad0f46ecbe2cc4caf605ff5296bb562e629d9d852be82
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

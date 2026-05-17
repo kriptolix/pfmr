@@ -1,0 +1,15 @@
+id: kmime
+provides: []
+pkgconfig:
+- kmime
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/kmime-25.12.2.tar.xz
+  sha256: 8d81167adb67558e707f7c71f710d5f0b1a89d6b54301a4ac51518d1841baf62
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

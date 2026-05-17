@@ -1,0 +1,9 @@
+id: markdown
+type: python
+pypi_name: markdown
+requires:
+  pkgconfig:
+  - gtksourceview
+confidence: 0.6
+source: flathub:org.cvfosammmm.Porto
+updated: '2026-05-16'

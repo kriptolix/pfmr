@@ -1,0 +1,17 @@
+id: jedi
+type: python
+pypi_name: jedi
+requires:
+  pkgconfig:
+  - cairomm
+  - geocode-glib
+  - glibmm
+  - gtkmm
+  - libshumate
+  - pangomm
+  - protobuf-c
+  - pybind11
+  - sigc++-3
+confidence: 0.6
+source: flathub:net.sourceforge.Lifeograph
+updated: '2026-05-16'

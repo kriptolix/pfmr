@@ -1,0 +1,26 @@
+id: localsearch
+provides: []
+pkgconfig:
+- localsearch
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/localsearch/3.10/localsearch-3.10.0.tar.xz
+  sha256: 58d66ea44aee1649c8d981f934373b83e1ab4a4a1a84ba0304f5af391e7e0080
+config-opts:
+- -Dfunctional_tests=false
+- -Dsandbox_tests=false
+- -Dbattery_detection=none
+- -Ddefault_index_single_dirs=
+- -Ddefault_index_recursive_dirs=&MUSIC
+- -Ddomain_prefix=org.gnome.Music
+- -Dfunctional_tests=false
+- -Dlandlock=disabled
+- -Dman=false
+- -Dminer_fs=true
+- -Dminer_fs_cache_location=$XDG_CACHE_HOME/gnome-music/miner/files
+- -Dsandbox_tests=false
+- -Dsystemd_user_services=false
+cleanup:
+- /include
+- /lib/pkgconfig

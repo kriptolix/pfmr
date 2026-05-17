@@ -1,0 +1,12 @@
+id: nauty
+provides: []
+pkgconfig:
+- nauty
+buildsystem: autotools
+source:
+  type: archive
+  url: http://deb.debian.org/debian/pool/main/n/nauty/nauty_2.8.9+ds.orig.tar.xz
+  sha256: 17426fd0f8536ef393580f1c78b2b6fafafae1ee6b69ed9b61cec9b42e59b887
+cleanup:
+- /include
+- /lib/pkgconfig

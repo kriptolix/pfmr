@@ -1,0 +1,9 @@
+id: jupyter-client
+type: python
+pypi_name: jupyter-client
+requires:
+  pkgconfig:
+  - gtksourceview
+confidence: 0.6
+source: flathub:org.cvfosammmm.Porto
+updated: '2026-05-16'

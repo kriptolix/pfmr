@@ -1,0 +1,14 @@
+id: libopenshot
+provides: []
+pkgconfig:
+- libopenshot
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/OpenShot/libopenshot/archive/v0.4.0.tar.gz
+  sha256: be0e760d81275543f7fbbf87863645748c3fe8aa8f4b5b771ff45a5d026bc9cc
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DENABLE_RUBY=0
+cleanup:
+- /share/doc

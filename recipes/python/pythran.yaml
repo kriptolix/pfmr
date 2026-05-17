@@ -1,0 +1,11 @@
+id: pythran
+type: python
+pypi_name: pythran
+requires:
+  pkgconfig:
+  - openblas
+  extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.rayforge.rayforge
+updated: '2026-05-16'

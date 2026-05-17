@@ -1,0 +1,17 @@
+id: akonadi
+provides: []
+pkgconfig:
+- akonadi
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/akonadi-25.12.2.tar.xz
+  sha256: 41ad06241b6278245bc3854a189e091dd113045d5a1449025d03a544de4c3bd3
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DBUILD_TOOLS=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DDATABASE_BACKEND=SQLITE
+cleanup:
+- /include
+- /lib/pkgconfig

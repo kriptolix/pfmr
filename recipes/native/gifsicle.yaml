@@ -1,0 +1,12 @@
+id: gifsicle
+provides: []
+pkgconfig:
+- gifsicle
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/kohler/gifsicle/archive/refs/tags/v1.93.tar.gz
+  sha256: 941c0b1c3ebc748949a0d14363f0fb3c9d2c06ee122b3548315b9233eb956d88
+cleanup:
+- /include
+- /lib/pkgconfig

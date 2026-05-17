@@ -1,0 +1,17 @@
+id: snappy
+provides: []
+pkgconfig:
+- snappy
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/google/snappy/archive/refs/tags/1.1.10.tar.gz
+  sha256: 49d831bffcc5f3d01482340fe5af59852ca2fe76c3e05df0e67203ebbe0f1d90
+config-opts:
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DSNAPPY_BUILD_TESTS=OFF
+- -DSNAPPY_BUILD_BENCHMARKS=OFF
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

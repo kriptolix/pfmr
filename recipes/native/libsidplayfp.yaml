@@ -1,0 +1,12 @@
+id: libsidplayfp
+provides: []
+pkgconfig:
+- libsidplayfp
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/libsidplayfp/libsidplayfp/releases/download/v2.16.1/libsidplayfp-2.16.1.tar.gz
+  sha256: ace0f73c2ef8645ab069ce1b298b10e31e36af7b5996109983b2b67ad60ff3ca
+cleanup:
+- /include
+- /lib/pkgconfig

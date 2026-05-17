@@ -1,0 +1,22 @@
+id: libinput
+provides: []
+pkgconfig:
+- libinput
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/libinput/libinput/-/archive/1.30.1/libinput-1.30.1.tar.gz
+  sha256: 4339a2b9cc96ede3c120dedaedc61e48ce567808c5229e66587525ea972ef617
+config-opts:
+- --libexec=lib
+- -Dlibwacom=false
+- -Ddebug-gui=false
+- -Dtests=false
+- -Ddocumentation=false
+- -Dzshcompletiondir=no
+cleanup:
+- /bin
+- /etc
+- /lib/libinput
+- /lib/udev
+- /share

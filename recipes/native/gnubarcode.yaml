@@ -1,0 +1,12 @@
+id: gnubarcode
+provides: []
+pkgconfig:
+- gnubarcode
+buildsystem: autotools
+source:
+  type: archive
+  url: http://ftp.gnu.org/gnu/barcode/barcode-0.99.tar.gz
+  sha256: 7c031cf3eb811242f53664379aebbdd9fae0b7b26b5e5d584c31a9f338154b64
+cleanup:
+- /include
+- /lib/pkgconfig

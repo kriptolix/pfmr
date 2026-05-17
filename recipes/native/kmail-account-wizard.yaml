@@ -1,0 +1,15 @@
+id: kmail-account-wizard
+provides: []
+pkgconfig:
+- kmail-account-wizard
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kmail-account-wizard-25.12.3.tar.xz
+  sha256: 0a41268e6b153700c4c815da1baa40637efa61943f4e387f66cf5599d8e8d502
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: dbus-python
+provides: []
+pkgconfig:
+- dbus-python
+buildsystem: meson
+source:
+  type: archive
+  url: https://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.3.2.tar.gz
+  sha256: ad67819308618b5069537be237f8e68ca1c7fcc95ee4a121fe6845b1418248f8
+config-opts:
+- -Dtests=false
+cleanup:
+- /include
+- /lib/pkgconfig

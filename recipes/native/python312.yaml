@@ -1,0 +1,11 @@
+id: python312
+provides: []
+pkgconfig:
+- python312
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.python.org/ftp/python/3.12.9/Python-3.12.9.tar.xz
+cleanup:
+- /include
+- /lib/pkgconfig

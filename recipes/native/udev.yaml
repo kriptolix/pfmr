@@ -1,0 +1,30 @@
+id: udev
+provides: []
+pkgconfig:
+- udev
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/eudev-project/eudev/archive/refs/tags/v3.2.14.tar.gz
+  sha256: c340e6c51dfc5531ac0c0fa84a34b72162acf525f9023eb9cf4931b782c8f177
+config-opts:
+- --disable-hwdb
+- --disable-logging
+- --disable-gudev
+- --disable-introspection
+- --disable-keymap
+- --disable-mtd_probe
+cleanup:
+- /include
+- /etc
+- /libexec
+- /sbin
+- /lib/pkgconfig
+- /man
+- /share/aclocal
+- /share/doc
+- /share/gtk-doc
+- /share/man
+- /share/pkgconfig
+- '*.la'
+- '*.a'

@@ -1,0 +1,15 @@
+id: vidstab
+provides: []
+pkgconfig:
+- vidstab
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/georgmartius/vid.stab/archive/v1.1.1.tar.gz
+  sha256: 9001b6df73933555e56deac19a0f225aae152abbc0e97dc70034814a1943f3d4
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

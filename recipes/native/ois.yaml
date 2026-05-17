@@ -1,0 +1,14 @@
+id: ois
+provides: []
+pkgconfig:
+- ois
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/wgois/OIS/archive/refs/tags/v1.5.tar.gz
+  sha256: aa3e6b840b1149bb06835e04365957f4659c08b3e3095a48b289050f1637a174
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: libytnef
+provides: []
+pkgconfig:
+- libytnef
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/Yeraze/ytnef/archive/v2.1.2.tar.gz
+  sha256: 340f03f495884611209e9c0bc943fad06ce920e8c79655aa228d5ca7418dc360
+cleanup:
+- /include
+- /lib/pkgconfig

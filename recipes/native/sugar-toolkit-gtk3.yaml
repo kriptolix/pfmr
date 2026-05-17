@@ -1,0 +1,12 @@
+id: sugar-toolkit-gtk3
+provides: []
+pkgconfig:
+- sugar-toolkit-gtk3
+buildsystem: autotools
+source:
+  type: archive
+  url: http://download.sugarlabs.org/sources/sucrose/glucose/sugar-toolkit-gtk3/sugar-toolkit-gtk3-0.121.tar.xz
+  sha256: 2b508b28d75fe30967de0650dcc67aaacfa579e707b043a2e43785c315039c57
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: discount
+provides: []
+pkgconfig:
+- discount
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/cloose/discount/archive/refs/tags/v2.1.8-cutemarked.tar.gz
+  sha256: 30ac50e6e432e36113a8365132f56eafbf3795b412b7299303f86b624aea9479
+cleanup:
+- /include
+- /lib/pkgconfig

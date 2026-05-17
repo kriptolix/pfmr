@@ -1,0 +1,17 @@
+id: lapack
+provides: []
+pkgconfig:
+- lapack
+buildsystem: cmake
+source:
+  type: archive
+  url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.10.1.tar.gz
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_SHARED_LIBS=ON
+- -DBUILD_TESTING=OFF
+- -DCMAKE_Fortran_COMPILER=gfortran
+- -DLAPACKE=ON
+- -DCBLAS=ON
+cleanup:
+- /lib/cmake

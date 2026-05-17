@@ -16,7 +16,7 @@ import yaml
 
 from pfmr.learn.graph import KGEdge, KGNode, KnowledgeGraph, Rel
 from pfmr.learn.manifest import ManifestAnalyzer, _parse_pip_packages
-from pfmr.learn.sandbox import SandboxLearner, _normalise_soname
+from pfmr.learn.sandbox import SandboxLearner
 from pfmr.learn.exporter import Exporter
 from pfmr.models import SandboxError, SandboxErrorType, SandboxProbeReport
 
@@ -226,7 +226,7 @@ class TestManifestAnalyzer:
         p.write_text(yaml.dump(manifest))
         analysis = analyzer.analyze(p)
         assert analysis is not None
-        assert analysis.runtime_version == "48"
+        assert analysis.sdk_version == "48"
 
     def test_sdk_extensions_captured(self, analyzer, tmp_path):
         manifest = {
@@ -317,94 +317,333 @@ class TestManifestAnalyzer:
         analysis = analyzer.analyze(p)
         assert "requests" in analysis.python_packages
 
+    def test_dict_command_string_key_parsed(self):
+        """build-commands entry as dict: {'pip install foo': None}"""
+        from pfmr.learn.manifest import _parse_pip_packages, _command_to_str
+        pkgs = _parse_pip_packages({"pip install requests": None})
+        assert "requests" in pkgs
+
+    def test_dict_command_with_condition_parsed(self):
+        from pfmr.learn.manifest import _parse_pip_packages
+        pkgs = _parse_pip_packages({"pip install numpy": "some-condition"})
+        assert "numpy" in pkgs
+
+    def test_none_command_returns_empty(self):
+        from pfmr.learn.manifest import _parse_pip_packages
+        assert _parse_pip_packages(None) == []
+
+    def test_int_command_returns_empty(self):
+        from pfmr.learn.manifest import _parse_pip_packages
+        assert _parse_pip_packages(42) == []
+
+    def test_empty_dict_command_returns_empty(self):
+        from pfmr.learn.manifest import _parse_pip_packages
+        assert _parse_pip_packages({}) == []
+
+    def test_command_to_str_string(self):
+        from pfmr.learn.manifest import _command_to_str
+        assert _command_to_str("pip install foo") == "pip install foo"
+
+    def test_command_to_str_dict(self):
+        from pfmr.learn.manifest import _command_to_str
+        assert _command_to_str({"fc-cache -fsv ||": None}) == "fc-cache -fsv ||"
+
+    def test_manifest_with_dict_commands_no_crash(self, tmp_path):
+        """Manifest whose build-commands mix strings and dicts must not crash."""
+        import json
+        manifest = {
+            "app-id": "org.test.App",
+            "runtime": "org.freedesktop.Platform",
+            "runtime-version": "24.08",
+            "sdk": "org.freedesktop.Sdk",
+            "modules": [
+                {
+                    "name": "python-deps",
+                    "buildsystem": "simple",
+                    "build-commands": [
+                        "pip install requests",
+                        {"fc-cache -fsv || true": None},
+                        "pip install cryptography",
+                    ],
+                }
+            ],
+        }
+        p = tmp_path / "app.json"
+        p.write_text(json.dumps(manifest))
+        analysis = ManifestAnalyzer().analyze(p)
+        assert analysis is not None
+        assert "requests" in analysis.python_packages
+        assert "cryptography" in analysis.python_packages
+
+    def test_single_module_manifest_is_skipped(self, tmp_path):
+        """A manifest with only one module — that module IS the app, skip it."""
+        import json
+        manifest = {
+            "app-id": "org.gnome.Fractal",
+            "runtime": "org.gnome.Platform",
+            "runtime-version": "48",
+            "sdk": "org.gnome.Sdk",
+            "modules": [
+                {
+                    "name": "fractal",
+                    "buildsystem": "meson",
+                    "sources": [{"type": "dir", "path": "."}],
+                }
+            ],
+        }
+        p = tmp_path / "app.json"
+        p.write_text(json.dumps(manifest))
+        analysis = ManifestAnalyzer().analyze(p)
+        assert analysis is not None
+        assert len(analysis.native_modules) == 0
+
+    def test_single_module_no_dir_source_still_skipped(self, tmp_path):
+        """Single module even without dir source is still the app."""
+        import json
+        manifest = {
+            "app-id": "org.test.App",
+            "runtime": "org.freedesktop.Platform",
+            "runtime-version": "24.08",
+            "sdk": "org.freedesktop.Sdk",
+            "modules": [
+                {
+                    "name": "myapp",
+                    "buildsystem": "cmake",
+                    "sources": [{"type": "archive", "url": "https://example.com/src.tar.gz"}],
+                }
+            ],
+        }
+        p = tmp_path / "app.json"
+        p.write_text(json.dumps(manifest))
+        analysis = ManifestAnalyzer().analyze(p)
+        assert len(analysis.native_modules) == 0
+
+    def test_last_module_matches_app_id_tail_is_skipped(self, tmp_path):
+        """Last module whose name == app-id last segment is skipped."""
+        import json
+        manifest = {
+            "app-id": "org.gnome.Fractal",
+            "runtime": "org.gnome.Platform",
+            "runtime-version": "48",
+            "sdk": "org.gnome.Sdk",
+            "modules": [
+                {
+                    "name": "libusb",
+                    "buildsystem": "autotools",
+                    "sources": [{"type": "archive", "url": "https://example.com/libusb.tar.bz2", "sha256": "abc"}],
+                },
+                {
+                    "name": "fractal",
+                    "buildsystem": "meson",
+                    "sources": [{"type": "dir", "path": "."}],
+                },
+            ],
+        }
+        p = tmp_path / "app.json"
+        p.write_text(json.dumps(manifest))
+        analysis = ManifestAnalyzer().analyze(p)
+        # libusb is a dep → kept; fractal is the app → skipped
+        names = [m.module_name for m in analysis.native_modules]
+        assert "libusb" in names
+        assert "fractal" not in names
+
+    def test_two_modules_dep_plus_app(self, tmp_path):
+        """Two modules: first is a real dep, second is the app."""
+        import json
+        manifest = {
+            "app-id": "org.test.App",
+            "runtime": "org.freedesktop.Platform",
+            "runtime-version": "24.08",
+            "sdk": "org.freedesktop.Sdk",
+            "modules": [
+                {
+                    "name": "libfoo",
+                    "buildsystem": "cmake",
+                    "sources": [{"type": "archive", "url": "https://example.com/foo.tar.gz", "sha256": "abc"}],
+                },
+                {
+                    "name": "myapp",
+                    "buildsystem": "meson",
+                    "sources": [{"type": "dir", "path": "."}],
+                },
+            ],
+        }
+        p = tmp_path / "app.json"
+        p.write_text(json.dumps(manifest))
+        analysis = ManifestAnalyzer().analyze(p)
+        names = [m.module_name for m in analysis.native_modules]
+        assert "libfoo" in names
+        assert "myapp" not in names
+
+    def test_last_module_no_source_is_skipped(self, tmp_path):
+        """Last module with no source entries at all is treated as app."""
+        import json
+        manifest = {
+            "app-id": "org.test.App",
+            "runtime": "org.freedesktop.Platform",
+            "runtime-version": "24.08",
+            "sdk": "org.freedesktop.Sdk",
+            "modules": [
+                {
+                    "name": "libdep",
+                    "buildsystem": "autotools",
+                    "sources": [{"type": "archive", "url": "https://example.com/lib.tar.gz", "sha256": "xyz"}],
+                },
+                {
+                    "name": "myapp",
+                    "buildsystem": "simple",
+                    "build-commands": ["true"],
+                    "sources": [],
+                },
+            ],
+        }
+        p = tmp_path / "app.json"
+        p.write_text(json.dumps(manifest))
+        analysis = ManifestAnalyzer().analyze(p)
+        names = [m.module_name for m in analysis.native_modules]
+        assert "libdep" in names
+        assert "myapp" not in names
+
+    def test_never_app_name_always_kept(self, tmp_path):
+        """A module whose name is in never_app_names is always treated as a dep."""
+        import json
+        # libusb alone — would normally be skipped as "single module"
+        # but libusb is in never_app_names so it's kept
+        manifest = {
+            "app-id": "org.test.LibusbApp",
+            "runtime": "org.freedesktop.Platform",
+            "runtime-version": "24.08",
+            "sdk": "org.freedesktop.Sdk",
+            "modules": [
+                {
+                    "name": "libusb",
+                    "buildsystem": "autotools",
+                    "sources": [{"type": "archive", "url": "https://example.com/libusb.tar.bz2", "sha256": "aaa"}],
+                }
+            ],
+        }
+        p = tmp_path / "app.json"
+        p.write_text(json.dumps(manifest))
+        analysis = ManifestAnalyzer().analyze(p)
+        # libusb is in never_app_names — must be kept even when it's the only module
+        names = [m.module_name for m in analysis.native_modules]
+        assert "libusb" in names
+
 
 # ===========================================================================
 # SandboxLearner
 # ===========================================================================
 
 class TestSandboxLearner:
-    def test_ingest_skipped_when_not_ran(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
-        report = _make_report(ran=False)
-        added = learner.ingest(report, package_name="cryptography")
-        assert added == 0
+    """SandboxLearner now writes to recipes/python/ directly — no KnowledgeGraph."""
 
-    def test_ingest_pkgconfig_error_adds_edge(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
+    def test_ingest_skipped_when_not_ran(self, tmp_path):
+        learner = SandboxLearner(repo_root=tmp_path)
+        report = _make_report(ran=False)
+        written = learner.ingest(report, package_name="cryptography")
+        assert written == 0
+
+    def test_ingest_pkgconfig_error_writes_recipe(self, tmp_path):
+        learner = SandboxLearner(repo_root=tmp_path)
         report = _make_report(
             errors=[SandboxError(SandboxErrorType.MISSING_PKGCONFIG, "openssl", "stderr",
                                  context="cryptography install")]
         )
-        added = learner.ingest(report, package_name="cryptography")
-        assert added > 0
-        edges = kg.edges_from("cryptography", Rel.REQUIRES_PKGCONFIG)
-        assert any(e.to_id == "openssl" for e in edges)
+        written = learner.ingest(report, package_name="cryptography")
+        assert written > 0
+        recipe_path = tmp_path / "recipes" / "python" / "cryptography.yaml"
+        assert recipe_path.exists()
+        recipe = yaml.safe_load(recipe_path.read_text())
+        assert "openssl" in recipe["requires"]["pkgconfig"]
 
-    def test_ingest_library_error_adds_edge(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
+    def test_ingest_library_error_writes_recipe(self, tmp_path):
+        learner = SandboxLearner(repo_root=tmp_path)
         report = _make_report(
             errors=[SandboxError(SandboxErrorType.MISSING_NATIVE_DEP, "libusb-1.0.so.0", "ldd",
                                  context="hidapi install")]
         )
         learner.ingest(report, package_name="hidapi")
-        edges = kg.edges_from("hidapi", Rel.REQUIRES_LIBRARY)
-        assert len(edges) > 0
+        recipe_path = tmp_path / "recipes" / "python" / "hidapi.yaml"
+        assert recipe_path.exists()
+        recipe = yaml.safe_load(recipe_path.read_text())
+        assert "libusb-1.0.so.0" in recipe["requires"]["libraries"]
 
     def test_ingest_successful_build(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
-        added = learner.ingest_successful_build(
+        learner = SandboxLearner(repo_root=tmp_path)
+        written = learner.ingest_successful_build(
             "cryptography",
             native_deps=["openssl", "libffi"],
             required_extensions=["org.freedesktop.Sdk.Extension.rust-stable"],
         )
-        assert added > 0
-        # Check edges
-        pc_edges = kg.edges_from("cryptography", Rel.REQUIRES_PKGCONFIG)
-        ext_edges = kg.edges_from("cryptography", Rel.REQUIRES_EXTENSION)
-        assert any(e.to_id == "openssl" for e in pc_edges)
-        assert any("rust" in e.to_id for e in ext_edges)
+        assert written > 0
+        recipe = yaml.safe_load(
+            (tmp_path / "recipes" / "python" / "cryptography.yaml").read_text()
+        )
+        assert "openssl" in recipe["requires"]["pkgconfig"]
+        assert "org.freedesktop.Sdk.Extension.rust-stable" in recipe["requires"]["extensions"]
 
     def test_confidence_is_1_for_successful_build(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
+        learner = SandboxLearner(repo_root=tmp_path)
         learner.ingest_successful_build("cffi", native_deps=["libffi"], required_extensions=[])
-        edges = kg.edges_from("cffi", Rel.REQUIRES_PKGCONFIG)
-        assert all(e.confidence == 1.0 for e in edges)
+        recipe = yaml.safe_load(
+            (tmp_path / "recipes" / "python" / "cffi.yaml").read_text()
+        )
+        assert recipe["confidence"] == 1.0
 
     def test_confidence_is_08_for_probe_error(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
+        learner = SandboxLearner(repo_root=tmp_path)
         report = _make_report(
             errors=[SandboxError(SandboxErrorType.MISSING_PKGCONFIG, "openssl", "stderr")]
         )
         learner.ingest(report, package_name="cryptography")
-        edges = kg.edges_from("cryptography", Rel.REQUIRES_PKGCONFIG)
-        assert all(e.confidence == 0.8 for e in edges)
+        recipe = yaml.safe_load(
+            (tmp_path / "recipes" / "python" / "cryptography.yaml").read_text()
+        )
+        assert recipe["confidence"] == 0.8
 
-    def test_successful_no_errors_marks_sdk_sufficient(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
+    def test_successful_no_errors_writes_sdk_sufficient(self, tmp_path):
+        learner = SandboxLearner(repo_root=tmp_path)
         report = _make_report(ran=True, errors=[])
         learner.ingest(report, package_name="requests")
-        node = kg.node("requests")
-        assert node is not None
-        assert node.attrs.get("sdk_sufficient") is True
+        recipe_path = tmp_path / "recipes" / "python" / "requests.yaml"
+        assert recipe_path.exists()
+        recipe = yaml.safe_load(recipe_path.read_text())
+        assert recipe.get("sdk_sufficient") is True
 
-    def test_sdk_node_created(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        learner = SandboxLearner(kg)
-        report = _make_report()
-        learner.ingest(report, sdk_id="org.gnome.Sdk", sdk_version="48")
-        assert kg.node("org.gnome.Sdk//48") is not None
+    def test_merge_with_existing_recipe(self, tmp_path):
+        """Ingesting a second report merges deps with existing recipe."""
+        learner = SandboxLearner(repo_root=tmp_path)
+        # First report: openssl missing
+        report1 = _make_report(
+            errors=[SandboxError(SandboxErrorType.MISSING_PKGCONFIG, "openssl", "stderr",
+                                 context="cryptography install")]
+        )
+        learner.ingest(report1, package_name="cryptography")
+        # Second report: libffi also missing
+        report2 = _make_report(
+            errors=[SandboxError(SandboxErrorType.MISSING_PKGCONFIG, "libffi", "stderr",
+                                 context="cryptography install")]
+        )
+        learner.ingest(report2, package_name="cryptography")
+        recipe = yaml.safe_load(
+            (tmp_path / "recipes" / "python" / "cryptography.yaml").read_text()
+        )
+        # Both deps should be present after merge
+        assert "openssl" in recipe["requires"]["pkgconfig"]
+        assert "libffi" in recipe["requires"]["pkgconfig"]
 
-    def test_normalise_soname(self):
-        assert _normalise_soname("libssl.so.3") == "ssl"
-        assert _normalise_soname("libusb-1.0.so.0") == "usb-1.0"
-        assert _normalise_soname("libz.so.1") == "z"
+    def test_higher_confidence_updates_recipe(self, tmp_path):
+        """A higher-confidence ingest updates the recipe."""
+        learner = SandboxLearner(repo_root=tmp_path)
+        # Low confidence first (probe error)
+        r1 = _make_report(errors=[SandboxError(SandboxErrorType.MISSING_PKGCONFIG, "openssl", "stderr")])
+        learner.ingest(r1, package_name="cryptography")
+        # Higher confidence (successful build)
+        learner.ingest_successful_build("cryptography", ["openssl"], [])
+        recipe = yaml.safe_load(
+            (tmp_path / "recipes" / "python" / "cryptography.yaml").read_text()
+        )
+        assert recipe["confidence"] == 1.0
 
 
 # ===========================================================================
@@ -412,117 +651,99 @@ class TestSandboxLearner:
 # ===========================================================================
 
 class TestExporter:
-    def test_export_native_hints_new_package(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("mylib", "package"))
-        kg.add_node(KGNode("mypc", "library", {"pkgconfig": "mypc"}))
-        kg.add_edge(KGEdge("mylib", "mypc", Rel.REQUIRES_PKGCONFIG, confidence=0.9))
+    """Tests for Exporter — takes list[ManifestAnalysis], writes recipes/."""
 
-        exporter = Exporter(kg, tmp_path)
-        report = exporter.export_native_hints(dry_run=False)
+    def _make_analysis(self, app_id="org.test.App", native_modules=None, python_packages=None):
+        from pfmr.learn.manifest import ManifestAnalysis, LearnedNativeModule
+        return ManifestAnalysis(
+            app_id=app_id,
+            runtime="org.freedesktop.Platform",
+            sdk="org.freedesktop.Sdk",
+            sdk_version="24.08",
+            python_packages=python_packages or [],
+            native_modules=native_modules or [],
+            source_path=f"flathub:{app_id}",
+        )
 
-        hints_path = tmp_path / "pfmr" / "data" / "native-hints" / "packages.toml"
-        assert hints_path.exists()
-        content = hints_path.read_text()
-        assert "mylib" in content
-        assert "mypc" in content
+    def _make_native_mod(self, name, url="https://example.com/lib.tar.gz",
+                         sha256="abc123", pkgconfig=None):
+        from pfmr.learn.manifest import LearnedNativeModule
+        return LearnedNativeModule(
+            module_name=name,
+            buildsystem="autotools",
+            source_url=url,
+            source_sha256=sha256,
+            pkgconfig_names=pkgconfig or [name],
+            cleanup=["/include", "/lib/pkgconfig"],
+        )
 
-    def test_export_hints_skip_existing_entries(self, tmp_path):
-        """Packages already in the hints file must not be duplicated."""
-        hints_path = tmp_path / "pfmr" / "data" / "native-hints" / "packages.toml"
-        hints_path.parent.mkdir(parents=True, exist_ok=True)
-        hints_path.write_text('[cryptography]\npkgconfig = ["openssl"]\nlibraries = []\nheaders = []\n')
-
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("cryptography", "package"))
-        kg.add_edge(KGEdge("cryptography", "openssl", Rel.REQUIRES_PKGCONFIG, confidence=1.0))
-
-        exporter = Exporter(kg, tmp_path)
-        exporter.export_native_hints(dry_run=False)
-
-        content = hints_path.read_text()
-        assert content.count("[cryptography]") == 1  # not duplicated
-
-    def test_export_hints_dry_run_no_write(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("newpkg", "package"))
-        kg.add_edge(KGEdge("newpkg", "newlib", Rel.REQUIRES_PKGCONFIG, confidence=0.9))
-
-        exporter = Exporter(kg, tmp_path)
-        exporter.export_native_hints(dry_run=True)
-
-        hints_path = tmp_path / "pfmr" / "data" / "native-hints" / "packages.toml"
-        assert not hints_path.exists()  # dry run — should not write
-
-    def test_export_recipe_new_library(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("mylib", "library", {
-            "pkgconfig": "mylib-1.0",
-            "soname": "libmylib.so.1",
-            "buildsystem": "autotools",
-            "source_url": "https://example.com/mylib-1.0.tar.gz",
-            "source_sha256": "abc123",
-            "source": "flathub:org.test.App",
-        }))
-
-        exporter = Exporter(kg, tmp_path)
-        exporter.export_native_recipes(dry_run=False)
-
-        recipe_path = tmp_path / "recipes" / "native" / "mylib.yaml"
+    def test_export_native_recipe_created(self, tmp_path):
+        mod = self._make_native_mod("libfoo", pkgconfig=["foo"])
+        analysis = self._make_analysis(native_modules=[mod])
+        exporter = Exporter([analysis], tmp_path)
+        report = exporter.export_native_recipes(dry_run=False)
+        recipe_path = tmp_path / "recipes" / "native" / "libfoo.yaml"
         assert recipe_path.exists()
         recipe = yaml.safe_load(recipe_path.read_text())
-        assert recipe["id"] == "mylib"
-        assert recipe["source"]["url"] == "https://example.com/mylib-1.0.tar.gz"
+        assert recipe["id"] == "libfoo"
+        assert recipe["source"]["url"] == "https://example.com/lib.tar.gz"
+        assert len(report.created) == 1
 
     def test_export_recipe_skip_no_source_url(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("nousource", "library", {"pkgconfig": "nousource"}))
-
-        exporter = Exporter(kg, tmp_path)
+        from pfmr.learn.manifest import LearnedNativeModule
+        mod = LearnedNativeModule("nosource", "autotools")  # no source_url
+        analysis = self._make_analysis(native_modules=[mod])
+        exporter = Exporter([analysis], tmp_path)
         exporter.export_native_recipes(dry_run=False)
-
-        recipe_path = tmp_path / "recipes" / "native" / "nousource.yaml"
-        assert not recipe_path.exists()
+        assert not (tmp_path / "recipes" / "native" / "nosource.yaml").exists()
 
     def test_export_recipe_skip_existing(self, tmp_path):
         recipes_dir = tmp_path / "recipes" / "native"
         recipes_dir.mkdir(parents=True)
-        existing = recipes_dir / "libusb.yaml"
-        existing.write_text("id: libusb\n")  # already exists
+        (recipes_dir / "libfoo.yaml").write_text("id: libfoo\n")
+        mod = self._make_native_mod("libfoo")
+        analysis = self._make_analysis(native_modules=[mod])
+        exporter = Exporter([analysis], tmp_path)
+        exporter.export_native_recipes(dry_run=False)
+        assert (recipes_dir / "libfoo.yaml").read_text() == "id: libfoo\n"
 
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("libusb", "library", {
-            "source_url": "https://example.com/libusb.tar.gz",
-        }))
+    def test_export_python_recipe_created(self, tmp_path):
+        mod = self._make_native_mod("openssl", pkgconfig=["openssl"])
+        analysis = self._make_analysis(
+            native_modules=[mod],
+            python_packages=["cryptography"],
+        )
+        exporter = Exporter([analysis], tmp_path)
+        report = exporter.export_python_recipes(dry_run=False)
+        recipe_path = tmp_path / "recipes" / "python" / "cryptography.yaml"
+        assert recipe_path.exists()
+        recipe = yaml.safe_load(recipe_path.read_text())
+        assert recipe["id"] == "cryptography"
+        assert "openssl" in recipe["requires"]["pkgconfig"]
 
-        exporter = Exporter(kg, tmp_path)
+    def test_export_dry_run_no_write(self, tmp_path):
+        mod = self._make_native_mod("libbar", pkgconfig=["bar"])
+        analysis = self._make_analysis(native_modules=[mod])
+        exporter = Exporter([analysis], tmp_path)
+        report = exporter.export(dry_run=True)
+        assert not (tmp_path / "recipes" / "native" / "libbar.yaml").exists()
+
+    def test_export_dedup_across_analyses(self, tmp_path):
+        """Same native module from two analyses → created once."""
+        mod = self._make_native_mod("libdedup", pkgconfig=["dedup"])
+        a1 = self._make_analysis("org.app.One", native_modules=[mod])
+        a2 = self._make_analysis("org.app.Two", native_modules=[mod])
+        exporter = Exporter([a1, a2], tmp_path)
         report = exporter.export_native_recipes(dry_run=False)
-
-        # Should not overwrite
-        assert existing.read_text() == "id: libusb\n"
+        assert len(report.created) == 1
 
     def test_export_report_actions(self, tmp_path):
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("pkg1", "package"))
-        kg.add_edge(KGEdge("pkg1", "dep1", Rel.REQUIRES_PKGCONFIG, confidence=0.9))
-
-        exporter = Exporter(kg, tmp_path)
-        report = exporter.export_native_hints(dry_run=False)
+        mod = self._make_native_mod("libreport", pkgconfig=["report"])
+        analysis = self._make_analysis(native_modules=[mod])
+        exporter = Exporter([analysis], tmp_path)
+        report = exporter.export(dry_run=False)
         actions = {c.action for c in report.changes}
-        assert "create" in actions or "update" in actions
-
-    def test_export_low_confidence_not_exported(self, tmp_path):
-        """Edges with confidence < 0.7 should not produce hints entries."""
-        kg = _fresh_kg(tmp_path)
-        kg.add_node(KGNode("weakpkg", "package"))
-        kg.add_edge(KGEdge("weakpkg", "something", Rel.REQUIRES_PKGCONFIG, confidence=0.4))
-
-        exporter = Exporter(kg, tmp_path)
-        exporter.export_native_hints(dry_run=False)
-
-        hints_path = tmp_path / "pfmr" / "data" / "native-hints" / "packages.toml"
-        if hints_path.exists():
-            assert "weakpkg" not in hints_path.read_text()
+        assert "create" in actions
 
 
 # ===========================================================================
@@ -530,7 +751,7 @@ class TestExporter:
 # ===========================================================================
 
 class TestFlathubMiner:
-    def test_mine_calls_github_api(self):
+    def test_mine_calls_github_api(self, tmp_path):
         from pfmr.learn.flathub import FlathubMiner
 
         repos_response = [{"name": "org.test.App"}, {"name": "org.test.App2"}]
@@ -556,15 +777,16 @@ class TestFlathubMiner:
                 text=json.dumps(manifest_data),
             )
 
-            miner = FlathubMiner(cache_dir=None)
-            result = miner.mine(limit=2, only_python=True)
+            # Use tmp_path for cache so progress doesn't persist from other tests
+            miner = FlathubMiner(cache_dir=tmp_path, force_refresh=True)
+            result = miner.mine(limit=2, only_python=False)
 
         assert result.manifests_found >= 1
-        assert result.python_apps >= 1
         assert any("requests" in a.python_packages for a in result.analyses)
 
-    def test_mine_skips_non_python(self):
-        from pfmr.learn.flathub import FlathubMiner, _PYTHON_SIGNALS
+    def test_mine_all_manifests_by_default(self, tmp_path):
+        """Without only_python=True, all repos with any modules are mined."""
+        from pfmr.learn.flathub import FlathubMiner
 
         non_python_manifest = {
             "app-id": "org.test.NoScript",
@@ -573,9 +795,21 @@ class TestFlathubMiner:
             "sdk": "org.freedesktop.Sdk",
             "modules": [{"name": "myapp", "buildsystem": "cmake"}],
         }
-        # Verify the has_python check correctly rejects this
-        text = json.dumps(non_python_manifest).lower()
-        assert not any(sig in text for sig in _PYTHON_SIGNALS)
+        repos_response = [{"name": "org.test.NoScript"}]
+        contents_response = [{"name": "org.test.NoScript.json",
+                               "download_url": "https://raw/app.json"}]
+        with patch("pfmr.learn.flathub._gh_get") as mock_gh, \
+             patch("requests.get") as mock_req:
+            mock_gh.side_effect = [repos_response, contents_response]
+            mock_req.return_value = MagicMock(
+                status_code=200,
+                json=lambda: non_python_manifest,
+                text=json.dumps(non_python_manifest),
+            )
+            miner = FlathubMiner(cache_dir=tmp_path, force_refresh=True)
+            result = miner.mine(limit=1, only_python=False)
+        # Non-python manifests are now mined (only_python=False by default)
+        assert result.manifests_found >= 1
 
     def test_mine_manifest_url(self):
         from pfmr.learn.flathub import FlathubMiner
@@ -610,37 +844,11 @@ class TestFlathubMiner:
 # ===========================================================================
 
 class TestLearnCliHelpers:
-    def test_ingest_analysis_into_graph(self, tmp_path):
-        from pfmr.learn.cli import _ingest_analysis_into_graph
+    def test_exporter_from_analyses(self, tmp_path):
+        """CLI exporter writes recipes from ManifestAnalysis list."""
         from pfmr.learn.manifest import ManifestAnalysis, LearnedNativeModule
+        from pfmr.learn.exporter import Exporter
 
-        kg = _fresh_kg(tmp_path)
-        analysis = ManifestAnalysis(
-            app_id="org.test.App",
-            runtime="org.freedesktop.Platform",
-            sdk="org.freedesktop.Sdk",
-            sdk_version="24.08",
-            python_packages=["requests", "cryptography"],
-            native_modules=[
-                LearnedNativeModule(
-                    module_name="openssl",
-                    buildsystem="autotools",
-                    source_url="https://example.com/openssl.tar.gz",
-                    pkgconfig_names=["openssl"],
-                )
-            ],
-        )
-        added = _ingest_analysis_into_graph(kg, analysis)
-        assert added > 0
-        assert kg.node("requests") is not None
-        assert kg.node("cryptography") is not None
-        assert kg.node("openssl") is not None
-
-    def test_ingest_creates_edges_from_cooccurrence(self, tmp_path):
-        from pfmr.learn.cli import _ingest_analysis_into_graph
-        from pfmr.learn.manifest import ManifestAnalysis, LearnedNativeModule
-
-        kg = _fresh_kg(tmp_path)
         analysis = ManifestAnalysis(
             app_id="org.test.App",
             runtime="org.freedesktop.Platform",
@@ -648,11 +856,42 @@ class TestLearnCliHelpers:
             sdk_version="24.08",
             python_packages=["cryptography"],
             native_modules=[
-                LearnedNativeModule("openssl", "autotools", pkgconfig_names=["openssl"])
+                LearnedNativeModule(
+                    module_name="openssl",
+                    buildsystem="autotools",
+                    source_url="https://example.com/openssl.tar.gz",
+                    source_sha256="abc",
+                    pkgconfig_names=["openssl"],
+                )
             ],
         )
-        _ingest_analysis_into_graph(kg, analysis)
-        edges = kg.edges_from("cryptography", Rel.REQUIRES_PKGCONFIG)
-        assert any(e.to_id == "openssl" for e in edges)
-        # Co-occurrence has lower confidence than a probe
-        assert all(e.confidence < 1.0 for e in edges)
+        exporter = Exporter([analysis], tmp_path)
+        report = exporter.export(dry_run=False)
+        assert (tmp_path / "recipes" / "native" / "openssl.yaml").exists()
+        assert (tmp_path / "recipes" / "python" / "cryptography.yaml").exists()
+
+    def test_python_recipe_has_co_occurrence_pkgconfig(self, tmp_path):
+        """Python recipe lists pkgconfig from co-occurring native modules."""
+        from pfmr.learn.manifest import ManifestAnalysis, LearnedNativeModule
+        from pfmr.learn.exporter import Exporter
+
+        analysis = ManifestAnalysis(
+            app_id="org.test.App",
+            runtime="org.freedesktop.Platform",
+            sdk="org.freedesktop.Sdk",
+            sdk_version="24.08",
+            python_packages=["cryptography"],
+            native_modules=[
+                LearnedNativeModule("openssl", "autotools",
+                                    source_url="https://example.com/x.tar.gz",
+                                    pkgconfig_names=["openssl"])
+            ],
+        )
+        exporter = Exporter([analysis], tmp_path)
+        exporter.export(dry_run=False)
+        import yaml
+        recipe = yaml.safe_load(
+            (tmp_path / "recipes" / "python" / "cryptography.yaml").read_text()
+        )
+        assert "openssl" in recipe["requires"]["pkgconfig"]
+        assert recipe["confidence"] == 0.6  # co-occurrence confidence

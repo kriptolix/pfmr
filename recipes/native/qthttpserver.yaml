@@ -1,0 +1,12 @@
+id: qthttpserver
+provides: []
+pkgconfig:
+- qthttpserver
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://invent.kde.org/qt/qt/qthttpserver/-/archive/v6.9.3/qthttpserver-v6.9.3.zip
+  sha256: 00a86e2a17075b2c33c56a586abafb22cf3eb57489721d3bdb5db971e64d2408
+cleanup:
+- /include
+- /lib/pkgconfig

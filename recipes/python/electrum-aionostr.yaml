@@ -1,0 +1,10 @@
+id: electrum-aionostr
+type: python
+pypi_name: electrum-aionostr
+requires:
+  pkgconfig:
+  - python
+  - zbar
+confidence: 0.6
+source: flathub:org.electrum.electrum
+updated: '2026-05-16'

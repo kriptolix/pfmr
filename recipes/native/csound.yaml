@@ -1,0 +1,12 @@
+id: csound
+provides: []
+pkgconfig:
+- csound
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/csound/csound/archive/refs/tags/6.18.1.tar.gz
+  sha256: b84be8237fa9258ef60fdddf36fae27b20c11665811bf5ed12540da9a9a4414e
+cleanup:
+- /include
+- /lib/pkgconfig

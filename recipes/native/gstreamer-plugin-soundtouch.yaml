@@ -1,0 +1,14 @@
+id: gstreamer-plugin-soundtouch
+provides: []
+pkgconfig:
+- gstreamer-plugin-soundtouch
+buildsystem: meson
+source:
+  type: archive
+  url: https://gstreamer.freedesktop.org/src/gst-plugins-bad/gst-plugins-bad-1.18.6.tar.xz
+  sha256: 0b1b50ac6311f0c510248b6cd64d6d3c94369344828baa602db85ded5bc70ec9
+cleanup:
+- /include
+- /lib/libgst*-1.0.*
+- /lib/pkgconfig/gstreamer-*.pc
+- /share/gtk-doc

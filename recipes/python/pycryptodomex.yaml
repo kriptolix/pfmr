@@ -1,0 +1,10 @@
+id: pycryptodomex
+type: python
+pypi_name: pycryptodomex
+requires:
+  pkgconfig:
+  - libpwquality
+  - python-binary
+confidence: 0.6
+source: flathub:info.olasagasti.revelation
+updated: '2026-05-16'

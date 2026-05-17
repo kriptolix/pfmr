@@ -1,0 +1,12 @@
+id: signus
+provides: []
+pkgconfig:
+- signus
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/signus-game/signus/releases/download/v1.96.0/signus-1.96.0.tar.bz2
+  sha256: caeb40b4d62e06039755ce84c1bf44d0eb2df975f122ce2423751d22ea9d17bd
+cleanup:
+- /include
+- /lib/pkgconfig

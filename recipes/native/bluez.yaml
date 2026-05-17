@@ -1,0 +1,20 @@
+id: bluez
+provides: []
+pkgconfig:
+- bluez
+buildsystem: autotools
+source:
+  type: archive
+  url: https://mirrors.edge.kernel.org/pub/linux/bluetooth/bluez-5.69.tar.xz
+  sha256: bc5a35ddc7c72d0d3999a0d7b2175c8b7d57ab670774f8b5b4900ff38a2627fc
+config-opts:
+- --disable-datafiles
+- --disable-systemd
+- --disable-manpages
+- --enable-library
+- --prefix=/app
+- --sysconfdir=/app/etc
+- --disable-udev
+cleanup:
+- /include
+- /lib/pkgconfig

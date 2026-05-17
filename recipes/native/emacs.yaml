@@ -1,0 +1,20 @@
+id: emacs
+provides: []
+pkgconfig:
+- emacs
+- gnutls
+- tree-sitter
+buildsystem: autotools
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/emacs/emacs-30.2.tar.xz
+  sha256: b3f36f18a6dd2715713370166257de2fae01f9d38cfe878ced9b1e6ded5befd9
+config-opts:
+- --with-gnutls
+- --with-tree-sitter
+cleanup:
+- /include
+- /lib/systemd
+- /share/icons/hicolor/scalable/apps/emacs.ico
+- /share/icons/hicolor/scalable/mimetypes/emacs-document.svg
+- /share/icons/hicolor/scalable/mimetypes/emacs-document23.svg

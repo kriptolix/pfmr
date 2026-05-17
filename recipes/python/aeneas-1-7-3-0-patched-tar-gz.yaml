@@ -1,0 +1,12 @@
+id: aeneas-1-7-3-0-patched-tar-gz
+type: python
+pypi_name: aeneas-1-7-3-0-patched-tar-gz
+requires:
+  pkgconfig:
+  - xterm
+  extensions:
+  - org.freedesktop.Sdk.Extension.node22
+  - org.freedesktop.Sdk.Extension.openjdk17
+confidence: 0.6
+source: flathub:org.sil.scripture-app-builder
+updated: '2026-05-16'

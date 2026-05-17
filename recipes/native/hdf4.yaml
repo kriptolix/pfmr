@@ -1,0 +1,30 @@
+id: hdf4
+provides: []
+pkgconfig:
+- hdf4
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://support.hdfgroup.org/releases/hdf4/v4_3/v4_3_0/downloads/hdf4.3.0.tar.gz
+  sha256: 282b244a819790590950f772095abcaeef405b0f17d2ee1eb5039da698cf938b
+config-opts:
+- -DHDF4_ENABLE_SZIP_SUPPORT:BOOL=ON
+- -DHDF4_ENABLE_Z_LIB_SUPPORT:BOOL=ON
+- -DHDF4_BUILD_FORTRAN:BOOL=OFF
+- -DHDF4_BUILD_JAVA:BOOL=ON
+- -DHDF4_BUILD_TOOLS:BOOL=OFF
+- -DHDF4_BUILD_EXAMPLES:BOOL=OFF
+- -DHDF4_USE_GNU_DIRS:BOOL=ON
+- -DBUILD_TESTING:BOOL=OFF
+- -DBUILD_SHARED_LIBS:BOOL=ON
+- -DBUILD_STATIC_LIBS:BOOL=OFF
+cleanup:
+- /bin
+- /include
+- /lib/cmake
+- /lib/libhdf.a
+- /lib/libmfhdf.a
+- /lib/libxdr.a
+- /lib/pkgconfig
+- /share/COPYING
+- /share/doc

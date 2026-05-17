@@ -1,0 +1,12 @@
+id: fs-uae-launcher
+provides: []
+pkgconfig:
+- fs-uae-launcher
+buildsystem: autotools
+source:
+  type: archive
+  url: https://fs-uae.net/files/FS-UAE-Launcher/Stable/3.1.66/fs-uae-launcher-3.1.66.tar.xz
+  sha256: 47f09069e5b474c0295e989e13edef0eb76c5982fdefd96ec62e0b5363a08ebe
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: obs-ndi
+provides: []
+pkgconfig:
+- obs-ndi
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Palakis/obs-ndi/archive/4.9.1.tar.gz
+  sha256: 25ada71fef14b23fa03a0a5bcce87e36161f4f2488f34aa256634e5973d8e66b
+config-opts:
+- -DLIBOBS_INCLUDE_DIR=./obs-source/libobs
+cleanup:
+- /include
+- /lib/pkgconfig

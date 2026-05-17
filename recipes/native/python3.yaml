@@ -1,0 +1,40 @@
+id: python3
+provides: []
+pkgconfig:
+- python3
+- lto
+- system-ffi
+- system-libmpdec
+- system-expat
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www.python.org/ftp/python/3.7.7/Python-3.7.7.tar.xz
+  sha256: 06a0a9f1bf0d8cd1e4121194d666c4e28ddae4dd54346de6c343206599f02136
+config-opts:
+- --enable-ipv6
+- --with-lto
+- --with-system-ffi
+- --with-system-libmpdec
+- --with-system-expat
+cleanup:
+- /bin/2to3*
+- /bin/easy_install*
+- /bin/idle*
+- /bin/python*-config
+- /bin/pyvenv*
+- /bin/pydoc*
+- /include
+- /share
+- /lib/pkgconfig
+- /lib/python*/config-*
+- /lib/python*/test
+- /lib/python*/distutils/tests
+- /lib/python*/ctypes/test
+- /lib/python*/sqlite3/test
+- /lib/python*/lib2to3/tests
+- /lib/python*/tkinter/test
+- /lib/python*/unittest/test
+- /lib/python*/lib-dynload/_*_test.*.so
+- /lib/python*/lib-dynload/_test*.*.so
+- /lib/python*/idlelib

@@ -1,0 +1,15 @@
+id: qtbase
+provides: []
+pkgconfig:
+- qtbase
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.7/6.7.2/submodules/qtbase-everywhere-src-6.7.2.tar.xz
+  sha256: c5f22a5e10fb162895ded7de0963328e7307611c688487b5d152c9ee64767599
+config-opts:
+- -DCMAKE_BUILD_TYPE=None
+- -DINSTALL_ARCHDATADIR=/app/lib
+- -DINPUT_openssl=linked
+cleanup:
+- /bin

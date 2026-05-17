@@ -1,0 +1,16 @@
+id: rhash
+provides: []
+pkgconfig:
+- rhash
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://deac-riga.dl.sourceforge.net/project/rhash/rhash/1.4.4/rhash-1.4.4-src.tar.gz?viasf=1
+  sha256: 8e7d1a8ccac0143c8fe9b68ebac67d485df119ea17a613f4038cda52f84ef52a
+config-opts:
+- -DUSE_GETTEXT=OFF
+- -DBUILD_SHARED_LIBS=1
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

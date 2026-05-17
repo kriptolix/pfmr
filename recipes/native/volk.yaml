@@ -1,0 +1,13 @@
+id: volk
+provides: []
+pkgconfig:
+- volk
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/zeux/volk/archive/refs/tags/vulkan-sdk-1.3.280.0.zip
+  sha256: 178875134d36e8b90f7e3ec31171355df3b71f47eba49cca2f98158e6552b011
+config-opts:
+- -DVOLK_INSTALL=ON
+cleanup:
+- /bin

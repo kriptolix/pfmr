@@ -1,0 +1,15 @@
+id: template-glib
+provides: []
+pkgconfig:
+- template-glib
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/template-glib/3.40/template-glib-3.40.0.tar.xz
+  sha256: e533ec2f6c24cc6df66ac55ac824fadd1b4a5f433a11cbf3a6b25815c0cfcfd5
+config-opts:
+- -Dintrospection=enabled
+- -Dvapi=true
+cleanup:
+- /include
+- /lib/pkgconfig

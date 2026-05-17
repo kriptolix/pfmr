@@ -1,0 +1,15 @@
+id: wireshark
+provides: []
+pkgconfig:
+- wireshark
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://1.eu.dl.wireshark.org/src/all-versions/wireshark-4.6.5.tar.xz
+  sha256: b5322538b20fa3e0bf004be83c534a42937d442be3f960d01b4e1f0db6c50386
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /share/man
+- /lib/pkgconfig

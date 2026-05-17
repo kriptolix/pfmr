@@ -1,0 +1,28 @@
+id: upower
+provides: []
+pkgconfig:
+- upower
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/upower/upower/-/archive/v1.91.1/upower-v1.91.1.tar.gz
+  sha256: cd87801c8489778b76bbdcd4e03ae60b44ef5bcc2fed40332630fbadb4343517
+config-opts:
+- -Dsystemdsystemunitdir=no
+- -Dudevrulesdir=/app/lib/udev/rules.d
+- -Dudevhwdbdir=/app/lib/udev/hwdb.d
+- -Dman=false
+- -Dgtk-doc=false
+- -Dintrospection=disabled
+cleanup:
+- /bin/upower
+- /etc/dbus-1
+- /etc/UPower
+- /libexec
+- /libexec/rules.d
+- /lib/girepository-1.0
+- /lib/pkgconfig
+- /lib/udev
+- /share/dbus-1
+- /share/gir-1.0
+- /var

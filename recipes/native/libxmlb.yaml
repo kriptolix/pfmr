@@ -1,0 +1,20 @@
+id: libxmlb
+provides: []
+pkgconfig:
+- libxmlb
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/hughsie/libxmlb/releases/download/0.3.26/libxmlb-0.3.26.tar.xz
+  sha256: a18bc447fff0dd0d76a2e6cd4a603b4712047c027f9bbbdc31ebc25f0e2c1ed9
+config-opts:
+- -Dintrospection=false
+- -Dgtkdoc=false
+- -Dtests=false
+- -Dstemmer=false
+- -Dcli=false
+- --sysconfdir=/app/etc
+- --localstatedir=/var/data
+cleanup:
+- /include
+- /lib/pkgconfig

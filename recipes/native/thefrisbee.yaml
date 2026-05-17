@@ -1,0 +1,16 @@
+id: thefrisbee
+provides: []
+pkgconfig:
+- thefrisbee
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/theCheeseboard/theFrisbee/archive/v3.0.tar.gz
+  sha256: 8ac9b804b513e61ba80b0cc48f8d0c39cd65f97c7da4faf0bb2a70695363a78d
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+- -DFORCE_STABLE=ON
+cleanup:
+- /include
+- /lib/pkgconfig

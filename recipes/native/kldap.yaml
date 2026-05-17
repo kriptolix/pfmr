@@ -1,0 +1,15 @@
+id: kldap
+provides: []
+pkgconfig:
+- kldap
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/kldap-25.12.2.tar.xz
+  sha256: ca13d0ec9e1cb4d19d654b9f55251ff5b36fcc649cab3add8c46cce1787fa80a
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

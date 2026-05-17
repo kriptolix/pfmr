@@ -1,0 +1,12 @@
+id: vkd3d
+provides: []
+pkgconfig:
+- vkd3d
+buildsystem: autotools
+source:
+  type: archive
+  url: https://dl.winehq.org/vkd3d/source/vkd3d-1.8.tar.xz
+  sha256: e0cec19cc9535715c72ec3a16cdec29dc14d5ccec73526387b5843cf75628ac5
+cleanup:
+- /include
+- /lib/pkgconfig

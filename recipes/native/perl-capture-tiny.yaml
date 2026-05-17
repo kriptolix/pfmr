@@ -1,0 +1,12 @@
+id: perl-capture-tiny
+provides: []
+pkgconfig:
+- perl-capture-tiny
+buildsystem: autotools
+source:
+  type: archive
+  url: https://search.cpan.org/CPAN/authors/id/D/DA/DAGOLDEN/Capture-Tiny-0.46.tar.gz
+  sha256: 5d7a6a830cf7f2b2960bf8b8afaac16a537ede64f3023827acea5bd24ca77015
+cleanup:
+- /include
+- /lib/pkgconfig

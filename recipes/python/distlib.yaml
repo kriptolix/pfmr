@@ -1,0 +1,13 @@
+id: distlib
+type: python
+pypi_name: distlib
+requires:
+  pkgconfig:
+  - gnutls
+  - qemu
+  - swtpm
+  - tss-group
+  - tss-user
+confidence: 0.6
+source: flathub:org.virt_manager.virt_manager.Extension.Qemu
+updated: '2026-05-16'

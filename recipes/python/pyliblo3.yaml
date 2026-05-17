@@ -1,0 +1,15 @@
+id: pyliblo3
+type: python
+pypi_name: pyliblo3
+requires:
+  pkgconfig:
+  - alsa
+  - jack
+  - liblo
+  - ola
+  - protobuf
+  - python-rtmidi
+  - rtmidi
+confidence: 0.6
+source: flathub:com.github.mikacousin.olc
+updated: '2026-05-16'

@@ -1,0 +1,15 @@
+id: libksysguard
+provides: []
+pkgconfig:
+- libksysguard
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/plasma/6.6.4/libksysguard-6.6.4.tar.xz
+  sha256: 9dd0a5a8d3f12d65351fab8c132365dd65f0f9976d6831598ce30ebbfa291a89
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DENABLE_KAUTH_HELPER=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

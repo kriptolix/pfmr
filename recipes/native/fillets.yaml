@@ -1,0 +1,12 @@
+id: fillets
+provides: []
+pkgconfig:
+- fillets
+buildsystem: autotools
+source:
+  type: archive
+  url: https://prdownloads.sourceforge.net/fillets/fillets-ng-1.0.1.tar.gz
+  sha256: 329a4d9515d60bebdb657d070824933b993b85864b9d3e302e6361accab992da
+cleanup:
+- /include
+- /lib/pkgconfig

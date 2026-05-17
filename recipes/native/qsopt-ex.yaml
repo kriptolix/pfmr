@@ -1,0 +1,12 @@
+id: qsopt-ex
+provides: []
+pkgconfig:
+- qsopt-ex
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/jonls/qsopt-ex/releases/download/v2.5.10.3/qsopt_ex-2.5.10.3.tar.xz
+  sha256: 04fb63042c84023f7f7ff8a53b2dfdbaf5a056845a0d72797066db32bb5111bf
+cleanup:
+- /include
+- /lib/pkgconfig

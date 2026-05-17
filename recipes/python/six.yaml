@@ -1,0 +1,93 @@
+id: six
+type: python
+pypi_name: six
+requires:
+  pkgconfig:
+  - avahi
+  - bc
+  - black-hole-solver
+  - cjson
+  - distro
+  - ed
+  - ffmpeg
+  - freecell-solver
+  - freerdp
+  - geos
+  - git
+  - gnome-connections
+  - gtest
+  - gtk-vnc
+  - hdri
+  - hwdata
+  - icon-naming-utils
+  - imagemagick
+  - jpegoptim
+  - krb5
+  - libaacs
+  - libass
+  - libbluray
+  - libbs2b
+  - libcdio
+  - libcdio-paranoia
+  - libcups
+  - libdisplay-info
+  - libdvdnav
+  - libdvdread
+  - libfuse
+  - libkdegames
+  - libmysofa
+  - libplacebo
+  - libportal
+  - libportaudio
+  - libsixel
+  - libsodium
+  - libspelling
+  - libssh
+  - libusb-compat
+  - libvncserver
+  - libxmu
+  - libxpresent
+  - lmdb
+  - luajit
+  - mpv
+  - mpv-mpris
+  - mujs
+  - nv-codec-headers
+  - ome-common
+  - ome-files
+  - ome-model
+  - pcsc
+  - pic
+  - python
+  - python-prefix
+  - python3
+  - qgis
+  - rubberband
+  - sdl3_ttf
+  - smbclient
+  - spdlog
+  - spice-gtk
+  - sugar-artwork
+  - sugar-toolkit-gtk3
+  - systemdsystemunitdir
+  - telepathy-glib
+  - tesseract
+  - uchardet
+  - usbutils
+  - vapoursynth
+  - vte
+  - x264
+  - x265
+  - xauth
+  - xclip
+  - xcursorgen
+  - xprop
+  - yt-dlp
+  - zimg
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm12
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:cc.arduino.IDE2
+updated: '2026-05-16'

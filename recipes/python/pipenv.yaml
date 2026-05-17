@@ -1,0 +1,19 @@
+id: pipenv
+type: python
+pypi_name: pipenv
+requires:
+  pkgconfig:
+  - dbmliborder
+  - ensurepip
+  - imagemagick
+  - libsecret
+  - modules
+  - node
+  - python-2.7
+  - system-expat
+  - system-ffi
+  extensions:
+  - org.freedesktop.Sdk.Extension.golang
+confidence: 0.6
+source: flathub:com.visualstudio.code.oss
+updated: '2026-05-16'

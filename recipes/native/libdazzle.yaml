@@ -1,0 +1,14 @@
+id: libdazzle
+provides: []
+pkgconfig:
+- libdazzle
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.gnome.org/GNOME/libdazzle/-/archive/3.32.0/libdazzle-3.32.0.tar.gz
+  sha256: a4f5e47cb01cefbb192019ffaac3ef61b44de442ad5358d5ad69f2f427a33707
+config-opts:
+- --buildtype=debugoptimized
+cleanup:
+- /include
+- /lib/pkgconfig

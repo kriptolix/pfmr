@@ -1,0 +1,12 @@
+id: qt6-qtdatavisualization
+provides: []
+pkgconfig:
+- qt6-qtdatavisualization
+buildsystem: cmake
+source:
+  type: archive
+  url: https://download.qt.io/official_releases/qt/6.9/6.9.1/submodules/qtdatavis3d-everywhere-src-6.9.1.tar.xz
+  sha256: 4c798b75f2a7c7e61ebb01f405a54fd80513ae46986714fa0fa05e8f6a5b32c7
+cleanup:
+- /include
+- /lib/pkgconfig

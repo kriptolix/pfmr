@@ -1,0 +1,10 @@
+id: scikit-build-core
+type: python
+pypi_name: scikit-build-core
+requires:
+  pkgconfig:
+  - openrazer-pylib
+  - polychromatic
+confidence: 0.6
+source: flathub:app.polychromatic.controller
+updated: '2026-05-16'

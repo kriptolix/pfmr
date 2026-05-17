@@ -1,0 +1,15 @@
+id: surge-xt
+provides: []
+pkgconfig:
+- surge-xt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/surge-synthesizer/releases-xt/releases/download/1.0.1/surge-src-1.0.1.tar.gz
+  sha256: 100b536f741c62529800fc26e3773567591385d4152db305382b4315f6e39c55
+config-opts:
+- -DCMAKE_INSTALL_PREFIX=/app/extensions/Plugins/Surge-XT
+- -DSURGE_SKIP_STANDALONE=YES
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /bin/python

@@ -1,0 +1,12 @@
+id: open-bias
+provides: []
+pkgconfig:
+- open-bias
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://api.github.com/repos/OpenMathLib/OpenBLAS/tarball/v0.3.33
+  sha256: b68108f64b2036f20d5ecbcd256f92f862f5e1f5dab7e6f1c1fd24aacd274ba9
+cleanup:
+- /include
+- /lib/pkgconfig

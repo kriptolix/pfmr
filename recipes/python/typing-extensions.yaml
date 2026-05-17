@@ -1,0 +1,12 @@
+id: typing-extensions
+type: python
+pypi_name: typing-extensions
+requires:
+  pkgconfig:
+  - eigen3
+  - lapack
+  - lipi
+  - qhull
+confidence: 0.6
+source: flathub:io.github.shonebinu.Glyph
+updated: '2026-05-16'

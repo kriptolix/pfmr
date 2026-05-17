@@ -1,0 +1,15 @@
+id: splash
+provides: []
+pkgconfig:
+- splash
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://gitlab.com/splashmapper/splash/-/jobs/artifacts/0.12.2/raw/splash.tar.gz?job=package%3Afullsources
+  sha256: 85c6d4f9698f2bd0457a44038cba5983dd7d19e5f14244c07c1954ea79c93b85
+config-opts:
+- -DBUILD_GENERIC_ARCH=ON
+- -DWITH_LTO=ON
+cleanup:
+- /include
+- /lib/pkgconfig

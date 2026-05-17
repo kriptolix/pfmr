@@ -1,0 +1,21 @@
+id: libetpan
+provides: []
+pkgconfig:
+- libetpan
+- openssl
+- gnutls
+- sasl
+- zlib
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/dinhvh/libetpan/archive/80f0f515555de2798c6984db507d406d0153f1f5.zip
+  sha256: 0e6b6d08721df3c8f0036547e963d313d6a130cefe881c8e12f6dc46b347a68f
+config-opts:
+- --with-openssl=/usr/include/openssl
+- --with-gnutls=/usr/include/gnutls
+- --with-sasl=/usr/include/sasl
+- --with-zlib
+cleanup:
+- /include
+- /lib/pkgconfig

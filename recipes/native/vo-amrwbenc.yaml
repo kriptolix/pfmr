@@ -1,0 +1,14 @@
+id: vo-amrwbenc
+provides: []
+pkgconfig:
+- vo-amrwbenc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/project/opencore-amr/vo-amrwbenc/vo-amrwbenc-0.1.3.tar.gz
+  sha256: 5652b391e0f0e296417b841b02987d3fd33e6c0af342c69542cbb016a71d9d4e
+config-opts:
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

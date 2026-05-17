@@ -1,0 +1,12 @@
+id: gnome-power-manager
+provides: []
+pkgconfig:
+- gnome-power-manager
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-power-manager/43/gnome-power-manager-43.0.tar.xz
+  sha256: 7daab48bbddb30e9df2aba650cb60d05e667c9f885ace6a0a1e7950e0cbdd32f
+cleanup:
+- /include
+- /lib/pkgconfig

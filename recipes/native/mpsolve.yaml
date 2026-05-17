@@ -1,0 +1,14 @@
+id: mpsolve
+provides: []
+pkgconfig:
+- mpsolve
+buildsystem: autotools
+source:
+  type: archive
+  url: https://numpi.dm.unipi.it/wp-content/uploads/2025/08/mpsolve-3.2.3.tar.bz2
+  sha256: 1f2e239c698c783b63a5e6903e76316c0335a01d71c466a8551e8a3f790b3971
+config-opts:
+- --disable-examples
+cleanup:
+- /include
+- /lib/pkgconfig

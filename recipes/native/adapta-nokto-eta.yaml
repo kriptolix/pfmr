@@ -1,0 +1,16 @@
+id: adapta-nokto-eta
+provides: []
+pkgconfig:
+- adapta-nokto-eta
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/adapta-project/adapta-gtk-theme-flatpak/archive/3.95.0.7.tar.gz
+  sha256: 858c76d7b20116f19444d369c20141835e371557cccb7a5a9a2f2c56cf69ca60
+config-opts:
+- --prefix=/usr/share/runtime
+- --enable-dark
+- --enable-compact
+cleanup:
+- /include
+- /lib/pkgconfig

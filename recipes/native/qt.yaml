@@ -1,0 +1,18 @@
+id: qt
+provides: []
+pkgconfig:
+- qt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/6.11/6.11.0/single/qt-everywhere-src-6.11.0.tar.xz
+  sha256: acf3b3db04c9e5d0820e8324b097320388954c297cee83d2bd698789234f68a4
+config-opts:
+- -DBUILD_SHARED_LIBS=OFF
+- -DBUILD_WITH_PCH=OFF
+- -DQT_BUILD_SUBMODULES=qtbase;qtdeclarative;qtimageformats;qtshadertools;qtsvg;qtwayland
+- -DQT_QPA_PLATFORMS=wayland;xcb
+- -DFEATURE_glibc_fortify_source=OFF
+- -DINPUT_openssl=linked
+cleanup:
+- '*'

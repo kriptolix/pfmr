@@ -1,0 +1,16 @@
+id: maplibre-native-qt
+provides: []
+pkgconfig:
+- maplibre-native-qt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/Akaflieg-Freiburg/enrouteDependencies/releases/download/developerBuilds/maplibre-native-qt.tar.xz
+  sha256: 59832093b7f77e6f836f9e4ee1ee2f7cc6028de0f02e78a6ac98d7932f6920ca
+config-opts:
+- -DCMAKE_CXX_FLAGS=-Wno-error
+- -DMLN_QT_WITH_INTERNAL_ICU=ON
+- -DBUILD_TESTING=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

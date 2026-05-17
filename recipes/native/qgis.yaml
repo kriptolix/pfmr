@@ -1,0 +1,25 @@
+id: qgis
+provides: []
+pkgconfig:
+- qgis
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://qgis.org/downloads/qgis-4.0.1.tar.bz2
+  sha256: b827501c58c0c271e7ef3cffcb2204adfeef3eaf9ff7a0ab607f0873de2b7eaf
+config-opts:
+- -DBUILD_WITH_QT6=TRUE
+- -DENABLE_TESTS=FALSE
+- -DWITH_3D=TRUE
+- -DGRASS_PREFIX8=/app/grass84
+- -DQWT_LIBRARY=/app/lib/libqwt.so
+- -DSQLITE3_INCLUDE_DIR=/app/include
+- -DSQLITE3_LIBRARY=/app/lib/libsqlite3.so
+- -DUSE_OPENCL=ON
+- -DWITH_QUICK=ON
+- -DWITH_PDAL=TRUE
+- -DWITH_QTWEBKIT=FALSE
+- -DSIP_BUILD_EXTRA_OPTIONS=--target-dir=/app/lib/python3.12/site-packages
+cleanup:
+- /include
+- /lib/pkgconfig

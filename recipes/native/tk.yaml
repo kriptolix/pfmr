@@ -1,0 +1,16 @@
+id: tk
+provides: []
+pkgconfig:
+- tk
+- x
+buildsystem: autotools
+source:
+  type: archive
+  url: http://prdownloads.sourceforge.net/tcl/tk8.6.10-src.tar.gz
+  sha256: 63df418a859d0a463347f95ded5cd88a3dd3aaa1ceecaeee362194bc30f3e386
+config-opts:
+- --with-x
+- --enable-threads
+cleanup:
+- /include
+- /lib/pkgconfig

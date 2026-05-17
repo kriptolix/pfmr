@@ -1,0 +1,88 @@
+id: ply
+type: python
+pypi_name: ply
+requires:
+  pkgconfig:
+  - arpack
+  - catch2
+  - cgal
+  - coin
+  - eigen
+  - exiv2
+  - extra-cmake-modules
+  - fcitx5-qt
+  - fftw
+  - fmt
+  - geos
+  - git
+  - gmic
+  - gmp
+  - gmsh
+  - graphviz
+  - gsl
+  - hdf5
+  - hiredis
+  - ifcopenshell
+  - imath
+  - immer
+  - karchive
+  - kcompletion
+  - kconfig
+  - kcoreaddons
+  - kcrash
+  - kguiaddons
+  - ki18n
+  - kimageformats
+  - kitemviews
+  - krita
+  - kseexpr
+  - kwidgetsaddons
+  - kwindowsystem
+  - lager
+  - lapack
+  - libkdcraw
+  - libmypaint
+  - libraw
+  - libspnav
+  - libunibreak
+  - libvpl
+  - libxmu
+  - med
+  - minizip-ng
+  - mlt
+  - mpfr
+  - netcdf
+  - openblas
+  - opencascade
+  - opencolorio
+  - openexr
+  - openmpi
+  - poppler
+  - pyside2
+  - pystring
+  - qtbase
+  - qtdeclarative
+  - qtgraphicaleffects
+  - qtimageformats
+  - qtquickcontrols2
+  - qtsvg
+  - qttools
+  - qttranslations
+  - qtx11extras
+  - quazip
+  - rapidjson
+  - raqm
+  - soqt
+  - swig
+  - tcl
+  - tk
+  - vtk
+  - xerces-c
+  - xsimd
+  - yaml-cpp
+  - zug
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm15
+confidence: 0.6
+source: flathub:org.freecadweb.FreeCAD
+updated: '2026-05-16'

@@ -1,0 +1,12 @@
+id: libvibrant
+provides: []
+pkgconfig:
+- libvibrant
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libvibrant/libvibrant/archive/refs/tags/1.1.0.tar.gz
+  sha256: d000b6f8dc0f2d86037da240c00b99e3e534e114a8a0d6bd45c9ae0a184efadf
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: org.kde.keysmith
+provides: []
+pkgconfig:
+- org.kde.keysmith
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/26.04.1/src/keysmith-26.04.1.tar.xz
+  sha256: e5ee9df510659efb150350a24fb6fa8c43631a0ed635cf1f14a66896383ab21b
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: tpm2-tss
+provides: []
+pkgconfig:
+- tpm2-tss
+- udevrulesdir
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/tpm2-software/tpm2-tss/releases/download/2.3.2/tpm2-tss-2.3.2.tar.gz
+  sha256: 82929a0611f39246e09202702a61b54c980ab694626c1f5823520ddf75024fa6
+config-opts:
+- --disable-doxygen-doc
+- --with-udevrulesdir=/app/lib
+cleanup:
+- /lib/rules.d

@@ -1,0 +1,18 @@
+id: xmlstarlet
+provides: []
+pkgconfig:
+- xmlstarlet
+- libxml-prefix
+- libxslt-prefix
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/xmlstar/xmlstarlet-1.6.1.tar.gz
+  sha256: 15d838c4f3375332fd95554619179b69e4ec91418a3a5296e7c631b7ed19e7ca
+config-opts:
+- --disable-static-libs
+- --with-libxml-prefix=/usr
+- --with-libxslt-prefix=/usr
+cleanup:
+- /include
+- /lib/pkgconfig

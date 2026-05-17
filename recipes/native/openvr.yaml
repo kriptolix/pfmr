@@ -1,0 +1,13 @@
+id: openvr
+provides: []
+pkgconfig:
+- openvr
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ValveSoftware/openvr/archive/refs/tags/v2.12.14.tar.gz
+  sha256: becc2e6b956d1b98d66e2cc75fd8b20db94eb5af584ec360a4dad7e8adec3176
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /share/pkgconfig

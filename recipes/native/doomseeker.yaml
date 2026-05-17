@@ -1,0 +1,16 @@
+id: doomseeker
+provides: []
+pkgconfig:
+- doomseeker
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/DoomseekerTeam/Doomseeker/archive/refs/tags/1.5.3.tar.gz
+  sha256: b22c170087b242e82ded086797e1746ce28e28dbec0d9ea207a6713b187b060e
+config-opts:
+- -DCMAKE_SKIP_RPATH=true
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_INSTALL_PREFIX=/app
+cleanup:
+- /include
+- /lib/pkgconfig

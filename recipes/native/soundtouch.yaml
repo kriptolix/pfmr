@@ -1,0 +1,19 @@
+id: soundtouch
+provides: []
+pkgconfig:
+- soundtouch
+buildsystem: autotools
+source:
+  type: archive
+  url: https://codeberg.org/soundtouch/soundtouch/archive/2.3.1.tar.gz
+  sha256: 42633774f372d8cb0a33333a0ea3b30f357c548626526ac9f6ce018c94042692
+config-opts:
+- --enable-shared
+- --disable-static
+cleanup:
+- '*.la'
+- /bin
+- /include
+- /lib/pkgconfig
+- /share/aclocal
+- /share/doc

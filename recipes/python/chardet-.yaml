@@ -1,0 +1,49 @@
+id: chardet-
+type: python
+pypi_name: chardet-
+requires:
+  pkgconfig:
+  - bc
+  - ed
+  - ffmpeg
+  - hdri
+  - hwdata
+  - imagemagick
+  - libaacs
+  - libass
+  - libbluray
+  - libbs2b
+  - libcdio
+  - libcdio-paranoia
+  - libdisplay-info
+  - libdvdnav
+  - libdvdread
+  - libmpv
+  - libmysofa
+  - libplacebo
+  - libsixel
+  - libxmu
+  - libxpresent
+  - lmdb
+  - luajit
+  - mpv
+  - mpv-mpris
+  - mujs
+  - nv-codec-headers
+  - pic
+  - python-prefix
+  - rubberband
+  - smbclient
+  - tesseract
+  - uchardet
+  - vapoursynth
+  - x264
+  - x265
+  - xclip
+  - yt-dlp
+  - zimg
+  extensions:
+  - org.freedesktop.Sdk.Extension.node24
+confidence: 0.6
+source: flathub:nl.g4d.Girens
+updated: '2026-05-16'

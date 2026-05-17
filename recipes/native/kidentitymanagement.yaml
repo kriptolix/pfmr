@@ -1,0 +1,15 @@
+id: kidentitymanagement
+provides: []
+pkgconfig:
+- kidentitymanagement
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.2/src/kidentitymanagement-25.12.2.tar.xz
+  sha256: 305cd01a360ce60386cae5c00d64368aaf3159a4fda54856df072c2d6c03cdb0
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,31 @@
+id: sox
+provides: []
+pkgconfig:
+- sox
+- flac
+- mp3
+- oggvorbis
+- sndfile
+- wavpack
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/sox/files/sox/14.4.2/sox-14.4.2.tar.bz2
+  sha256: 81a6956d4330e75b5827316e44ae381e6f1e8928003c6aa45896da9041ea149c
+config-opts:
+- --without-dyn-default
+- --without-static
+- --disable-symlinks
+- --without-alsa
+- --without-pulseaudio
+- --without-oss
+- --without-gsm
+- --without-lpc10
+- --with-flac=yes
+- --with-mp3=yes
+- --with-oggvorbis=yes
+- --with-sndfile=no
+- --with-wavpack=yes
+cleanup:
+- /include
+- /lib/pkgconfig

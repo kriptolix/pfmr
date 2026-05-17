@@ -1,0 +1,14 @@
+id: woff2
+provides: []
+pkgconfig:
+- woff2
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/google/woff2/archive/4721483ad780ee2b63cb787bfee4aa64b61a0446.tar.gz
+  sha256: 69051ab0c28c52ddbe7f4efe422e9eee03c9a9c4fa1e5a8a3876b868314f2c8c
+config-opts:
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

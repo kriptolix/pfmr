@@ -1,0 +1,104 @@
+id: flit-core
+type: python
+pypi_name: flit-core
+requires:
+  pkgconfig:
+  - 64gram-desktop
+  - ada
+  - catch2
+  - eigen
+  - ensurepip
+  - exiv2
+  - extra-cmake-modules
+  - fcitx5-qt
+  - fftw
+  - gmic
+  - gsl
+  - highway
+  - hiredis
+  - imath
+  - immer
+  - intltool
+  - iproute2
+  - jpegli
+  - karchive
+  - kcompletion
+  - kconfig
+  - kcoreaddons
+  - kcrash
+  - kguiaddons
+  - ki18n
+  - kimageformats
+  - kitemviews
+  - kotatogram-desktop
+  - krita
+  - kseexpr
+  - kwidgetsaddons
+  - kwindowsystem
+  - lager
+  - libavif
+  - libde265
+  - libheif
+  - libjxl
+  - libkdcraw
+  - libmypaint
+  - libndp
+  - libnma
+  - libportal
+  - libraw
+  - libtirpc
+  - libunibreak
+  - libvirt
+  - libvpl
+  - libzbar
+  - minizip-ng
+  - mlt
+  - mozjpeg
+  - networkmanager
+  - networkmanager-openvpn
+  - opencolorio
+  - openexr
+  - openh264
+  - polkit
+  - poppler
+  - protobuf
+  - pwquality
+  - pystring
+  - python
+  - qt
+  - qtbase
+  - qtdeclarative
+  - qtgraphicaleffects
+  - qtimageformats
+  - qtquickcontrols2
+  - qtshadertools
+  - qtsvg
+  - qttools
+  - qttranslations
+  - qtwayland
+  - qtx11extras
+  - quazip
+  - raqm
+  - rnnoise
+  - rpcsvc-proto
+  - systemd
+  - tcl
+  - tcltk-includes
+  - tcltk-libs
+  - tde2e
+  - tdesktop
+  - tg_owt
+  - tk
+  - udev
+  - xsimd
+  - yaml-cpp
+  - yasm
+  - zug
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm16
+  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.llvm22
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:io.github.lruzicka.Needly
+updated: '2026-05-16'

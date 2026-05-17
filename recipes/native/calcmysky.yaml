@@ -1,0 +1,19 @@
+id: calcmysky
+provides: []
+pkgconfig:
+- calcmysky
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/10110111/CalcMySky/archive/refs/tags/v0.4.0.tar.gz
+  sha256: 1096f3c6067e05dd8c4df601b745cca5e88b843ad1328938e5dba69c1fcfb84f
+config-opts:
+- -DQT_VERSION=6
+- -DCMAKE_BUILD_TYPE=Release
+- -DCMAKE_CXX_STANDARD=17
+- -DCMAKE_CXX_COMPILER=g++
+- -DCMAKE_CXX_FLAGS="-fPIC"
+- -Wno-dev
+cleanup:
+- /include
+- /lib/pkgconfig

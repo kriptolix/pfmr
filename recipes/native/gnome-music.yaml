@@ -1,0 +1,12 @@
+id: gnome-music
+provides: []
+pkgconfig:
+- gnome-music
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/gnome-music/49/gnome-music-49.1.tar.xz
+  sha256: ba881ae0b55e34e6269fd2d3df8d8bfa3c5ec7e37bac8945aec78b7ff207bc67
+cleanup:
+- /include
+- /lib/pkgconfig

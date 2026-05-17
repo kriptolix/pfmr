@@ -1,0 +1,18 @@
+id: qt6-qtsvg
+provides: []
+pkgconfig:
+- qt6-qtsvg
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: http://download.qt.io/archive/qt/6.9/6.9.2/submodules/qtsvg-everywhere-src-6.9.2.tar.xz
+  sha256: d984cab8f26334aa1c15e5b8f0cd9f1b7c0c1289fe0b68c1c84ab469b75605a5
+cleanup:
+- /bin
+- /include
+- /lib/*.a
+- /lib/*.la
+- /lib/*.prl
+- /lib/cmake
+- /lib/mkspecs
+- /lib/pkgconfig

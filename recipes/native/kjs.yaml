@@ -1,0 +1,12 @@
+id: kjs
+provides: []
+pkgconfig:
+- kjs
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.115/portingAids/kjs-5.115.0.tar.xz
+  sha256: 9cf4e00070586af43a21d5e4c30c61e66bc1c5f53952d4335bc7df44f9130432
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: ldc-cycle
+provides: []
+pkgconfig:
+- ldc-cycle
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ldc-developers/ldc/releases/download/v1.42.0/ldc-1.42.0-src.tar.gz
+  sha256: 9bb0f628f869f7fc7b53c381a79742d29c17552c6f1a56b0a02aa289e65a0e3b
+config-opts:
+- -DLDC_WITH_LLD:BOOL=OFF
+- -DLDC_BUNDLE_LLVM_TOOLS=OFF
+cleanup:
+- '*'

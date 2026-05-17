@@ -1,0 +1,12 @@
+id: fluidsynth
+provides: []
+pkgconfig:
+- fluidsynth
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v2.5.4.tar.gz
+  sha256: 72f5720328fe44e2e5c67813885f0a6b4b004d048bd2eeeb0c0064074ebff530
+cleanup:
+- /include
+- /lib/pkgconfig

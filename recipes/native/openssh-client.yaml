@@ -1,0 +1,29 @@
+id: openssh-client
+provides: []
+pkgconfig:
+- openssh-client
+- privsep-path
+- privsep-user
+- sandbox
+buildsystem: autotools
+source:
+  type: archive
+  url: https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.9p2.tar.gz
+  sha256: 91aadb603e08cc285eddf965e1199d02585fa94d994d6cae5b41e1721e215673
+config-opts:
+- --prefix=/app
+- --sysconfdir=/app/etc
+- --without-ssh1
+- --with-privsep-path=/app/var/lib/sshd
+- --with-privsep-user=nobody
+- --with-sandbox=no
+- --disable-strip
+cleanup:
+- /share/man
+- /include
+- /lib/pkgconfig
+- /bin/sshd*
+- /libexec/sftp-server
+- /libexec/ssh-keysign
+- /libexec/ssh-pkcs11-helper
+- /sbin

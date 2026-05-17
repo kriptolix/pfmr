@@ -1,0 +1,12 @@
+id: pcaudiolib
+provides: []
+pkgconfig:
+- pcaudiolib
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/espeak-ng/pcaudiolib/archive/1.2.tar.gz
+  sha256: 44b9d509b9eac40a0c61585f756d76a7b555f732e8b8ae4a501c8819c59c6619
+cleanup:
+- /include
+- /lib/pkgconfig

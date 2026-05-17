@@ -1,0 +1,24 @@
+id: dbus
+provides: []
+pkgconfig:
+- dbus
+buildsystem: meson
+source:
+  type: archive
+  url: https://dbus.freedesktop.org/releases/dbus/dbus-1.16.2.tar.xz
+  sha256: 0ba2a1a4b16afe7bceb2c07e9ce99a8c2c3508e5dec290dbb643384bd6beb7e2
+config-opts:
+- -Dlibaudit=disabled
+- -Dducktype_docs=disabled
+- -Dqt_help=disabled
+- -Dmodular_tests=disabled
+- -Drelocation=disabled
+- -Dselinux=disabled
+- -Dkqueue=disabled
+- -Dlaunchd=disabled
+- -Dx11_autolaunch=disabled
+- -Dsystemd_system_unitdir=/app/lib/systemd/system
+- -Dsystemd_user_unitdir=/app/lib/systemd/user
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,14 @@
+id: gzdoom
+provides: []
+pkgconfig:
+- gzdoom
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/ZDoom/gzdoom/archive/refs/tags/g4.10.0.tar.gz
+  sha256: 8702522c05048dfd4a765c6ac82a270d8bd0942e813d5bc6f4b69795a5d23a20
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+cleanup:
+- /include
+- /lib/pkgconfig

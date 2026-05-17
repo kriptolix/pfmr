@@ -1,0 +1,97 @@
+id: soupsieve
+type: python
+pypi_name: soupsieve
+requires:
+  pkgconfig:
+  - abi-version
+  - bc
+  - dosbox-staging
+  - ed
+  - ffmpeg
+  - fluidsynth
+  - gamemode
+  - gamemode-32bit
+  - gconf
+  - glu
+  - glu-32bit
+  - hdri
+  - hwdata
+  - imagemagick
+  - libaacs
+  - libass
+  - libbluray
+  - libbs2b
+  - libbsd
+  - libbsd-32bit
+  - libcaca
+  - libcaca-32bit
+  - libcapi20
+  - libcapi20-32bit
+  - libcdio
+  - libcdio-paranoia
+  - libdisplay-info
+  - libdvdnav
+  - libdvdread
+  - libgphoto2
+  - libgphoto2-32bit
+  - libjpeg
+  - libjpeg-32bit
+  - libmysofa
+  - libpcap
+  - libpcap-32bit
+  - libplacebo
+  - librsync
+  - libsixel
+  - libspeechd
+  - libvlc
+  - libxmu
+  - libxmu-32bit
+  - libxpresent
+  - lmdb
+  - luajit
+  - mesa-demos
+  - mpv
+  - mpv-mpris
+  - mujs
+  - ncurses
+  - ncurses-32bits
+  - nv-codec-headers
+  - pciutils
+  - perl
+  - pic
+  - psmisc
+  - python-prefix
+  - rubberband
+  - sdl12-compat
+  - sdl12-compat-32bit
+  - setxkbmap
+  - shared
+  - smbclient
+  - sndio11
+  - sndio11-32bit
+  - sndio15
+  - sndio15-32bit
+  - systemdsystemunitdir
+  - tesseract
+  - uchardet
+  - usbutils
+  - v4l2-utils
+  - v4l2-utils-32bit
+  - vapoursynth
+  - vulkan-tools
+  - x264
+  - x265
+  - xclip
+  - xrandr
+  - yt-dlp
+  - zenity
+  - zimg
+  extensions:
+  - org.freedesktop.Sdk.Compat.i386
+  - org.freedesktop.Sdk.Extension.mono6
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.openjdk17
+  - org.freedesktop.Sdk.Extension.toolchain-i386
+confidence: 0.6
+source: flathub:io.mpv.Mpv
+updated: '2026-05-16'

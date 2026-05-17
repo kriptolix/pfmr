@@ -1,0 +1,15 @@
+id: akregator
+provides: []
+pkgconfig:
+- akregator
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/akregator-25.12.3.tar.xz
+  sha256: b15411e8a67c8934ceb30c1b00399424d4a4273698f8560aef4e761921c139e3
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: xlsclients
+provides: []
+pkgconfig:
+- xlsclients
+buildsystem: autotools
+source:
+  type: archive
+  url: https://xorg.freedesktop.org/archive/individual/app/xlsclients-1.1.5.tar.xz
+  sha256: 68baee57e70250ac4a7759fb78221831f97d88bc8e51dcc2e64eb3f8ca56bae3
+cleanup:
+- /include
+- /lib/pkgconfig

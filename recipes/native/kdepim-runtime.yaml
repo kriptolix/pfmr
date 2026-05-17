@@ -1,0 +1,15 @@
+id: kdepim-runtime
+provides: []
+pkgconfig:
+- kdepim-runtime
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kdepim-runtime-25.12.3.tar.xz
+  sha256: 9c034771cc66ed5103acf5276fd2a5f9f43b503393e3779208c4f97c4d274689
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

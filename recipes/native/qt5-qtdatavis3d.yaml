@@ -1,0 +1,11 @@
+id: qt5-qtdatavis3d
+provides: []
+pkgconfig:
+- qt5-qtdatavis3d
+buildsystem: qmake
+source:
+  type: archive
+  url: https://download.qt.io/archive/qt/5.15/5.15.2/submodules/qtdatavis3d-everywhere-src-5.15.2.tar.xz
+  sha256: 226a6575d573ad78aca459709722c496c23aee526aa0c38eb7c93b0bea1eb6fd
+cleanup:
+- /bin

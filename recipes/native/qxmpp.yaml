@@ -1,0 +1,17 @@
+id: qxmpp
+provides: []
+pkgconfig:
+- qxmpp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/unstable/qxmpp/qxmpp-1.15.1.tar.xz
+  sha256: 0747758a4f5b5ea4c60686c65b390766f1909d09e1a5a457c8e80ef272730c46
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DBUILD_EXAMPLES=OFF
+- -DBUILD_OMEMO=ON
+- -DWITH_GSTREAMER=ON
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: libexempi
+provides: []
+pkgconfig:
+- libexempi
+buildsystem: autotools
+source:
+  type: archive
+  url: https://libopenraw.freedesktop.org/download/exempi-2.6.6.tar.xz
+  sha256: 900fb9957be2095c78e5111b99c49378adac58161a358f52f93c55126f34eb8f
+config-opts:
+- --enable-samples=no
+- --enable-unittest=no
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,9 @@
+id: google-trans-new
+type: python
+pypi_name: google-trans-new
+requires:
+  pkgconfig:
+  - ffms2
+confidence: 0.6
+source: flathub:org.subtitld.Subtitld
+updated: '2026-05-16'

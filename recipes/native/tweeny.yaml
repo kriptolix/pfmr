@@ -1,0 +1,16 @@
+id: tweeny
+provides: []
+pkgconfig:
+- tweeny
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/mobius3/tweeny/archive/43f4130f7e4a67c19d870b60864bc2862c19b81f.tar.gz
+  sha256: 482857256a7235646004682912badb6521d361ed6987c8ebdae7986bf64ce694
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DTWEENY_BUILD_DOCUMENTATION=OFF
+- -DTWEENY_BUILD_EXAMPLES=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

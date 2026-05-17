@@ -1,0 +1,30 @@
+id: cryptography
+type: python
+pypi_name: cryptography
+requires:
+  pkgconfig:
+  - dbus-python
+  - dbus-run-session
+  - iproute2
+  - krb5
+  - libndp
+  - libnma
+  - libpq
+  - mpv
+  - networkmanager
+  - networkmanager-openvpn
+  - openssl
+  - p7zip
+  - par2cmdline-turbo
+  - polkit
+  - pycairo
+  - pygobject
+  - rsync
+  - systemd
+  - unrar
+  extensions:
+  - org.freedesktop.Sdk.Extension.node24
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:net.ankiweb.Anki
+updated: '2026-05-16'

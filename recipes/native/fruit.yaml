@@ -1,0 +1,17 @@
+id: fruit
+provides: []
+pkgconfig:
+- fruit
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/google/fruit/archive/refs/tags/v3.7.1.tar.gz
+  sha256: ed4c6b7ebfbf75e14a74e21eb74ce2703b8485bfc9e660b1c36fb7fe363172d0
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DFRUIT_USES_BOOST=FALSE
+- -DBUILD_SHARED_LIBS=FALSE
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

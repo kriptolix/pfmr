@@ -1,0 +1,18 @@
+id: ola
+provides: []
+pkgconfig:
+- ola
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/OpenLightingProject/ola/releases/download/0.10.9/ola-0.10.9.tar.gz
+  sha256: 44073698c147fe641507398253c2e52ff8dc7eac8606cbf286c29f37939a4ebf
+config-opts:
+- --disable-unittests
+- --disable-examples
+- --disable-osc
+- --disable-http
+- --enable-python-libs
+cleanup:
+- /include
+- /lib/pkgconfig

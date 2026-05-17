@@ -1,0 +1,20 @@
+id: libheif
+provides: []
+pkgconfig:
+- libheif
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/strukturag/libheif/releases/download/v1.12.0/libheif-1.12.0.tar.gz
+  sha256: e1ac2abb354fdc8ccdca71363ebad7503ad731c84022cf460837f0839e171718
+config-opts:
+- --disable-examples
+- --disable-gdk-pixbuf
+- --disable-go
+- --disable-static
+- --disable-tests
+cleanup:
+- '*.la'
+- /bin
+- /include
+- /lib/pkgconfig

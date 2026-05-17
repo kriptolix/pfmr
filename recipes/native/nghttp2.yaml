@@ -1,0 +1,12 @@
+id: nghttp2
+provides: []
+pkgconfig:
+- nghttp2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/nghttp2/nghttp2/releases/download/v1.45.1/nghttp2-1.45.1.tar.gz
+  sha256: 2379ebeff7b02e14b9a414551d73540ddce5442bbecda2748417e8505916f3e7
+cleanup:
+- /include
+- /share

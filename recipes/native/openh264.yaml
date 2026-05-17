@@ -1,0 +1,11 @@
+id: openh264
+provides: []
+pkgconfig:
+- openh264
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/cisco/openh264/archive/refs/tags/2.5.1.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,16 @@
+id: fluid
+provides: []
+pkgconfig:
+- fluid
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/lirios/fluid/releases/download/v1.2.0/fluid-1.2.0.tar.xz
+  sha256: 6f1eecd573454ed814a90202b1591dcdd2f86b359836c43ad0a296d835164c2d
+config-opts:
+- -DFLUID_USE_SYSTEM_LCS:BOOL=ON
+- -DFLUID_WITH_DOCUMENTATION:BOOL=OFF
+- -DFLUID_WITH_DEMO:BOOL=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

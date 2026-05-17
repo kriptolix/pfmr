@@ -1,0 +1,11 @@
+id: gnunet
+provides: []
+pkgconfig:
+- gnunet
+buildsystem: meson
+source:
+  type: archive
+  url: https://ftp.gnu.org/gnu/gnunet/gnunet-0.27.0.tar.gz
+cleanup:
+- /include
+- /lib/pkgconfig

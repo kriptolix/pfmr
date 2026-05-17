@@ -1,0 +1,14 @@
+id: libomemo-c
+provides: []
+pkgconfig:
+- libomemo-c
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/dino/libomemo-c/releases/download/v0.5.1/libomemo-c-0.5.1.tar.gz
+config-opts:
+- -Dtests=false
+- -Ddefault_library=static
+cleanup:
+- /lib/pkgconfig
+- /include

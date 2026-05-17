@@ -1,0 +1,12 @@
+id: kdevelop-pg-qt
+provides: []
+pkgconfig:
+- kdevelop-pg-qt
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/kdevelop-pg-qt/2.4.0/src/kdevelop-pg-qt-2.4.0.tar.xz
+  sha256: acbeb61c82f5d7aa2ddcfa18e3bee5e2559106970bd6d146d46c95f8d027bb86
+cleanup:
+- /include
+- /lib/pkgconfig

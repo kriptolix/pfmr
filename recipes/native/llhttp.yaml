@@ -1,0 +1,15 @@
+id: llhttp
+provides: []
+pkgconfig:
+- llhttp
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/nodejs/llhttp/archive/refs/tags/release/v9.4.1.tar.gz
+  sha256: 86a8c16759fdcc7aa2c9841fbe8ba2e77ea98be7d5d45615f2604776d0ff78c7
+config-opts:
+- -DLLHTTP_BUILD_SHARED_LIBS=ON
+cleanup:
+- /include
+- /lib/pkgconfig
+- /lib/cmake

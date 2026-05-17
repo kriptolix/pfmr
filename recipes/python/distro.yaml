@@ -1,0 +1,25 @@
+id: distro
+type: python
+pypi_name: distro
+requires:
+  pkgconfig:
+  - fifechan
+  - fifengine
+  - gpgme
+  - libinsane
+  - libnotify
+  - miniupnpc
+  - mpv
+  - openblas
+  - poppler
+  - poppler-data
+  - pyqtapp
+  - python-paperwork
+  - swig
+  extensions:
+  - org.freedesktop.Sdk.Extension.llvm20
+  - org.freedesktop.Sdk.Extension.openjdk21
+  - org.freedesktop.Sdk.Extension.rust-stable
+confidence: 0.6
+source: flathub:org.unknown_horizons.UnknownHorizons
+updated: '2026-05-16'

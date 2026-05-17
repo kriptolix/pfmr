@@ -1,0 +1,26 @@
+id: sdl3
+provides: []
+pkgconfig:
+- sdl3
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libsdl-org/SDL/releases/download/release-3.4.8/SDL3-3.4.8.tar.gz
+  sha256: e9fff7467fb60f037e6708da18b25560649e4c63edc2a69bb871b960d9cbfbba
+config-opts:
+- -DBUILD_SHARED_LIBS:BOOL=ON
+- -DSDL_TEST_LIBRARY:BOOL=OFF
+- -DSDL_TESTS:BOOL=OFF
+- -DSDL_EXAMPLES:BOOL=OFF
+- -DSDL_ALSA:BOOL=OFF
+- -DSDL_OSS:BOOL=OFF
+- -DSDL_SNDIO:BOOL=OFF
+- -DSDL_WAYLAND:BOOL=ON
+- -DSDL_WAYLAND_SHARED:BOOL=OFF
+- -DSDL_RPATH:BOOL=OFF
+- -DSDL_WAYLAND_LIBDECOR=ON
+- -DSDL_PIPEWIRE_SHARED:BOOL=ON
+- -DSDL_X11_XSCRNSAVER:BOOL=OFF
+- -DSDL_X11_XTEST:BOOL=OFF
+cleanup:
+- /lib/cmake

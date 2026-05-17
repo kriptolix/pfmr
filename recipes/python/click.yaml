@@ -1,0 +1,13 @@
+id: click
+type: python
+pypi_name: click
+requires:
+  pkgconfig:
+  - ffms2
+  - git
+  - krb5
+  - libusb-compat
+  - usbutils
+confidence: 0.6
+source: flathub:cc.arduino.IDE2
+updated: '2026-05-16'

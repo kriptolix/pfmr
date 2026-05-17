@@ -1,0 +1,12 @@
+id: girara
+provides: []
+pkgconfig:
+- girara
+buildsystem: meson
+source:
+  type: archive
+  url: https://pwmt.org/projects/girara/download/girara-2026.02.04.tar.xz
+  sha256: 342eca8108bd05a2275e3eacb18107fa3170fa89a12c77e541a5f111f7bba56d
+cleanup:
+- /include
+- /lib/pkgconfig

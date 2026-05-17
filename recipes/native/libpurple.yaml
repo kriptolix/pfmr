@@ -1,0 +1,23 @@
+id: libpurple
+provides: []
+pkgconfig:
+- libpurple
+buildsystem: autotools
+source:
+  type: archive
+  url: http://downloads.sourceforge.net/pidgin/pidgin-2.14.14.tar.bz2
+  sha256: 0ffc9994def10260f98a55cd132deefa8dc4a9835451cc0e982747bd458e2356
+config-opts:
+- --disable-dbus
+- --disable-gtkui
+- --disable-consoleui
+- --disable-vv
+- --disable-idn
+- --disable-avahi
+- --disable-meanwhile
+- --disable-tcl
+- --disable-nm
+- --disable-perl
+cleanup:
+- /include
+- /lib/pkgconfig

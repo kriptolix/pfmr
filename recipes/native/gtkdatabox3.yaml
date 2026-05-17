@@ -1,0 +1,15 @@
+id: gtkdatabox3
+provides: []
+pkgconfig:
+- gtkdatabox3
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/gtkdatabox3/files/gtkdatabox-1.0.0.tar.gz
+  sha256: 7add2cd8fb4209f3970dbd33f5238e25b43f6251e7534607bf926c7c6175e14b
+cleanup:
+- '*.a'
+- '*.la'
+- '*.pc'
+- /include
+- /share

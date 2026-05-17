@@ -1,0 +1,12 @@
+id: libmikmod-2
+provides: []
+pkgconfig:
+- libmikmod-2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://sourceforge.net/projects/mikmod/files/libmikmod/3.1.23/libmikmod-3.1.23.tar.gz
+  sha256: b4b64caeaf67d897fe87c6c5ca8670fea7e9bdc337b38776537b2a02dfe861f4
+cleanup:
+- /include
+- /lib/pkgconfig

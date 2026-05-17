@@ -1,0 +1,14 @@
+id: dolphin
+provides: []
+pkgconfig:
+- dolphin
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/dolphin-25.12.3.tar.xz
+  sha256: 9961de7cc076d9d7d598bb7f53afdebcfba20567093231f42ba72e031e089a3b
+config-opts:
+- -DFLATPAK=ON
+cleanup:
+- /include
+- /lib/pkgconfig

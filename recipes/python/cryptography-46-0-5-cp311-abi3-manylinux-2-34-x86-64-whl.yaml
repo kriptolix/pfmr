@@ -1,0 +1,10 @@
+id: cryptography-46-0-5-cp311-abi3-manylinux-2-34-x86-64-whl
+type: python
+pypi_name: cryptography-46-0-5-cp311-abi3-manylinux-2-34-x86-64-whl
+requires:
+  pkgconfig:
+  - farstream
+  - libspelling
+confidence: 0.6
+source: flathub:org.gajim.Gajim
+updated: '2026-05-16'

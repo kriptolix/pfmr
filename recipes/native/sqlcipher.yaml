@@ -1,0 +1,17 @@
+id: sqlcipher
+provides: []
+pkgconfig:
+- sqlcipher
+- tempstore
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/sqlcipher/sqlcipher/archive/v4.14.0.tar.gz
+  sha256: 67fb27e967a4a6968c0905691c89c908e7250dddc581b887c19ef981c737e473
+config-opts:
+- --disable-tcl
+- --with-tempstore=yes
+- --dll-basename=libsqlcipher
+cleanup:
+- /bin
+- /man

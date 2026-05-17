@@ -1,0 +1,12 @@
+id: libisocodes
+provides: []
+pkgconfig:
+- libisocodes
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/toddy15/libisocodes/archive/refs/tags/v1.2.5.tar.gz
+  sha256: cbf299de4a6ebf9e0f0cab437c1d2844c603fa479a56dbb83cee3b6684f5dc53
+cleanup:
+- /include
+- /lib/pkgconfig

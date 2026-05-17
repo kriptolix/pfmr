@@ -1,0 +1,11 @@
+id: opensc
+provides: []
+pkgconfig:
+- opensc
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/OpenSC/OpenSC/archive/refs/tags/0.26.1.tar.gz
+  sha256: 5c4928bac2786dcaff9b2dfa43cd3de301bd137193a57adfb1a7a555656691ce
+cleanup:
+- /share/applications/org.opensc.notify.desktop

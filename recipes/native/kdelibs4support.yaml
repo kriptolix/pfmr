@@ -1,0 +1,12 @@
+id: kdelibs4support
+provides: []
+pkgconfig:
+- kdelibs4support
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/frameworks/5.115/portingAids/kdelibs4support-5.115.0.tar.xz
+  sha256: 72a2fa16c9044fffa7548f349e5e19f16996787673e6bd978fdca260e5512f14
+cleanup:
+- /include
+- /lib/pkgconfig

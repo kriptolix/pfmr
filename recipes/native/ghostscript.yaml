@@ -1,0 +1,42 @@
+id: ghostscript
+provides: []
+pkgconfig:
+- ghostscript
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs10060/ghostscript-10.06.0.tar.xz
+  sha256: 64352648c2c081c8a9fb1a12dc1965e01ead7c57f58b72d1b54f6ef1cef3c561
+config-opts:
+- --disable-cups
+- --without-tesseract
+cleanup:
+- /share/ghostscript/*/doc/
+- /share/ghostscript/*/examples
+- /share/man/
+- /bin/dvipdf
+- /bin/font2c
+- /bin/gsbj
+- /bin/gsdj500
+- /bin/gslp
+- /bin/lprsetup.sh
+- /bin/pdf2ps
+- /bin/pf2afm
+- /bin/printafm
+- /bin/ps2epsi
+- /bin/ps2pdfwr
+- /bin/ps2pdf13
+- /bin/wftopfa
+- /bin/eps2eps
+- /bin/gsdj
+- /bin/gslj
+- /bin/gsnd
+- /bin/pdf2dsc
+- /bin/pfbtopfa
+- /bin/pphs
+- /bin/ps2ascii
+- /bin/ps2pdf
+- /bin/ps2pdf12
+- /bin/ps2pdf14
+- /bin/ps2ps2
+- /bin/unix-lpr.sh

@@ -1,0 +1,57 @@
+id: yt-dlp-ejs
+type: python
+pypi_name: yt-dlp-ejs
+requires:
+  pkgconfig:
+  - bc
+  - celluloid
+  - charset
+  - ed
+  - ffmpeg
+  - hdri
+  - hwdata
+  - imagemagick
+  - json-c
+  - libaacs
+  - libass
+  - libbluray
+  - libbs2b
+  - libcdio
+  - libcdio-paranoia
+  - libdisplay-info
+  - libdvdnav
+  - libdvdread
+  - libgcrypt
+  - libmediainfo
+  - libmpv
+  - libmysofa
+  - libplacebo
+  - libsixel
+  - libxmu
+  - libxpresent
+  - libzen
+  - libzip
+  - lmdb
+  - luajit
+  - mecab
+  - mecab-ipadic
+  - mpv
+  - mpv-mpris
+  - mujs
+  - nv-codec-headers
+  - pic
+  - python-prefix
+  - rubberband
+  - smbclient
+  - tesseract
+  - uchardet
+  - vapoursynth
+  - vulkan-headers
+  - x264
+  - x265
+  - xclip
+  - yt-dlp
+  - zimg
+confidence: 0.6
+source: flathub:io.github.diegopvlk.Cine
+updated: '2026-05-16'

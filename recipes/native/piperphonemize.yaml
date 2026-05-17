@@ -1,0 +1,16 @@
+id: piperphonemize
+provides: []
+pkgconfig:
+- piperphonemize
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/rhasspy/piper-phonemize/archive/7f7b5bd4de22f7fe24341c5bedda0dc1e33f3666.zip
+  sha256: 6bdcb21f6c5ae0deff7c9ae26bf07b994791dc800c1962fd216727e66a409929
+config-opts:
+- -DCMAKE_BUILD_TYPE=Release
+- -DPKG_CONFIG_USE_CMAKE_PREFIX_PATH=ON
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+cleanup:
+- /include
+- /lib/pkgconfig

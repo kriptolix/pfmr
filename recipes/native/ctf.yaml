@@ -1,0 +1,15 @@
+id: ctf
+provides: []
+pkgconfig:
+- ctf
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/yquake2/ctf/archive/refs/tags/CTF_1_12.tar.gz
+  sha256: 0c5ba7e2580a9e7fb7de935b6e39a8cb76d0db5aa058e1e077a4171d3399ea10
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: localtranslate
+provides: []
+pkgconfig:
+- localtranslate
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/terslang/LocalTranslate/archive/refs/tags/v0.5.0.tar.gz
+  sha256: fcccc1d4486c83244cfb407df3a940087a12c66af7613b20f893b4775c72b234
+cleanup:
+- /include
+- /lib/pkgconfig

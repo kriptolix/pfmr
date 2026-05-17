@@ -1,0 +1,24 @@
+id: handbrake
+provides: []
+pkgconfig:
+- handbrake
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/HandBrake/HandBrake/releases/download/1.11.1/HandBrake-1.11.1-source.tar.bz2
+  sha256: 4ff6a8a57c9b1cea51025306e313eee423b0fa1a8b7799aeaa8d4d7c457a7310
+config-opts:
+- --flatpak
+- --enable-qsv
+- --enable-nvenc
+- --enable-nvdec
+- --enable-vce
+- --enable-libdovi
+cleanup:
+- /etc
+- /include
+- /lib/cmake
+- /lib/pkgconfig
+- /lib/*.a
+- /lib/*.la
+- /lib/*.so

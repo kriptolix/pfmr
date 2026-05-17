@@ -1,0 +1,15 @@
+id: curl
+provides: []
+pkgconfig:
+- curl
+- openssl
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/curl/curl/releases/download/curl-8_16_0/curl-8.16.0.tar.xz
+  sha256: 40c8cddbcb6cc6251c03dea423a472a6cea4037be654ba5cf5dec6eb2d22ff1d
+config-opts:
+- --with-openssl
+cleanup:
+- /include
+- /lib/pkgconfig

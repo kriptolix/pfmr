@@ -1,0 +1,14 @@
+id: samplebrain
+provides: []
+pkgconfig:
+- samplebrain
+buildsystem: qmake
+source:
+  type: archive
+  url: https://gitlab.com/then-try-this/samplebrain/-/archive/v0.18.5_release/samplebrain-v0.18.5_release.tar.gz
+  sha256: 2e6723aa6a9ad84663a03c41af78826e0a29014a56785129b4fbd3bdba0e2993
+config-opts:
+- LIBS+=-L/app/lib
+cleanup:
+- /include
+- /lib/pkgconfig

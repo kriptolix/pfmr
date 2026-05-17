@@ -1,0 +1,12 @@
+id: konsole
+provides: []
+pkgconfig:
+- konsole
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/konsole-25.12.3.tar.xz
+  sha256: c3e13be55cbe553ebd6ba5f04f9194c79a4ba15d1ed8f3d151ac7afae016f232
+cleanup:
+- /include
+- /lib/pkgconfig

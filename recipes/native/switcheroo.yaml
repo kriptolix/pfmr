@@ -1,0 +1,14 @@
+id: switcheroo
+provides: []
+pkgconfig:
+- switcheroo
+buildsystem: meson
+source:
+  type: archive
+  url: https://gitlab.com/-/project/41292464/uploads/a31f472445361fd40b42bf6ec7309ff1/switcheroo-2.6.0.tar.xz
+  sha256: cb1e2c27ebc421bb2823ebed3e135dc84a741921a3b5b6153c4ef7337d353eb6
+config-opts:
+- --buildtype=release
+cleanup:
+- /include
+- /lib/pkgconfig

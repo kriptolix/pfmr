@@ -1,0 +1,15 @@
+id: glib
+provides: []
+pkgconfig:
+- glib
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/glib/2.84/glib-2.84.4.tar.xz
+  sha256: 8a9ea10943c36fc117e253f80c91e477b673525ae45762942858aef57631bb90
+config-opts:
+- -Dtests=false
+- -Dselinux=disabled
+cleanup:
+- /include
+- /lib/pkgconfig

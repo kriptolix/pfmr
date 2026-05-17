@@ -1,0 +1,15 @@
+id: kcalutils
+provides: []
+pkgconfig:
+- kcalutils
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/release-service/25.12.3/src/kcalutils-25.12.3.tar.xz
+  sha256: 8d54dfef43b7929c9d9b52ba2b6234f94537923e4ff94984611bf7489502a234
+config-opts:
+- -DBUILD_TESTING=OFF
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+cleanup:
+- /include
+- /lib/pkgconfig

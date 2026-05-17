@@ -1,0 +1,12 @@
+id: skycheckers
+provides: []
+pkgconfig:
+- skycheckers
+buildsystem: autotools
+source:
+  type: archive
+  url: https://github.com/zorgiepoo/Sky-Checkers/releases/download/1.3.1/sc-snap-pak-repo.tgz
+  sha256: b75d1fc7bc76d4147f57055f965fb1d752222beba4dc90115b388af5532b3c87
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,20 @@
+id: mmdb2
+provides: []
+pkgconfig:
+- mmdb2
+buildsystem: autotools
+source:
+  type: archive
+  url: https://www2.mrc-lmb.cam.ac.uk/personal/pemsley/coot/dependencies/mmdb2-2.0.22.tar.gz
+  sha256: a9646933ce9f34633e1ae4901f2383af0e5318d6490851328f5b6aa06195ab51
+config-opts:
+- --disable-debug
+- --disable-docs
+- --disable-dependency-tracking
+- --disable-silent-rules
+- --enable-shared
+- --disable-static
+- --disable-Werror
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,15 @@
+id: cli-11
+provides: []
+pkgconfig:
+- cli-11
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/CLIUtils/CLI11/archive/refs/tags/v2.4.2.tar.gz
+  sha256: f2d893a65c3b1324c50d4e682c0cdc021dd0477ae2c048544f39eed6654b699a
+config-opts:
+- -DCLI11_BUILD_EXAMPLES=OFF
+- -DCLI11_BUILD_TESTS=OFF
+cleanup:
+- /include
+- /lib/pkgconfig

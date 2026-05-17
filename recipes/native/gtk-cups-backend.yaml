@@ -1,12 +1,12 @@
 id: gtk-cups-backend
+provides: []
 pkgconfig:
 - gtk-cups-backend
-provides: []
 buildsystem: meson
 source:
   type: archive
-  url: https://download.gnome.org/sources/gtk+/3.24/gtk+-3.24.43.tar.xz
-  sha256: 7e04f0648515034b806b74ae5d774d87cffb1a2a96c468cb5be476d51bf2f3c7
+  url: https://download.gnome.org/core/41/41.0/sources/gtk%2B-3.24.30.tar.xz
+  sha256: ba75bfff320ad1f4cfbee92ba813ec336322cc3c660d406aad014b07087a3ba9
 cleanup:
 - /include
 - /lib/pkgconfig

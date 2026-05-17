@@ -1,0 +1,12 @@
+id: microdns
+provides: []
+pkgconfig:
+- microdns
+buildsystem: meson
+source:
+  type: archive
+  url: https://github.com/videolabs/libmicrodns/releases/download/0.2.0/microdns-0.2.0.tar.xz
+  sha256: 2da28e7dda4861d76f797f92ac3e6c3e048333b95f9e4fc3a6548ad8afd8c446
+cleanup:
+- /include
+- /lib/pkgconfig

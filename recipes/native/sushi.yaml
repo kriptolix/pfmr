@@ -1,0 +1,12 @@
+id: sushi
+provides: []
+pkgconfig:
+- sushi
+buildsystem: meson
+source:
+  type: archive
+  url: https://download.gnome.org/sources/sushi/50/sushi-50.0.tar.xz
+  sha256: ab25177908d5ccc58568769a81eb9b4f32306786e6c73618193ebf61a127ee00
+cleanup:
+- /include
+- /lib/pkgconfig

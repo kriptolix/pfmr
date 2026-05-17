@@ -1,0 +1,11 @@
+id: xcursorgen
+provides: []
+pkgconfig:
+- xcursorgen
+buildsystem: autotools
+source:
+  type: archive
+  url: https://gitlab.freedesktop.org/xorg/app/xcursorgen/-/archive/xcursorgen-1.0.6/xcursorgen-xcursorgen-1.0.6.tar.gz
+  sha256: 0566c6848c93ef092b37e4ffdc6e86e9249fa9721f663117787b6cefea5eb55b
+cleanup:
+- '*'

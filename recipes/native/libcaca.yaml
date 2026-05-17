@@ -1,0 +1,17 @@
+id: libcaca
+provides: []
+pkgconfig:
+- libcaca
+buildsystem: autotools
+source:
+  type: archive
+  url: http://security.debian.org/debian-security/pool/updates/main/libc/libcaca/libcaca_0.99.beta19.orig.tar.gz
+  sha256: 128b467c4ed03264c187405172a4e83049342cc8cc2f655f53a2d0ee9d3772f4
+config-opts:
+- --disable-doc
+- --disable-python
+- --disable-ruby
+- --disable-static
+cleanup:
+- /include
+- /lib/pkgconfig

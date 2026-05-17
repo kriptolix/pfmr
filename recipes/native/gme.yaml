@@ -1,0 +1,12 @@
+id: gme
+provides: []
+pkgconfig:
+- gme
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/libgme/game-music-emu/releases/download/0.6.4/libgme-0.6.4-src.tar.gz
+  sha256: 6f94eac735d86bca998a7ce1170d007995191ef6d4388345a0dc5ffa1de0bafa
+cleanup:
+- /include
+- /lib/pkgconfig

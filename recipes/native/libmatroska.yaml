@@ -1,0 +1,17 @@
+id: libmatroska
+provides: []
+pkgconfig:
+- libmatroska
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://dl.matroska.org/downloads/libmatroska/libmatroska-1.7.1.tar.xz
+  sha256: 572a3033b8d93d48a6a858e514abce4b2f7a946fe1f02cbfeca39bfd703018b3
+config-opts:
+- -DCMAKE_BUILD_TYPE=RelWithDebInfo
+- -DBUILD_SHARED_LIBS=ON
+- -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+- -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+cleanup:
+- /include
+- /lib/pkgconfig

@@ -1,0 +1,12 @@
+id: ecdsa
+type: python
+pypi_name: ecdsa
+requires:
+  pkgconfig:
+  - git
+  - krb5
+  - libusb-compat
+  - usbutils
+confidence: 0.6
+source: flathub:cc.arduino.IDE2
+updated: '2026-05-16'

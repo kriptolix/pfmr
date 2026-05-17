@@ -1,0 +1,13 @@
+id: astyle
+provides: []
+pkgconfig:
+- astyle
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://sourceforge.net/projects/astyle/files/astyle/astyle%203.6/astyle-3.6.13.tar.bz2
+  sha256: 048b74b14c6e01f7fae8e63b767da33303ab39d9022afe33055ce4b9e56f162d
+cleanup:
+- '*.a'
+- /share/man
+- /include

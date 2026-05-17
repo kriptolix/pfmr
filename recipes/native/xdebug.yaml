@@ -1,0 +1,15 @@
+id: xdebug
+provides: []
+pkgconfig:
+- xdebug
+- php-config
+buildsystem: autotools
+source:
+  type: archive
+  url: https://xdebug.org/files/xdebug-3.1.2.tgz
+  sha256: 083f6be1100df79ccbdf049dafc3930bab35f0eb80f9b19ac1ad84fa6779ccf3
+config-opts:
+- --with-php-config=/usr/lib/sdk/php73/bin/php-config
+cleanup:
+- /include
+- /lib/pkgconfig

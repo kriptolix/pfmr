@@ -1,0 +1,12 @@
+id: mobile-broadband-provider-info
+provides: []
+pkgconfig:
+- mobile-broadband-provider-info
+buildsystem: autotools
+source:
+  type: archive
+  url: https://download.gnome.org/sources/mobile-broadband-provider-info/20230416/mobile-broadband-provider-info-20230416.tar.xz
+  sha256: e3e140aa2db769b299d1df86a890e948ab99d4d38831302c452d1fb7f8568aec
+cleanup:
+- /include
+- /lib/pkgconfig

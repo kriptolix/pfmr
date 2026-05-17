@@ -1,0 +1,15 @@
+id: clutter-gtk
+provides: []
+pkgconfig:
+- clutter-gtk
+buildsystem: autotools
+source:
+  type: archive
+  url: http://ftp.acc.umu.se/pub/GNOME/sources/clutter-gtk/1.8/clutter-gtk-1.8.4.tar.xz
+  sha256: 521493ec038973c77edcb8bc5eac23eed41645117894aaee7300b2487cb42b06
+cleanup:
+- /include
+- /lib/*.la
+- /lib/pkgconfig
+- /share/gir-1.0
+- /share/gtk-doc

@@ -1,0 +1,11 @@
+id: libquvi
+provides: []
+pkgconfig:
+- libquvi
+buildsystem: autotools
+source:
+  type: archive
+  url: https://downloads.sourceforge.net/quvi/libquvi-0.9.4.tar.xz
+cleanup:
+- /include
+- /lib/pkgconfig

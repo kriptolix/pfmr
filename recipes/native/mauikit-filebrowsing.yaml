@@ -1,0 +1,12 @@
+id: mauikit-filebrowsing
+provides: []
+pkgconfig:
+- mauikit-filebrowsing
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://download.kde.org/stable/maui/mauikit-filebrowsing/4.0.2/mauikit-filebrowsing-4.0.2.tar.xz
+  sha256: cc6f522c6dd9b9ee7cef7adbae56a1a8a9e26cc31dfe2201a117601a10f58d21
+cleanup:
+- /include
+- /lib/pkgconfig

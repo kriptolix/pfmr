@@ -1,0 +1,18 @@
+id: vulkan-tools
+provides: []
+pkgconfig:
+- vulkan-tools
+buildsystem: cmake-ninja
+source:
+  type: archive
+  url: https://github.com/KhronosGroup/Vulkan-Tools/archive/v1.4.334/Vulkan-Tools-1.4.334.tar.gz
+  sha256: ae6c8ec78c6ebe2ec7c3034ac99454eaa2e855fe2b3df0ea858c2ba669b7fd83
+config-opts:
+- -DVULKAN_HEADERS_INSTALL_DIR=/app
+- -DCMAKE_BUILD_TYPE=Release
+- -DBUILD_CUBE=OFF
+- -DBUILD_ICD=OFF
+- -DBUILD_VULKANINFO=ON
+cleanup:
+- /include
+- /lib/pkgconfig
